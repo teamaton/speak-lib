@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUploader", "FileUploader\FileUploader.csproj", "{CE517CC8-453F-4F86-99E4-F3948E92F6F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Speak-Lib\Utilities.csproj", "{E38CF0D5-8B70-419F-A11E-F978C90ABD1A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE517CC8-453F-4F86-99E4-F3948E92F6F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE517CC8-453F-4F86-99E4-F3948E92F6F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE517CC8-453F-4F86-99E4-F3948E92F6F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE517CC8-453F-4F86-99E4-F3948E92F6F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E38CF0D5-8B70-419F-A11E-F978C90ABD1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E38CF0D5-8B70-419F-A11E-F978C90ABD1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E38CF0D5-8B70-419F-A11E-F978C90ABD1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E38CF0D5-8B70-419F-A11E-F978C90ABD1A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
