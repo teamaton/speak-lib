@@ -3,7 +3,7 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
-namespace SpeakFriend.Web.Utils
+namespace SpeakFriend.Utils.Web
 {
     public class ItemTemplateHelper
     {

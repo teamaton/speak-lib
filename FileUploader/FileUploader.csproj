@@ -106,7 +106,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Speak-Lib\Utilities\Utilities.csproj">
+    <ProjectReference Include="..\Speak-Lib\Utilities.csproj">
       <Project>{E38CF0D5-8B70-419F-A11E-F978C90ABD1A}</Project>
       <Name>Utilities</Name>
     </ProjectReference>

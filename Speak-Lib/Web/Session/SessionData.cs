@@ -5,7 +5,7 @@ using System.Text;
 using System.Web;
 using System.Windows.Forms;
 
-namespace SpeakFriend.Web
+namespace SpeakFriend.Utils.Web
 {
     /// <summary>
     /// Provides Access to UserData in a Web and UnitTest Context.

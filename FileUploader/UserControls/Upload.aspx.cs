@@ -28,7 +28,7 @@ namespace Frontend.Web
                 string imageName;
                 string thumbName = "";
 
-                //Thread.Sleep(S);
+                Thread.Sleep(UploadSettings.DebugDelayInSeconds * 1000);
                 uploadManager.ManageUploadedImage(
                     fileInput.PostedFile.InputStream,
                     Convert.ToInt32(Request["Id"]),

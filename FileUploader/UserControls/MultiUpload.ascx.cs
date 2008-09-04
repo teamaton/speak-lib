@@ -12,7 +12,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
-using SpeakFriend.Web.Utils;
+using SpeakFriend.Utils.Web;
 
 namespace Frontend.Web
 {

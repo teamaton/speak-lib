@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.UI;
-using SpeakFriend.Web;
+using SpeakFriend.Utils.Web;
 
 namespace SpeakFriend.FileUploader
 {

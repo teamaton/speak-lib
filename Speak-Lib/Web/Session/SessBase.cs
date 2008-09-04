@@ -5,7 +5,7 @@ using System.Text;
 using System.Web;
 using System.Web.SessionState;
 
-namespace SpeakFriend.Web
+namespace SpeakFriend.Utils.Web
 {
     public class SessBase
     {
