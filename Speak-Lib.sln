@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUploader", "FileUploader\FileUploader.csproj", "{CE517CC8-453F-4F86-99E4-F3948E92F6F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.FileUploader", "FileUploader\Web.FileUploader.csproj", "{CE517CC8-453F-4F86-99E4-F3948E92F6F2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Speak-Lib\Utilities.csproj", "{E38CF0D5-8B70-419F-A11E-F978C90ABD1A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueObjects", "ValueObjects\ValueObjects.csproj", "{028B23CE-4E1C-418A-816C-43AD35A501FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Utilities", "Web.Utilities\Web.Utilities.csproj", "{AB91E651-03C8-4E27-844C-73A2A10703A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{028B23CE-4E1C-418A-816C-43AD35A501FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{028B23CE-4E1C-418A-816C-43AD35A501FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{028B23CE-4E1C-418A-816C-43AD35A501FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB91E651-03C8-4E27-844C-73A2A10703A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB91E651-03C8-4E27-844C-73A2A10703A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB91E651-03C8-4E27-844C-73A2A10703A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB91E651-03C8-4E27-844C-73A2A10703A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

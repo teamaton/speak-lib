@@ -35,5 +35,14 @@ namespace SpeakFriend.Utils
                 fileName = fileName.Remove(fileName.IndexOf("?"));
             return fileName;
         }
+		
+        public static string GetQueryString(string requestPath)
+        {
+            if (!requestPath.Contains('?'))
+                return "";
+
+            return requestPath.Split('?')[1];
+        }		
+		
     }
 }

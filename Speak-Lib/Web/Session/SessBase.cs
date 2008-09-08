@@ -9,13 +9,6 @@ namespace SpeakFriend.Utils.Web
 {
     public class SessBase
     {
-        protected HttpSessionState Sess
-        {
-            get
-            {
-                return HttpContext.Current.Session;
-            }
-        }
         protected SessionData Data = new SessionData();
     }
 }
