@@ -66,5 +66,4 @@ namespace SpeakFriend.ValueObjects
             return String.Format("{00:00}", hours) + ":" + String.Format("{00:00}", minutes) + ":" + String.Format("{00:00}", seconds);
         }
     }
-    }
-}
+ }
