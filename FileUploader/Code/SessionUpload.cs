@@ -18,18 +18,18 @@ namespace SpeakFriend.FileUploader
         public UploadManager GetUploadManager(string id)
         {
             var name = string.Format("SF.UploadManager.{0}", id);
-            if (Sess[name] == null)
+            if (Data[name] == null)
                 SetUploadManager(new UploadManager(), id);
 
-            return (UploadManager)Sess[name];
+            return (UploadManager)Data[name];
         }
         public void SetUploadManager(UploadManager value, string id)
         {
             var name = string.Format("SF.UploadManager.{0}", id);
-            if (Sess[name] != null)
-                ((UploadManager)Sess[name]).Dispose();
+            if (Data[name] != null)
+                ((UploadManager)Data[name]).Dispose();
 
-            Sess[name] = value;
+            Data[name] = value;
             if (value != null)
                 _uploadManagers.Add(id, value);
             else
