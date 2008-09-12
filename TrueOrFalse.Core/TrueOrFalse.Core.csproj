@@ -31,6 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=1.2.3147.38542, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=2.1.0.1001, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -45,15 +57,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Domain.Service\CoreModule.cs" />
+    <Compile Include="Domain.Service\Query\RepositoryDB.cs" />
+    <Compile Include="Domain.Service\SessionManager.cs" />
+    <Compile Include="Domain.Setup\NHibernateHelper.cs" />
+    <Compile Include="Domain.Setup\SampleFactory.cs" />
     <Compile Include="Domain\Question\Answer\Answer.cs" />
     <Compile Include="Domain\Question\Question.cs" />
     <Compile Include="Domain\Question\QuestionList.cs" />
+    <Compile Include="Domain\Question\IQuestionRepository.cs" />
+    <Compile Include="Domain\Question\QuestionRepository.cs" />
     <Compile Include="Domain\Question\QuestionService.cs" />
     <Compile Include="Domain\Question\Source\Source.cs" />
     <Compile Include="Domain\Question\Source\SourceList.cs" />
     <Compile Include="Domain\Question\Source\SourceService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Domain\Question\Question.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

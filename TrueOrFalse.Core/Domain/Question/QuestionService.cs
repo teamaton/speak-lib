@@ -7,39 +7,46 @@ namespace SpeakFriend.TrueOrFalse
 {
     public class QuestionService
     {
-        public QuestionList GetAll()
+
+        private IQuestionRepository _repository;
+
+        public QuestionService(IQuestionRepository repository)
         {
-            var result = new QuestionList();
-
-            var sourceService = new SourceService();
-
-            result.Add(new Question
-            {
-                Text = "Welche Geschwindigkeit erreicht ein durchschnittlicher Regentropfen?",
-                Answer = new Answer(){Value = 35},
-                Source = sourceService.GetInteressanteFaktenDe()
-            });
-            result.Add(new Question
-            {
-                Text = "Wie groß ist die Wahrscheinlichkeit, dass man in seinem Leben von einem Flugzeug getroffen wird, das vom Himmel stürzt? 1 zu ...",
-                Answer = new Answer() { Value = 25000000 },
-                Source = sourceService.GetInteressanteFaktenDe()
-            });
-            result.Add(new Question
-            {
-                Text = "Wie viele Menschen wurden schon mal von Meteoritenteilen getroffen?",
-                Answer = new Answer() { Value = 7 },
-                Source = sourceService.GetInteressanteFaktenDe()            
-            });
-            result.Add(new Question
-            {
-                Text = "Wie viel Prozent britischer Schulkinder glauben, dass Deutschland das langweiligste Land in Europa ist?",
-                Answer = new Answer() { Value = 57 },
-                Source = sourceService.GetInteressanteFaktenDe()
-            });
-            return new QuestionList();
+            _repository = repository;
         }
 
 
+        public QuestionList GetAll()
+        {
+            var result = SampleFactory.GetSampleQuestions();
+
+            return result;
+        }
+
+        public void Create(Question question)
+        {
+
+            question.Created = question.Modified = DateTime.Now;
+            
+            _repository.Create(question);
+        }
+
+        public void Create(QuestionList questions)
+        {
+            foreach (var question in questions)
+                Create(question);
+        }
+
+        public void Update(Question question)
+        {
+            question.Modified = DateTime.Now;
+
+            _repository.Update(question);
+        }
+
+        public void Delete(Question question)
+        {
+            _repository.Delete(question);
+        }
     }
 }

@@ -7,6 +7,6 @@ namespace SpeakFriend.TrueOrFalse
 {
     public class Answer
     {
-        public double Value;
+        public int Value;
     }
 }

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class name="SpeakFriend.TrueOrFalse.Question, SpeakFriend.TrueOrFalse.Core"
+      table="Question" lazy="false">
+
+    <id name="Id" column="Id" type="Int32">
+      <generator class="native" />
+    </id>
+
+    <property name="Text" type="String" not-null="true"/>
+
+    <property name="Created"  type="DateTime" not-null="true"/>
+    <property name="Modified" type="DateTime" not-null="true"/>
+
+    <!--
+    <bag name="NHibernateKeywords">
+      <key column="ProductId"/>
+      <one-to-many class="ConceptOffice.Keyword, ConceptOffice.Core"/>
+    </bag>
+    -->
+
+  </class>
+</hibernate-mapping>

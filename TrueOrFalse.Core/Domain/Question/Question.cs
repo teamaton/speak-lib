@@ -7,9 +7,14 @@ namespace SpeakFriend.TrueOrFalse
 {
     public class Question
     {
-        public string Text;
-        public Answer Answer;
-        public Source Source;
-        
+        public int Id { get; set; }
+
+        public string Text { get; set; }
+
+        public Answer Answer { get; set; }
+        public Source Source { get; set; }
+
+        public DateTime Modified { get; set; }
+        public DateTime Created { get; set; }
     }
 }
