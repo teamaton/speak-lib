@@ -7,7 +7,7 @@ namespace SpeakFriend.TrueOrFalse
 {
     public class Source
     {
-        public string Name;
-        public string URL;
+        public string Name { get; set; }
+        public string Url { get; set; }
     }
 }

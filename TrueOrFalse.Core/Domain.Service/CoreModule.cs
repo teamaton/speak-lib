@@ -24,7 +24,7 @@ namespace SpeakFriend.TrueOrFalse
                 .ContainerScoped();
 
             builder
-                .Register(c => new QuestionRepository(c.Resolve<ISession>()))
+                .Register(c => new QuestionRepository(c.Resolve<SessionManager>().Session))
                 .As<IQuestionRepository>()
                 .ContainerScoped();
         }
@@ -39,11 +39,6 @@ namespace SpeakFriend.TrueOrFalse
             builder
                 .Register(c => new SessionManager(c.Resolve<ISessionFactory>().OpenSession()))
                 .As<SessionManager>()
-                .ContainerScoped();
-
-            builder
-                .Register(c => c.Resolve<SessionManager>().Session)
-                .As<ISession>()
                 .ContainerScoped();
         }
 

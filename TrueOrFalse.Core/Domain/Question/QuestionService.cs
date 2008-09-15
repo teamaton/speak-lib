@@ -18,16 +18,12 @@ namespace SpeakFriend.TrueOrFalse
 
         public QuestionList GetAll()
         {
-            var result = SampleFactory.GetSampleQuestions();
-
-            return result;
+            return _repository.GetAll();
         }
 
         public void Create(Question question)
         {
-
             question.Created = question.Modified = DateTime.Now;
-            
             _repository.Create(question);
         }
 
@@ -50,3 +46,4 @@ namespace SpeakFriend.TrueOrFalse
         }
     }
 }
+

@@ -9,6 +9,15 @@
 
     <property name="Text" type="String" not-null="true"/>
 
+    <component name="Answer" class="SpeakFriend.TrueOrFalse.Answer, SpeakFriend.TrueOrFalse.Core">
+      <property name="GeneralStringValue" column="Answer_Value" type="string" not-null="true" />
+    </component>
+
+    <component name="Source" class="SpeakFriend.TrueOrFalse.Source, SpeakFriend.TrueOrFalse.Core">
+      <property name="Name" column="Source_Name" type="string" not-null="true" />
+      <property name="Url" column="Source_Url" type="string" not-null="false" />
+    </component>
+
     <property name="Created"  type="DateTime" not-null="true"/>
     <property name="Modified" type="DateTime" not-null="true"/>
 

@@ -7,13 +7,6 @@ namespace SpeakFriend.TrueOrFalse
 {
     public class SourceService
     {
-        public Source GetInteressanteFaktenDe()
-        {
-            return new Source
-                       {
-                           Name = "Interessante-Fakten.de",
-                           URL = "http://interessantefakten.de/"
-                       };
-        }
+
     }
 }

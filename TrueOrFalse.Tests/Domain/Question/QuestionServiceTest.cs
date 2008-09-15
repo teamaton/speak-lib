@@ -27,13 +27,13 @@ namespace SpeakFriend.TrueOrFalse.Tests
         [Test]
         public void CRUD()
         {
-            // Create
+            // --- Create ---
             var questions = SampleFactory.GetSampleQuestions();
             _questionService.Create(questions);
 
             RecycleServiceContainer();
 
-            // Retrieve
+            // --- Retrieve ---
             var questionsRetrieved = _questionService.GetAll();
 
             // Das ist das Gleiche
@@ -47,13 +47,27 @@ namespace SpeakFriend.TrueOrFalse.Tests
 
             RecycleServiceContainer();
 
-            //Update
-            questions[0].Text = "Sind Sie ein Meerschweinchen?";
+            // --- Update ---
+            questions[0].Text = "[Updated] Sind Sie ein Meerschweinchen?";
             _questionService.Update(questions[0]);
             RecycleServiceContainer();
-            
 
-            //Delete
+            // Retrieve
+            var questionsRetrievedAfterUpdate = _questionService.GetAll();
+            Expect(questionsRetrievedAfterUpdate.Any(
+                   questionRetrieved => questionRetrieved.Text == questions[0].Text));
+
+            RecycleServiceContainer();
+
+            // --- Delete ---
+            _questionService.Delete(questions[0]);
+
+            RecycleServiceContainer();
+
+            var questionsRetrievedAfterDelete = _questionService.GetAll();
+            Expect(questionsRetrievedAfterDelete.Count, EqualTo(questions.Count - 1));
+            Expect(!questionsRetrievedAfterDelete.Any(
+                   questionRetrieved => questionRetrieved.Text == questions[0].Text));
             
         }
     }
