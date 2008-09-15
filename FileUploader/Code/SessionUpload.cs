@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +7,7 @@ using SpeakFriend.Utils.Web;
 
 namespace SpeakFriend.FileUploader
 {
-    public class SessionUpload : SessBase
+    public class SessionUpload : BaseSession
     {
         /// <summary>
         /// Keeping references in order to dispose the UploadManagers

@@ -30,6 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=1.2.3147.38542, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Web, Version=1.2.3147.38543, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Autofac.Integration.Web.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core">
@@ -56,6 +64,42 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Master.Master.cs">
+      <DependentUpon>Master.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Master.Master.designer.cs">
+      <DependentUpon>Master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Question.aspx.cs">
+      <DependentUpon>Question.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Question.aspx.designer.cs">
+      <DependentUpon>Question.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\QuestionEdit.aspx.cs">
+      <DependentUpon>QuestionEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\QuestionEdit.aspx.designer.cs">
+      <DependentUpon>QuestionEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="_code\BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_code\BaseControl.cs" />
+    <Compile Include="_code\ServiceLocator.cs" />
     <Compile Include="Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -64,6 +108,13 @@
       <DependentUpon>Master.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestionAnswer.aspx.cs">
+      <DependentUpon>QuestionAnswer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QuestionAnswer.aspx.designer.cs">
+      <DependentUpon>QuestionAnswer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="QuestionCreate.aspx.cs">
       <DependentUpon>QuestionCreate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -71,12 +122,12 @@
     <Compile Include="QuestionCreate.aspx.designer.cs">
       <DependentUpon>QuestionCreate.aspx</DependentUpon>
     </Compile>
-    <Compile Include="QuestionAnswer.aspx.cs">
-      <DependentUpon>QuestionAnswer.aspx</DependentUpon>
+    <Compile Include="UserControls\Login.ascx.cs">
+      <DependentUpon>Login.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="QuestionAnswer.aspx.designer.cs">
-      <DependentUpon>QuestionAnswer.aspx</DependentUpon>
+    <Compile Include="UserControls\Login.ascx.designer.cs">
+      <DependentUpon>Login.ascx</DependentUpon>
     </Compile>
     <Compile Include="Welcome.aspx.cs">
       <DependentUpon>Welcome.aspx</DependentUpon>
@@ -88,9 +139,27 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master.Master" />
-    <Content Include="QuestionCreate.aspx" />
     <Content Include="QuestionAnswer.aspx" />
     <Content Include="Welcome.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\Master.Master" />
+    <Content Include="Admin\Question.aspx" />
+    <Content Include="Admin\QuestionEdit.aspx" />
+    <Content Include="Admin\Dashboard.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="QuestionCreate.aspx" />
+    <Content Include="UserControls\Login.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Speak-Lib\Utilities.csproj">
+      <Project>{E38CF0D5-8B70-419F-A11E-F978C90ABD1A}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrueOrFalse.Core\TrueOrFalse.Core.csproj">
+      <Project>{3A0BACF6-1F5F-4486-94C4-799A061DC526}</Project>
+      <Name>TrueOrFalse.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

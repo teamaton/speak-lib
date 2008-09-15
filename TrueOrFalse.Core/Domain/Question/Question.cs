@@ -16,5 +16,10 @@ namespace SpeakFriend.TrueOrFalse
 
         public DateTime Modified { get; set; }
         public DateTime Created { get; set; }
+
+        public Question()
+        {
+            Answer = new Answer();
+        }
     }
 }

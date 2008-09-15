@@ -15,7 +15,7 @@ namespace SpeakFriend.TrueOrFalse
             set { this._value = value; }
         }
 
-        public string GeneralStringValue
+        public string Value
         {
             get { return _value.ToString(); }
 

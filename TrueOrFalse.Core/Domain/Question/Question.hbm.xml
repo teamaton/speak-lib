@@ -10,7 +10,7 @@
     <property name="Text" type="String" not-null="true"/>
 
     <component name="Answer" class="SpeakFriend.TrueOrFalse.Answer, SpeakFriend.TrueOrFalse.Core">
-      <property name="GeneralStringValue" column="Answer_Value" type="string" not-null="true" />
+      <property name="Value" column="Answer_Value" type="string" not-null="true" />
     </component>
 
     <component name="Source" class="SpeakFriend.TrueOrFalse.Source, SpeakFriend.TrueOrFalse.Core">
