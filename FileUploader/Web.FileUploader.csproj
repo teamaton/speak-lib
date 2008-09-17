@@ -8,8 +8,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ImageUploader</RootNamespace>
-    <AssemblyName>ImageUploader</AssemblyName>
+    <RootNamespace>SpeakFriend.Web.FileUploader</RootNamespace>
+    <AssemblyName>SpeakFriend.Web.FileUploader</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -106,16 +106,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Speak-Lib\Utilities.csproj">
-      <Project>{E38CF0D5-8B70-419F-A11E-F978C90ABD1A}</Project>
-      <Name>Utilities</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="UserControlsExamples\ExampleStoredWithSubmitButton.ascx" />
     <Content Include="Master.Master" />
     <Content Include="Examples.aspx" />
     <Content Include="Welcome.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{E38CF0D5-8B70-419F-A11E-F978C90ABD1A}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
