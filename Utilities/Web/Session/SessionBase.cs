@@ -7,7 +7,7 @@ using System.Web.SessionState;
 
 namespace SpeakFriend.Utilities.Web
 {
-    public class BaseSession
+    public class SessionBase
     {
         protected SessionData Data = new SessionData();
     }
