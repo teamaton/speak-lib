@@ -1,0 +1,104 @@
+﻿using NHibernate;
+using NHibernate.Criterion;
+
+namespace SpeakFriend.Utilities
+{
+    public abstract class RepositoryDb<TDomainObject, TDomainObjectList>
+        where TDomainObject : IDomainObject where TDomainObjectList : DomainObjectList<TDomainObject>, new(IComparable a)
+    {
+        protected readonly ISession _session;
+
+        protected RepositoryDb(ISession session)
+        {
+            _session = session;
+        }
+
+        public DetachedCriteria GetDetachedCriteria<T>()
+        {
+            return DetachedCriteria.For(typeof(T));
+        }
+
+        public ICriteria GetExecutable<T>()
+        {
+            return GetDetachedCriteria<T>().GetExecutableCriteria(_session);
+        }
+
+        /*
+            public void AddGenericConditions(ICriteria criteria, ConditionContainer filter)
+            {
+                foreach (Condition condition in filter)
+                    condition.AddToCriteria(criteria);
+            }
+
+            public void AddOrderBy(ICriteria criteria, OrderByCriteria orderBy)
+            {
+                AddOrderBy(criteria, orderBy, null);
+            }
+
+            public void AddOrderBy(ICriteria criteria, OrderByCriteria orderBy, string tableAlias)
+            {
+                var propertyName = "";
+
+                if (!String.IsNullOrEmpty(tableAlias) && !tableAlias.EndsWith("."))
+                    tableAlias = tableAlias + ".";
+
+                if (orderBy.IsSet())
+                    propertyName = tableAlias + orderBy.Current.PropertyName;
+                else
+                    return;
+
+                if (orderBy.Current.Direction == OrderDirection.Ascending)
+                    criteria.AddOrder(NHibernate.Criterion.Order.Asc(propertyName));
+                else
+                    criteria.AddOrder(NHibernate.Criterion.Order.Desc(propertyName));
+            }
+
+            public void SetPager(ICriteria criteria, Pager pager)
+            {
+                if (!pager.QueryAll)
+                {
+                    criteria.SetMaxResults(pager.PageSize);
+                    criteria.SetFirstResult(pager.FirstResult);
+                }
+            }
+
+            public void SetTotalItemCount(ICriteria criteria, Pager pager)
+            {
+                var criteriaRowCount = CriteriaTransformer.TransformToRowCount(criteria);
+                pager.TotalItems = criteriaRowCount.UniqueResult<int>();
+            }
+        */
+
+        public void Create(TDomainObject domainObject)
+        {
+            _session.Save(domainObject);
+        }
+
+        public void Update(TDomainObject domainObject)
+        {
+            _session.Update(domainObject);
+        }
+
+        public void Delete(TDomainObject domainObject)
+        {
+            _session.Delete(domainObject);
+        }
+
+        public TDomainObjectList GetAll()
+        {
+            var list = new TDomainObjectList();
+            list.AddRange(_session.CreateCriteria(typeof(TDomainObject))
+                                 .List<TDomainObject>());
+            return list;
+        }
+
+        public TDomainObject GetById(int id)
+        {
+            return _session.CreateCriteria(typeof(TDomainObject))
+                           .Add(Restrictions.Eq("Id", id))
+                           .UniqueResult<TDomainObject>();
+        }
+    }
+
+}
+
