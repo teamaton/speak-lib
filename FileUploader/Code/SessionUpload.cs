@@ -4,7 +4,7 @@ using SpeakFriend.Utilities.Web;
 
 namespace SpeakFriend.FileUploader
 {
-    public class SessionUpload : BaseSession
+    public class SessionUpload : SessionBase
     {
         /// <summary>
         /// Keeping references in order to dispose the UploadManagers

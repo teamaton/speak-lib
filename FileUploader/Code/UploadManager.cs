@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
-using SpeakFriend.Utils;
+using SpeakFriend.Utilities;
 
 namespace SpeakFriend.FileUploader
 {
