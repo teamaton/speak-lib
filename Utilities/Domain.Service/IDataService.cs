@@ -8,8 +8,7 @@ namespace SpeakFriend.Utilities
     public interface IDataService<T>
     {
         void Create(T type);
-        void Update(T type);
-
+        
         List<T> GetAll();
         T GetById(int Id);
     }

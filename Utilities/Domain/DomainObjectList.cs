@@ -7,6 +7,8 @@ namespace SpeakFriend.Utilities
 {
     public abstract class DomainObjectList<T> : List<T> where T : IDomainObject
     {
+        protected DomainObjectList(){}
+
         protected DomainObjectList(IEnumerable<T> list)
         {
             AddRange(list);

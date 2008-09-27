@@ -3,16 +3,17 @@ using System.Linq;
 
 namespace SpeakFriend.Utilities
 {
-    public abstract class BaseSetup<TSubject, TDerivedClass> where TDerivedClass : BaseSetup<TSubject, TDerivedClass>
+    public abstract class BaseSetup<TData, TDerivedClass>
+        where TDerivedClass : BaseSetup<TData, TDerivedClass>
     {
-        private readonly IDataService<TSubject> _dataService;
+        private readonly IDataService<TData> _dataService;
 
-        private readonly List<TSubject> _itemsToCreate = new List<TSubject>();
-        public           List<TSubject> Created        = new List<TSubject>();
+        private readonly List<TData> _itemsToCreate = new List<TData>();
+        public           List<TData> Created        = new List<TData>();
 
-        public TSubject LastAdded { get { return _itemsToCreate.Last(); } }
+        public TData LastAdded { get { return _itemsToCreate.Last(); } }
 
-        protected BaseSetup(IDataService<TSubject> dataService)
+        protected BaseSetup(IDataService<TData> dataService)
         {
             _dataService = dataService;
         }
@@ -30,14 +31,14 @@ namespace SpeakFriend.Utilities
             return (TDerivedClass)this;
         }
 
-        public TDerivedClass Add(TSubject subject)
+        public TDerivedClass Add(TData data)
         {
-            _itemsToCreate.Add(subject);
+            _itemsToCreate.Add(data);
 
             return (TDerivedClass)this;
         }
 
-        public abstract TSubject Get();
+        public abstract TData Get();
 
         public void Persist()
         {
@@ -52,7 +53,7 @@ namespace SpeakFriend.Utilities
 
 
         /// <summary> Persists a setup subject and returns it. </summary>
-        public TSubject GetPersisted()
+        public TData GetPersisted()
         {
             var subject = Get();
             Add(subject);

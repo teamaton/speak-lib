@@ -64,6 +64,7 @@
     <Compile Include="Service\FileSystem\PathUtils.cs" />
     <Compile Include="Service\Imaging\ImageUtils.cs" />
     <Compile Include="Web\Control\ItemTemplate.cs" />
+    <Compile Include="Web\Session\SessionBase.cs" />
     <Compile Include="Web\Session\SessionData.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

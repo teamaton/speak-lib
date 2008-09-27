@@ -4,9 +4,12 @@ using NHibernate.Criterion;
 namespace SpeakFriend.Utilities
 {
     public abstract class RepositoryDb<TDomainObject, TDomainObjectList>
-        where TDomainObject : IDomainObject where TDomainObjectList : DomainObjectList<TDomainObject>, new(IComparable a)
+        where TDomainObject : IDomainObject
+        where TDomainObjectList : DomainObjectList<TDomainObject>, new()
     {
         protected readonly ISession _session;
+
+        // protected RepositoryDb(){}
 
         protected RepositoryDb(ISession session)
         {
@@ -69,22 +72,22 @@ namespace SpeakFriend.Utilities
             }
         */
 
-        public void Create(TDomainObject domainObject)
+        public virtual void Create(TDomainObject domainObject)
         {
             _session.Save(domainObject);
         }
 
-        public void Update(TDomainObject domainObject)
+        public virtual void Update(TDomainObject domainObject)
         {
             _session.Update(domainObject);
         }
 
-        public void Delete(TDomainObject domainObject)
+        public virtual void Delete(TDomainObject domainObject)
         {
             _session.Delete(domainObject);
         }
 
-        public TDomainObjectList GetAll()
+        public virtual TDomainObjectList GetAll()
         {
             var list = new TDomainObjectList();
             list.AddRange(_session.CreateCriteria(typeof(TDomainObject))
@@ -92,7 +95,7 @@ namespace SpeakFriend.Utilities
             return list;
         }
 
-        public TDomainObject GetById(int id)
+        public virtual TDomainObject GetById(int id)
         {
             return _session.CreateCriteria(typeof(TDomainObject))
                            .Add(Restrictions.Eq("Id", id))
