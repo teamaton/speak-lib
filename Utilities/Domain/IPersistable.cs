@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities
 {
-    public interface IDomainObject
+    public interface IPersistable
     {
         int Id { get; set; }
 

@@ -2,7 +2,7 @@ using System;
 
 namespace SpeakFriend.Utilities
 {
-    public interface IMutableDomainObject : IDomainObject
+    public interface IMutablePersistable : IPersistable
     {
         DateTime Modified { get; set; }
     }

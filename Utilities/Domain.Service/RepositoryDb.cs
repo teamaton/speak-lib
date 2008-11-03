@@ -4,8 +4,8 @@ using NHibernate.Criterion;
 namespace SpeakFriend.Utilities
 {
     public abstract class RepositoryDb<TDomainObject, TDomainObjectList>
-        where TDomainObject : IDomainObject
-        where TDomainObjectList : DomainObjectList<TDomainObject>, new()
+        where TDomainObject : IPersistable
+        where TDomainObjectList : PersistableList<TDomainObject>, new()
     {
         protected readonly ISession _session;
 

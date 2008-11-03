@@ -5,11 +5,11 @@ using System.Text;
 
 namespace SpeakFriend.Utilities
 {
-    public abstract class DomainObjectList<T> : List<T> where T : IDomainObject
+    public abstract class PersistableList<T> : List<T> where T : IPersistable
     {
-        protected DomainObjectList(){}
+        protected PersistableList(){}
 
-        protected DomainObjectList(IEnumerable<T> list)
+        protected PersistableList(IEnumerable<T> list)
         {
             AddRange(list);
         }

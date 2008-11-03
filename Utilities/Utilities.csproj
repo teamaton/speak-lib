@@ -56,9 +56,9 @@
     <Compile Include="Domain.Service\BaseSetup.cs" />
     <Compile Include="Domain.Service\IDataService.cs" />
     <Compile Include="Domain.Service\RepositoryDb.cs" />
-    <Compile Include="Domain\DomainObjectList.cs" />
-    <Compile Include="Domain\IDomainObject.cs" />
-    <Compile Include="Domain\IMutableDomainObject.cs" />
+    <Compile Include="Domain\PersistableList.cs" />
+    <Compile Include="Domain\IPersistable.cs" />
+    <Compile Include="Domain\IMutablePersistable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\ExtensionMethods\StringExtensions.cs" />
     <Compile Include="Service\FileSystem\PathUtils.cs" />
