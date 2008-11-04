@@ -1,14 +1,13 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
-using System.Web.SessionState;
 
 namespace SpeakFriend.Utilities.Web
 {
-    public class SessionBase
+    public class BaseAppState
     {
-        protected SessionData Data = new SessionData();
+        protected AppData Data = new AppData();
     }
 }

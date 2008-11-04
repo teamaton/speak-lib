@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +8,8 @@ using System.Windows.Forms;
 namespace SpeakFriend.Utilities.Web
 {
     /// <summary>
-    /// Provides Access to UserData in a Web and UnitTest Context.
-    /// 
-    /// In case of a webcontext Data is Stored in a Session, 
-    /// In case no HttpConttext exists, the App
+    /// Ermöglicht einen verallgemeinerten Zugriff auch Benutzerdaten, 
+    /// sowohl für den web- als auch für eine allgemeinen Awendungskontext.
     /// </summary>
     public class SessionData
     {
@@ -49,9 +47,9 @@ namespace SpeakFriend.Utilities.Web
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
-        public T Get <T>(string key)
+        public T Get<T>(string key)
         {
-            return (T) this[key];
+            return (T)this[key];
         }
 
         /// <summary>
@@ -67,7 +65,7 @@ namespace SpeakFriend.Utilities.Web
         /// <returns></returns>
         public T Get<T>(string key, object initialValue)
         {
-            if(!Exists(key))
+            if (!Exists(key))
             {
                 this[key] = initialValue;
                 return (T)initialValue;
