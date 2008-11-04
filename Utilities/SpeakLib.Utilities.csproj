@@ -67,7 +67,7 @@
     <Compile Include="Web\Context\Application\BaseAppState.cs" />
     <Compile Include="Web\Context\Session\BaseSession.cs" />
     <Compile Include="Web\Context\Session\SessionData.cs" />
-    <Compile Include="Web\Control\Repeater\ItemTemplate.cs" />
+    <Compile Include="Web\Control\Repeater\ItemTemplateHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

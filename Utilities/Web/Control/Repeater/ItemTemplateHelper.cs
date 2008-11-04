@@ -10,62 +10,56 @@ namespace SpeakFriend.Utilities.Web
     using System.Web.UI.HtmlControls;
     using System.Web.UI.WebControls;
 
-    namespace CampingInfo.Core
+    public class ItemTemplateHelper
     {
-        public class ItemTemplateHelper
+        private readonly RepeaterItem _item;
+
+        /// <summary>
+        /// True if ListItemType is Item or AlternatingItem
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static bool IsContentItem(RepeaterItem item)
         {
-            private readonly RepeaterItem _item;
+            return item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem;
+        }
 
-            /// <summary>
-            /// True if ListItemType is Item or AlternatingItem
-            /// </summary>
-            /// <param name="item"></param>
-            /// <returns></returns>
-            public static bool IsContentItem(RepeaterItem item)
-            {
-                return item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem;
-            }
+        public static bool IsContentItem(DataGridItem item)
+        {
+            return item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem;
+        }
 
-            public static bool IsContentItem(DataGridItem item)
-            {
-                return item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem;
-            }
+        public static bool IsContentItem(DataListItem item)
+        {
+            return item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem;
+        }
 
-            public static bool IsContentItem(DataListItem item)
-            {
-                return item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem;
-            }
+        public static bool IsHeaderItem(RepeaterItem item)
+        {
+            return item.ItemType == ListItemType.Header;
+        }
 
-            public static bool IsHeaderItem(RepeaterItem item)
-            {
-                return item.ItemType == ListItemType.Header;
-            }
+        public static bool IsAlternatingItem(RepeaterItem item)
+        {
+            return item.ItemType == ListItemType.AlternatingItem;
+        }
 
-            public static bool IsAlternatingItem(RepeaterItem item)
-            {
-                return item.ItemType == ListItemType.AlternatingItem;
-            }
+        public ItemTemplateHelper(RepeaterItem item)
+        {
+            _item = item;
+        }
 
-            public ItemTemplateHelper(RepeaterItem item)
-            {
-                _item = item;
-            }
+        private static void ThrowIfNull(string name, object result)
+        {
+            if (result == null)
+                throw new Exception("The control:'" + name + "' was not found");
+        }
 
-            private static void ThrowIfNull(string name, object result)
-            {
-                if (result == null)
-                    throw new Exception("The control:'" + name + "' was not found");
-            }
-
-            public T Find<T>(string controlName) where T : Control
-            {
-                T item = (T)_item.FindControl(controlName);
-                ThrowIfNull(controlName, item);
-                return item;
-            }
-
-
+        public T Find<T>(string controlName) where T : Control
+        {
+            T item = (T)_item.FindControl(controlName);
+            ThrowIfNull(controlName, item);
+            return item;
         }
     }
-
 }
