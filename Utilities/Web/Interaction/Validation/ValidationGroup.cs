@@ -5,7 +5,7 @@ using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CampingInfo.Core
+namespace SpeakFriend.Utilities.Web
 {
     public class ValidationGroup
     {

@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=3.0.20820.16598, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core">
@@ -99,6 +103,13 @@
     <Compile Include="ExamplesUtilities\ExtensionMethods.aspx.designer.cs">
       <DependentUpon>ExtensionMethods.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Message.ascx.cs">
+      <DependentUpon>Message.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Message.ascx.designer.cs">
+      <DependentUpon>Message.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Welcome.aspx.cs">
       <DependentUpon>Welcome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -114,6 +125,7 @@
     <Content Include="ExamplesFrontend\Validation.aspx" />
     <Content Include="ExamplesSetting\Settings.aspx" />
     <Content Include="ExamplesUtilities\ExtensionMethods.aspx" />
+    <Content Include="UserControls\Message.ascx" />
     <Content Include="Welcome.aspx" />
   </ItemGroup>
   <ItemGroup>

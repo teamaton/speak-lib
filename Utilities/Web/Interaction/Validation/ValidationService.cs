@@ -5,7 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using AjaxControlToolkit;
 
-namespace CampingInfo.Core
+namespace SpeakFriend.Utilities.Web
 {
     public class ValidationService
     {

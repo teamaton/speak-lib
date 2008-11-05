@@ -68,6 +68,17 @@
     <Compile Include="Web\Context\Session\BaseSession.cs" />
     <Compile Include="Web\Context\Session\SessionData.cs" />
     <Compile Include="Web\Control\Repeater\ItemTemplateHelper.cs" />
+    <Compile Include="Web\Interaction\Message\UserMessage.cs" />
+    <Compile Include="Web\Interaction\Message\UserMessageItem.cs" />
+    <Compile Include="Web\Interaction\Message\UserMessageText.cs" />
+    <Compile Include="Web\Interaction\Validation\ValidationGroup.cs" />
+    <Compile Include="Web\Interaction\Validation\ValidationItem.cs" />
+    <Compile Include="Web\Interaction\Validation\ValidationItemList.cs" />
+    <Compile Include="Web\Interaction\Validation\ValidationMessage.cs" />
+    <Compile Include="Web\Interaction\Validation\ValidationService.cs" />
+    <Compile Include="Web\Interaction\Validation\ValidationType.cs" />
+    <Compile Include="Web\Interaction\Validation\ValidationUtil.cs" />
+    <Compile Include="Web\Interaction\Validation\ValidatorBuilder.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web.UI;
 
-namespace CampingInfo.Core
+namespace SpeakFriend.Utilities.Web
 {
     public class UserMessageItem
     {
