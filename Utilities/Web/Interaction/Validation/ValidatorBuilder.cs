@@ -10,6 +10,9 @@ namespace SpeakFriend.Utilities.Web
 {
     public class ValidatorBuilder
     {
+        public const string EmailRegex =
+            @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+
         private readonly string _groupIdentifier;
 
         public ValidatorBuilder(string groupIdentifier)
@@ -33,8 +36,7 @@ namespace SpeakFriend.Utilities.Web
             var validator = new RegularExpressionValidator();
 
             validator.ID = identifier;
-            validator.ValidationExpression =
-                @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+            validator.ValidationExpression = EmailRegex;
 
             SetSharedValues(validator, item);
 

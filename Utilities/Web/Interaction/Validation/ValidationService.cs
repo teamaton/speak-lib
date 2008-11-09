@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -21,6 +22,8 @@ namespace SpeakFriend.Utilities.Web
         private Page _page;
         private PlaceHolder _messagePlaceHolder;
         private ValidationGroup _lastCreatedValidationGroup;
+
+        public readonly List<BaseValidator> Validators = new List<BaseValidator>();
 
         public ValidationService Register(Page page)
         {
@@ -70,6 +73,7 @@ namespace SpeakFriend.Utilities.Web
         internal void AddCompareValidator(ValidatorBuilder validatorBuilder, ValidationItem item)
         {
             var validator = validatorBuilder.GetCompareValidator(item, NextValidationControlId);
+            Validators.Add(validator);
             var calloutExtender = validatorBuilder.GetCalloutExtender(validator, NextValidationControlId);
             AddToForm(validator, calloutExtender);
         }
@@ -77,6 +81,7 @@ namespace SpeakFriend.Utilities.Web
         internal void AddRegularExpressionValidator(ValidatorBuilder validatorBuilder, ValidationItem item)
         {
             var validator = validatorBuilder.GetRegularExpressionValidator(item, NextValidationControlId);
+            Validators.Add(validator);
             var calloutExtender = validatorBuilder.GetCalloutExtender(validator, NextValidationControlId);
             AddToForm(validator, calloutExtender);
         }
@@ -84,6 +89,7 @@ namespace SpeakFriend.Utilities.Web
         internal void AddRequiredFieldValidator(ValidatorBuilder validatorBuilder, ValidationItem item)
         {
             var validator = validatorBuilder.GetRequiredFieldValidator(item, NextValidationControlId);
+            Validators.Add(validator);
             var calloutExtender = validatorBuilder.GetCalloutExtender(validator, NextValidationControlId);
             AddToForm(validator, calloutExtender);
         }
