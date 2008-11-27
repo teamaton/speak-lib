@@ -9,7 +9,7 @@ namespace SpeakFriend.Utilities
     {
         protected readonly ISession _session;
 
-        // protected RepositoryDb(){}
+        protected RepositoryDb(){}
 
         protected RepositoryDb(ISession session)
         {

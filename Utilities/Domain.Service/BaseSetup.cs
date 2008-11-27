@@ -9,9 +9,10 @@ namespace SpeakFriend.Utilities
         private readonly IDataService<TData> _dataService;
 
         private readonly List<TData> _itemsToCreate = new List<TData>();
-        public           List<TData> Created        = new List<TData>();
+        public List<TData> Created = new List<TData>();
 
         public TData LastAdded { get { return _itemsToCreate.Last(); } }
+        public TData LastCreated { get { return Created.Last(); } }
 
         protected BaseSetup(IDataService<TData> dataService)
         {
@@ -40,7 +41,7 @@ namespace SpeakFriend.Utilities
 
         public abstract TData Get();
 
-        public void Persist()
+        public TDerivedClass Persist()
         {
             foreach (var customer in _itemsToCreate)
             {
@@ -48,9 +49,9 @@ namespace SpeakFriend.Utilities
                 Created.Add(customer);
             }
 
-            _itemsToCreate.Clear();
+            _itemsToCreate.Clear();    
+            return (TDerivedClass)this;
         }
-
 
         /// <summary> Persists a setup subject and returns it. </summary>
         public TData GetPersisted()
