@@ -3,6 +3,11 @@ using System.Linq;
 
 namespace SpeakFriend.Utilities
 {
+    /// <summary>
+    /// The BaseSetup class provides an easy way to 
+    /// </summary>
+    /// <typeparam name="TData"></typeparam>
+    /// <typeparam name="TDerivedClass"></typeparam>
     public abstract class BaseSetup<TData, TDerivedClass>
         where TDerivedClass : BaseSetup<TData, TDerivedClass>
     {
