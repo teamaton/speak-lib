@@ -112,6 +112,12 @@
     <Content Include="Welcome.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Utilities\SpeakLib.Utilities.csproj">
+      <Project>{E38CF0D5-8B70-419F-A11E-F978C90ABD1A}</Project>
+      <Name>SpeakLib.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Files\temp\" />
   </ItemGroup>
