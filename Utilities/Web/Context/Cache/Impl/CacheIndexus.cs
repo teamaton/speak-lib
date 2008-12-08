@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MergeSystem.Indexus.WinServiceCommon.Formatters;
 using MergeSystem.Indexus.WinServiceCommon.Provider.Cache;
 
 namespace SpeakFriend.Utilities.Web
