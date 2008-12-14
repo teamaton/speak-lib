@@ -8,7 +8,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities
 {
-    public class ImageService
+    public class ImageUtils
     {
         public static Image ResizeImage(Image content, int size, bool sizeIsHeight)
         {

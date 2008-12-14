@@ -60,6 +60,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExamplesFrontend\FileUpload.aspx.cs">
+      <DependentUpon>FileUpload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExamplesFrontend\FileUpload.aspx.designer.cs">
+      <DependentUpon>FileUpload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ExamplesFrontend\UploadContent.aspx.cs">
+      <DependentUpon>UploadContent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExamplesFrontend\UploadContent.aspx.designer.cs">
+      <DependentUpon>UploadContent.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -119,6 +133,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ExamplesFrontend\FileUpload.aspx" />
+    <Content Include="ExamplesFrontend\UploadContent.aspx" />
     <Content Include="Master.Master" />
     <Content Include="ExamplesFrontend\UserMessage.aspx" />
     <Content Include="ExamplesFrontend\Navigation.aspx" />
@@ -127,6 +143,12 @@
     <Content Include="ExamplesUtilities\ExtensionMethods.aspx" />
     <Content Include="UserControls\Message.ascx" />
     <Content Include="Welcome.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FileUpload\FileUpload.csproj">
+      <Project>{3C59702B-AC0A-46F1-8859-324C40A13A19}</Project>
+      <Name>FileUpload</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -144,12 +166,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>64692</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

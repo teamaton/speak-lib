@@ -19,7 +19,8 @@
         <ul>
             <li><a href="/ExamplesFrontend/UserMessage.aspx">User-Message</a></li>
             <li><a href="/ExamplesFrontend/Validation.aspx">Validation</a></li>
-            <li><a href="/ExamplesFrontend/Navigation.aspx">Navigation</a></li>            
+            <li><a href="/ExamplesFrontend/Navigation.aspx">Navigation</a></li>  
+            <li><a href="/ExamplesFrontend/FileUpload.aspx">FileUpload</a></li>           
         </ul>
     
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
