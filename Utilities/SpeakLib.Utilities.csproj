@@ -39,9 +39,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\MergeSystem.Indexus.WinServiceCommon.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate, Version=2.0.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+    <Reference Include="NHibernate, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ConceptOfficeWeb\Lib\NHibernate.dll</HintPath>
+      <HintPath>..\..\Camping.info\Libraries\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Persistance.NHibernate\Logging\NHibernateLogger.cs" />
     <Compile Include="Persistence.Setup\BaseSetup.cs" />
     <Compile Include="Persistence\Interfaces\IDataService.cs" />
     <Compile Include="Persistance.NHibernate\RepositoryDb.cs" />
@@ -94,9 +95,6 @@
     <Compile Include="Web\Interaction\Validation\ValidationType.cs" />
     <Compile Include="Web\Interaction\Validation\ValidationUtil.cs" />
     <Compile Include="Web\Interaction\Validation\ValidatorBuilder.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Persistance.NHibernate\Logging\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
