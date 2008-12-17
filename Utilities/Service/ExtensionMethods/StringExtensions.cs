@@ -48,7 +48,7 @@ namespace SpeakFriend.Utilities
         }
 
         /// <summary>
-        /// Return a list of wraped lines
+        /// Return a list of wrapped lines
         /// </summary>
         /// <param name="text"></param>
         /// <param name="maxLineLength"></param>
