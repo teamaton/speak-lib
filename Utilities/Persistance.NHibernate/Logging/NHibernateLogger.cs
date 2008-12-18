@@ -30,16 +30,20 @@ namespace SpeakFriend.Utilities.Persistance
             if (statistics.CollectionCount > 0)
             {
                 Console.WriteLine("CollectionKeys:");
-                statistics.CollectionKeys.ToList().ForEach(
-                    key => Console.Write("  ->  " + key.Key + " (Role: " + key.Role + ")"));
+                var list = statistics.CollectionKeys.ToList().ConvertAll(
+                    key => "  ->  " + key.Key + " (Role: " + key.Role + ")");
+                list.Sort();
+                list.ForEach(Console.WriteLine);
                 Console.WriteLine();
             }
             Console.WriteLine("EntityCount: {0}", statistics.EntityCount);
             if (statistics.EntityCount > 0)
             {
                 Console.WriteLine("EntityKeys:");
-                statistics.EntityKeys.ToList().ForEach(
-                    key => Console.Write("  ->  " + key.EntityName + " (Id: " + key.Identifier + ")"));
+                var list = statistics.EntityKeys.ToList().ConvertAll(
+                    key => "  ->  " + key.EntityName + " (Id: " + key.Identifier + ")");
+                list.Sort();
+                list.ForEach(Console.WriteLine);
             }
             Console.WriteLine();
         }
