@@ -22,6 +22,22 @@
             <li><a href="/ExamplesFrontend/Navigation.aspx">Navigation</a></li>  
             <li><a href="/ExamplesFrontend/FileUpload.aspx">FileUpload</a></li>           
         </ul>
+        
+        <h2>Utilities</h2>        
+        <ul>
+            <li><a href="/ExamplesSetting/Settings.aspx">Settings</a></li>
+        </ul>
+        
+        <h2>Web</h2>
+        <ul>        
+            <li><a href="#">Context</a></li>
+            <li><a href="#">Controls</a></li>            
+        </ul>               
+        
+        <h2>Persistence</h2>
+        <ul>        
+            <li><a href="#">NUunit-Setups</a></li>
+        </ul>            
     
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         

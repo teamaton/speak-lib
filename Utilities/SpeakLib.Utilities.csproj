@@ -30,6 +30,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ShowTranslationPanel|AnyCPU' ">
+    <OutputPath>bin\ShowTranslationPanel\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=3.0.20820.16598, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -79,6 +82,14 @@
     <Compile Include="Service\ExtensionMethods\StringExtensions.cs" />
     <Compile Include="Service\FileSystem\PathUtils.cs" />
     <Compile Include="Service\Imaging\ImageUtils.cs" />
+    <Compile Include="Service\Setting\EntitySettings.cs" />
+    <Compile Include="Service\Setting\Setting.cs" />
+    <Compile Include="Service\Setting\SettingGroup.cs" />
+    <Compile Include="Service\Setting\SettingList.cs" />
+    <Compile Include="Service\Setting\SettingService.cs" />
+    <Compile Include="Service\Setting\Types\SettingBoolean.cs" />
+    <Compile Include="Service\Setting\Types\SettingInteger.cs" />
+    <Compile Include="Service\Setting\Types\SettingString.cs" />
     <Compile Include="Web\Context\Application\AppData.cs" />
     <Compile Include="Web\Context\Application\BaseAppState.cs" />
     <Compile Include="Web\Context\Cache\Cache.cs" />
@@ -99,6 +110,9 @@
     <Compile Include="Web\Interaction\Validation\ValidationType.cs" />
     <Compile Include="Web\Interaction\Validation\ValidationUtil.cs" />
     <Compile Include="Web\Interaction\Validation\ValidatorBuilder.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Service\Setting\Setting.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
