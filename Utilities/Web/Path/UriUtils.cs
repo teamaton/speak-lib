@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SpeakFriend.Utilities
+namespace SpeakFriend.Utilities.Web
 {
-    public class PathUtils
+    public class UriUtils
     {
         /// <summary>
-        /// Gets the filename + extension of a given path
+        /// Gets the filename + extension of a given path, 
         /// </summary>
+        /// <remarks>
+        /// The difference to: System.IO.Path.GetFileName(filePath) is the removal of the query string.
+        /// </remarks>
         /// <param name="filePath"></param>
         /// <returns></returns>
         public static string GetFileName(string filePath)
@@ -45,7 +48,12 @@ namespace SpeakFriend.Utilities
                 return "";
 
             return requestPath.Split('?')[1];
-        }		
+        }
+
+        public static bool IsRelativePath(string value)
+        {
+            return !string.IsNullOrEmpty(value) && value.StartsWith("/");
+        }
 		
     }
 }
