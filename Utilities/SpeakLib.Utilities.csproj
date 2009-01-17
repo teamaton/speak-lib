@@ -80,6 +80,7 @@
     <Compile Include="Persistence\Interfaces\IMutablePersistable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\ExtensionMethods\StringExtensions.cs" />
+    <Compile Include="Web\Interaction\Feedback\UserFeedback.cs" />
     <Compile Include="Web\Path\UriUtils.cs" />
     <Compile Include="Service\Imaging\ImageUtils.cs" />
     <Compile Include="Service\Setting\EntitySettings.cs" />
