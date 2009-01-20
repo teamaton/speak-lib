@@ -24,6 +24,5 @@ namespace SpeakFriend.Utilities.Tagging
         public Type TargetType { get { return Prototype.TargetType; } }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
-
     }
 }

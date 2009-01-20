@@ -124,6 +124,9 @@
     <EmbeddedResource Include="SeedWork.Tagging\Tag.hbm.xml" />
     <EmbeddedResource Include="SeedWork.Tagging\Prototype\TagPrototype.hbm.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Service\Security\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
