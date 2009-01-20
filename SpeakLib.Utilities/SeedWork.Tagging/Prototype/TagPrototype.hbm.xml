@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class name="SpeakTag.TagPrototype,SpeakTag"
+      table="TagPrototype" lazy="false">
+
+    <id name="Id" column="Id" type="Int32">
+      <generator class="native" />
+    </id>
+
+    <property name="Text" column="Text" type="string" not-null="false"/>
+    <property name="TargetTypeName" column="TargetType" type="string" not-null="true"/>
+
+    <property name="DateCreated" column="DateCreated" type="DateTime" not-null="true"/>
+    <property name="DateModified" column="DateModified" type="DateTime" not-null="true"/>
+
+  </class>
+</hibernate-mapping>

@@ -79,18 +79,23 @@
     <Compile Include="Persistence\Interfaces\IPersistable.cs" />
     <Compile Include="Persistence\Interfaces\IMutablePersistable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeedWork.Tagging\ITaggable.cs" />
+    <Compile Include="SeedWork.Tagging\Prototype\TagPrototypeService.cs" />
+    <Compile Include="SeedWork.Tagging\TagService.cs" />
+    <Compile Include="SeedWork.Tagging\Tag.cs" />
+    <Compile Include="SeedWork.Tagging\Prototype\TagPrototype.cs" />
     <Compile Include="Service\ExtensionMethods\StringExtensions.cs" />
     <Compile Include="Web\Interaction\Feedback\UserFeedback.cs" />
     <Compile Include="Web\Path\UriUtils.cs" />
     <Compile Include="Service\Imaging\ImageUtils.cs" />
-    <Compile Include="Service\Setting\EntitySettings.cs" />
-    <Compile Include="Service\Setting\Setting.cs" />
-    <Compile Include="Service\Setting\SettingGroup.cs" />
-    <Compile Include="Service\Setting\SettingList.cs" />
-    <Compile Include="Service\Setting\SettingService.cs" />
-    <Compile Include="Service\Setting\Types\SettingBoolean.cs" />
-    <Compile Include="Service\Setting\Types\SettingInteger.cs" />
-    <Compile Include="Service\Setting\Types\SettingString.cs" />
+    <Compile Include="SeedWork.Setting\EntitySettings.cs" />
+    <Compile Include="SeedWork.Setting\Setting.cs" />
+    <Compile Include="SeedWork.Setting\SettingGroup.cs" />
+    <Compile Include="SeedWork.Setting\SettingList.cs" />
+    <Compile Include="SeedWork.Setting\SettingService.cs" />
+    <Compile Include="SeedWork.Setting\Types\SettingBoolean.cs" />
+    <Compile Include="SeedWork.Setting\Types\SettingInteger.cs" />
+    <Compile Include="SeedWork.Setting\Types\SettingString.cs" />
     <Compile Include="Web\Context\Application\AppData.cs" />
     <Compile Include="Web\Context\Application\BaseAppState.cs" />
     <Compile Include="Web\Context\Cache\Cache.cs" />
@@ -113,7 +118,11 @@
     <Compile Include="Web\Interaction\Validation\ValidatorBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Service\Setting\Setting.hbm.xml" />
+    <EmbeddedResource Include="SeedWork.Setting\Setting.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SeedWork.Tagging\Tag.hbm.xml" />
+    <EmbeddedResource Include="SeedWork.Tagging\Prototype\TagPrototype.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
