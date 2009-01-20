@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SpeakTag
+namespace SpeakFriend.Utilities.Tagging
 {
     public class TagPrototype
     {
-       
-        public TagPrototype()
-        {
-            
-        }
+        public int Id { get; set; }
+        public string Text { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime DateModified { get; set; }
+
+        public TagPrototype(){}
 
         public TagPrototype(Type targetType)
         {
@@ -41,14 +42,5 @@ namespace SpeakTag
                     throw new InvalidOperationException("Cannot change target type of an already initialized prototype.");
             }
         }
-
-        public int Id { get; set; }
-
-        public string Text { get; set; }
-
-        public DateTime DateCreated { get; set; }
-
-        public DateTime DateModified { get; set; }
-
      }
 }

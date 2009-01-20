@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using NHibernate;
 using NHibernate.Criterion;
 
-namespace SpeakTag
+namespace SpeakFriend.Utilities.Tagging
 {
     public class TagPrototypeService 
     {

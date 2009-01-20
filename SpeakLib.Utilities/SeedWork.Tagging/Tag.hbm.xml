@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
-  <class name="SpeakFriend.Utilities.Tag, SpeakFriend.Utilities"
+  <class name="SpeakFriend.Utilities.Tagging.Tag, SpeakFriend.Utilities"
       table="Tag" lazy="false">
 
     <id name="Id" column="Id" type="Int32">

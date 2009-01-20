@@ -4,7 +4,7 @@ using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.SqlCommand;
 
-namespace SpeakTag
+namespace SpeakFriend.Utilities.Tagging
 {
     public class TagService 
     {

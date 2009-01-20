@@ -1,4 +1,4 @@
-﻿namespace SpeakTag
+﻿namespace SpeakFriend.Utilities.Tagging
 {
     public interface ITaggable
     {

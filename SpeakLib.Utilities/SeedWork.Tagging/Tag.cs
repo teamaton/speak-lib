@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SpeakTag
+namespace SpeakFriend.Utilities.Tagging
 {
     public class Tag
     {
@@ -18,7 +18,7 @@ namespace SpeakTag
 
         public int Id { get; set; }
         public ITaggable Target { get; private set; }
-        public int TargetId{ get { return Target.Id; } }
+        public int TargetId{ get { return Target.Id; } set { } } //empty, NHibernate requirs the setter
         public TagPrototype Prototype { get; set; } //ToDo: prevent setting when not null
         public string Text { get { return Prototype.Text; } }
         public Type TargetType { get { return Prototype.TargetType; } }

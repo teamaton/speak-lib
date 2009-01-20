@@ -5,6 +5,7 @@ using System.Text;
 using NHibernate;
 using NHibernate.Cfg;
 using SpeakTag.Tests.Environment;
+using SpeakFriend.Utilities.Tagging;
 
 namespace SpeakTag.Tests._Code
 {
