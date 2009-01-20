@@ -60,12 +60,6 @@
     <Compile Include="SessionUpload.cs" />
     <Compile Include="UploadManager.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Utilities\SpeakLib.Utilities.csproj">
-      <Project>{E38CF0D5-8B70-419F-A11E-F978C90ABD1A}</Project>
-      <Name>SpeakLib.Utilities</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
