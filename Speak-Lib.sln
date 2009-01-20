@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frontend.Web.Utilities", "F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frontend.Web.SpeakTag", "Frontend.Web.SpeakTag\Frontend.Web.SpeakTag.csproj", "{89907A61-1C0B-4F4C-9682-92F4C949CA45}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.SpeakTag", "Tests.SpeakTag\Test.SpeakTag.csproj", "{65922793-BC5E-4ABD-8357-6EF1896249E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,12 @@ Global
 		{89907A61-1C0B-4F4C-9682-92F4C949CA45}.Release|Any CPU.Build.0 = Release|Any CPU
 		{89907A61-1C0B-4F4C-9682-92F4C949CA45}.ShowTranslationPanel|Any CPU.ActiveCfg = Release|Any CPU
 		{89907A61-1C0B-4F4C-9682-92F4C949CA45}.ShowTranslationPanel|Any CPU.Build.0 = Release|Any CPU
+		{65922793-BC5E-4ABD-8357-6EF1896249E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65922793-BC5E-4ABD-8357-6EF1896249E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65922793-BC5E-4ABD-8357-6EF1896249E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65922793-BC5E-4ABD-8357-6EF1896249E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65922793-BC5E-4ABD-8357-6EF1896249E8}.ShowTranslationPanel|Any CPU.ActiveCfg = Release|Any CPU
+		{65922793-BC5E-4ABD-8357-6EF1896249E8}.ShowTranslationPanel|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
