@@ -85,6 +85,7 @@
     <Compile Include="SeedWork.Tagging\Tag.cs" />
     <Compile Include="SeedWork.Tagging\Prototype\TagPrototype.cs" />
     <Compile Include="Service\ExtensionMethods\StringExtensions.cs" />
+    <Compile Include="Service\IHideObjectMembers.cs" />
     <Compile Include="Web\Interaction\Feedback\UserFeedback.cs" />
     <Compile Include="Web\Path\UriUtils.cs" />
     <Compile Include="Service\Imaging\ImageUtils.cs" />

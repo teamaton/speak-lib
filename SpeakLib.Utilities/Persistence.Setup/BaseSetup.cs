@@ -9,7 +9,8 @@ namespace SpeakFriend.Utilities
     /// <typeparam name="TData"></typeparam>
     /// <typeparam name="TDerivedClass"></typeparam>
     public abstract class BaseSetup<TData, TDerivedClass>
-        where TDerivedClass : BaseSetup<TData, TDerivedClass>
+        where TDerivedClass : BaseSetup<TData, TDerivedClass>, 
+        IHideObjectMembers
     {
         private readonly IDataService<TData> _dataService;
 
