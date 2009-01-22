@@ -16,7 +16,7 @@ namespace SpeakTag.Tests.Environment
             //foreach (var type in new[] { typeof(TestTarget), typeof(Tag), typeof(TagPrototype) })
             //    NHibernateHelper.EmptyTable(type);
 
-            throw new NotImplementedException("NHibernateHelpoer");
+            throw new NotImplementedException("NHibernateHelper");
         }
 
         public static void CreateTestEnvironment()
