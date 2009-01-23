@@ -120,5 +120,18 @@ namespace SpeakFriend.Utilities.Web
         {
             return _page.IsValid;
         }
+
+        public UserMessage GetUserMessage()
+        {
+            var userMessage = new UserMessage();
+            foreach (var validator in Validators)
+            {
+                validator.Validate();
+                if (!validator.IsValid)
+                    userMessage.AddItem(validator.ErrorMessage);
+            }
+
+            return userMessage;
+        }
     }    
 }
