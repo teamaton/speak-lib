@@ -9,6 +9,8 @@ namespace SpeakFriend.Utilities.Web
     {
         RequiredField,
         Email,
-        Compare
+        GUID,
+        Compare,
+        Uri
     }
 }

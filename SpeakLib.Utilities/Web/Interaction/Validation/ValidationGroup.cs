@@ -19,11 +19,11 @@ namespace SpeakFriend.Utilities.Web
 
         public bool IsFinished = false;
 
-        public ValidationGroup(ValidationService validationService, string validationGroupId)
+        public ValidationGroup(ValidationService validationService, ValidationSettings settings, string validationGroupId)
         {
             _validationService = validationService;
             _groupIdentifier = validationGroupId;
-            _validatorBuilder = new ValidatorBuilder(_groupIdentifier);
+            _validatorBuilder = new ValidatorBuilder(_groupIdentifier, settings);
         }
 
         public ValidationGroup Register(TextBox textBox)
@@ -74,7 +74,19 @@ namespace SpeakFriend.Utilities.Web
             return this;
         }
 
-        public ValidationGroup RegisterButton(Button buttonCreate)
+        public ValidationGroup IsGuid()
+        {
+            _items.Last().Type = ValidationType.GUID;
+            return this;
+        }
+
+        public ValidationGroup IsUri()
+        {
+            _items.Last().Type = ValidationType.Uri;
+            return this;
+        }
+
+        public ValidationGroup RegisterButton(IButtonControl buttonCreate)
         {
             buttonCreate.ValidationGroup = _groupIdentifier;
             return this;
@@ -89,11 +101,17 @@ namespace SpeakFriend.Utilities.Web
                     if (item.Type == ValidationType.RequiredField)
                         _validationService.AddRequiredFieldValidator(_validatorBuilder, item);
 
-                    if (item.Type == ValidationType.Email)
-                        _validationService.AddRegularExpressionValidator(_validatorBuilder, item);
-
-                    if (item.Type == ValidationType.Compare)
+                    else if (item.Type == ValidationType.Compare)
                         _validationService.AddCompareValidator(_validatorBuilder, item);
+
+                    else if (item.Type == ValidationType.Email)
+                        _validationService.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_Email);
+
+                    else if (item.Type == ValidationType.GUID)
+                        _validationService.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_GUID);
+
+                    else if (item.Type == ValidationType.Uri)
+                        _validationService.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_Uri);
                 }
             }
 

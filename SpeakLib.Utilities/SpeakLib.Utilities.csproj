@@ -87,6 +87,7 @@
     <Compile Include="Service\ExtensionMethods\StringExtensions.cs" />
     <Compile Include="Service\IHideObjectMembers.cs" />
     <Compile Include="Web\Interaction\Feedback\UserFeedback.cs" />
+    <Compile Include="Web\Interaction\Validation\ValidationSettings.cs" />
     <Compile Include="Web\Path\UriUtils.cs" />
     <Compile Include="Service\Imaging\ImageUtils.cs" />
     <Compile Include="SeedWork.Setting\EntitySettings.cs" />

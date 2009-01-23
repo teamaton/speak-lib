@@ -25,6 +25,22 @@ namespace SpeakFriend.Utilities.Web
 
         public readonly List<BaseValidator> Validators = new List<BaseValidator>();
 
+        private readonly ValidationSettings _validationSettings;
+
+        public ValidationService()
+        {
+            _validationSettings = new ValidationSettings();
+            _validationSettings.CssClass_Callout = "validatorCallout";
+            _validationSettings.CssClass_CalloutHighlight = "validatorCallout-highlight";
+            _validationSettings.ImgPath_CalloutWarning = "/style/img/warning-large.gif";
+            
+        }
+
+        public ValidationService(ValidationSettings settings)
+        {
+            _validationSettings = settings;
+        }
+
         public ValidationService Register(Page page)
         {
             if (_isPageRegistered)
@@ -42,14 +58,14 @@ namespace SpeakFriend.Utilities.Web
 
             _messagePlaceHolder = placeHolder;
             _messagePlaceHolder.Controls.Add(
-                new Panel { ID = "div", CssClass = "validatorCallout" });
+                new Panel { ID = "div", CssClass = _validationSettings.CssClass_Callout });
             _isPlaceHolderRegistered = true;
             return this;
         }
 
-        public ValidationGroup RegisterButton(Button groupButton)
+        public ValidationGroup RegisterButton(IButtonControl groupButton)
         {
-            _lastCreatedValidationGroup = new ValidationGroup(this, NextGroupId).RegisterButton(groupButton);
+            _lastCreatedValidationGroup = new ValidationGroup(this, _validationSettings, NextGroupId).RegisterButton(groupButton);
             return _lastCreatedValidationGroup;
         }
 
@@ -78,9 +94,9 @@ namespace SpeakFriend.Utilities.Web
             AddToForm(validator, calloutExtender);
         }
 
-        internal void AddRegularExpressionValidator(ValidatorBuilder validatorBuilder, ValidationItem item)
+        internal void AddRegularExpressionValidator(ValidatorBuilder validatorBuilder, ValidationItem item, string regex)
         {
-            var validator = validatorBuilder.GetRegularExpressionValidator(item, NextValidationControlId);
+            var validator = validatorBuilder.GetRegularExpressionValidator(item, NextValidationControlId, regex);
             Validators.Add(validator);
             var calloutExtender = validatorBuilder.GetCalloutExtender(validator, NextValidationControlId);
             AddToForm(validator, calloutExtender);

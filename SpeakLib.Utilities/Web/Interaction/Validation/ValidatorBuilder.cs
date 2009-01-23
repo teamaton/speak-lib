@@ -10,14 +10,14 @@ namespace SpeakFriend.Utilities.Web
 {
     public class ValidatorBuilder
     {
-        public const string EmailRegex =
-            @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+        readonly string _groupIdentifier;
+        readonly ValidationSettings _settings;
+        
 
-        private readonly string _groupIdentifier;
-
-        public ValidatorBuilder(string groupIdentifier)
+        public ValidatorBuilder(string groupIdentifier, ValidationSettings setting)
         {
             _groupIdentifier = groupIdentifier;
+            _settings = setting;
         }
 
         public ValidatorCalloutExtender GetCalloutExtender(BaseValidator validator, string controlId)
@@ -26,17 +26,17 @@ namespace SpeakFriend.Utilities.Web
             {
                 ID = controlId,
                 TargetControlID = validator.ID,
-                HighlightCssClass = "validatorCallout-highlight",
-                WarningIconImageUrl = "/style/img/warning-large.gif"
+                HighlightCssClass = _settings.CssClass_CalloutHighlight,
+                WarningIconImageUrl = _settings.ImgPath_CalloutWarning
             };
         }
 
-        public BaseValidator GetRegularExpressionValidator(ValidationItem item, string identifier)
+        public BaseValidator GetRegularExpressionValidator(ValidationItem item, string identifier, string regex)
         {
             var validator = new RegularExpressionValidator();
 
             validator.ID = identifier;
-            validator.ValidationExpression = EmailRegex;
+            validator.ValidationExpression = regex;
 
             SetSharedValues(validator, item);
 
