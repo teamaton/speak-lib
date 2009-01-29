@@ -87,6 +87,7 @@
     <Compile Include="Service\ExtensionMethods\StringExtensions.cs" />
     <Compile Include="Service\IHideObjectMembers.cs" />
     <Compile Include="Web\Context\ContextUtil.cs" />
+    <Compile Include="Web\Control\WebControlExtensionMethods.cs" />
     <Compile Include="Web\Interaction\Feedback\UserFeedback.cs" />
     <Compile Include="Web\Interaction\Validation\ValidationSettings.cs" />
     <Compile Include="Web\Path\UriUtils.cs" />
@@ -121,7 +122,7 @@
     <Compile Include="Web\Interaction\Validation\ValidatorBuilder.cs" />
     <Compile Include="Web\Tracking\Performance\RenderDuration.cs" />
     <Compile Include="Web\Tracking\Performance\RenderDurationBuilder.cs" />
-    <Compile Include="Web\Tracking\Performance\RenderDurationQueue.cs" />
+    <Compile Include="Web\Tracking\Performance\RenderDurationFiFo.cs" />
     <Compile Include="Web\Tracking\Performance\PerformanceTracker.cs" />
   </ItemGroup>
   <ItemGroup>

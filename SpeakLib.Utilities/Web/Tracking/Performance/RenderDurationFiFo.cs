@@ -6,19 +6,19 @@ using System.Text;
 
 namespace SpeakFriend.Utilities.Web
 {
-    public class RenderDurationQueue : IEnumerable<RenderDuration>
+    public class RenderDurationFiFo : IEnumerable<RenderDuration>
     {
         private Queue<RenderDuration> _queue;
 
         public int Size;
 
         /// <summary>
-        /// The size of the queue, 
+        /// The size of the FiFo (First in, First out), 
         /// if the amount of objects in the queues reaches the <see cref="Size">Size</see>
         /// an ojbect on the end of the queue will be removed.
         /// </summary>
         /// <param name="size"></param>
-        public RenderDurationQueue(int size)
+        public RenderDurationFiFo(int size)
         {
             Size = size;
             _queue = new Queue<RenderDuration>(size);

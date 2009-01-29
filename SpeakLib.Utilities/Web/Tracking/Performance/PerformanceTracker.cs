@@ -20,9 +20,9 @@ namespace SpeakFriend.Utilities.Web
         void globalAsax_BeginRequest(object sender, EventArgs e)
         {
             if (_appData[_AppDataKey] == null)
-                _appData[_AppDataKey] = new RenderDurationQueue(500);
+                _appData[_AppDataKey] = new RenderDurationFiFo(500);
 
-            var entries =  _appData[_AppDataKey] as RenderDurationQueue;
+            var entries =  _appData[_AppDataKey] as RenderDurationFiFo;
             entries.Add(RenderDurationBuilder.GetEntry());
         }
 
