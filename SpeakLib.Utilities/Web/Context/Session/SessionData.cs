@@ -13,23 +13,18 @@ namespace SpeakFriend.Utilities.Web
     /// </summary>
     public class SessionData
     {
-        public bool IsWebContext
-        {
-            get { return HttpContext.Current != null; }
-        }
-
         public object this[string index]
         {
             get
             {
-                if (IsWebContext)
+                if (ContextUtil.IsWebContext)
                     return HttpContext.Current.Session[index];
 
                 return AppDomain.CurrentDomain.GetData(index);
             }
             set
             {
-                if (IsWebContext)
+                if (ContextUtil.IsWebContext)
                     HttpContext.Current.Session[index] = value;
 
                 AppDomain.CurrentDomain.SetData(index, value);

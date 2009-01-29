@@ -74,6 +74,9 @@
     <Compile Include="ExamplesFrontend\UploadContent.aspx.designer.cs">
       <DependentUpon>UploadContent.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -135,6 +138,7 @@
   <ItemGroup>
     <Content Include="ExamplesFrontend\FileUpload.aspx" />
     <Content Include="ExamplesFrontend\UploadContent.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Master.Master" />
     <Content Include="ExamplesFrontend\UserMessage.aspx" />
     <Content Include="ExamplesFrontend\Navigation.aspx" />
@@ -148,6 +152,10 @@
     <ProjectReference Include="..\FileUpload\SpeakLib.FileUpload.csproj">
       <Project>{3C59702B-AC0A-46F1-8859-324C40A13A19}</Project>
       <Name>SpeakLib.FileUpload</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SpeakLib.Utilities\SpeakLib.Utilities.csproj">
+      <Project>{E38CF0D5-8B70-419F-A11E-F978C90ABD1A}</Project>
+      <Name>SpeakLib.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

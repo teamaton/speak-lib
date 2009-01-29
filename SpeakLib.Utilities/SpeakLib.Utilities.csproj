@@ -86,6 +86,7 @@
     <Compile Include="SeedWork.Tagging\Prototype\TagPrototype.cs" />
     <Compile Include="Service\ExtensionMethods\StringExtensions.cs" />
     <Compile Include="Service\IHideObjectMembers.cs" />
+    <Compile Include="Web\Context\ContextUtil.cs" />
     <Compile Include="Web\Interaction\Feedback\UserFeedback.cs" />
     <Compile Include="Web\Interaction\Validation\ValidationSettings.cs" />
     <Compile Include="Web\Path\UriUtils.cs" />
@@ -118,6 +119,10 @@
     <Compile Include="Web\Interaction\Validation\ValidationType.cs" />
     <Compile Include="Web\Interaction\Validation\ValidationUtil.cs" />
     <Compile Include="Web\Interaction\Validation\ValidatorBuilder.cs" />
+    <Compile Include="Web\Tracking\Performance\RenderDuration.cs" />
+    <Compile Include="Web\Tracking\Performance\RenderDurationBuilder.cs" />
+    <Compile Include="Web\Tracking\Performance\RenderDurationQueue.cs" />
+    <Compile Include="Web\Tracking\Performance\PerformanceTracker.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SeedWork.Setting\Setting.hbm.xml" />
@@ -128,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Service\Security\" />
+    <Folder Include="Web\Tracking\User\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

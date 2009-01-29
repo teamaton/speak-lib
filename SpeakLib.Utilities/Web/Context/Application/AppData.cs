@@ -8,23 +8,18 @@ namespace SpeakFriend.Utilities.Web
 {
     public class AppData
     {
-        public bool IsWebContext
-        {
-            get { return HttpContext.Current != null; }
-        }
-
         public object this[string index]
         {
             get
             {
-                if (IsWebContext)
+                if (ContextUtil.IsWebContext)
                     return HttpContext.Current.Application[index];
 
                 return AppDomain.CurrentDomain.GetData(index);
             }
             set
             {
-                if (IsWebContext)
+                if (ContextUtil.IsWebContext)
                     HttpContext.Current.Application[index] = value;
 
                 AppDomain.CurrentDomain.SetData(index, value);
