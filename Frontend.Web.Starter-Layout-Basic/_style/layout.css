@@ -1,0 +1,298 @@
+/* Layout for ximag.de */
+
+
+/* COLORS, MARGINS, PADDINGS */
+	/*	Fibonacci Reihe: 932 - 576 - 356 - 220 - 136 - 84 - 52 - 32 - 20 - 12 - 8 - 5 -3
+
+	/*	Colors:
+		Orange - Highlight: #E19638
+	
+	
+
+/* END COLORS, MARGINS, PADDINGS */
+
+/* GLOBAL */
+
+	html {height:100%;}
+	body {background:#1f1f1f url(/_style/img/background-6.jpg) no-repeat 50% 0 ; height:100%; min-width:952px;}
+
+	.center {margin-left:-466px; position:relative; left:50%; width:932px;}
+	
+	.floatr {float:right;}
+
+	.floatl {float:left;}
+	
+	.clearb {clear:both;}
+	
+	/*clearing floats*/
+
+	
+	object {border: solid 2px #111;}
+	
+	.colored {color:#E19638;}
+	
+	
+/* GLOBAL */
+
+/* Global Typography */
+
+	body { font-family: Georgia, trebuchet MS, georgia , Arial, Helvetica, sans-serif; font-size:63%;}
+	
+	h1, h2, h3, h4, h5, h6, p, a, li, td, tr, blockquote {color:#ccc; }
+	h1, h2, h3, h4, h5, h6 {font-family: Georgia, Verdana, Trebuchet MS, Arial; font-weight:normal; color:#fff;}
+	
+	p, th, td, a, blockquote {font-size:1.2em; line-height:1.7em; }
+	p a {font-size:1em; line-height:1em;}
+	h1 a, h2 a, h3 a {font-size:1em;}
+	
+	a {border:none; text-decoration:none;}
+	a:hover {border-bottom: none;}
+	
+	h1 {font-size:2.5em; line-height:2em;}
+	h2 {font-size:2em; line-height:1.5em;}
+	h3 {font-size:1.6em; line-height:2.1em;}
+	
+	blockquote {font-size:1.4em; font-style:italic; padding:0.5em 0 0.8em 0; }
+	blockquote:before {content:"\201E"; font-weight:bold; font-family:Serif; font-size:2em; color:#E19638;}
+	blockquote:after {content:"\201D"; font-weight:bold; font-family:Serif; font-size:2em; color:#E19638;}
+	
+	
+	b {font-weight:bold;}
+	
+	.caps {font-variant:small-caps;}
+	
+	.text-center {text-align:center}
+	
+	.text-right {text-align:right}
+	
+	.highlight {color:#fff; font-weight:bold; font-variant:small-caps;}
+	
+	.special-ad {float:none; text-align:right;}
+	
+/* End Global Typography */
+
+/* SNIPPETS */
+
+	/* Rounded Corners via: http://www.search-this.com/2007/02/12/css-liquid-round-corners/ */
+	
+		#liquid-round {	width:70%; margin:0px auto;
+		               	background:#fff url(http://www.search-this.com/rounded/leftside.gif) repeat-y left top;}
+		
+		.top {width:100%;height:20px;
+		      background:url(http://www.search-this.com/rounded/top.gif) no-repeat left top;}
+		
+		.top span {display:block;position:relative;	height:20px;
+		           background:url(http://www.search-this.com/rounded/top-right.gif) no-repeat right top;}
+		
+		.center-content {padding:1px 20px 1px 25px; margin:-1px 0 -50px 0; position:relative;	
+		                 background:url(http://www.search-this.com/rounded/rightside.gif) repeat-y right top;}
+		
+		.bottom {width:100%;height:60px;
+		         background:url(http://www.search-this.com/rounded/bottom.gif) no-repeat left bottom;}
+		
+		.bottom span { display:block; position:relative; height:60px; 
+		               background:url(http://www.search-this.com/rounded/bottom-right.gif) no-repeat right top;}
+		
+		/* html code:
+		
+		<div id="liquid-round">
+			<div class="top"><span></span></div>
+			<div class="center-content">
+				<!-- CONTENT BEGIN -->
+		 
+				<!-- CONTENT END -->
+			</div>
+			<div class="bottom"><span></span></div>
+		</div>
+
+	/* End Rounded Corners */
+	
+	/* Sticky Footer via http://www.cssstickyfooter.com/using-sticky-footer-code.html -----------*/
+	
+	    html, body, .non-footer {height: 100%;}
+        body > .non-footer {height: auto; min-height: 100%;}
+        .before-footer {padding-bottom: 150px;}  /* must be same height as the footer */
+        .footer {position: relative;
+	        margin-top: -150px; /* negative value of footer height */
+	        height: 150px;
+	        clear:both;} 
+	
+	/* End Sticky Footer */
+	
+	/* Clearing Floats --------------------------------------------------------------*/
+	
+	    .clear { display: inline-block; }   
+	    .clear:after, .container:after {  content: "."; display: block; height: 0; clear: both; visibility: hidden;}
+	    * html .clear { height: 1%; }
+	    .clear { display: block; }
+	
+	/* End Clearing Floats */
+
+/* End Snippets */
+
+/* HEADER */
+
+	.logo {float:left; border:none;}
+	
+	.logo img {margin:2em 0 1.2em 0; border:none;}
+	
+	/* NAV */
+		
+		
+		
+		.nav {float:right;position:relative; margin:1.6em 0 0 0; max-width:576px;}
+		
+			.mini-nav {position:absolute; right:0; }
+				.mini-nav a {padding:1.2em 0 1.2em 1.2em;}		
+				.mini-nav a:hover {color:#E19638;}
+			
+			.nav ul {margin:2.6em 0 0 0;}
+			
+				.nav li {background:url(img/nav-left.gif) no-repeat 0 0; float:left; margin:0 0 0 1.2em;}
+				
+				.nav li a {background: url(img/nav-right.gif) no-repeat top right; display:block; margin:0 0 0.5em 0.5em; padding:2.3em 1.2em 1.2em 0.5em;
+				        font-size:1.5em; font-variant:small-caps;}
+					
+				.nav li a:hover {background: url(img/nav-right-on.gif) no-repeat 100% 0; color:#E19638;}
+				
+				.nav ul li.current-nav {background:#999;}
+				
+				.nav .current-nav a:hover {background:background: url(img/nav-right-on.gif) no repeat 100% 0;}
+		
+	/* END NAV */
+
+/* END HEADER */
+
+/* SIDEBAR */
+	
+	.sidebar {float:left; width:356px;}
+	
+		.sidebar li {background: #181818 url(img/sidebar-nav-li-bg.gif) repeat-y;margin: 0 1.2em 0.5em 1.2em; }
+		
+		.sidebar li a {background: url(img/sidebar-nav-bg.jpg) no-repeat 0 0; display:block; border:none; padding:0.3em 12px;
+		               font-size:1.7em;}
+		.sidebar li a:hover { color:#E19638; background:url(img/sidebar-nav-bg-on.jpg) no-repeat 0 0 ;}
+		
+		.sidebar li.main {margin: 0 1.2em 0.5em 0;}
+		.sidebar .main a {padding:0.3em 12px;
+		                  font-size:2em;}
+			
+		
+		
+		.sidebar li.current {margin:0 0 0.5em 1.2em;}
+		.sidebar li.main.current {margin: 0 0 0.5em 0;}
+		.sidebar li.current a {background:url(img/sidebar-nav-bg-on.jpg) no-repeat 0 0;}
+			.sidebar a.current-link {color:#E19638;}
+			
+		.sidebar li a.small {background: none; float:left; margin:0 1em 0 0; padding:0.5em 1em; 
+		                     font-size:1.2em;}
+			
+		.sidebar-box {background:#181818 url(img/sidebar-box-bg.jpg) no-repeat top left; border-bottom: solid 2px #000; padding:1.2em;  margin:0 1.2em 1.2em 0;}
+		.sidebar-box a { color:#E19638;}
+		.sidebar-box a:visited {color:#FFD39C;}
+		.sidebar-box a:hover {color:#222; background:#FFC67F;}
+		
+		.sidebar-ad {padding:1.2em;}
+		.sidebar-ad.first {padding: 0 1.2em 1.2em 1.2em;}
+			.sidebar-ad p {width:320px; text-align:right; margin: 0.5em 0 0 0;
+			               font-size:0.87em;}
+
+			
+/* END SIDEBAR */	
+
+/* CONTENT */
+	
+	.hidden {z-index: -2; position:absolute; top:0; left:50%; width:50%; height:50%; background:yellow;}
+	
+	.content {background: #181818 url(/_style/img/content-bg-2.jpg) no-repeat top right ; float:left; width:576px; margin-bottom:2em;}
+	
+		.content .wrapper {background: url(/_style/img/wrapper-bg.jpg) no-repeat bottom left; min-height:500px; padding:0 1.2em 2.4em 1.2em;}
+		
+		.content .floated-left-352 {margin-left:352px;}
+		
+		.content h1 {padding: 0.2em 0 0 0;}
+		.content h2 {padding: 0.8em 0 0 0;}
+		
+		.content a { color:#E19638;}
+		.content a:visited {color:#FFC67F;}
+		.content a.colored:visited {color:#E19638;}
+		.content a:hover {color:#222; background:#E19638;}
+		.content a.img:hover {background:none;}
+		.content a.img:hover img {border:#E19638 solid 5px;}
+		
+		.content p {margin: 1em 0;}
+		
+		.content img {border:#444 solid 5px; margin: 1.1em 1.2em 1.1em 0;}
+		.content img.floatr, .content a.floatr img {margin: 1.1em 0 1.1em 1.2em;}
+		/* für Bilder der gesamten content-Breite (540px) rechts kein margin wg ie6 */
+		.content img.full {margin:1.1em 0;}
+		
+		.content ul {font-size:1.2em; line-height:2.4em; margin: 0 0 1.2em 0;}
+			.content ul li {background: url(/_style/img/ul-bullet.gif) no-repeat 0 10px; padding-left:2em;}
+		
+		.content ol {font-size:1.2em; line-height:2.4em; margin: 0 0 1.2em 0; list-style: decimal inside;}
+	
+	.content p.anzeige {float:right;
+	                    font-size:0.9em;}	
+		
+	.interview p.question {color:#E19638;}
+		
+	.steckbrief img {float:left;}
+	.steckbrief h3 {color:#E19638; font-variant:small-caps; font-size:1.4em;}
+	
+	.veranstaltungen h2 {border-top: dashed 1px #E19638;}
+	.veranstaltungen h2.first {border:none;}
+	
+	/* Special ------------------------------------------------------ */
+		
+		.special {border:dashed 2px #E19638; border-width:2	px; padding:8px 8px 0 8px; margin: 12px 0;}
+		.special h2 {color:#E19638;}
+	
+	/* Ende Special */
+	
+	/* Galerie jquery http://plugins.jquery.com/project/galleria ----------------------------------------------------------------------------- */
+	
+	.caption{font-style:italic; font-size:1.3em; color:#887;}
+	
+	.demo{position:relative;}
+	.demo .wrapper {background:none;}
+	.demo ul li {background:none;}
+	.gallery_demo {width:540px;margin:0 auto;}
+	.content .gallery_demo li {background:none; border:3px double #111;margin: 0 2px;background:#000; padding:0;}
+	.gallery_demo li div{left:240px}
+	.gallery_demo li div .caption{font:italic 0.7em/1.4 georgia,serif;}
+	
+	.galerie-nav{width:552px; text-align:center; clear:both; font:1.2em 'helvetica neue',sans-serif;letter-spacing:3px;text-transform:uppercase;}
+	
+	.galleria {list-style:none; width:552px; margin-top:1.2em;}
+	
+	.content .galleria li{ background:none;display:block; width:84px; height:84px;overflow:hidden;float:left;margin:0 1.2em 1.2em 0;}
+	.galleria li a{display:none;}
+	.galleria li div{position:absolute;display:none;top:0;left:180px;}
+	.galleria li div img{cursor:pointer;}
+	.galleria li.active div img,.galleria li.active div{display:block;}
+	.galleria li img.thumb{cursor:pointer;top:auto;left:auto;display:block;width:auto;height:auto; margin:0; border:none;}
+	.galleria li .caption{display:block;padding-top:.5em;}
+	* html .galleria li div span{width:400px;} /* MSIE bug */
+	
+	/* Ende Galerie */
+	
+
+/* END CONTENT */
+
+			
+
+
+/* FOOTER */
+
+
+/* END FOOTER */
+	.footer {background:#181818 url(/_style/img/footer-bg.jpg) no-repeat 50% 0; border-top: 1px solid #333; clear:both; margin:2em 0 0 0;}
+	.footer ul, .footer p { color: #fff; width:932px; text-align:center; margin:1.2em;}
+		.footer ul li {display:inline; margin:1.2em;}
+		.footer a {font-size:1.4em; color:#fff;}
+		.footer a:hover {color:#222; background:#E19638;}
+		.footer p a {font-size:1em; text-decoration:underline;}
+	
+
+/* END LAYOUT */

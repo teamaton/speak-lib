@@ -1,0 +1,85 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Frontend.master.cs" Inherits="Frontend.Web.Starter_Layout_Basic.Frontend" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head id="Head1" runat="server">
+    <title></title>
+
+    <link rel="shortcut icon" href="/_style/icons/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/_style/_import.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/_style/print.css" type="text/css" media="print" />    
+    <!--[if lt IE 7]><link rel="stylesheet" href="/_style/ie-below-7.css" type="text/css" media="screen" /><![endif]-->
+    <!-- png for ie6 fix via: http://labs.unitinteractive.com/unitpngfix.php-->
+        <!--[if lt IE 7]>
+            <script type="text/javascript" src="/_style/js/unitpngfix.js"></script>
+        <![endif]-->
+    <!-- momentan nicht benötigt: compliance patch for microsoft browsers directly from google
+        <!--[if lt IE 7]>
+            <script src="http://ie7-js.googlecode.com/svn/version/2.0(beta3)/IE7.js" type="text/javascript"></script>
+        <![endif]-->
+    
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <div class="non-footer">
+            <div class="header clear">
+                
+                <div class="center">
+                    
+                    <div class="nav clear">
+                        <p class="mini-nav">
+                            <a href="../kontakt/presse.aspx">Presse</a>
+                            <a href="http://www.ximag-magazin.blogspot.com/">Blog</a>
+                        </p>
+                        <ul>
+                            <li><a href="../magazin.aspx">Magazin</a></li>
+                            <li><a href="../kuenstler.aspx">Künstler</a></li>
+                            <li><a href="../szene.aspx">Szene</a></li>
+                            <li><a href="../interaktiv.aspx">Interaktiv</a></li>
+                            <li class="last-nav"><a href="../kontakt.aspx">Kontakt</a></li>
+                        </ul>
+                    </div>
+                    
+                    <a class="logo" href="../startseite.aspx">
+                        <img src="/_style/img/ximag-logo-claim.gif" alt="Startseite - Logo Ximag - Face the Fantastic" 
+                            onmouseover="src='/_style/img/ximag-logo-claim-on.gif'"
+                            onmouseout="src='/_style/img/ximag-logo-claim.gif'" />
+                    </a>
+                    
+                </div>
+                
+            </div>
+            
+            <div class="center clear before-footer">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    
+        <div class="footer clear">
+            <div class="center">
+                <ul>
+                    <li><a href="../impressum.aspx">Impressum</a></li>
+                    <li><a href="../kontakt.aspx">Kontakt</a></li>
+                </ul>
+                <p>Design und Umsetzung: <a href="http://www.speak-friend.com" target="blank">speak-friend.com</a></p>
+            </div>
+        </div>
+    
+    </form>
+    
+    <!-- Anpassen! 
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+    _uacct = "UA-1651443-8";
+    urchinTracker();
+    </script>
+    -->    
+    
+</body>
+</html>

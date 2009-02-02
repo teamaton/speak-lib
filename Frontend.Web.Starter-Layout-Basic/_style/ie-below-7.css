@@ -1,0 +1,37 @@
+﻿/* IE6 Anpassungen -------------------------------------------*/	
+	
+	
+	/* Header -----------------------------------*/
+	
+	.nav {float:right; }
+	
+	/* Ende Header */
+	
+	/* Content -----------------------------------------------------------------*/
+	
+		/* Galerie jquery http://plugins.jquery.com/project/galleria ----------------------------------------------------------------------------- */
+		
+		.demo{position:relative;overflow:hidden;}
+		
+		.gallery_demo {width:530px;margin:0 auto;}
+		.content .gallery_demo li {background:none; border:3px double #111;margin: 0 2px;background:#000; padding:0;}
+		.gallery_demo li div{left:240px}
+		.gallery_demo li div .caption{font:italic 0.7em/1.4 georgia,serif;}
+		
+		.galerie-nav{width:530px; text-align:center; clear:both; font:1.2em 'helvetica neue',sans-serif;letter-spacing:3px;text-transform:uppercase;}
+		
+		.galleria {list-style:none; width:530px; margin-top:1.2em;}
+		
+		.content .galleria li{ background:none;display:block; width:84px; height:84px;overflow:hidden;float:left;margin:0 1.2em 1.2em 0;}
+		.galleria li a{display:none;}
+		.galleria li div{position:absolute;display:none;top:0;left:180px;}
+		.galleria li div img{cursor:pointer;}
+		.galleria li.active div img,.galleria li.active div{display:block;}
+		.galleria li img.thumb{cursor:pointer;top:auto;left:auto;display:block;width:auto;height:auto; margin:0; border:none;}
+		.galleria li .caption{display:block;padding-top:.5em;}
+		* html .galleria li div span{width:400px;} /* MSIE bug */
+		
+		/* Ende Galerie */	
+	
+	/* Ende Content */
+	
