@@ -50,7 +50,7 @@ namespace SpeakFriend.Utilities.Web
             return this;
         }
 
-        public ValidationGroup IsMandatory()
+        public ValidationGroup AsMandatory()
         {
             _items.Last().Type = ValidationType.RequiredField;
             return this;
@@ -68,19 +68,19 @@ namespace SpeakFriend.Utilities.Web
             return this;
         }
 
-        public ValidationGroup IsEmail()
+        public ValidationGroup AsEmail()
         {
             _items.Last().Type = ValidationType.Email;
             return this;
         }
 
-        public ValidationGroup IsGuid()
+        public ValidationGroup AsGuid()
         {
             _items.Last().Type = ValidationType.GUID;
             return this;
         }
 
-        public ValidationGroup IsUri()
+        public ValidationGroup AsUri()
         {
             _items.Last().Type = ValidationType.Uri;
             return this;
