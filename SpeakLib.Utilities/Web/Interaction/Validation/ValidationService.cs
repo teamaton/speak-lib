@@ -26,6 +26,8 @@ namespace SpeakFriend.Utilities.Web
         public readonly List<BaseValidator> Validators = new List<BaseValidator>();
 
         private readonly ValidationSettings _validationSettings;
+        
+        public ValidationGroup CurrentValidationGroup{get { return _lastCreatedValidationGroup; }}
 
         public ValidationService()
         {

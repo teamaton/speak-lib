@@ -11,6 +11,7 @@ namespace SpeakFriend.Utilities.Web
         Email,
         GUID,
         Compare,
-        Uri
+        Uri,
+        Positive_Integer
     }
 }

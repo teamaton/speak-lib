@@ -68,6 +68,12 @@ namespace SpeakFriend.Utilities.Web
             return this;
         }
 
+        public ValidationGroup AsPositiveInteger()
+        {
+            _items.Last().Type = ValidationType.Positive_Integer;
+            return this;
+        }
+
         public ValidationGroup AsEmail()
         {
             _items.Last().Type = ValidationType.Email;
@@ -112,6 +118,9 @@ namespace SpeakFriend.Utilities.Web
 
                     else if (item.Type == ValidationType.Uri)
                         _validationService.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_Uri);
+
+                    else if (item.Type == ValidationType.Positive_Integer)
+                        _validationService.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_PositiveInteger);
                 }
             }
 

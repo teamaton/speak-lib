@@ -8,6 +8,8 @@ namespace SpeakFriend.Utilities.Web
 {    
     public class ValidationUtil
     {
+        public const string Regex_PositiveInteger = "^0*[1-9][0-9]*$";
+
         public const string Regex_Email =
             @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
 
