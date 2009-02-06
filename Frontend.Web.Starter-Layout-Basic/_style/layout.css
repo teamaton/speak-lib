@@ -16,7 +16,7 @@
 	html {height:100%;}
 	body {background:#1f1f1f url(/_style/img/background-6.jpg) no-repeat 50% 0 ; height:100%; min-width:952px;}
 
-	.center {margin-left:-466px; position:relative; left:50%; width:932px;}
+	.center {margin:0 auto; width:932px;}
 	
 	.floatr {float:right;}
 
@@ -107,16 +107,21 @@
 
 	/* End Rounded Corners */
 	
-	/* Sticky Footer via http://www.cssstickyfooter.com/using-sticky-footer-code.html -----------*/
+	/* Sticky Footer via http://ryanfait.com/sticky-footer/ -----------*/
 	
-	    html, body, .non-footer {height: 100%;}
-        body > .non-footer {height: auto; min-height: 100%;}
-        .before-footer {padding-bottom: 150px;}  /* must be same height as the footer */
-        .footer {position: relative;
-	        margin-top: -150px; /* negative value of footer height */
-	        height: 150px;
-	        clear:both;} 
-	
+	    /*
+	    html, body, #aspnetForm, #non-footer {height:100%;}  
+        
+        #non-footer {min-height:100%; height: auto !important; height: 100%; height:auto; margin-bottom:100px;}
+        
+        #footer, #push {height:100px;}
+        */
+        
+        * {margin: 0;}
+		html, body, .sticky-footer {height: 100%;}
+		.non-footer {min-height: 100%; height: auto !important; height: 100%; margin: 0 auto -10em;}
+		.footer, .push {height: 10em;}
+        
 	/* End Sticky Footer */
 	
 	/* Clearing Floats --------------------------------------------------------------*/
@@ -287,8 +292,9 @@
 
 
 /* END FOOTER */
-	.footer {background:#181818 url(/_style/img/footer-bg.jpg) no-repeat 50% 0; border-top: 1px solid #333; clear:both; margin:2em 0 0 0;}
-	.footer ul, .footer p { color: #fff; width:932px; text-align:center; margin:1.2em;}
+    
+    .footer {background:#111;}
+	.footer ul, .footer p { color: #fff; width:932px; text-align:center; padding:1.2em;}
 		.footer ul li {display:inline; margin:1.2em;}
 		.footer a {font-size:1.4em; color:#fff;}
 		.footer a:hover {color:#222; background:#E19638;}

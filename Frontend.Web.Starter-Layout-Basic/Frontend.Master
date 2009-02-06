@@ -24,43 +24,44 @@
 </head>
 
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" class="sticky-footer">
         <div class="non-footer">
             <div class="header clear">
-                
-                <div class="center">
                     
-                    <div class="nav clear">
-                        <p class="mini-nav">
-                            <a href="../kontakt/presse.aspx">Presse</a>
-                            <a href="http://www.ximag-magazin.blogspot.com/">Blog</a>
-                        </p>
-                        <ul>
-                            <li><a href="../magazin.aspx">Magazin</a></li>
-                            <li><a href="../kuenstler.aspx">Künstler</a></li>
-                            <li><a href="../szene.aspx">Szene</a></li>
-                            <li><a href="../interaktiv.aspx">Interaktiv</a></li>
-                            <li class="last-nav"><a href="../kontakt.aspx">Kontakt</a></li>
-                        </ul>
+                    <div class="center">
+                        
+                        <div class="nav clear">
+                            <p class="mini-nav">
+                                <a href="../kontakt/presse.aspx">Presse</a>
+                                <a href="http://www.ximag-magazin.blogspot.com/">Blog</a>
+                            </p>
+                            <ul>
+                                <li><a href="../magazin.aspx">Magazin</a></li>
+                                <li><a href="../kuenstler.aspx">Künstler</a></li>
+                                <li><a href="../szene.aspx">Szene</a></li>
+                                <li><a href="../interaktiv.aspx">Interaktiv</a></li>
+                                <li class="last-nav"><a href="../kontakt.aspx">Kontakt</a></li>
+                            </ul>
+                        </div>
+                        
+                        <a class="logo" href="../startseite.aspx">
+                            <img src="/_style/img/ximag-logo-claim.gif" alt="Startseite - Logo Ximag - Face the Fantastic" 
+                                onmouseover="src='/_style/img/ximag-logo-claim-on.gif'"
+                                onmouseout="src='/_style/img/ximag-logo-claim.gif'" />
+                        </a>
+                        
                     </div>
                     
-                    <a class="logo" href="../startseite.aspx">
-                        <img src="/_style/img/ximag-logo-claim.gif" alt="Startseite - Logo Ximag - Face the Fantastic" 
-                            onmouseover="src='/_style/img/ximag-logo-claim-on.gif'"
-                            onmouseout="src='/_style/img/ximag-logo-claim.gif'" />
-                    </a>
-                    
                 </div>
-                
-            </div>
             
-            <div class="center clear before-footer">
+            <div class="center">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
+            <div class="push"></div>
         </div>
     
-        <div class="footer clear">
+        <div class="footer">
             <div class="center">
                 <ul>
                     <li><a href="../impressum.aspx">Impressum</a></li>
