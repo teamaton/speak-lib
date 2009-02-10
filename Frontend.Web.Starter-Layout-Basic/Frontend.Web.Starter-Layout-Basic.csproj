@@ -85,6 +85,13 @@
     <Compile Include="kontakt.aspx.designer.cs">
       <DependentUpon>kontakt.aspx</DependentUpon>
     </Compile>
+    <Compile Include="typography.aspx.cs">
+      <DependentUpon>typography.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="typography.aspx.designer.cs">
+      <DependentUpon>typography.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Frontend.Master" />
@@ -92,6 +99,7 @@
     <Content Include="impressum.aspx" />
     <Content Include="kontakt.aspx" />
     <Content Include="sticky-test.htm" />
+    <Content Include="typography.aspx" />
     <Content Include="_style\js\clear.gif" />
     <Content Include="_style\js\unitpngfix.js" />
     <Content Include="_style\ie-below-7.css" />
