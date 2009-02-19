@@ -90,6 +90,9 @@
     <Compile Include="Web\Control\WebControlExtensionMethods.cs" />
     <Compile Include="Web\Interaction\Feedback\UserFeedback.cs" />
     <Compile Include="Web\Interaction\Validation\ValidationSettings.cs" />
+    <Compile Include="Web\Navigation\NavigationItem.cs" />
+    <Compile Include="Web\Navigation\NavigationItemList.cs" />
+    <Compile Include="Web\Navigation\NavigationItemService.cs" />
     <Compile Include="Web\Path\UriUtils.cs" />
     <Compile Include="Service\Imaging\ImageUtils.cs" />
     <Compile Include="SeedWork.Setting\EntitySettings.cs" />
