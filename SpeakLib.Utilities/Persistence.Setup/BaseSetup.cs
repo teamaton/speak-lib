@@ -7,9 +7,9 @@ namespace SpeakFriend.Utilities
     /// The BaseSetup class provides an easy way to 
     /// </summary>
     /// <typeparam name="TData"></typeparam>
-    /// <typeparam name="TDerivedClass"></typeparam>
-    public abstract class BaseSetup<TData, TDerivedClass>
-        where TDerivedClass : BaseSetup<TData, TDerivedClass>, 
+    /// <typeparam name="TSetup"></typeparam>
+    public abstract class BaseSetup<TData, TSetup>
+        where TSetup : BaseSetup<TData, TSetup>, 
         IHideObjectMembers
     {
         private readonly IDataService<TData> _dataService;
@@ -25,47 +25,47 @@ namespace SpeakFriend.Utilities
             _dataService = dataService;
         }
 
-        public TDerivedClass Add()
+        public TSetup Add()
         {
             return Add(Get());
         }
 
-        public TDerivedClass Add(int amount)
+        public TSetup Add(int amount)
         {
             for (int i = 0; i < amount; i++)
                 Add(Get());
 
-            return (TDerivedClass)this;
+            return (TSetup)this;
         }
 
-        public TDerivedClass Add(TData data)
+        public TSetup Add(TData data)
         {
             _itemsToCreate.Add(data);
 
-            return (TDerivedClass)this;
+            return (TSetup)this;
         }
 
         public abstract TData Get();
 
-        public TDerivedClass Persist()
+        public TSetup Persist()
         {
-            foreach (var customer in _itemsToCreate)
+            foreach (var item in _itemsToCreate)
             {
-                _dataService.Create(customer);
-                Created.Add(customer);
+                _dataService.Create(item);
+                Created.Add(item);
             }
 
             _itemsToCreate.Clear();    
-            return (TDerivedClass)this;
+            return (TSetup)this;
         }
 
         /// <summary> Persists a setup subject and returns it. </summary>
         public TData GetPersisted()
         {
-            var subject = Get();
-            Add(subject);
+            var data = Get();
+            Add(data);
             Persist();
-            return subject;
+            return data;
         }
 
     }
