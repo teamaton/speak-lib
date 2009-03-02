@@ -37,7 +37,7 @@ namespace SpeakFriend.Utilities.Web
         }
 
         /// <summary>
-        /// Returns the item for the given key. 
+        /// Returns the item for the given key. May be <b>null</b>.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
@@ -51,7 +51,7 @@ namespace SpeakFriend.Utilities.Web
         /// Returns the item for the given key. 
         /// 
         /// If the key does not exist, session will be initialized 
-        /// with the given initialValue & the the initialValue will 
+        /// with the given initialValue & the initialValue will 
         /// be returned.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -69,5 +69,27 @@ namespace SpeakFriend.Utilities.Web
             return Get<T>(key);
         }
 
+        /// <summary>
+        /// Returns the item for the given key, if it exists, else returns a new instance of 
+        /// <typeparamref name="Type">Type</typeparamref>.
+        /// 
+        /// If <paramref name="saveIfNull"/> is true, the new instance is also stored in the
+		/// session data.
+        /// </summary>
+        /// <typeparam name="Type">Needs to implement parameterless constructor.</typeparam>
+        /// <param name="key"></param>
+        /// <param name="saveIfNull"></param>
+        /// <returns></returns>
+        public Type Get<Type>(string key, bool saveIfNull) where Type:new()
+        {
+            if(!Exists(key))
+            {
+                if (!saveIfNull)
+                    return new Type();
+                this[key] = new Type();
+            }
+
+            return Get<Type>(key);
+        }
     }
 }
