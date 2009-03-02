@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SpeakFriend.Utilities.Web
+﻿namespace SpeakFriend.Utilities.Web
 {
     using System;
     using System.Web.UI;
-    using System.Web.UI.HtmlControls;
     using System.Web.UI.WebControls;
 
     public class ItemTemplateHelper
