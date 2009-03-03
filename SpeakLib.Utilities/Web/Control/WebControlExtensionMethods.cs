@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace SpeakFriend.Utilities.Web
@@ -10,23 +11,62 @@ namespace SpeakFriend.Utilities.Web
     public static class WebControlExtensionMethods
     {
         /// <summary>
-        /// Returns the CSS with the specified class appended. Checks if the class exists before adding.
+        /// Tests whether <paramref name="cssString"/> contains the class <paramref name="cssClass"/>.
+        /// </summary>
+        /// <param name="cssString"></param>
+        /// <param name="cssClass"></param>
+        /// <returns></returns>
+        public static bool ContainsCssClass(string cssString, string cssClass)
+        {
+            if (String.IsNullOrEmpty(cssString))
+                return false;
+
+            if (cssString.Equals(cssClass)
+                || cssString.StartsWith(cssClass + " ")
+                || cssString.EndsWith(" " + cssClass)
+                || cssString.Contains(" " + cssClass + " "))
+                return true;
+
+            return false;
+        }
+
+        /// <summary>
+        /// Returns the new CSS class string from the old class string and the class to add.
+        /// </summary>
+        /// <param name="cssString">May be null or empty.</param>
+        /// <param name="classToAdd"></param>
+        /// <returns></returns>
+        public static string GetNewCssString(string cssString, string classToAdd)
+        {
+            if (string.IsNullOrEmpty(cssString))
+                return classToAdd;
+
+            return cssString + " " + classToAdd;
+        }
+
+        /// <summary>
+        /// Adds the given class to the CssClass member of the given control.
         /// </summary>
         public static void AddCssClass(this WebControl control, string classToAdd)
         {
-            if (string.IsNullOrEmpty(control.CssClass))
-            {
-                control.CssClass = classToAdd;
-                return;
-            }
-
-            if (control.CssClass.Equals(classToAdd)
-                || control.CssClass.Contains(classToAdd + " ")
-                || control.CssClass.Contains(" " + classToAdd))
+            if (ContainsCssClass(control.CssClass, classToAdd))
                 return;
 
-            control.CssClass += " " + classToAdd;
+            control.CssClass = GetNewCssString(control.CssClass, classToAdd);
         }
+
+        /// <summary>
+        /// Adds the given class to the class attribute of the given html control.
+        /// </summary>
+        public static void AddCssClass(this HtmlControl control, string classToAdd)
+        {
+            if (ContainsCssClass(control.Attributes["class"], classToAdd))
+                return;
+
+            control.Attributes["class"] = GetNewCssString(control.Attributes["class"], classToAdd);
+        }
+
+
 
         public static bool IsContentItem(this RepeaterItem item)
         {
@@ -60,6 +100,5 @@ namespace SpeakFriend.Utilities.Web
                 throw new Exception("The controlName:'" + controlName + "' was not found");
             return item;
         }
-
     }
 }
