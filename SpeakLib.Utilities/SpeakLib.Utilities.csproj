@@ -88,6 +88,7 @@
     <Compile Include="Service\IHideObjectMembers.cs" />
     <Compile Include="Web\Ajax\AjaxUtils.cs" />
     <Compile Include="Web\Context\ContextUtil.cs" />
+    <Compile Include="Web\Control\HtmlControlExtensionMethods.cs" />
     <Compile Include="Web\Control\WebControlExtensionMethods.cs" />
     <Compile Include="Web\Interaction\Feedback\UserFeedback.cs" />
     <Compile Include="Web\Interaction\Validation\ValidationSettings.cs" />

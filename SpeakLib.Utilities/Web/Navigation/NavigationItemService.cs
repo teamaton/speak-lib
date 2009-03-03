@@ -44,8 +44,8 @@ namespace SpeakFriend.Utilities.Web
         private void SetActive(NavigationItem<T> navItem)
         {
             navItem.Anchor.Attributes.Add("class", activeItemClass);
-            
-            if(navItem.Parent != null)
+
+            if (navItem.Parent != null)
                 navItem.Parent.Attributes.Add("class", activeItemClass);
         }
 

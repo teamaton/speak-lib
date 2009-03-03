@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace SpeakFriend.Utilities.Web
 {
-    public class NavigationItemList<T> : List<NavigationItem<T>> where T : Control
+    public class NavigationItemList<T> : List<NavigationItem<T>> where T : HtmlControl
     {
         public void Add(T anchor, params string[] pagesNames)
         {
