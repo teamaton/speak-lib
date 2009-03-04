@@ -53,11 +53,16 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileSelect.cs" />
-    <Compile Include="FileUploadContent.cs" />
-    <Compile Include="FileUploadFrame.cs" />
+    <Compile Include="Controls\FileSelect.cs" />
+    <Compile Include="Controls\FileUploadContent.cs" />
+    <Compile Include="Controls\UploadedFileControl.cs" />
+    <Compile Include="Controls\FileUploadFrame.cs" />
+    <Compile Include="Controls\UploadedFileDelete.cs" />
+    <Compile Include="Controls\UploadedFileName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionUpload.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="UploadedFile.cs" />
     <Compile Include="UploadManager.cs" />
   </ItemGroup>
   <ItemGroup>

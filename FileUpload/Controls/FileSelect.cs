@@ -22,6 +22,16 @@ namespace SpeakFriend.FileUpload
             get { return onSelected; }
             set { onSelected = value; RecreateChildControls(); }
         }
+        
+        public HttpPostedFile PostedFile
+        {
+            get { return inputFile.PostedFile; }
+        }
+
+        public bool HasFile
+        {
+            get { return PostedFile != null; }
+        }
 
         protected override void RecreateChildControls()
         {

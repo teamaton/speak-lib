@@ -14,22 +14,24 @@ namespace SpeakFriend.FileUpload
             uploadManagerId = id;
         }
 
-        public UploadManager GetUploadManager()
+        public UploadManager UploadManager
         {
-            var name = string.Format("SF.UploadManager.{0}", uploadManagerId);
-            if (Data[name] == null)
-                SetUploadManager(new UploadManager());
+            get
+            {
+                var name = string.Format("SF.UploadManager.{0}", uploadManagerId);
+                if (Data[name] == null)
+                    UploadManager = new UploadManager();
 
-            return (UploadManager)Data[name];
-        }
+                return (UploadManager) Data[name];
+            }
+            set
+            {
+                var name = string.Format("SF.UploadManager.{0}", uploadManagerId);
+                if (Data[name] != null)
+                    ((UploadManager) Data[name]).Dispose();
 
-        public void SetUploadManager(UploadManager value)
-        {
-            var name = string.Format("SF.UploadManager.{0}", uploadManagerId);
-            if (Data[name] != null)
-                ((UploadManager)Data[name]).Dispose();
-
-            Data[name] = value;
+                Data[name] = value;
+            }
         }
     }
 }

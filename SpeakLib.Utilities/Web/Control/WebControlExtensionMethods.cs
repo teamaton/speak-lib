@@ -93,9 +93,9 @@ namespace SpeakFriend.Utilities.Web
             return item.ItemType == ListItemType.AlternatingItem;
         }
 
-        public static T Find<T>(this RepeaterItem repeaterItem, string controlName) where T : Control
+        public static T Find<T>(this Control control, string controlName) where T : Control
         {
-            T item = (T)repeaterItem.FindControl(controlName);
+            var item = (T)control.FindControl(controlName);
             if (item == null)
                 throw new Exception("The controlName:'" + controlName + "' was not found");
             return item;

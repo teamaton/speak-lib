@@ -13,7 +13,7 @@ namespace SpeakFriend.Web.Utilities
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            new PerformanceTracker(this);
+            //new PerformanceTracker(this);
         }
 
         protected void Session_Start(object sender, EventArgs e)
