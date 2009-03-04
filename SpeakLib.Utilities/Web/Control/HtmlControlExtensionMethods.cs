@@ -9,22 +9,14 @@ namespace SpeakFriend.Utilities.Web
     public static class HtmlControlExtensionMethods
     {
         /// <summary>
-        /// Returns the CSS with the specified class appended. Checks if the class exists before adding.
+        /// Adds the given class to the class attribute of the given html control.
         /// </summary>
         public static void AddCssClass(this HtmlControl control, string classToAdd)
         {
-            if (string.IsNullOrEmpty(control.Attributes["class"]))
-            {
-                control.Attributes["class"] = classToAdd;
-                return;
-            }
-
-            if (control.Attributes["class"].Equals(classToAdd)
-                || control.Attributes["class"].Contains(classToAdd + " ")
-                || control.Attributes["class"].Contains(" " + classToAdd))
+            if (ExtBase.ContainsCssClass(control.Attributes["class"], classToAdd))
                 return;
 
-            control.Attributes["class"] += " " + classToAdd;
+            control.Attributes["class"] = ExtBase.GetNewCssString(control.Attributes["class"], classToAdd);
         }
     }
 }
