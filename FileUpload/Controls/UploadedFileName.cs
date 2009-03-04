@@ -33,9 +33,9 @@ namespace SpeakFriend.FileUpload
 
             if (lblFileName == null)
                 lblFileName = new Label()
-                {
-                    ID = "lblFileName",
-                };
+                                  {
+                                      ID = "lblFileName"
+                                  };
 
             Controls.Add(lblFileName);
         }
