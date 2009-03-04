@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities.Web
 {
-    internal class ExtBase
+    internal class ControlUtil
     {
         /// <summary>
         /// Tests whether <paramref name="cssString"/> contains the class <paramref name="cssClass"/>.

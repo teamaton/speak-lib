@@ -17,9 +17,6 @@ namespace SpeakFriend.Utilities.Web
         /// <returns></returns>
         public static string GetFileName(string filePath)
         {
-            // {frk} Warum nicht so?
-            // return System.IO.Path.GetFileName(filePath);
-
             string[] fileParts = filePath.Split('/');
             string fileName = fileParts[fileParts.Length - 1];
 
@@ -55,5 +52,24 @@ namespace SpeakFriend.Utilities.Web
             return !string.IsNullOrEmpty(value) && value.StartsWith("/");
         }
 		
+        /// <summary>
+        /// www.pl.speak-friend.com -> pl
+        /// www.speak-friend.com -> speak-friend
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <returns></returns>
+        public static string FirstSubdomainNotWww(Uri uri)
+        {
+            var host = uri.Host;
+
+            if (string.IsNullOrEmpty(host))
+                return string.Empty;
+
+            var parts = host.Split('.');
+            if ("www".Equals(parts[0], StringComparison.InvariantCultureIgnoreCase))
+                return parts[1];
+
+            return parts[0];
+        }
     }
 }

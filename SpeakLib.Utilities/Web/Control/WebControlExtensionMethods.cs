@@ -15,10 +15,10 @@ namespace SpeakFriend.Utilities.Web
         /// </summary>
         public static void AddCssClass(this WebControl control, string classToAdd)
         {
-            if (ExtBase.ContainsCssClass(control.CssClass, classToAdd))
+            if (ControlUtil.ContainsCssClass(control.CssClass, classToAdd))
                 return;
 
-            control.CssClass = ExtBase.GetNewCssString(control.CssClass, classToAdd);
+            control.CssClass = ControlUtil.GetNewCssString(control.CssClass, classToAdd);
         }
 
 

@@ -13,10 +13,10 @@ namespace SpeakFriend.Utilities.Web
         /// </summary>
         public static void AddCssClass(this HtmlControl control, string classToAdd)
         {
-            if (ExtBase.ContainsCssClass(control.Attributes["class"], classToAdd))
+            if (ControlUtil.ContainsCssClass(control.Attributes["class"], classToAdd))
                 return;
 
-            control.Attributes["class"] = ExtBase.GetNewCssString(control.Attributes["class"], classToAdd);
+            control.Attributes["class"] = ControlUtil.GetNewCssString(control.Attributes["class"], classToAdd);
         }
     }
 }
