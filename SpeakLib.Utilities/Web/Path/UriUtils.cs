@@ -68,7 +68,7 @@ namespace SpeakFriend.Utilities.Web
 
             // remove leading www.
             if (host.StartsWith("www."))
-                host = host.Substring("www.".Length - 1);
+                host = host.Substring("www.".Length);
 
             var parts = host.Split('.');
             var rootParts = rootDomain.Split('.');
@@ -81,22 +81,20 @@ namespace SpeakFriend.Utilities.Web
         }
 
         /// <summary>
-        /// Tauscht die Subdomain aus und gibt die neue URL zurück.
-        /// pl.speak-friend.com, en -> en.speak-friend.com
+        /// Returns a new URL string with subdomain.domain as the host part. Ignores/throws away "www".
         /// </summary>
         /// <param name="uri"></param>
         /// <param name="rootDomain"></param>
         /// <param name="newSubdomain"></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentException">If <paramref name="rootDomain"/> is not the last part of the host of the given <paramref name="uri"/>.</exception>
         public static string ChangeSubdomain(Uri uri, string rootDomain, string newSubdomain)
         {
             if (!uri.Host.EndsWith(rootDomain))
-                throw new ArgumentException("Host [" + uri.Host + "] and rootDomain [" + rootDomain + "] must match!",
+                throw new ArgumentException("The uri.Host [" + uri.Host + "] must end with the rootDomain [" + rootDomain + "]!",
                                             "rootDomain");
 
-//            var subdomain = FirstSubdomainNotWww(uri, rootDomain);
-
-            // www einfach ignorieren
+            // ignore "www"
             var domain = (newSubdomain + "." + rootDomain).ToLowerInvariant();
 
             return uri.Scheme + "://" + domain + uri.PathAndQuery;
