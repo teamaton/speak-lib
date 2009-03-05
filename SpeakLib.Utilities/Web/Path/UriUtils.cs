@@ -57,19 +57,49 @@ namespace SpeakFriend.Utilities.Web
         /// www.speak-friend.com -> speak-friend
         /// </summary>
         /// <param name="uri"></param>
+        /// <param name="rootDomain"></param>
         /// <returns></returns>
-        public static string FirstSubdomainNotWww(Uri uri)
+        public static string FirstSubdomainNotWww(Uri uri, string rootDomain)
         {
             var host = uri.Host;
 
             if (string.IsNullOrEmpty(host))
                 return string.Empty;
 
+            // remove leading www.
+            if (host.StartsWith("www."))
+                host = host.Substring("www.".Length - 1);
+
             var parts = host.Split('.');
-            if ("www".Equals(parts[0], StringComparison.InvariantCultureIgnoreCase))
-                return parts[1];
+            var rootParts = rootDomain.Split('.');
+
+            // no subdomain
+            if (parts[0].Equals(rootParts[0]))
+                return string.Empty;
 
             return parts[0];
+        }
+
+        /// <summary>
+        /// Tauscht die Subdomain aus und gibt die neue URL zurück.
+        /// pl.speak-friend.com, en -> en.speak-friend.com
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <param name="rootDomain"></param>
+        /// <param name="newSubdomain"></param>
+        /// <returns></returns>
+        public static string ChangeSubdomain(Uri uri, string rootDomain, string newSubdomain)
+        {
+            if (!uri.Host.EndsWith(rootDomain))
+                throw new ArgumentException("Host [" + uri.Host + "] and rootDomain [" + rootDomain + "] must match!",
+                                            "rootDomain");
+
+//            var subdomain = FirstSubdomainNotWww(uri, rootDomain);
+
+            // www einfach ignorieren
+            var domain = (newSubdomain + "." + rootDomain).ToLowerInvariant();
+
+            return uri.Scheme + "://" + domain + uri.PathAndQuery;
         }
     }
 }
