@@ -81,6 +81,28 @@ namespace SpeakFriend.Utilities.Web
         }
 
         /// <summary>
+        /// Returns all the subdomains in front of rootDomain as a string.
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <param name="rootDomain"></param>
+        /// <returns></returns>
+        public static string SubdomainString(Uri uri, string rootDomain)
+        {
+            var host = uri.Host;
+
+            if (!uri.Host.EndsWith(rootDomain))
+                throw new ArgumentException("The uri.Host [" + uri.Host + "] must end with the rootDomain [" + rootDomain + "]!",
+                                            "rootDomain");
+            
+            var subdomains = host.Remove(host.IndexOf(rootDomain));
+
+            if (subdomains.EndsWith(".")) // remove the dot
+                subdomains = subdomains.Remove(subdomains.Length - 1);
+
+            return subdomains;
+        }
+
+        /// <summary>
         /// Returns a new URL string with subdomain.domain as the host part. Ignores/throws away "www".
         /// </summary>
         /// <param name="uri"></param>

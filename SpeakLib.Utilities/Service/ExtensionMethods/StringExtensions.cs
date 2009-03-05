@@ -108,7 +108,6 @@ namespace SpeakFriend.Utilities
         {
             var regex = new Regex(@"[0-9]");
             return regex.IsMatch(value);
-        }		
-
+        }
     }
 }
