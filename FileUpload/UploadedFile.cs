@@ -18,13 +18,23 @@ namespace SpeakFriend.FileUpload
 
         public Guid TempKey { get; private set; }
 
-        public string TempFilePath
+        public string TempFilePathAbsolute
         {
             get
             {
                 return Path.Combine(
-                    Settings.FileUploadTempDir,
-                    string.Format("{0}.tmp", TempKey));
+                    Settings.FileUploadTempDirAbsolute,
+                    string.Format("tmp-{0}{1}", TempKey, Path.GetExtension(Name)));
+            }
+        }
+
+        public string TempFilePathRelative
+        {
+            get
+            {
+                return Path.Combine(
+                    Settings.FileUploadTempDirRelative,
+                    string.Format("tmp-{0}{1}", TempKey, Path.GetExtension(Name)));
             }
         }
     }

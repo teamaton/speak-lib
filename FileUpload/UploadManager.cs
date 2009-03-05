@@ -31,15 +31,15 @@ namespace SpeakFriend.FileUpload
         public UploadedFile HandleFile(HttpPostedFile postedFile)
         {
             var uploadedFile = new UploadedFile {Name = postedFile.FileName};
-            postedFile.SaveAs(uploadedFile.TempFilePath);
+            postedFile.SaveAs(uploadedFile.TempFilePathAbsolute);
             Files.Add(uploadedFile);
             return uploadedFile;
         }
 
         private static void DeleteFile(UploadedFile file)
         {
-            if (File.Exists(file.TempFilePath))
-                File.Delete(file.TempFilePath);
+            if (File.Exists(file.TempFilePathAbsolute))
+                File.Delete(file.TempFilePathAbsolute);
         }        
         
         public void RemoveFile(UploadedFile file)

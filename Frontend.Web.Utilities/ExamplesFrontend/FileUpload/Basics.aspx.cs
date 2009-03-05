@@ -22,7 +22,7 @@ namespace SpeakFriend.Web.Utilities
             {
                 var file = FileUploadFrame1.UploadedFiles.Last();
                 lblFileName.Text = file.Name;
-                lblTempPath.Text = file.TempFilePath;
+                lblTempPath.Text = file.TempFilePathAbsolute;
                 mvUploadFileDemo.SetActiveView(vwSubmitted);
             }
         }

@@ -10,7 +10,8 @@ namespace SpeakFriend.FileUpload
     {
         private static readonly AppSettingsReader _settingReader = new AppSettingsReader();
 
-        public static string FileUploadTempDir { get { return Get<string>("FileUploadTempDir"); } }
+        public static string FileUploadTempDirRelative { get { return Get<string>("FileUploadTempDirRelative"); } }
+        public static string FileUploadTempDirAbsolute { get { return Get<string>("FileUploadTempDirAbsolute"); } }
 
         private static T Get<T>(string settingKey)
         {

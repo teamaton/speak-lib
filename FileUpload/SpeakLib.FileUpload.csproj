@@ -53,6 +53,7 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\UploadedFileImage.cs" />
     <Compile Include="Controls\FileSelect.cs" />
     <Compile Include="Controls\FileUploadContent.cs" />
     <Compile Include="Controls\UploadedFileControl.cs" />
