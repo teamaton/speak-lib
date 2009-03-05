@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -12,39 +13,55 @@ namespace SpeakFriend.FileUpload
 {
     public class UploadManager : IDisposable
     {
-        private readonly List<UploadedFile> uploadedFiles = new List<UploadedFile>();
+        private readonly List<UploadedFile> files = new List<UploadedFile>();
+        private List<UploadedFile> Files
+        {
+            get
+            {
+                if (disposed) throw new ObjectDisposedException("UploadManager");
+                return files;
+            }
+        }
+
+        public ReadOnlyCollection<UploadedFile> UploadedFiles
+        {
+            get { return Files.AsReadOnly(); }
+        }
 
         public UploadedFile HandleFile(HttpPostedFile postedFile)
         {
             var uploadedFile = new UploadedFile {Name = postedFile.FileName};
-            postedFile.SaveAs(uploadedFile.TempFileName);
-            uploadedFiles.Add(uploadedFile);
+            postedFile.SaveAs(uploadedFile.TempFilePath);
+            Files.Add(uploadedFile);
             return uploadedFile;
         }
 
         private static void DeleteFile(UploadedFile file)
         {
-            if (File.Exists(file.TempFileName))
-                File.Delete(file.TempFileName);
-            file.Delete();
+            if (File.Exists(file.TempFilePath))
+                File.Delete(file.TempFilePath);
         }        
         
         public void RemoveFile(UploadedFile file)
         {
+            if(!Files.Contains(file))
+                throw new ArgumentException("The file to be removed is not managed by this UploadManager");
+
             DeleteFile(file);
-            uploadedFiles.Remove(file);
+            Files.Remove(file);
         }
 
         public void RemoveFile(Guid tempKey)
         {
-            RemoveFile(uploadedFiles.Find(file => file.TempKey == tempKey));
+            RemoveFile(Files.Find(file => file.TempKey == tempKey));
         }
+
         private bool disposed = false;
-        public void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             if (disposed) return;
 
-            foreach (var file in uploadedFiles)
+            foreach (var file in Files)
                 DeleteFile(file);
 
             disposed = true;
@@ -60,8 +77,5 @@ namespace SpeakFriend.FileUpload
         {
             Dispose(false);
         }
-
-
-
     }
 }

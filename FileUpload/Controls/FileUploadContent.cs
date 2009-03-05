@@ -28,7 +28,10 @@ namespace SpeakFriend.FileUpload
 
         private UploadManager UploadManager
         {
-            get { return new SessionUpload(UploadManagerId).UploadManager; }
+            get
+            {
+                return new SessionUpload(UploadManagerId).UploadManager;
+            }
         }
 
         protected override void OnLoad(EventArgs e)
@@ -180,7 +183,10 @@ namespace SpeakFriend.FileUpload
         {
             get
             {
-                return Page.Request["sf_uploadManagerId"];
+                var id = Page.Request["sf_uploadManagerId"];
+                if(string.IsNullOrEmpty(id))
+                    throw new Exception("The url parameter sf_uploadManagerId is missing or it's value is empty.");
+                return id;
             }
         }
 

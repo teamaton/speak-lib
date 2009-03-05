@@ -60,19 +60,19 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExamplesFrontend\FileUpload.aspx.cs">
-      <DependentUpon>FileUpload.aspx</DependentUpon>
+    <Compile Include="ExamplesFrontend\FileUpload\Basics.aspx.cs">
+      <DependentUpon>Basics.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExamplesFrontend\FileUpload.aspx.designer.cs">
-      <DependentUpon>FileUpload.aspx</DependentUpon>
+    <Compile Include="ExamplesFrontend\FileUpload\Basics.aspx.designer.cs">
+      <DependentUpon>Basics.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ExamplesFrontend\UploadContent.aspx.cs">
-      <DependentUpon>UploadContent.aspx</DependentUpon>
+    <Compile Include="ExamplesFrontend\FileUpload\UploadContent\DefaultContent.aspx.cs">
+      <DependentUpon>DefaultContent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExamplesFrontend\UploadContent.aspx.designer.cs">
-      <DependentUpon>UploadContent.aspx</DependentUpon>
+    <Compile Include="ExamplesFrontend\FileUpload\UploadContent\DefaultContent.aspx.designer.cs">
+      <DependentUpon>DefaultContent.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -136,8 +136,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ExamplesFrontend\FileUpload.aspx" />
-    <Content Include="ExamplesFrontend\UploadContent.aspx" />
+    <Content Include="ExamplesFrontend\FileUpload\Basics.aspx" />
+    <Content Include="ExamplesFrontend\FileUpload\UploadContent\DefaultContent.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Master.Master" />
     <Content Include="ExamplesFrontend\UserMessage.aspx" />

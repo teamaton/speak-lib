@@ -18,20 +18,25 @@ namespace SpeakFriend.FileUpload
         {
             get
             {
-                var name = string.Format("SF.UploadManager.{0}", uploadManagerId);
-                if (Data[name] == null)
+                var keyName = GetKeyName(uploadManagerId);
+                if (Data[keyName] == null)
                     UploadManager = new UploadManager();
 
-                return (UploadManager) Data[name];
+                return (UploadManager) Data[keyName];
             }
             set
             {
-                var name = string.Format("SF.UploadManager.{0}", uploadManagerId);
-                if (Data[name] != null)
-                    ((UploadManager) Data[name]).Dispose();
+                var keyName = GetKeyName(uploadManagerId);
+                if (Data[keyName] != null)
+                    ((UploadManager) Data[keyName]).Dispose();
 
-                Data[name] = value;
+                Data[keyName] = value;
             }
+        }
+
+        private static string GetKeyName(string id)
+        {
+            return string.Format("SF.UploadManager.{0}", id);
         }
     }
 }

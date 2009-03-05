@@ -10,13 +10,7 @@ namespace SpeakFriend.FileUpload
     public class UploadedFile
     {
         public string Name { get; set; }
-        public bool IsDeleted { get; private set; }
-
-        public void Delete()
-        {
-            IsDeleted = true;
-        }
-
+        
         public UploadedFile()
         {
             TempKey = Guid.NewGuid();
@@ -24,7 +18,7 @@ namespace SpeakFriend.FileUpload
 
         public Guid TempKey { get; private set; }
 
-        public string TempFileName
+        public string TempFilePath
         {
             get
             {
