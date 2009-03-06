@@ -8,6 +8,8 @@ namespace SpeakFriend.Utilities
 {
     public static class StringExtension
     {
+        public static string NEW_LINE { get { return Environment.NewLine; } }
+
         /// <summary>
         /// Truncates the string to a specified length and replaces the truncated to a ...
         /// </summary>
@@ -55,7 +57,7 @@ namespace SpeakFriend.Utilities
         /// <returns></returns>
         public static List<string> WordWrap(this string text, int maxLineLength)
         {
-            var lines = text.Split('\n').ToList();
+            var lines = text.Split(new[] {NEW_LINE}, StringSplitOptions.None).ToList();
 
             bool lengthsTrimmed = false;
             while (!lengthsTrimmed)
@@ -64,14 +66,51 @@ namespace SpeakFriend.Utilities
                 if (longLines.Count() == 0) lengthsTrimmed = true;
                 foreach (var longLine in longLines)
                 {
-                    var length = longLine.Select((chr, i) => chr == ' ' && i < maxLineLength ? i : -1).Max();
-                    if (length == -1) length = maxLineLength;
+                    // get the largest index in the line for which the char is a space
+                    // and the index is smaller than the max line length
+                    var length = longLine.Select((chr, i) => (chr == ' ' && i <= maxLineLength) ? i : -1).Max();
+                    
+                    // If no space found, force wrap in the middle of a word.
+                    if (length == -1)
+                        length = maxLineLength;
+
+                    var newLine1 = longLine.Substring(0, length);
+                    var newLine2 = longLine.Substring(length);
+
+                    // Remove space at beginning of wrapped line. Looks better.
+                    if (newLine2[0] == ' ')
+                        newLine2 = newLine2.Substring(1);
+
                     lines.InsertRange(lines.IndexOf(longLine),
-                                      new[] { longLine.Substring(0, length), longLine.Substring(length) });
+                                      new[] { newLine1, newLine2 });
                     lines.Remove(longLine);
                 }
             }
             return lines;
+        }
+
+        /// <summary>
+        /// Returns the given text with lines separated by <see cref="Environment.NewLine"/>
+        /// and a maximum length of <paramref name="maxLineLength"/>.
+        /// Uses <see cref="WordWrap"/> internally.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="maxLineLength"></param>
+        /// <returns></returns>
+        public static string Wrap(this string text, int maxLineLength)
+        {
+            var lines = text.WordWrap(maxLineLength);
+
+            var output = new StringBuilder();
+
+            for (int i = 0; i < lines.Count; i++)
+            {
+                output.Append(lines[i]);
+                if (i < lines.Count - 1)
+                    output.AppendLine();
+            }
+
+            return output.ToString();
         }
 
         public static bool IsEmail(this string text)

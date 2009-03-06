@@ -10,7 +10,7 @@ using SpeakFriend.Utilities.Web;
 namespace Tests.Utilities.Web
 {
     [TestFixture]
-    public class WebExtensionsTest
+    public class WebHtmlExtensionsTest
     {
         [Test]
         public void CssClassLabel()
