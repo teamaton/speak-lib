@@ -10,7 +10,6 @@ using System.Web.UI.WebControls;
 
 namespace SpeakFriend.FileUpload
 {
-    [DefaultProperty("Text")]
     [ToolboxData("<{0}:FileSelect runat=server></{0}:FileSelect>")]
     public class FileSelect : CompositeControl
     {

@@ -11,13 +11,17 @@ using SpeakFriend.Utilities.Web;
 
 namespace SpeakFriend.FileUpload
 {
-    [DefaultProperty("Text")]
     [ToolboxData("<{0}:FileUploadContent runat=server></{0}:FileUploadContent>")]
     public class FileUploadContent : CompositeControl
     {
         private Panel selectPanel;
         private Panel loadingPanel;
         private Panel uploadedPanel;
+
+        protected override HtmlTextWriterTag TagKey
+        {
+            get { return HtmlTextWriterTag.Div; }
+        }
 
         private UploadedFile UploadedFile
         {
@@ -37,7 +41,6 @@ namespace SpeakFriend.FileUpload
         protected override void OnLoad(EventArgs e)
         {
             EnsureChildControls();
-
 
             if (Page.IsPostBack)
             {
