@@ -86,6 +86,7 @@
     <Compile Include="SeedWork.Tagging\Prototype\TagPrototype.cs" />
     <Compile Include="Service\ExtensionMethods\StringExtensions.cs" />
     <Compile Include="Service\IHideObjectMembers.cs" />
+    <Compile Include="Service\Imaging\ImageStore.cs" />
     <Compile Include="Web\Ajax\AjaxUtils.cs" />
     <Compile Include="Web\Context\ContextUtil.cs" />
     <Compile Include="Web\Context\Context\IViewStateStore.cs" />
