@@ -10,6 +10,11 @@ namespace SpeakFriend.Utilities.Web
 {
     public class ParameterHandlerService
     {
+        public void ProcessGlobalParams(ParameterHandlerList parameterHandlers)
+        {
+            ProcessGlobalParams(HttpContext.Current.Request.QueryString, parameterHandlers);
+        }
+
         /// <summary>
         /// Processes all given parameters.
         /// </summary>
