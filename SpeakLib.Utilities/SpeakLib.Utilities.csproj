@@ -95,6 +95,9 @@
     <Compile Include="Web\Context\Context\ViewStoreCache.cs" />
     <Compile Include="Web\Context\Context\ViewStoreSession.cs" />
     <Compile Include="Web\Context\Context\ViewStoreType.cs" />
+    <Compile Include="Web\Context\Parameters\ParameterHandler.cs" />
+    <Compile Include="Web\Context\Parameters\ParameterHandlerList.cs" />
+    <Compile Include="Web\Context\Parameters\ParameterHandlerService.cs" />
     <Compile Include="Web\Control\ControlUtil.cs" />
     <Compile Include="Web\Control\HtmlControlExtensionMethods.cs" />
     <Compile Include="Web\Control\WebControlExtensionMethods.cs" />
