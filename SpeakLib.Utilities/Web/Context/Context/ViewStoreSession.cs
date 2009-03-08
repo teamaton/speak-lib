@@ -6,24 +6,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.UI;
 
 namespace SpeakFriend.Utilities.Web
 {
     public class ViewStateSession : IViewStateStore
     {
-        public void Save(string id, object data)
+        public void Save(string id, Pair data)
         {
             HttpContext.Current.Session.Add(id, data);
         }
 
-        public string Load(string id)
+        public Pair Load(string id)
         {
-            string returnValue = string.Empty;
-            
             if (HttpContext.Current.Session[id] != null) 
-                return HttpContext.Current.Session[id].ToString();
+                return (Pair)HttpContext.Current.Session[id];
 
-            return returnValue;
+            return null;
         }
 
         public void Delete(string id)

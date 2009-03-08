@@ -7,25 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Caching;
+using System.Web.UI;
 
 namespace SpeakFriend.Utilities.Web
 {
     public class ViewStoreCache : IViewStateStore
     {
-        public void Save(string id, object data)
+        public void Save(string id, Pair data)
         {
             HttpContext.Current.Cache.Add(id, data, null, DateTime.Now.AddMinutes(20),
                 System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, null);
         }
 
-        public string Load(string id)
+        public Pair Load(string id)
         {
-            string returnValue = string.Empty;
             if (HttpContext.Current.Cache[id] != null) 
-            {
-                returnValue = HttpContext.Current.Cache[id].ToString();
-            }
-            return returnValue;
+              return (Pair)HttpContext.Current.Cache[id];
+            
+            return null;
         }
 
         public void Delete(string id)
