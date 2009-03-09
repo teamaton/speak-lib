@@ -5,11 +5,16 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
+using SpeakFriend.Utilities.Web;
 
 namespace SpeakFriend.Utilities
 {
     public class ImageStore
     {
+        private readonly AppData _appData = new AppData();
+        private const string _appDataKey = "imageStore_";
+
+
         private readonly string _pathAbsolute;
         private readonly string _pathRelative;
 
@@ -23,7 +28,9 @@ namespace SpeakFriend.Utilities
         {
 
             var image = Image.FromFile(sourcePath);
-            image.Save(GetPathAbsolute(imageKey), ImageFormat.Png);
+            var path = GetPathAbsolute(imageKey);
+            image.Save(path, ImageFormat.Png);
+            CalculateHashCode(path, imageKey);
         }
 
         public void StoreToGroup(string groupKey, string sourcePath, string name)
@@ -42,13 +49,38 @@ namespace SpeakFriend.Utilities
         public ImageInfo Get(string imageKey)
         {
             //ToDo: check if exists and if not, return default placeholder
-            return new ImageInfo
-                       {
-                           AbsolutePath = GetPathAbsolute(imageKey),
-                           RelativePath = GetPathRelative(imageKey),
-                           Name = imageKey,
-                           Id = -1
-                       };
+            var imageInfo = new ImageInfo
+                          {
+                              AbsolutePath = GetPathAbsolute(imageKey),
+                              RelativePath = GetPathRelative(imageKey),
+                              Name = imageKey,
+                              Id = -1
+                          };
+
+            EnsureHashCode(imageInfo);
+
+            return imageInfo;
+        }
+
+        private void EnsureHashCode(ImageInfo info)
+        {
+            var key = _appDataKey + info.Name;
+            
+            if (_appData[key] == null)
+                CalculateHashCode(info.AbsolutePath, info.Name);
+
+            info.HashCode = (int) _appData[key];
+        }
+
+        private void CalculateHashCode(string path, string imageKey)
+        {
+            using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read))
+            {
+                var data = new byte[stream.Length];
+                stream.Read(data, 0, stream.Length < int.MaxValue ? (int) stream.Length : int.MaxValue);
+
+                _appData[_appDataKey + imageKey] = data.GetHashCode();
+            }
         }
 
 
@@ -68,7 +100,7 @@ namespace SpeakFriend.Utilities
                         {
                             var filename = Path.GetFileNameWithoutExtension(path);
                             var extension = Path.GetExtension(path);
-                            return new ImageInfo()
+                            return new ImageInfo
                                        {
                                            Id = Convert.ToInt32(filename.Split('-').First()),
                                            AbsolutePath = path,

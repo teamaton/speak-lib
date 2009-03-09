@@ -11,5 +11,6 @@ namespace SpeakFriend.Utilities
         public int Id { get; set; }
         public string AbsolutePath { get; set; }
         public string RelativePath { get; set; }
+        public int HashCode { get; set; }
     }
 }
