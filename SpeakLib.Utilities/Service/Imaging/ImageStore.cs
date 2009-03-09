@@ -74,12 +74,20 @@ namespace SpeakFriend.Utilities
 
         private void CalculateHashCode(string path, string imageKey)
         {
+            var key = _appDataKey + imageKey;
+
+            if (!File.Exists(path))
+            {
+                _appData[key] = 0;
+                return;
+            }
+
             using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
                 var data = new byte[stream.Length];
                 stream.Read(data, 0, stream.Length < int.MaxValue ? (int) stream.Length : int.MaxValue);
 
-                _appData[_appDataKey + imageKey] = data.GetHashCode();
+                _appData[key] = data.GetHashCode();
             }
         }
 
