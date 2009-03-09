@@ -38,25 +38,24 @@ namespace Tests.Utilities.Web
         [Test]
         public void SubdomainNotWww()
         {
-            var domain = "speak-lib.com";
-            var url = "http://" + domain;
+            var url = "http://speak-lib.com";
             var uri = new Uri(url);
-            var subdomain = UriUtils.FirstSubdomainNotWww(uri, domain);
+            var subdomain = UriUtils.FirstSubdomainNotWww(uri);
             Assert.AreEqual("", subdomain);
 
-            url = "http://www." + domain;
+            url = "http://www.speak-lib.com";
             uri = new Uri(url);
-            subdomain = UriUtils.FirstSubdomainNotWww(uri, domain);
+            subdomain = UriUtils.FirstSubdomainNotWww(uri);
             Assert.AreEqual("", subdomain);
 
-            url = "http://en." + domain;
+            url = "http://en.speak-lib.com";
             uri = new Uri(url);
-            subdomain = UriUtils.FirstSubdomainNotWww(uri, domain);
+            subdomain = UriUtils.FirstSubdomainNotWww(uri);
             Assert.AreEqual("en", subdomain);
 
-            url = "http://www.en." + domain;
+            url = "http://www.en.speak-lib.com";
             uri = new Uri(url);
-            subdomain = UriUtils.FirstSubdomainNotWww(uri, domain);
+            subdomain = UriUtils.FirstSubdomainNotWww(uri);
             Assert.AreEqual("en", subdomain);
         }
 
