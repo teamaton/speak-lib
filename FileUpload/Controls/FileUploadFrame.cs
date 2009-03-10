@@ -51,6 +51,7 @@ namespace SpeakFriend.FileUpload
         protected override void RenderContents(HtmlTextWriter output)
         {
             iframe.Attributes["src"] = string.Format("{0}?sf_uploadManagerId={1}", ContentUrl, UploadManagerId);
+            iframe.Attributes["frameborder"] = "0";
             iframe.RenderControl(output);
         }
 
