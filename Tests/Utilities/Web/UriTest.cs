@@ -73,5 +73,21 @@ namespace Tests.Utilities.Web
             newUrl = UriUtils.ChangeSubdomain(uri, domain, "pl");
             Assert.AreEqual("http://pl." + domain + "/", newUrl);
         }
+
+        [Test]
+        public void GetRootDomain()
+        {
+            var host = "http://pl.camping.info";
+            var subdomain = UriUtils.FirstSubdomainNotWww(new Uri(host));
+            Assert.AreEqual("pl", subdomain);
+
+            host = "http://pl.camping-info";
+            subdomain = UriUtils.FirstSubdomainNotWww(new Uri(host));
+            Assert.AreEqual("pl", subdomain);
+
+            host = "http://sub.pl.camping-info";
+            subdomain = UriUtils.FirstSubdomainNotWww(new Uri(host));
+            Assert.AreEqual("pl", subdomain);
+        }
     }
 }

@@ -53,7 +53,8 @@ namespace SpeakFriend.Utilities.Web
         }
 		
         /// <summary>
-        /// www.pl.speak-friend.com -> pl
+        /// Returns the first subdomain under the domain that is not www.
+        /// sub.pl.speak-friend.com -> pl
         /// www.speak-friend.com -> string.Empty.
         /// </summary>
         /// <param name="uri"></param>
@@ -62,10 +63,13 @@ namespace SpeakFriend.Utilities.Web
         {
             var host = uri.Host;
 
-            if (string.IsNullOrEmpty(host) || !host.Contains("."))
+            if (string.IsNullOrEmpty(host))
                 return string.Empty;
 
             host = RemoveTopLevelDomain(host);
+
+            if (!host.Contains("."))
+                return string.Empty;
 
             // remove leading www.
             if (host.StartsWith("www."))
@@ -73,17 +77,18 @@ namespace SpeakFriend.Utilities.Web
 
             var parts = host.Split('.');
 
-            if (parts.Count() > 2)
-                return parts[parts.Count()-3];
-
-            return string.Empty;
+            // there are always at least two parts at this point
+            return parts[parts.Count() - 2];
         }
 
         public static string RemoveTopLevelDomain(string host)
         {
             foreach (var topLevelDomain in AllTopLevelDomains)
-                if (host.EndsWith("." + topLevelDomain))
-                    return host.Substring(0, host.Length - topLevelDomain.Length + 1);
+            {
+                var suffix = "." + topLevelDomain;
+                if (host.EndsWith(suffix, StringComparison.InvariantCultureIgnoreCase))
+                    return host.Substring(0, host.Length - suffix.Length);
+            }
 
             return host;
         }
