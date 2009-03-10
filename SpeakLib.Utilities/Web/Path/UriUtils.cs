@@ -53,8 +53,8 @@ namespace SpeakFriend.Utilities.Web
         }
 		
         /// <summary>
-        /// Returns the first subdomain under the domain that is not www.
-        /// sub.pl.speak-friend.com -> pl
+        /// Returns the first subdomain under the domain that is not www.<br/>
+        /// sub.pl.speak-friend.com -> pl<br/>
         /// www.speak-friend.com -> string.Empty.
         /// </summary>
         /// <param name="uri"></param>
