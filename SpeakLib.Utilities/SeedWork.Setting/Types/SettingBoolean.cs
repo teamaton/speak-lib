@@ -33,8 +33,8 @@ namespace SpeakFriend.Utilities
             return _default.Equals(Value);
         }
 
-        public bool IsTrue { get { return Value; } }
+        public virtual bool IsTrue { get { return Value; } }
 
-        public bool IsFalse { get { return Value == false; } }
+        public virtual bool IsFalse { get { return Value == false; } }
     }
 }

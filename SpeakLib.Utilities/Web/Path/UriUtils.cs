@@ -77,8 +77,10 @@ namespace SpeakFriend.Utilities.Web
 
             var parts = host.Split('.');
 
-            // there are always at least two parts at this point
-            return parts[parts.Count() - 2];
+            if (parts.Count() >= 2)
+                return parts[parts.Count() - 2];
+
+            return string.Empty;
         }
 
         public static string RemoveTopLevelDomain(string host)
