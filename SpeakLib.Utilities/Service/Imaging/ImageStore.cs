@@ -39,7 +39,7 @@ namespace SpeakFriend.Utilities
             Directory.CreateDirectory(groupDirectory);
 
             var images = GetGroup(groupKey);
-            var id = images.Count == 0 ? 0 : images.Max(img => img.Id) + 1;
+            var id = images.Count == 0 ? 1 : images.Max(img => img.Id) + 1;
             var path = GetPathAbsolute(groupKey, string.Format("{0}-{1}.png", id, name));
 
             var image = Image.FromFile(sourcePath);
