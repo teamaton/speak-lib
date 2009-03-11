@@ -144,5 +144,10 @@ namespace SpeakFriend.Utilities
             return Path.Combine(_pathRelative, string.Format("{0}.png", imageKey));
         }
 
+        public void Delete(string groupKey, int id)
+        {
+            var file = GetGroup(groupKey).Find(image => image.Id == id);
+            if (file != null) File.Delete(file.AbsolutePath);
+        }
     }
 }
