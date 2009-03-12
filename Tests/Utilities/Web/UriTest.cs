@@ -16,22 +16,22 @@ namespace Tests.Utilities.Web
             var domain = "speak-lib.com";
             var url = "http://" + domain;
             var uri = new Uri(url);
-            var subdomain = UriUtils.SubdomainString(uri, domain);
+            var subdomain = UriUtils.SubdomainString(uri);
             Assert.AreEqual("", subdomain);
 
             url = "http://www." + domain;
             uri = new Uri(url);
-            subdomain = UriUtils.SubdomainString(uri, domain);
+            subdomain = UriUtils.SubdomainString(uri);
             Assert.AreEqual("www", subdomain);
 
             url = "http://en." + domain;
             uri = new Uri(url);
-            subdomain = UriUtils.SubdomainString(uri, domain);
+            subdomain = UriUtils.SubdomainString(uri);
             Assert.AreEqual("en", subdomain);
 
             url = "http://www.en." + domain;
             uri = new Uri(url);
-            subdomain = UriUtils.SubdomainString(uri, domain);
+            subdomain = UriUtils.SubdomainString(uri);
             Assert.AreEqual("www.en", subdomain);
         }
 
@@ -60,18 +60,42 @@ namespace Tests.Utilities.Web
         }
 
         [Test]
+        public void DomainString()
+        {
+            var domain = "speak-lib.com";
+            var url = "http://en." + domain;
+            var uri = new Uri(url);
+            var newDomain = UriUtils.DomainString(uri);
+            Assert.AreEqual(domain, newDomain);
+        }
+
+        [Test]
         public void ChangeSubdomain()
         {
             var domain = "speak-lib.com";
             var url = "http://en." + domain;
             var uri = new Uri(url);
-            var newUrl = UriUtils.ChangeSubdomain(uri, domain, "pl");
-            Assert.AreEqual("http://pl." + domain + "/", newUrl);
+            var newUrl = UriUtils.ReplaceLeftMostSubdomain(uri, "pl");
+            Assert.AreEqual("http://pl." + domain + "/", newUrl.AbsoluteUri);
 
             url = "http://www." + domain;
             uri = new Uri(url);
-            newUrl = UriUtils.ChangeSubdomain(uri, domain, "pl");
-            Assert.AreEqual("http://pl." + domain + "/", newUrl);
+            newUrl = UriUtils.ReplaceLeftMostSubdomain(uri, "pl");
+            Assert.AreEqual("http://pl." + domain + "/", newUrl.AbsoluteUri);
+
+            url = "http://en.stage." + domain;
+            uri = new Uri(url);
+            newUrl = UriUtils.ReplaceLeftMostSubdomain(uri, "pl");
+            Assert.AreEqual("http://pl.stage." + domain + "/", newUrl.AbsoluteUri);
+
+            url = "http://" + domain;
+            uri = new Uri(url);
+            newUrl = UriUtils.ReplaceLeftMostSubdomain(uri, "pl");
+            Assert.AreEqual("http://pl." + domain + "/", newUrl.AbsoluteUri);
+
+            uri = new Uri("http://" + domain + ":443/hallo.aspx?ballo=w");
+            newUrl = UriUtils.ReplaceLeftMostSubdomain(uri, "pl");
+            Assert.AreEqual("http://pl." + domain + ":443/hallo.aspx?ballo=w", newUrl.AbsoluteUri);
         }
 
         [Test]

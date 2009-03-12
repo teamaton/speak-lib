@@ -7,6 +7,8 @@ namespace SpeakFriend.Utilities.Web
 {
     public class UriUtils
     {
+        public static List<string> AllTopLevelDomains = new List<string> { "AC", "AD", "AE", "AERO", "AF", "AG", "AI", "AL", "AM", "AN", "AO", "AQ", "AR", "ARPA", "AS", "ASIA", "AT", "AU", "AW", "AX", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BIZ", "BJ", "BM", "BN", "BO", "BR", "BS", "BT", "BV", "BW", "BY", "BZ", "CA", "CAT", "CC", "CD", "CF", "CG", "CH", "CI", "CK", "CL", "CM", "CN", "CO", "COM", "COOP", "CR", "CU", "CV", "CX", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EDU", "EE", "EG", "ER", "ES", "ET", "EU", "FI", "FJ", "FK", "FM", "FO", "FR", "GA", "GB", "GD", "GE", "GF", "GG", "GH", "GI", "GL", "GM", "GN", "GOV", "GP", "GQ", "GR", "GS", "GT", "GU", "GW", "GY", "HK", "HM", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IM", "IN", "INFO", "INT", "IO", "IQ", "IR", "IS", "IT", "JE", "JM", "JO", "JOBS", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KP", "KR", "KW", "KY", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MIL", "MK", "ML", "MM", "MN", "MO", "MOBI", "MP", "MQ", "MR", "MS", "MT", "MU", "MUSEUM", "MV", "MW", "MX", "MY", "MZ", "NA", "NAME", "NC", "NE", "NET", "NF", "NG", "NI", "NL", "NO", "NP", "NR", "NU", "NZ", "OM", "ORG", "PA", "PE", "PF", "PG", "PH", "PK", "PL", "PM", "PN", "PR", "PRO", "PS", "PT", "PW", "PY", "QA", "RE", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SD", "SE", "SG", "SH", "SI", "SJ", "SK", "SL", "SM", "SN", "SO", "SR", "ST", "SU", "SV", "SY", "SZ", "TC", "TD", "TEL", "TF", "TG", "TH", "TJ", "TK", "TL", "TM", "TN", "TO", "TP", "TR", "TRAVEL", "TT", "TV", "TW", "TZ", "UA", "UG", "UK", "US", "UY", "UZ", "VA", "VC", "VE", "VG", "VI", "VN", "VU", "WF", "WS", "YE", "YT", "YU", "ZA", "ZM", "ZW" };
+
         /// <summary>
         /// Gets the filename + extension of a given path, 
         /// </summary>
@@ -96,47 +98,76 @@ namespace SpeakFriend.Utilities.Web
         }
 
         /// <summary>
+        /// Returns the domain part of the string.<br/>
+        /// sub.pl.camping.info -> camping.info
+        /// camping.info        -> camping.info
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <returns></returns>
+        public static string DomainString(Uri uri)
+        {
+            var subdomains = SubdomainString(uri);
+
+            var tmp = uri.Host.Remove(0, subdomains.Length);
+            
+            return tmp.StartsWith(".") ? tmp.Remove(0, 1) : tmp;
+        }
+
+        /// <summary>
         /// Returns all the subdomains in front of rootDomain as a string.
         /// </summary>
         /// <param name="uri"></param>
-        /// <param name="rootDomain"></param>
         /// <returns></returns>
-        public static string SubdomainString(Uri uri, string rootDomain)
+        public static string SubdomainString(Uri uri)
         {
             var host = uri.Host;
 
-            if (!uri.Host.EndsWith(rootDomain))
-                throw new ArgumentException("The uri.Host [" + uri.Host + "] must end with the rootDomain [" + rootDomain + "]!",
-                                            "rootDomain");
-            
-            var subdomains = host.Remove(host.IndexOf(rootDomain));
+            if (string.IsNullOrEmpty(host))
+                return string.Empty;
 
-            if (subdomains.EndsWith(".")) // remove the dot
-                subdomains = subdomains.Remove(subdomains.Length - 1);
+            host = RemoveTopLevelDomain(host);
+
+            if (!host.Contains("."))
+                return string.Empty;
+            
+            var subdomains = host.Remove(host.LastIndexOf("."));
 
             return subdomains;
         }
 
         /// <summary>
-        /// Returns a new URL string with subdomain.domain as the host part. Ignores/throws away "www".
+        /// http://www.speak-friend.com, de -> http://de.speak-friend.com
+        /// http://de.www.speak-friend.com, en -> http://en.speak-friend.com
         /// </summary>
         /// <param name="uri"></param>
-        /// <param name="rootDomain"></param>
         /// <param name="newSubdomain"></param>
         /// <returns></returns>
-        /// <exception cref="ArgumentException">If <paramref name="rootDomain"/> is not the last part of the host of the given <paramref name="uri"/>.</exception>
-        public static string ChangeSubdomain(Uri uri, string rootDomain, string newSubdomain)
+        public static Uri ReplaceLeftMostSubdomain(Uri uri, string newSubdomain)
         {
-            if (!uri.Host.EndsWith(rootDomain))
-                throw new ArgumentException("The uri.Host [" + uri.Host + "] must end with the rootDomain [" + rootDomain + "]!",
-                                            "rootDomain");
+            var domain = DomainString(uri);
+            var subdomains = SubdomainString(uri);
 
-            // ignore "www"
-            var domain = (newSubdomain + "." + rootDomain).ToLowerInvariant();
+            if (string.IsNullOrEmpty(subdomains))
+            {
+                domain = newSubdomain + "." + domain;
+            }
+            else
+            {
+                var parts = subdomains.Split('.').ToList();
 
-            return uri.Scheme + "://" + domain + uri.PathAndQuery;
+                parts[0] = newSubdomain;
+
+                subdomains = string.Empty;
+
+                parts.ForEach(part => subdomains += part + ".");
+
+                domain = subdomains + domain;
+            }
+
+            // use the port if it's a non-standard one (other than 80)
+            var port = uri.Authority == uri.Host ? string.Empty : (":" + uri.Port);
+
+            return new Uri(uri.Scheme + "://" + domain + port + uri.PathAndQuery);
         }
-
-        public static List<string> AllTopLevelDomains = new List<string> { "AC", "AD", "AE", "AERO", "AF", "AG", "AI", "AL", "AM", "AN", "AO", "AQ", "AR", "ARPA", "AS", "ASIA", "AT", "AU", "AW", "AX", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BIZ", "BJ", "BM", "BN", "BO", "BR", "BS", "BT", "BV", "BW", "BY", "BZ", "CA", "CAT", "CC", "CD", "CF", "CG", "CH", "CI", "CK", "CL", "CM", "CN", "CO", "COM", "COOP", "CR", "CU", "CV", "CX", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EDU", "EE", "EG", "ER", "ES", "ET", "EU", "FI", "FJ", "FK", "FM", "FO", "FR", "GA", "GB", "GD", "GE", "GF", "GG", "GH", "GI", "GL", "GM", "GN", "GOV", "GP", "GQ", "GR", "GS", "GT", "GU", "GW", "GY", "HK", "HM", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IM", "IN", "INFO", "INT", "IO", "IQ", "IR", "IS", "IT", "JE", "JM", "JO", "JOBS", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KP", "KR", "KW", "KY", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MIL", "MK", "ML", "MM", "MN", "MO", "MOBI", "MP", "MQ", "MR", "MS", "MT", "MU", "MUSEUM", "MV", "MW", "MX", "MY", "MZ", "NA", "NAME", "NC", "NE", "NET", "NF", "NG", "NI", "NL", "NO", "NP", "NR", "NU", "NZ", "OM", "ORG", "PA", "PE", "PF", "PG", "PH", "PK", "PL", "PM", "PN", "PR", "PRO", "PS", "PT", "PW", "PY", "QA", "RE", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SD", "SE", "SG", "SH", "SI", "SJ", "SK", "SL", "SM", "SN", "SO", "SR", "ST", "SU", "SV", "SY", "SZ", "TC", "TD", "TEL", "TF", "TG", "TH", "TJ", "TK", "TL", "TM", "TN", "TO", "TP", "TR", "TRAVEL", "TT", "TV", "TW", "TZ", "UA", "UG", "UK", "US", "UY", "UZ", "VA", "VC", "VE", "VG", "VI", "VN", "VU", "WF", "WS", "YE", "YT", "YU", "ZA", "ZM", "ZW" };
     }
 }
