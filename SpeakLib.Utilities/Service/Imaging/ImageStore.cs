@@ -17,6 +17,7 @@ namespace SpeakFriend.Utilities
 
         private readonly string _pathAbsolute;
         private readonly string _pathRelative;
+        private const string _pathThumbs = "thumbs";
 
         public ImageStore(string pathAbsolute, string pathRelative)
         {
@@ -26,10 +27,11 @@ namespace SpeakFriend.Utilities
 
         public void Store(string imageKey, string sourcePath)
         {
-
-            var image = Image.FromFile(sourcePath);
             var path = GetPathAbsolute(imageKey);
-            image.Save(path, ImageFormat.Png);
+
+            using (var image = Image.FromFile(sourcePath))
+                image.Save(path, ImageFormat.Png);
+
             CalculateHashCode(path, imageKey);
         }
 
@@ -42,13 +44,12 @@ namespace SpeakFriend.Utilities
             var id = images.Count == 0 ? 1 : images.Max(img => img.Id) + 1;
             var path = GetPathAbsolute(groupKey, string.Format("{0}-{1}.png", id, name));
 
-            var image = Image.FromFile(sourcePath);
-            image.Save(path, ImageFormat.Png);
+            using (var image = Image.FromFile(sourcePath))
+                image.Save(path, ImageFormat.Png);
         }
   
         public ImageInfo Get(string imageKey)
         {
-            //ToDo: check if exists and if not, return default placeholder
             var imageInfo = new ImageInfo
                           {
                               AbsolutePath = GetPathAbsolute(imageKey),
@@ -60,6 +61,96 @@ namespace SpeakFriend.Utilities
             EnsureHashCode(imageInfo);
 
             return imageInfo;
+        }
+
+        public ImageInfo GetThumb(string imageKey, int width)
+        {
+            var image = Get(imageKey);
+            EnsureHashCode(image);
+
+            var thumb = new ImageInfo
+                            {
+                                AbsolutePath = GetThumbPathAbsolute(image, width),
+                                RelativePath = GetThumbPathRelative(image, width),
+                                Name = imageKey,
+                                Id = -1,
+                                HashCode = image.HashCode
+                            };
+
+            EnsureThumb(image, thumb, width);
+
+            return thumb;
+        }
+
+        public ImageInfo Get(string groupKey, int id)
+        {
+            return GetGroup(groupKey).Find(image => image.Id == id);
+        }
+
+        public ImageInfo GetThumb(string groupKey, int id, int width)
+        {
+            var image = Get(groupKey, id);
+
+            if (image == null) return null;
+
+            EnsureHashCode(image);
+
+            var thumb = new ImageInfo
+            {
+                AbsolutePath = GetThumbPathAbsolute(image, width),
+                RelativePath = GetThumbPathRelative(image, width),
+                Name = image.Name,
+                Id = image.Id,
+                HashCode = image.HashCode
+            };
+
+            EnsureThumb(image, thumb, width);
+
+            return thumb;
+        }
+
+        public List<ImageInfo> GetGroup(string groupKey)
+        {
+            if(!Directory.Exists(GetGroupDirectoryAbsolute(groupKey))) 
+                return new List<ImageInfo>();
+
+            return
+                Directory.GetFiles(GetGroupDirectoryAbsolute(groupKey)).ToList().ConvertAll(
+                    path =>
+                        {
+                            var filename = Path.GetFileNameWithoutExtension(path);
+                            var extension = Path.GetExtension(path);
+                            return new ImageInfo
+                                       {
+                                           Id = Convert.ToInt32(filename.Split('-').First()),
+                                           AbsolutePath = path,
+                                           RelativePath = GetPathRelative(groupKey, filename + extension),
+                                           Name = filename.Substring(filename.IndexOf('-') + 1)
+                                       };
+                        });
+            
+        }
+
+        private void EnsureThumb(ImageInfo original, ImageInfo thumb, int width)
+        {
+            if (!File.Exists(thumb.AbsolutePath))
+                using (var image = Image.FromFile(original.AbsolutePath))
+                using (var resized = ImageUtils.ResizeImage(image, width, false))
+                    resized.Save(thumb.AbsolutePath, ImageFormat.Png);
+        }
+
+        private string GetThumbPathRelative(ImageInfo image, int width)
+        {
+            return Path.Combine(
+                Path.Combine(_pathRelative, _pathThumbs),
+                string.Format("{0}_{1}px.png", image.HashCode, width));
+        }
+
+        private string GetThumbPathAbsolute(ImageInfo image, int width)
+        {
+            return Path.Combine(
+                Path.Combine(_pathAbsolute, _pathThumbs),
+                string.Format("{0}_{1}px.png", image.HashCode, width));
         }
 
         private void EnsureHashCode(ImageInfo info)
@@ -91,33 +182,6 @@ namespace SpeakFriend.Utilities
             }
         }
 
-
-        public ImageInfo Get(string groupKey, int id)
-        {
-            return GetGroup(groupKey).Find(image => image.Id == id);
-        }
-
-        public List<ImageInfo> GetGroup(string groupKey)
-        {
-            if(!Directory.Exists(GetGroupDirectoryAbsolute(groupKey))) 
-                return new List<ImageInfo>();
-
-            return
-                Directory.GetFiles(GetGroupDirectoryAbsolute(groupKey)).ToList().ConvertAll(
-                    path =>
-                        {
-                            var filename = Path.GetFileNameWithoutExtension(path);
-                            var extension = Path.GetExtension(path);
-                            return new ImageInfo
-                                       {
-                                           Id = Convert.ToInt32(filename.Split('-').First()),
-                                           AbsolutePath = path,
-                                           RelativePath = GetPathRelative(groupKey, filename + extension),
-                                           Name = filename.Substring(filename.IndexOf('-') + 1)
-                                       };
-                        });
-            
-        }
 
         private string GetPathRelative(string groupKey, string filename)
         {

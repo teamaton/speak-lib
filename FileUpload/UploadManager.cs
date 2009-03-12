@@ -13,6 +13,12 @@ namespace SpeakFriend.FileUpload
 {
     public class UploadManager : IDisposable
     {
+        public UploadThumbGenerator ThumbGenerator { get; private set; }
+        public UploadManager()
+        {
+            ThumbGenerator = new UploadThumbGenerator(this);
+        }
+
         private readonly List<UploadedFile> files = new List<UploadedFile>();
         private List<UploadedFile> Files
         {
@@ -36,10 +42,9 @@ namespace SpeakFriend.FileUpload
             return uploadedFile;
         }
 
-        private static void DeleteFile(UploadedFile file)
+        private void DeleteFile(UploadedFile file)
         {
-            if (File.Exists(file.TempFilePathAbsolute))
-                File.Delete(file.TempFilePathAbsolute);
+            File.Delete(file.TempFilePathAbsolute);
         }        
         
         public void RemoveFile(UploadedFile file)
@@ -49,6 +54,8 @@ namespace SpeakFriend.FileUpload
 
             DeleteFile(file);
             Files.Remove(file);
+
+            ThumbGenerator.DeleteThumbs(file);
         }
 
         public void RemoveFile(Guid tempKey)
@@ -56,13 +63,27 @@ namespace SpeakFriend.FileUpload
             RemoveFile(Files.Find(file => file.TempKey == tempKey));
         }
 
-        private bool disposed = false;
+        public void Clear()
+        {
+            foreach (var file in Files.ToList())
+                RemoveFile(file);
+        }
+
+        public event EventHandler Disposed;
+        private void OnDisposed()
+        {
+            if(Disposed!= null) Disposed(this, EventArgs.Empty);
+        }
+
+        private bool disposed;
         private void Dispose(bool disposing)
         {
             if (disposed) return;
 
             foreach (var file in Files)
                 DeleteFile(file);
+
+            if(disposing) OnDisposed();
 
             disposed = true;
         }
@@ -77,5 +98,7 @@ namespace SpeakFriend.FileUpload
         {
             Dispose(false);
         }
+
+
     }
 }

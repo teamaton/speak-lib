@@ -56,5 +56,10 @@ namespace SpeakFriend.FileUpload
         }
 
         public IList<UploadedFile> UploadedFiles { get { return SessionUpload.UploadManager.UploadedFiles; } }
+
+        public void ClearFiles()
+        {
+            SessionUpload.UploadManager.Clear();
+        }
     }
 }

@@ -15,12 +15,23 @@ namespace SpeakFriend.FileUpload
             FileChanged += UploadedFileName_FileChanged;
         }
 
+        public int ThumbSize { get; set; }
+
         void UploadedFileName_FileChanged(object sender, EventArgs e)
         {
             if(File == null) return;
+
             EnsureChildControls();
+
             imgFileImage.AlternateText = File.Name;
-            imgFileImage.ImageUrl = File.TempFilePathRelative;
+
+            if (ThumbSize == 0) 
+                imgFileImage.ImageUrl = File.TempFilePathRelative;
+            else
+            {
+                var thumb = UploadManager.ThumbGenerator.GetThumb(File, ThumbSize);
+                if (thumb != null) imgFileImage.ImageUrl = thumb.ThumbPathRelative;
+            }
         }
 
         protected override void RecreateChildControls()
@@ -33,7 +44,7 @@ namespace SpeakFriend.FileUpload
             Controls.Clear();
 
             if (imgFileImage == null)
-                imgFileImage = new Image()
+                imgFileImage = new Image
                                   {
                                       ID = "imgFileImage"
                                   };
