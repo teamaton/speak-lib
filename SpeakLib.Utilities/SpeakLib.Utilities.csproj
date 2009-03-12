@@ -88,6 +88,7 @@
     <Compile Include="Service\IHideObjectMembers.cs" />
     <Compile Include="Service\Imaging\ImageInfo.cs" />
     <Compile Include="Service\Imaging\ImageStore.cs" />
+    <Compile Include="Service\Imaging\WebScreenshotGenerator.cs" />
     <Compile Include="Web\Ajax\AjaxUtils.cs" />
     <Compile Include="Web\Context\ContextUtil.cs" />
     <Compile Include="Web\Context\Context\IViewStateStore.cs" />
