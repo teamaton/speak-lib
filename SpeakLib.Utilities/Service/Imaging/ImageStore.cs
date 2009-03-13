@@ -169,7 +169,7 @@ namespace SpeakFriend.Utilities
             if (_appData[key] == null)
                 CalculateHashCode(info.AbsolutePath, info.Name);
 
-            info.HashCode = (int) _appData[key];
+            info.HashCode = (int) (_appData[key] ?? 0);
         }
 
         private void CalculateHashCode(string path, string imageKey)
@@ -178,7 +178,7 @@ namespace SpeakFriend.Utilities
 
             if (!File.Exists(path))
             {
-                _appData[key] = 0;
+                _appData[key] = null;
                 return;
             }
 
@@ -207,7 +207,7 @@ namespace SpeakFriend.Utilities
             return Path.Combine(_pathAbsolute, groupKey);
         }
 
-        public string GetPathAbsolute(string imageKey)
+        private string GetPathAbsolute(string imageKey)
         {
             return Path.Combine(_pathAbsolute, string.Format("{0}.png", imageKey));
         }

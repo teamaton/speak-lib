@@ -11,8 +11,12 @@ namespace SpeakFriend.Utilities
 {
     public static class WebScreenshotGenerator
     {
-
         public static Bitmap GetScreenshot(Uri uri)
+        {
+            return GetScreenshot(uri, 0, 0);
+        }
+
+        public static Bitmap GetScreenshot(Uri uri, int width, int height)
         {
             Bitmap bitmap;
 
@@ -28,8 +32,15 @@ namespace SpeakFriend.Utilities
                     Application.DoEvents();
                 }
 
-                webBrowser.Width = webBrowser.Document.Body.ScrollRectangle.Width;
-                webBrowser.Height = webBrowser.Document.Body.ScrollRectangle.Height;
+
+                webBrowser.Width = width > 0 
+                    ? width 
+                    : webBrowser.Document.Body.ScrollRectangle.Width;
+
+
+                webBrowser.Height = height > 0 
+                    ? height 
+                    : webBrowser.Document.Body.ScrollRectangle.Height;
 
                 if (webBrowser.Height <= 0)
                     webBrowser.Height = 768;
