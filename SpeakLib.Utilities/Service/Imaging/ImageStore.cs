@@ -223,6 +223,10 @@ namespace SpeakFriend.Utilities
             if (file != null) File.Delete(file.AbsolutePath);
         }
 
-
+        public void EnforceUpdate(string imageKey)
+        {
+             var key = _appDataKey + imageKey;
+            _appData[key] = null;
+        }
     }
 }
