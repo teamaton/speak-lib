@@ -27,11 +27,15 @@ namespace SpeakFriend.Utilities
 
         public void Store(string imageKey, string sourcePath)
         {
-            var path = GetPathAbsolute(imageKey);
 
             using (var image = Image.FromFile(sourcePath))
-                image.Save(path, ImageFormat.Png);
+                Store(imageKey, image);
+        }
 
+        public void Store(string imageKey, Image image)
+        {
+            var path = GetPathAbsolute(imageKey);
+            image.Save(path, ImageFormat.Png);
             CalculateHashCode(path, imageKey);
         }
 
@@ -66,7 +70,6 @@ namespace SpeakFriend.Utilities
         public ImageInfo GetThumb(string imageKey, int width)
         {
             var image = Get(imageKey);
-            EnsureHashCode(image);
 
             var thumb = new ImageInfo
                             {
@@ -133,10 +136,16 @@ namespace SpeakFriend.Utilities
 
         private void EnsureThumb(ImageInfo original, ImageInfo thumb, int width)
         {
-            if (!File.Exists(thumb.AbsolutePath))
-                using (var image = Image.FromFile(original.AbsolutePath))
-                using (var resized = ImageUtils.ResizeImage(image, width, false))
-                    resized.Save(thumb.AbsolutePath, ImageFormat.Png);
+            if(thumb.HashCode == 0) return;
+            
+            if (File.Exists(thumb.AbsolutePath)) return;
+
+            var sourcePath = original.AbsolutePath;
+            if (!File.Exists(sourcePath)) return;
+
+            using (var image = Image.FromFile(sourcePath))
+            using (var resized = ImageUtils.ResizeImage(image, width, false))
+                resized.Save(thumb.AbsolutePath, ImageFormat.Png);
         }
 
         private string GetThumbPathRelative(ImageInfo image, int width)
@@ -198,7 +207,7 @@ namespace SpeakFriend.Utilities
             return Path.Combine(_pathAbsolute, groupKey);
         }
 
-        private string GetPathAbsolute(string imageKey)
+        public string GetPathAbsolute(string imageKey)
         {
             return Path.Combine(_pathAbsolute, string.Format("{0}.png", imageKey));
         }
@@ -213,5 +222,7 @@ namespace SpeakFriend.Utilities
             var file = GetGroup(groupKey).Find(image => image.Id == id);
             if (file != null) File.Delete(file.AbsolutePath);
         }
+
+
     }
 }

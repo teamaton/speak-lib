@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace SpeakFriend.Utilities
 {
     public static class WebScreenshotGenerator
     {
+
         public static Bitmap GetScreenshot(Uri uri)
         {
             Bitmap bitmap;
@@ -32,7 +35,9 @@ namespace SpeakFriend.Utilities
                     webBrowser.Height = 768;
 
                 bitmap = new Bitmap(webBrowser.Width, webBrowser.Height);
-                webBrowser.DrawToBitmap(bitmap, new Rectangle(0, 0, webBrowser.Width, webBrowser.Height));
+                webBrowser.DrawToBitmap(bitmap,
+                                        new Rectangle(0, 0, webBrowser.Width,
+                                                      webBrowser.Height));
             }
 
             return bitmap;
