@@ -22,6 +22,6 @@ namespace SpeakFriend.Utilities.Web
         public delegate void ActionDelegate(object value);
         public ActionDelegate Action;
 
-        public bool ApliesOnlyLocal = false;
+        public bool AppliesOnlyLocal = false;
     }
 }

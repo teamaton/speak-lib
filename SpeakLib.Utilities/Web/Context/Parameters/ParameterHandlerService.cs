@@ -27,7 +27,7 @@ namespace SpeakFriend.Utilities.Web
                 {
                     var handler = parameterHandlers.GetByName(itemKey);
 
-                    if (handler.ApliesOnlyLocal && !ContextUtil.IsLocal)
+                    if (handler.AppliesOnlyLocal && !ContextUtil.IsLocal)
                         continue;
 
                     handler.Action(queryParams[itemKey]);
