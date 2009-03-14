@@ -222,7 +222,7 @@ namespace SpeakFriend.Utilities
             var file = GetGroup(groupKey).Find(image => image.Id == id);
             if (file != null) File.Delete(file.AbsolutePath);
         }
-
+        
         public void EnforceUpdate(string imageKey)
         {
              var key = _appDataKey + imageKey;

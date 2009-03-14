@@ -8,8 +8,8 @@
     <ProjectGuid>{3C59702B-AC0A-46F1-8859-324C40A13A19}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FileUpload</RootNamespace>
-    <AssemblyName>FileUpload</AssemblyName>
+    <RootNamespace>SpeakFriend.FileUpload</RootNamespace>
+    <AssemblyName>SpeakFriend.FileUpload</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Nonshipping>true</Nonshipping>
