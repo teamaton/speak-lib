@@ -149,7 +149,7 @@
     <Content Include="Welcome.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FileUpload\SpeakLib.FileUpload.csproj">
+    <ProjectReference Include="..\SpeakLib.FileUpload\SpeakLib.FileUpload.csproj">
       <Project>{3C59702B-AC0A-46F1-8859-324C40A13A19}</Project>
       <Name>SpeakLib.FileUpload</Name>
     </ProjectReference>
