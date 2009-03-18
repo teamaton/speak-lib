@@ -29,6 +29,12 @@ namespace SpeakFriend.Utilities.Web
             Condition = condition;
         }
 
+        public NavigationItem(T anchor, params string[] pageNames)
+        {
+            Anchor = anchor;
+            PageNames.AddRange(pageNames);
+        }
+
         public NavigationItem(T anchor, string pageName)
         {
             Anchor = anchor;

@@ -12,8 +12,7 @@ namespace SpeakFriend.Utilities.Web
     {
         public void Add(T anchor, params string[] pagesNames)
         {
-            foreach (var pageName in pagesNames)
-                Add(anchor, pageName);
+            Add(new NavigationItem<T>(anchor, pagesNames));
         }
 
         /// <summary>
@@ -25,7 +24,6 @@ namespace SpeakFriend.Utilities.Web
         {
             Add(new NavigationItem<T>(anchor, pageName));
         }
-
 
         public void Add(T anchor, T anchorParent, string pageName)
         {
