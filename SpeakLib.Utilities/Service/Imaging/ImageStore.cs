@@ -67,20 +67,20 @@ namespace SpeakFriend.Utilities
             return imageInfo;
         }
 
-        public ImageInfo GetThumb(string imageKey, int width)
+        public ImageInfo GetThumb(string imageKey, Size maxSize)
         {
             var image = Get(imageKey);
 
             var thumb = new ImageInfo
                             {
-                                AbsolutePath = GetThumbPathAbsolute(image, width),
-                                RelativePath = GetThumbPathRelative(image, width),
+                                AbsolutePath = GetThumbPathAbsolute(image, maxSize),
+                                RelativePath = GetThumbPathRelative(image, maxSize),
                                 Name = imageKey,
                                 Id = -1,
                                 HashCode = image.HashCode
                             };
 
-            EnsureThumb(image, thumb, width);
+            EnsureThumb(image, thumb, maxSize);
 
             return thumb;
         }
@@ -90,7 +90,7 @@ namespace SpeakFriend.Utilities
             return GetGroup(groupKey).Find(image => image.Id == id);
         }
 
-        public ImageInfo GetThumb(string groupKey, int id, int width)
+        public ImageInfo GetThumb(string groupKey, int id, Size maxSize)
         {
             var image = Get(groupKey, id);
 
@@ -102,14 +102,14 @@ namespace SpeakFriend.Utilities
 
             var thumb = new ImageInfo
             {
-                AbsolutePath = GetThumbPathAbsolute(image, width),
-                RelativePath = GetThumbPathRelative(image, width),
+                AbsolutePath = GetThumbPathAbsolute(image, maxSize),
+                RelativePath = GetThumbPathRelative(image, maxSize),
                 Name = image.Name,
                 Id = image.Id,
                 HashCode = image.HashCode
             };
 
-            EnsureThumb(image, thumb, width);
+            EnsureThumb(image, thumb, maxSize);
 
             return thumb;
         }
@@ -136,7 +136,7 @@ namespace SpeakFriend.Utilities
             
         }
 
-        private void EnsureThumb(ImageInfo original, ImageInfo thumb, int width)
+        private void EnsureThumb(ImageInfo original, ImageInfo thumb, Size maxSize)
         {
             if (thumb.HashCode == 0) return;
 
@@ -146,24 +146,27 @@ namespace SpeakFriend.Utilities
             if (!File.Exists(sourcePath)) return;
 
             using (var image = Image.FromFile(sourcePath))
-            using (var resized = image.Width <= width
+            using (var resized = image.Width <= maxSize.Width && image.Height <= maxSize.Height
                                      ? image
-                                     : ImageUtils.ResizeImage(image, width, false))
+                                     : maxSize.Width != 0 && (maxSize.Height == 0
+                                       || (double) image.Width/image.Height >= (double) maxSize.Width/maxSize.Height)
+                                           ? ImageUtils.ResizeImage(image, maxSize.Width, false)
+                                           : ImageUtils.ResizeImage(image, maxSize.Height, true))
                 resized.Save(thumb.AbsolutePath, ImageFormat.Png);
         }
 
-        private string GetThumbPathRelative(ImageInfo image, int width)
+        private string GetThumbPathRelative(ImageInfo image, Size maxSize)
         {
             return Path.Combine(
                 Path.Combine(_pathRelative, _pathThumbs),
-                string.Format("{0}_{1}px.png", image.HashCode, width));
+                string.Format("{0}_{1}x{2}px.png", image.HashCode, maxSize.Width, maxSize.Height));
         }
 
-        private string GetThumbPathAbsolute(ImageInfo image, int width)
+        private string GetThumbPathAbsolute(ImageInfo image, Size maxSize)
         {
             return Path.Combine(
                 Path.Combine(_pathAbsolute, _pathThumbs),
-                string.Format("{0}_{1}px.png", image.HashCode, width));
+                string.Format("{0}_{1}x{2}px.png", image.HashCode, maxSize.Width, maxSize.Height));
         }
 
         private void EnsureHashCode(ImageInfo info)
