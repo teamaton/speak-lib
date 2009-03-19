@@ -8,7 +8,9 @@
     <ProjectGuid>{3C59702B-AC0A-46F1-8859-324C40A13A19}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SpeakFriend.FileUpload</RootNamespace>    <AssemblyName>SpeakFriend.FileUpload</AssemblyName>    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <RootNamespace>SpeakFriend.FileUpload</RootNamespace>
+    <AssemblyName>SpeakFriend.FileUpload</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Nonshipping>true</Nonshipping>
   </PropertyGroup>
@@ -28,6 +30,14 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_FrontendService|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug_FrontendService\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
