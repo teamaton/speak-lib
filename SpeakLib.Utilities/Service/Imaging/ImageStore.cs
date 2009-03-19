@@ -98,6 +98,8 @@ namespace SpeakFriend.Utilities
 
             EnsureHashCode(image);
 
+
+
             var thumb = new ImageInfo
             {
                 AbsolutePath = GetThumbPathAbsolute(image, width),
@@ -136,15 +138,17 @@ namespace SpeakFriend.Utilities
 
         private void EnsureThumb(ImageInfo original, ImageInfo thumb, int width)
         {
-            if(thumb.HashCode == 0) return;
-            
+            if (thumb.HashCode == 0) return;
+
             if (File.Exists(thumb.AbsolutePath)) return;
 
             var sourcePath = original.AbsolutePath;
             if (!File.Exists(sourcePath)) return;
 
             using (var image = Image.FromFile(sourcePath))
-            using (var resized = ImageUtils.ResizeImage(image, width, false))
+            using (var resized = image.Width <= width
+                                     ? image
+                                     : ImageUtils.ResizeImage(image, width, false))
                 resized.Save(thumb.AbsolutePath, ImageFormat.Png);
         }
 
