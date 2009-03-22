@@ -9,6 +9,7 @@ namespace SpeakFriend.Utilities.Web
     {
         public bool Contains(object key)
         {
+            if (key == null) return false;
             return GetByName(key.ToString()) != null;
         }
 
