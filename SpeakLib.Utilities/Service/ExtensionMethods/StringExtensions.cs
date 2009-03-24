@@ -57,7 +57,9 @@ namespace SpeakFriend.Utilities
         /// <returns></returns>
         public static List<string> WordWrap(this string text, int maxLineLength)
         {
-            var lines = text.Split(new[] {NEW_LINE}, StringSplitOptions.None).ToList();
+            text = text.Replace(NEW_LINE, "\n");
+
+            var lines = text.Split('\n').ToList();
 
             bool lengthsTrimmed = false;
             while (!lengthsTrimmed)
