@@ -20,6 +20,10 @@ namespace SpeakFriend.Utilities.Web
             _cache.Add(key, obj);
         }
 
+        /// <summary>
+        /// Add an object to the Cache (overwrite if already existent).<br/>
+        /// Remove the item from the cache after <paramref name="timeSpan"/> has elapsed.
+        /// </summary>
         public static void Add(string key, object obj, TimeSpan timeSpan)
         {
             _cache.Add(key, obj, timeSpan);
