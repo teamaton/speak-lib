@@ -67,6 +67,12 @@ namespace Tests.Utilities.Web
             var uri = new Uri(url);
             var newDomain = UriUtils.DomainString(uri);
             Assert.AreEqual(domain, newDomain);
+
+            domain = "speak-lib.com";
+            url = "http://" + domain;
+            uri = new Uri(url);
+            newDomain = UriUtils.DomainString(uri);
+            Assert.AreEqual(domain, newDomain);
         }
 
         [Test]

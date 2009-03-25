@@ -49,10 +49,12 @@ namespace SpeakFriend.Utilities.Web
 
         /// <summary>
         /// Returns the item for the given key. 
-        /// 
+        /// <br/>
         /// If the key does not exist, session will be initialized 
-        /// with the given initialValue & the initialValue will 
+        /// with the given initialValue &amp; the initialValue will 
         /// be returned.
+        /// <br/>
+        /// Consider using <see cref="GetNewIfNull{Type}"/> for better performance.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
@@ -80,7 +82,7 @@ namespace SpeakFriend.Utilities.Web
         /// <param name="key"></param>
         /// <param name="saveIfNull"></param>
         /// <returns></returns>
-        public Type Get<Type>(string key, bool saveIfNull) where Type:new()
+        public Type GetNewIfNull<Type>(string key, bool saveIfNull) where Type:new()
         {
             if(!Exists(key))
             {
