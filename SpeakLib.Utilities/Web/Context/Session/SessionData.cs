@@ -54,18 +54,18 @@ namespace SpeakFriend.Utilities.Web
         /// with the given initialValue &amp; the initialValue will 
         /// be returned.
         /// <br/>
-        /// Consider using <see cref="GetNewIfNull{Type}"/> for better performance.
+        /// Consider using <see cref="GetInitialized{Type}"/> for better performance.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <param name="initialValue"></param>
         /// <returns></returns>
-        public T Get<T>(string key, object initialValue)
+        public T Get<T>(string key, T initialValue)
         {
             if (!Exists(key))
             {
                 this[key] = initialValue;
-                return (T)initialValue;
+                return initialValue;
             }
 
             return Get<T>(key);
@@ -73,25 +73,17 @@ namespace SpeakFriend.Utilities.Web
 
         /// <summary>
         /// Returns the item for the given key, if it exists, else returns a new instance of 
-        /// <typeparamref name="Type">Type</typeparamref>.
-        /// 
-        /// If <paramref name="saveIfNull"/> is true, the new instance is also stored in the
-		/// session data.
+        /// <typeparamref name="T">Type</typeparamref>.       
         /// </summary>
-        /// <typeparam name="Type">Needs to implement parameterless constructor.</typeparam>
+        /// <typeparam name="T">Needs to implement parameterless constructor.</typeparam>
         /// <param name="key"></param>
-        /// <param name="saveIfNull"></param>
         /// <returns></returns>
-        public Type GetNewIfNull<Type>(string key, bool saveIfNull) where Type:new()
+        public T GetInitialized<T>(string key) where T:new()
         {
             if(!Exists(key))
-            {
-                if (!saveIfNull)
-                    return new Type();
-                this[key] = new Type();
-            }
+                this[key] = new T();    
 
-            return Get<Type>(key);
+            return Get<T>(key);
         }
     }
 }
