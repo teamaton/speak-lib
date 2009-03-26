@@ -5,16 +5,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities
 {
-    public enum SettingType
-    {
-        Campsite = 1,
-        Admin = 2,
-        User = 3,
-        Email = 4,
-        TranslationLogin = 5,
-    }
-
-    public class Setting
+    public class Setting : ICloneable
     {
         protected object _default;
 
@@ -26,21 +17,21 @@ namespace SpeakFriend.Utilities
         /// <summary>
         /// The entity type (e.g. Company) to which this Setting belongs.
         /// </summary>
-        public virtual SettingType SettingType { get; set; }
+        public virtual string SettingType { get; set; }
 
         /// <summary>
         /// The ID of the entity to which this setting belongs.
         /// </summary>
         public virtual int SettingTypeId { get; set; }
 
-        public virtual DateTime DateCreated { get; set; }
-        public virtual DateTime DateModified { get; set; }
+        public virtual DateTime Created { get; set; }
+        public virtual DateTime Modified { get; set; }
 
         /// <summary>
         /// This c'tor is used by generic methods to create a new Setting.
         /// Set the key to null for early detection of misuse.
         /// </summary>
-        protected Setting() : this(null)
+        public Setting() : this(null)
         {
         }
 
@@ -58,6 +49,31 @@ namespace SpeakFriend.Utilities
         public virtual bool IsDefault()
         {
             return _default.Equals(ValueStr);
+        }
+
+        object ICloneable.Clone()
+        {
+            return Clone();
+        }
+
+        public virtual Setting Clone()
+        {
+            return Clone<Setting>();
+        }
+
+        protected T Clone<T>() where T : Setting, new()
+        {
+            return new T
+                       {
+                           _default = _default,
+                           Created = Created,
+                           Id = Id,
+                           Key = Key,
+                           Modified = Modified,
+                           SettingType = SettingType,
+                           SettingTypeId = SettingTypeId,
+                           ValueStr = ValueStr
+                       };
         }
     }
 }

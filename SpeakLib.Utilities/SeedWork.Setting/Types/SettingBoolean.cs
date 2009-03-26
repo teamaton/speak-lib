@@ -33,8 +33,14 @@ namespace SpeakFriend.Utilities
             return _default.Equals(Value);
         }
 
-        public virtual bool IsTrue { get { return Value; } }
+        public virtual bool IsTrue()
+        {
+            return Value;
+        }
 
-        public virtual bool IsFalse { get { return Value == false; } }
+        public override Setting Clone()
+        {
+            return Clone<SettingBoolean>();
+        }
     }
 }

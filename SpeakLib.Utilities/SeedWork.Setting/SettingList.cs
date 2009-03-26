@@ -19,9 +19,5 @@ namespace SpeakFriend.Utilities
             AddRange(list);
         }
 
-        public SettingString GetByValue(string value)
-        {
-            return (SettingString)Find(setting => setting is SettingString && (setting as SettingString).Value == value);
-        }
     }
 }

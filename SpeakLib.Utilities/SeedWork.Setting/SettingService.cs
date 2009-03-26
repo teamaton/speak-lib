@@ -1,129 +1,71 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NHibernate;
+using SpeakFriend.Utilities;
 using NHibernate.Criterion;
-
-namespace CampingInfo.Core
-{
-    
-}
 
 namespace SpeakFriend.Utilities
 {
-    public class SettingService
+    public class SettingService : IDataService<Setting>
     {
-        private bool _multiple = false;
+        private readonly ISettingRepository _repository;
 
-        private readonly ISession _session;
-
-        public SettingService(ISession session)
+        public SettingService(
+            ISettingRepository repository)
         {
-            _session = session;
+            _repository = repository;
         }
 
         public void Create(SettingList settings)
         {
-            _multiple = true;
-
             foreach (var setting in settings)
                 Create(setting);
-
-            _multiple = false;
-
-            _session.Flush();
         }
 
-        public void Create(Setting setting)
+        public void Create(Setting list)
         {
-            setting.DateCreated = setting.DateModified = DateTime.Now;
+            list.Created = list.Modified = DateTime.Now;
 
-            _session.Save(setting);
-
-            if (!_multiple)
-                _session.Flush();
+            _repository.Create(list);
         }
 
         public void Update(SettingList settings)
         {
-            _multiple = true;
-
             foreach (var setting in settings)
                 CreateOrUpdate(setting);
-
-            _multiple = false;
-
-            _session.Flush();
         }
 
-        public void Update(Setting setting)
+        public void Update(Setting list)
         {
-            setting.DateModified = DateTime.Now;
+            list.Modified = DateTime.Now;
 
-            _session.Update(setting);
-
-            if (!_multiple)
-                _session.Flush();
+            _repository.Update(list);
         }
 
         public void CreateOrUpdate(Setting setting)
         {
-            if (setting.DateCreated == DateTime.MinValue)
-                setting.DateCreated = DateTime.Now;
+            if (setting.Created == DateTime.MinValue)
+                setting.Created = DateTime.Now;
 
-            setting.DateModified = DateTime.Now;
+            setting.Modified = DateTime.Now;
 
-            _session.SaveOrUpdate(setting);
-
-            if (!_multiple)
-                _session.Flush();
+            _repository.CreateOrUpdate(setting);
         }
 
-        public void Save(Setting setting)
+        List<Setting> IDataService<Setting>.GetAll()
         {
-            if (!setting.IsDefault())
-            {
-
-                // DateCreated has not been set before; this setting has not been saved before.
-                if (setting.DateCreated == DateTime.MinValue)
-                    setting.DateCreated = DateTime.Now;
-
-                setting.DateModified = DateTime.Now;
-
-                /*
-                 * This is somewhat special: setting may not be the object that was associated
-                 * with the current session by NHibernate. That's why we store it's values in
-                 * the persisted object.
-                 * See Get<T>() for more detail.
-                 */ 
-                _session.SaveOrUpdateCopy(setting);
-                _session.Flush();
-            }
-            else
-            {
-                /*
-                 * This is somewhat special: setting may not be the object that was associated
-                 * with the current session by NHibernate. That's why we first get the persisted
-                 * object and then delete it.
-                 * See Get<T>() for more detail.
-                 */
-                var toDelete = _session.Get<Setting>(setting.Id);
-                if (toDelete != null)
-                    Delete(toDelete);
-            }
+            return GetAll();    
         }
 
-        public void Save(SettingList settings)
+        public Setting GetById(int id)
         {
-            foreach (var setting in settings)
-                Save(setting);
+            throw new System.NotImplementedException();
         }
 
         public void Delete(Setting setting)
         {
-            _session.Delete(setting);
-            _session.Flush();
+            _repository.Delete(setting);
         }
 
         public void Delete(SettingList settingList)
@@ -134,74 +76,26 @@ namespace SpeakFriend.Utilities
 
         public SettingList GetAll()
         {
-            return new SettingList(_session.CreateCriteria(typeof(Setting)).List<Setting>());
+            return _repository.GetAll();
         }
 
-        public T GetByKey<T>(string key) where T : Setting, new()
+        public SettingList GetBy(SettingSearchDesc searchDesc)
         {
-            return _session.CreateCriteria(typeof(Setting))
-                .Add(Restrictions.Eq("Key", key))
-                .UniqueResult<T>();
+            return _repository.GetBy(searchDesc);
         }
 
-        /// <summary>
-        /// Fills the values of the settings with the DB values where they differ from the
-        /// default. Gets only values for a specific instance of SettingList (with specific
-        /// SettingType and SettingTypeID set).
-        /// </summary>
-        /// <typeparam name="T">Specific class that inherits SettingList.</typeparam>
-        /// <param name="settings">The list of settings.</param>
-        /// <returns>The setting list filled with values from the DB.</returns>
-        public T Load<T>(T settings) where T : EntitySettings
+        public void Save(Setting setting)
         {
-            if (settings.Count <= 0)
-                return settings;
-
-            var settingsFromDb = _session.CreateCriteria(typeof(Setting))
-                .Add(Restrictions.Eq("SettingType", settings.SettingType))
-                .Add(Restrictions.Eq("SettingTypeId", settings.SettingTypeId))         
-                .List<Setting>();
-
-            foreach (var setting in settingsFromDb)
-            {
-                var tempSetting = setting;
-                var foundSetting = settings.Find(inList => inList.Key == tempSetting.Key);
-
-                /*
-                 * This is special: copy the values of the persisted object to a different instance.
-                 * If you tried to save that instance with Save/[Or]/Update/Delete you would get a
-                 * NonUniqueObjectException because NHibernate expects the object it created (here:
-                 * setting) when you want to save it.
-                 * That's why we use SaveOrUpdateCopy when we want to save our custom object with
-                 * the same identifier.
-                 */ 
-                foundSetting.Id = setting.Id;
-                foundSetting.ValueStr = setting.ValueStr;
-                foundSetting.DateCreated = setting.DateCreated;
-                foundSetting.DateModified = setting.DateModified;
-            }
-
-            return settings;
+            throw new NotImplementedException();
         }
 
-        public SettingList GetBy(SettingType type)
+        public void Save(SettingList settings)
         {
-            var settingsFromDb = _session.CreateCriteria(typeof(Setting))
-                .Add(Restrictions.Eq("SettingType", type))
-                .List<Setting>();
-
-            return new SettingList(settingsFromDb);
+            foreach (var setting in settings)
+                Save(setting);
         }
 
-        public SettingList GetBy(SettingType type, int typeId)
-        {
-            var settingsFromDb = _session.CreateCriteria(typeof(Setting))
-                .Add(Restrictions.Eq("SettingType", type))
-                .Add(Restrictions.Eq("SettingTypeId", typeId))
-                .List<Setting>();
-
-            return new SettingList(settingsFromDb);
-        }
+        
 
     }
 }

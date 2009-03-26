@@ -32,5 +32,10 @@ namespace SpeakFriend.Utilities
         {
             return _default.Equals(Value);
         }
+
+        public override Setting Clone()
+        {
+            return Clone<SettingInteger>();
+        }
     }
 }

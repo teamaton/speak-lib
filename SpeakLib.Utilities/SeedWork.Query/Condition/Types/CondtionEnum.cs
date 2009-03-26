@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using NHibernate;
+using NHibernate.Criterion;
+
+namespace SpeakFriend.Utilities
+{
+    public class ConditionEnum : Condition
+    {
+        private Enum _value;
+
+        public ConditionEnum(ConditionContainer conditions, string propertyName) : base(conditions, propertyName)
+        {
+        }
+
+        public void EqualTo(Enum value)
+        {
+            _value = value;
+            AddUnique(this);
+        }
+
+        public override void AddToCriteria(ICriteria criteria)
+        {
+            criteria.Add(GetCriterion());
+        }
+
+        public override ICriterion GetCriterion()
+        {
+            return Restrictions.Eq(PropertyName, _value);
+        }
+    }
+
+}

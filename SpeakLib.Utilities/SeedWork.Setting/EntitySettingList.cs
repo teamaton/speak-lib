@@ -1,11 +1,14 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace SpeakFriend.Utilities
 {
-    public class SettingGroup
+    /// <summary>
+    /// Base class for all setting lists for specific entities.
+    /// </summary>
+    public class EntitySettingList
     {
         private readonly SettingList _settings;
         private readonly string _settingType;
@@ -15,13 +18,7 @@ namespace SpeakFriend.Utilities
         public string SettingType { get { return _settingType; } }
         public int SettingTypeId { get { return _settingTypeId; } }
 
-        /// <summary>
-        /// Ignore SettingType and SettingTypeId for now. All settings are used for this app (one shop).
-        /// </summary>
-        /// <param name="settings"></param>
-        /// <param name="settingType"></param>
-        /// <param name="settingTypeId"></param>
-        public SettingGroup(SettingList settings, string settingType, int settingTypeId)
+        public EntitySettingList(SettingList settings, string settingType, int settingTypeId)
         {
             _settings = settings;
             _settingType = settingType;

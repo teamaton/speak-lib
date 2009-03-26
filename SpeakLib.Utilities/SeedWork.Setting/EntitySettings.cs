@@ -12,13 +12,13 @@ namespace SpeakFriend.Utilities
     /// </summary>
     public class EntitySettings : SettingList
     {
-        private readonly SettingType _settingType;
+        private readonly string _settingType;
         private readonly int _settingTypeId;
 
-        public SettingType SettingType { get { return _settingType; } }
+        public string SettingType { get { return _settingType; } }
         public int SettingTypeId { get { return _settingTypeId; } }
 
-        public EntitySettings(SettingType type, int typeId)
+        public EntitySettings(string type, int typeId)
         {
             _settingType = type;
             _settingTypeId = typeId;
