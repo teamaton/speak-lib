@@ -54,21 +54,26 @@ namespace SpeakFriend.Utilities.Web
         /// with the given initialValue &amp; the initialValue will 
         /// be returned.
         /// <br/>
-        /// Consider using <see cref="GetInitialized{Type}"/> for better performance.
+        /// Consider using <see cref="GetInitialized{T}(string)"/> for better performance.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <param name="initialValue"></param>
         /// <returns></returns>
-        public T Get<T>(string key, T initialValue)
+        public T Get<T>(string key, object initialValue)
         {
             if (!Exists(key))
             {
                 this[key] = initialValue;
-                return initialValue;
+                return (T)initialValue;
             }
 
             return Get<T>(key);
+        }
+
+        public T Get<T>(string key, bool initialValue)
+        {
+            return Get<T>(key, (object)initialValue);
         }
 
         /// <summary>
