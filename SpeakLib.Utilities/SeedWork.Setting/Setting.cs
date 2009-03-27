@@ -42,7 +42,7 @@ namespace SpeakFriend.Utilities
         public Setting(string key, object defaultValue)
         {
             Key = key;
-            _default = defaultValue ?? "";
+            _default = defaultValue ?? String.Empty;
             ValueStr = _default.ToString();
         }
 

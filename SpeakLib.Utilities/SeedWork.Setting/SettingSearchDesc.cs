@@ -19,5 +19,7 @@ namespace SpeakFriend.Utilities
 
         private readonly SettingOrderBy _orderBy = new SettingOrderBy();
         public SettingOrderBy OrderBy { get { return _orderBy; } }
+
+        
     }
 }

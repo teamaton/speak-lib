@@ -188,6 +188,9 @@ namespace SpeakFriend.Utilities
             disjunction.Add(GetCriterion());
         }
 
+        /// <summary>
+        /// Setzt alle Werte des Filters zurück.
+        /// </summary>
         public override void Reset()
         {
             _value = null;

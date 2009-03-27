@@ -6,6 +6,7 @@ namespace SpeakFriend.Utilities
         object GetValue();
 
         bool IsGreaterThan();
+        bool IsActive();
         bool IsSet();
         bool IsEqualTo();
 

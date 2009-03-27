@@ -37,7 +37,7 @@ namespace SpeakFriend.Utilities
         // Query Related
         //////////////////////////////
 
-        private int _pageSize = 10;
+        protected int _pageSize = 10;
         public int PageSize
         {
             get
@@ -54,7 +54,7 @@ namespace SpeakFriend.Utilities
             }
         }
 
-        private int _currentPage = 1;
+        protected int _currentPage = 1;
         public int CurrentPage
         {
             get
@@ -108,6 +108,10 @@ namespace SpeakFriend.Utilities
             {
                 if (_isInSingleItemMode)
                     return _navigationPagerResultIndex == TotalItems - 1;
+
+                // If no results, then the first page is also the last, even though PageCount == 0.
+                if (PageCount == 0)
+                    return true;
 
                 return CurrentPage == PageCount;
             }
@@ -167,7 +171,7 @@ namespace SpeakFriend.Utilities
         }
 
         /// <summary>
-        /// SetTrueOrInactive the page as an positive offset. 
+        /// Flip forward by a positive number of pages. 
         /// </summary>
         /// <param name="amountOfPages">The amount of pages to advance.</param>
         public void NextPage(int amountOfPages)
@@ -186,7 +190,7 @@ namespace SpeakFriend.Utilities
         }
 
         /// <summary>
-        /// SetTrueOrInactive the page as an negative offset.
+        /// Flip backward by a positive number of pages.
         /// </summary>
         /// <param name="amountOfPages">The amount of page pages to go back.</param>
         public void PreviousPage(int amountOfPages)

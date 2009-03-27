@@ -54,15 +54,28 @@ namespace SpeakFriend.Utilities
 
         public SettingList GetBy(SettingSearchDesc searchDesc)
         {
-            var criteria = GetExecutable<Setting>();
+            ICriteria criteria = GetCriteria<Setting>(searchDesc);
+
+            return new SettingList(criteria.List<Setting>());
+        }
+
+        public T GetUnique<T>(SettingSearchDesc searchDesc)
+        {
+            ICriteria criteria = GetCriteria<Setting>(searchDesc);
+
+            return criteria.UniqueResult<T>();
+        }
+
+        private ICriteria GetCriteria<T>(SettingSearchDesc searchDesc)
+        {
+            var criteria = GetExecutable<T>();
 
             AddConditions(searchDesc, criteria);
             AddOrderBy(criteria, searchDesc.OrderBy);
 
             SetTotalItemCount(criteria, searchDesc);
             SetPager(criteria, searchDesc);
-
-            return new SettingList(criteria.List<Setting>());
+            return criteria;
         }
 
         private void AddConditions(SettingSearchDesc searchDesc, ICriteria criteria)

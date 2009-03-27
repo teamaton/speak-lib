@@ -7,12 +7,28 @@ namespace SpeakFriend.Utilities
 {
     public class ConditionSingle : ConditionNumericAbstract, IConditionNumeric
     {
-        private Single _value = -1;
+        private const Single _noValue = -1;
+        private Single _value = _noValue;
+        private readonly Single _criticalValue = _noValue;
 
         public ConditionSingle(ConditionContainer conditions, string propertyName)
             : base(conditions)
         {
             PropertyName = propertyName;
+        }
+
+        public ConditionSingle(ConditionContainer conditions, string propertyName, Single criticalValue)
+            : this(conditions, propertyName)
+        {
+            _criticalValue = criticalValue;
+        }
+
+        public void LessThanCritical(bool activate)
+        {
+            if (_criticalValue == _noValue)
+                throw new ArgumentOutOfRangeException("Critical value has not been set! Use different constructor.");
+
+            LessThanOrEqual(activate, _criticalValue);
         }
 
         public void GreaterThan(object value)
@@ -25,7 +41,7 @@ namespace SpeakFriend.Utilities
             SetQueryGreater();
             _value = value;
 
-            if (_value == -1)
+            if (_value == _noValue)
             {
                 Conditions.Remove(this);
                 return;
@@ -42,25 +58,25 @@ namespace SpeakFriend.Utilities
                 Conditions.Remove(this);
         }
 
-        public void LessThan(bool isChecked, Single value)
+        public void LessThanOrEqual(bool isChecked, Single value)
         {
             if (isChecked)
-                LessThan(value);
+                LessThanOrEqual(value);
             else
                 Conditions.Remove(this);
         }
 
-        public void LessThan(object value)
+        public void LessThanOrEqual(object value)
         {
-            LessThan(Convert.ToSingle(value));
+            LessThanOrEqual(Convert.ToSingle(value));
         }
 
-        public void LessThan(Single value)
+        public void LessThanOrEqual(Single value)
         {
-            SetQueryGreater();
+            SetQueryLessOrEqual();
             _value = value;
 
-            if (_value == -1)
+            if (_value == _noValue)
             {
                 Conditions.Remove(this);
                 return;
@@ -76,7 +92,7 @@ namespace SpeakFriend.Utilities
 
         public override bool IsSet()
         {
-            return _value != -1;
+            return _value != _noValue;
         }
 
         /// <summary>
@@ -87,6 +103,12 @@ namespace SpeakFriend.Utilities
         public bool IsActive()
         {
             return IsSet() && Conditions.Contains(this);
+        }
+
+        public override void Reset()
+        {
+            _value = _noValue;
+            base.Reset();
         }
     }
 }

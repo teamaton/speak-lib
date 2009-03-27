@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using NHibernate.Criterion;
@@ -8,7 +9,8 @@ namespace SpeakFriend.Utilities
 {
     public class ConditionDecimal : ConditionNumericAbstract, IConditionNumeric
     {
-        private decimal _value = -1;
+        private const decimal _noValue = decimal.MinusOne;
+        private decimal _value = _noValue;
 
         public ConditionDecimal(ConditionContainer conditions, string propertyName)
             : base(conditions)
@@ -18,7 +20,7 @@ namespace SpeakFriend.Utilities
 
         public void GreaterThan(object value)
         {
-            GreaterThan(Convert.ToDecimal(value));
+            GreaterThan(Convert.ToDecimal(value, CultureInfo.InvariantCulture));
         }
 
         public void GreaterThan(decimal value)
@@ -26,7 +28,7 @@ namespace SpeakFriend.Utilities
             SetQueryGreater();
             _value = value;
             
-            if (_value == -1)
+            if (_value == _noValue)
             {
                 Conditions.Remove(this);
                 return;
@@ -53,7 +55,7 @@ namespace SpeakFriend.Utilities
 
         public void LessThan(object value)
         {
-            LessThan(Convert.ToDecimal(value));
+            LessThan(Convert.ToDecimal(value, CultureInfo.InvariantCulture));
         }
 
         public void LessThan(decimal value)
@@ -61,7 +63,7 @@ namespace SpeakFriend.Utilities
             SetQueryGreater();
             _value = value;
             
-            if (_value == -1)
+            if (_value == _noValue)
             {
                 Conditions.Remove(this);
                 return;
@@ -77,7 +79,7 @@ namespace SpeakFriend.Utilities
 
         public override bool IsSet()
         {
-            return _value != -1;
+            return _value != _noValue;
         }
 
         /// <summary>
@@ -88,6 +90,12 @@ namespace SpeakFriend.Utilities
         public bool IsActive()
         {
             return IsSet() && Conditions.Contains(this);
+        }
+
+		public override void Reset()
+        {
+            _value = _noValue;
+            base.Reset();
         }
     }
 }

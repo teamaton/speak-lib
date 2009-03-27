@@ -9,7 +9,8 @@ namespace SpeakFriend.Utilities
     {
         Greater,
         Less, 
-        Equal
+        Equal,
+        LessOrEqual,
     }
 
 

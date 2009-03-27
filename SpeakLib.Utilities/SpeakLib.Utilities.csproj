@@ -115,12 +115,14 @@
     <Compile Include="SeedWork.Query\Pager\IPager.cs" />
     <Compile Include="SeedWork.Query\Pager\Pager.cs" />
     <Compile Include="SeedWork.Query\Projections.cs" />
+    <Compile Include="SeedWork.Query\QueryBatcher.cs" />
     <Compile Include="SeedWork.Query\RepositoryBase.cs" />
     <Compile Include="SeedWork.Setting\EntitySettingList.cs" />
     <Compile Include="SeedWork.Setting\ISettingRepository.cs" />
     <Compile Include="SeedWork.Setting\SettingRepository.cs" />
     <Compile Include="SeedWork.Setting\SettingSearchDesc.cs" />
     <Compile Include="SeedWork.Setting\SettingSearchFilter.cs" />
+    <Compile Include="SeedWork.Setting\SettingType.cs" />
     <Compile Include="SeedWork.Tagging\ITaggable.cs" />
     <Compile Include="SeedWork.Tagging\Prototype\TagPrototypeService.cs" />
     <Compile Include="SeedWork.Tagging\TagService.cs" />

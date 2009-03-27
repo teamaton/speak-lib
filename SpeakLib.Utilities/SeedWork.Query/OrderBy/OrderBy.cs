@@ -54,5 +54,9 @@ namespace SpeakFriend.Utilities
         }
 
 
+        public bool IsAsc()
+        {
+            return _direction == OrderDirection.Ascending;
+        }
     }
 }

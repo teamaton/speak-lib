@@ -8,7 +8,8 @@ namespace SpeakFriend.Utilities
 {
     public class ConditionInteger : ConditionNumericAbstract, IConditionNumeric
     {
-        private int _value = -1;
+        private const int _noValue = -1;
+        private int _value = _noValue;
 
         public ConditionInteger(ConditionContainer conditions, string propertyName)
             : base(conditions)
@@ -90,7 +91,7 @@ namespace SpeakFriend.Utilities
 
         public override bool IsSet()
         {
-            return _value != -1;
+            return _value != _noValue;
         }
 
         /// <summary>
@@ -106,6 +107,12 @@ namespace SpeakFriend.Utilities
         public string GetString()
         {
             return _value.ToString();
+        }
+
+        public override void Reset()
+        {
+            _value = _noValue;
+            base.Reset();
         }
     }
 }

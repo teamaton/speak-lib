@@ -11,15 +11,36 @@ namespace SpeakFriend.Utilities
     {
         private ConditionComparisonType _queryType;
 
-        public ConditionNumericAbstract(ConditionContainer conditions, string propertyName)
+        /// <summary>
+        /// Unset this value if for a less than comparison you do not automatically want to constrain
+        /// that the value be greater than or equal to zero.
+        /// </summary>
+        public bool MustBeGreaterThanOrEqualToZero = true;
+
+        protected ConditionNumericAbstract(ConditionContainer conditions, string propertyName)
             : base(conditions)
         {
             PropertyName = propertyName;
         }
 
-        public ConditionNumericAbstract(ConditionContainer conditions) : base(conditions){}
+        protected ConditionNumericAbstract(ConditionContainer conditions) : base(conditions){}
 
         public virtual object GetValue() { throw new NotImplementedException(); }
+
+        /// <summary>
+        /// Return true if this condition is set and contained in the ConditionList.
+        /// </summary>
+        /// <returns>True if this condition is contained in the ConditionList AND if 
+        /// its value is set to something other than the default, else false.</returns>
+        public bool IsActive()
+        {
+            return IsSet() && Conditions.Contains(this);
+        }
+
+        /// <summary>
+        /// Returns true if this condition's value is set to anything else than the initial value; else false.
+        /// </summary>
+        /// <returns></returns>
         public abstract bool IsSet();
 
         public bool IsGreaterThan()
@@ -32,6 +53,11 @@ namespace SpeakFriend.Utilities
             return _queryType == ConditionComparisonType.Equal;
         }
 
+        public bool IsLessThanOrEqual()
+        {
+            return _queryType == ConditionComparisonType.LessOrEqual;
+        }
+
         protected void SetQueryGreater()
         {
             _queryType = ConditionComparisonType.Greater;
@@ -40,6 +66,11 @@ namespace SpeakFriend.Utilities
         protected void SetQueryLess()
         {
             _queryType = ConditionComparisonType.Less;
+        }
+
+        protected void SetQueryLessOrEqual()
+        {
+            _queryType = ConditionComparisonType.LessOrEqual;
         }
 
         protected void SetQueryEqual()
@@ -66,10 +97,24 @@ namespace SpeakFriend.Utilities
         {
             if (IsEqualTo())
                 return Restrictions.Eq(PropertyName, GetValue());
-            else if (IsGreaterThan())
+            
+            if (IsGreaterThan())
                 return Restrictions.Gt(PropertyName, GetValue());
-            else
-                return Restrictions.Lt(PropertyName, GetValue());
+            
+            // Building conjunction if needed.
+            ICriterion restriction;
+
+            if (IsLessThanOrEqual())
+                restriction = Restrictions.Le(PropertyName, GetValue());
+            else // less than
+                restriction = Restrictions.Lt(PropertyName, GetValue());
+
+            if (MustBeGreaterThanOrEqualToZero)
+                restriction = Restrictions.Conjunction()
+                    .Add(restriction)
+                    .Add(Restrictions.Ge(PropertyName, 0f));
+
+            return restriction;
         }
     }
 }

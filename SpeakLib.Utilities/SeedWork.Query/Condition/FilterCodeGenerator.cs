@@ -20,6 +20,8 @@ namespace SpeakFriend.Utilities
         {
             MemberInfo[] members = type.GetMembers();
 
+            var listInitString = new StringBuilder();
+
             foreach(MemberInfo member in members)
             {
                 foreach(object attribute in member.GetCustomAttributes(true))
@@ -35,6 +37,14 @@ namespace SpeakFriend.Utilities
 
                     if (attribute.GetType() == typeof(FilterDecimalAttribute))
                         AddToGenerate(member, "ConditionDecimal");
+
+                    if (attribute.GetType() == typeof(FilterBooleanAttribute) ||
+                        attribute.GetType() == typeof(FilterIntegerAttribute) ||
+                        attribute.GetType() == typeof(FilterSingleAttribute)  ||
+                        attribute.GetType() == typeof(FilterDecimalAttribute))
+
+                    listInitString.Append(member.Name).Append(",\r\n");
+
                 }
             }
             foreach(string memberToGenerate in _membersToGenerate)
@@ -45,6 +55,8 @@ namespace SpeakFriend.Utilities
 
             foreach (string statementToGenerate in _constructorStatementsToGenerate)
                 Console.WriteLine(statementToGenerate);            
+            
+            Console.WriteLine("AllConditions = new List<Condition> {0};", "{" + listInitString + "}");
         }
 
         private static void AddToGenerate(MemberInfo member, string className)

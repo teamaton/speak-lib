@@ -63,6 +63,12 @@ namespace SpeakFriend.Utilities
 
         public abstract ICriterion GetCriterion(T item);
         protected abstract Junction GetInitializedJunction();
+
+		public override void Reset()
+        {
+            Items.Clear();
+            Conditions.Remove(this);
+        }
     }
 
 }

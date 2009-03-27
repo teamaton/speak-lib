@@ -30,6 +30,12 @@ namespace SpeakFriend.Utilities
         {
             return Restrictions.Eq(PropertyName, _value);
         }
+
+        public override void Reset()
+        {
+            _value = null;
+            base.Reset();
+        }
     }
 
 }

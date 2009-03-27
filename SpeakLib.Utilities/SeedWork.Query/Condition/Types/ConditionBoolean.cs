@@ -80,5 +80,10 @@ namespace SpeakFriend.Utilities
         {
             return Restrictions.Eq(PropertyName, GetValue());
         }
+
+        public override void Reset()
+        {
+            SetTrueOrInactive(false);
+        }
     }
 }

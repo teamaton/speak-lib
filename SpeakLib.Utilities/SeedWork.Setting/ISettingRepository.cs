@@ -10,5 +10,6 @@
         SettingList GetAll();
         Setting GetById(int settingId);
         SettingList GetBy(SettingSearchDesc searchDesc);
+        T GetUnique<T>(SettingSearchDesc searchDesc);
     }
 }

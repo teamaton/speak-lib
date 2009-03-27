@@ -8,7 +8,8 @@ namespace SpeakFriend.Utilities
 {
     public class ConditionDouble : ConditionNumericAbstract, IConditionNumeric
     {
-        private double _value = -1;
+        private const double _noValue = -1;
+        private double _value = _noValue;
 
         public ConditionDouble(ConditionContainer conditions, string propertyName)
             : base(conditions, propertyName)
@@ -26,7 +27,7 @@ namespace SpeakFriend.Utilities
             SetQueryGreater();
             _value = value;
 
-            if (_value == -1)
+            if (_value == _noValue)
             {
                 Conditions.Remove(this);
                 return;
@@ -61,7 +62,7 @@ namespace SpeakFriend.Utilities
             _value = value;
             SetQueryLess();
 
-            if (_value == -1)
+            if (_value == _noValue)
             {
                 Conditions.Remove(this);
                 return;
@@ -83,7 +84,7 @@ namespace SpeakFriend.Utilities
 
         public override bool IsSet()
         {
-            return _value != -1;
+            return _value != _noValue;
         }
 
         /// <summary>
@@ -94,6 +95,12 @@ namespace SpeakFriend.Utilities
         public bool IsActive()
         {
             return IsSet() && Conditions.Contains(this);
+        }
+
+        public override void Reset()
+        {
+            _value = _noValue;
+            base.Reset();
         }
     }
 }

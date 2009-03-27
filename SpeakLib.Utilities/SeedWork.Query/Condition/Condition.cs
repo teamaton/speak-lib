@@ -28,8 +28,11 @@ namespace SpeakFriend.Utilities
             _conditions = conditions;
             PropertyName = propertyName;
         }
-
-        public void Remove()
+        
+        /// <summary>
+        /// Entfernt diese <see cref="Condition"/> aus der Liste.
+        /// </summary>
+		public void Remove()
         {
             if (_conditions.Contains(PropertyName))
                 _conditions.Remove(this);
@@ -69,6 +72,11 @@ namespace SpeakFriend.Utilities
         public virtual void Reset()
         {
             Conditions.Remove(this);
+        }
+
+        public virtual bool IsActive()
+        {
+            return _conditions.Contains(this);
         }
     }
 }

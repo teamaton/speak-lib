@@ -9,7 +9,7 @@ namespace SpeakFriend.Utilities
 {
     public abstract class RepositoryDb
     {
-        private readonly ISession _session;
+        protected readonly ISession _session;
 
         protected RepositoryDb(ISession session)
         {
@@ -51,7 +51,7 @@ namespace SpeakFriend.Utilities
             AddOrderBy(criteria, orderBy, null);
         }
 
-        public void AddOrderBy(ICriteria criteria, OrderByCriteria orderBy, string tableAlias)
+        public virtual void AddOrderBy(ICriteria criteria, OrderByCriteria orderBy, string tableAlias)
         {
             var propertyName = "";
 
