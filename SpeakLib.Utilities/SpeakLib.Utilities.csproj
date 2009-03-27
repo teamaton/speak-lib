@@ -153,7 +153,6 @@
     <Compile Include="Service\Imaging\ImageUtils.cs" />
     <Compile Include="SeedWork.Setting\EntitySettings.cs" />
     <Compile Include="SeedWork.Setting\Setting.cs" />
-    <Compile Include="SeedWork.Setting\SettingGroup.cs" />
     <Compile Include="SeedWork.Setting\SettingList.cs" />
     <Compile Include="SeedWork.Setting\SettingService.cs" />
     <Compile Include="SeedWork.Setting\Types\SettingBoolean.cs" />
