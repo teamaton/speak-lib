@@ -184,7 +184,8 @@
     <Compile Include="Web\Tracking\Performance\PerformanceTracker.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SeedWork.Setting\Setting.hbm.xml" />
+    <EmbeddedResource Include="SeedWork.Setting\Setting.hbm.xml">
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SeedWork.Tagging\Tag.hbm.xml" />
