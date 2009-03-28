@@ -46,6 +46,27 @@ namespace SpeakFriend.Utilities
         }
 
         /// <summary>
+        /// Gets an existing Setting with the given key from the internal list or creates a new one, adds it to the list and returns it.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public T Get<T>(string key, string defaultValue) where T : Setting, new()
+        {
+            var setting = _settings.Find(s => s.Key.Equals(key));
+
+            if (setting != null)
+                return (T)setting;
+
+            setting = new T { Key = key, ValueStr = defaultValue, SettingType = _settingType, SettingTypeId = _settingTypeId };
+
+            _settings.Add(setting);
+
+            return (T)setting;
+        }
+
+        /// <summary>
         /// Gets an existing Setting with the given key from the internal list or null if no such setting exists.
         /// </summary>
         /// <typeparam name="T"></typeparam>
