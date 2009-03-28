@@ -96,11 +96,6 @@ namespace SpeakFriend.FileUpload
             }
         }
 
-        protected override void RecreateChildControls()
-        {
-            EnsureChildControls();
-        }
-
         [
         Browsable(false),
         PersistenceMode(PersistenceMode.InnerProperty),
@@ -119,6 +114,11 @@ namespace SpeakFriend.FileUpload
                 var delete = new UploadedFileDelete();
                 owner.Controls.Add(delete);
             }
+        }
+
+        protected override void RecreateChildControls()
+        {
+            EnsureChildControls();
         }
 
         protected override void CreateChildControls()

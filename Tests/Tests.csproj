@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\Query\PagerTest.cs" />
     <Compile Include="Utilities\Service\StringExtensionsTest.cs" />
     <Compile Include="Utilities\Web\WebHtmlExtensionsTest.cs" />
     <Compile Include="Utilities\Web\UriTest.cs" />

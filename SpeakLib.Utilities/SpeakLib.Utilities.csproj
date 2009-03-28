@@ -143,9 +143,10 @@
     <Compile Include="Web\Context\Parameters\ParameterHandler.cs" />
     <Compile Include="Web\Context\Parameters\ParameterHandlerList.cs" />
     <Compile Include="Web\Context\Parameters\ParameterHandlerService.cs" />
-    <Compile Include="Web\Control\ControlUtil.cs" />
-    <Compile Include="Web\Control\HtmlControlExtensionMethods.cs" />
-    <Compile Include="Web\Control\WebControlExtensionMethods.cs" />
+    <Compile Include="Web\Controls\PagerControl.cs" />
+    <Compile Include="Web\ControlUtils\ControlUtil.cs" />
+    <Compile Include="Web\ControlUtils\HtmlControlExtensionMethods.cs" />
+    <Compile Include="Web\ControlUtils\WebControlExtensionMethods.cs" />
     <Compile Include="Web\Interaction\Feedback\UserFeedback.cs" />
     <Compile Include="Web\Interaction\Validation\ValidationSettings.cs" />
     <Compile Include="Web\Navigation\NavigationItem.cs" />
@@ -167,7 +168,7 @@
     <Compile Include="Web\Context\Cache\Impl\ICache.cs" />
     <Compile Include="Web\Context\Session\BaseSession.cs" />
     <Compile Include="Web\Context\Session\SessionData.cs" />
-    <Compile Include="Web\Control\Repeater\ItemTemplateHelper.cs" />
+    <Compile Include="Web\ControlUtils\Repeater\ItemTemplateHelper.cs" />
     <Compile Include="Web\Interaction\Message\UserMessage.cs" />
     <Compile Include="Web\Interaction\Message\UserMessageItem.cs" />
     <Compile Include="Web\Interaction\Message\UserMessageText.cs" />
