@@ -62,10 +62,16 @@ namespace SpeakFriend.Utilities.Web
         /// <returns></returns>
         public T Get<T>(string key, object initialValue)
         {
+            return Get(key, () => (T) initialValue);
+        }
+
+        public T Get<T>(string key, Func<T> initializer)
+        {
             if (!Exists(key))
             {
+                var initialValue = initializer();
                 this[key] = initialValue;
-                return (T)initialValue;
+                return initialValue;
             }
 
             return Get<T>(key);

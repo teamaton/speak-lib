@@ -34,6 +34,8 @@ namespace SpeakFriend.FileUpload
 
         protected override void OnLoad(EventArgs e)
         {
+            base.OnLoad(e);
+
             EnsureChildControls();
             if (btnDelete != null)
                 btnDelete.Click += btnDelete_Click;

@@ -60,6 +60,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExamplesFrontend\Pager.aspx.cs">
+      <DependentUpon>Pager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExamplesFrontend\Pager.aspx.designer.cs">
+      <DependentUpon>Pager.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ExamplesFrontend\FileUpload\Basics.aspx.cs">
       <DependentUpon>Basics.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -136,6 +143,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ExamplesFrontend\Pager.aspx" />
     <Content Include="ExamplesFrontend\FileUpload\Basics.aspx" />
     <Content Include="ExamplesFrontend\FileUpload\UploadContent\DefaultContent.aspx" />
     <Content Include="Global.asax" />
