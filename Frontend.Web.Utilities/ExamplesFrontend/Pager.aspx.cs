@@ -21,10 +21,5 @@ namespace SpeakFriend.Web.Utilities
             
             PagerControl1.Register(_pager);
         }
-
-        protected void Page_LoadComplete(object sender, EventArgs e)
-        {
-            ltPage.Text = _pager.CurrentPage.ToString();
-        }
     }
 }

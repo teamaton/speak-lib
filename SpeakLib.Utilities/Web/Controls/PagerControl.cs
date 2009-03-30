@@ -14,6 +14,21 @@ namespace SpeakFriend.Utilities
     {
         private IPager _pager;
 
+        public event EventHandler PageChanged;
+
+        protected void OnPageChanged(EventArgs e)
+        {
+            if (PageChanged != null)
+                PageChanged(this, e);
+        }
+
+        private int pageNavigationRange = 2 ;
+        public int PageNavigationRange
+        {
+            get { return pageNavigationRange; }
+            set { pageNavigationRange = value; }
+        }
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -30,12 +45,21 @@ namespace SpeakFriend.Utilities
             {
                 case "GoToPage":
                     _pager.CurrentPage = Convert.ToInt32(e.CommandArgument);
+                    OnPageChanged(EventArgs.Empty);
                     break;
 
-                case  "PreviousPage":
+                case "PreviousPage":
                     _pager.PreviousPage();
+                    OnPageChanged(EventArgs.Empty);
+                    break;
+
+                case "NextPage":
+                    _pager.NextPage();
+                    OnPageChanged(EventArgs.Empty);
                     break;
             }
+
+            CreateChildControls();
         }
 
         public static void RegisterButtonEvents(Control container, CommandEventHandler eventHandler)
@@ -51,13 +75,6 @@ namespace SpeakFriend.Utilities
             CreateChildControls();
         }
 
-        [
-            Browsable(false),
-            PersistenceMode(PersistenceMode.InnerProperty),
-            TemplateContainer(typeof (PageNumberTemplateContainer))
-        ]
-        public virtual ITemplate PageNumberTemplate { get; set; }
-
         public class PageNumberTemplateContainer : WebControl, INamingContainer
         {
             public int PageNumber { get; set; }
@@ -68,6 +85,13 @@ namespace SpeakFriend.Utilities
                     child.RenderControl(writer);
             }
         }
+
+        [
+            Browsable(false),
+            PersistenceMode(PersistenceMode.InnerProperty),
+            TemplateContainer(typeof (PageNumberTemplateContainer))
+        ]
+        public virtual ITemplate PageNumberTemplate { get; set; }
 
         sealed class DefaultPageNumberTemplate : ITemplate
         {
@@ -86,6 +110,28 @@ namespace SpeakFriend.Utilities
         [
             Browsable(false),
             PersistenceMode(PersistenceMode.InnerProperty),
+            TemplateContainer(typeof(PageNumberTemplateContainer))
+        ]
+        public virtual ITemplate CurrentPageNumberTemplate { get; set; }
+
+        sealed class DefaultCurrentPageNumberTemplate : ITemplate
+        {
+            void ITemplate.InstantiateIn(Control container)
+            {
+                var label = new Label();
+                label.Font.Bold = true;
+
+                var pageNumberTemplateContainer = container as PageNumberTemplateContainer;
+                if (pageNumberTemplateContainer != null)
+                    label.Text = pageNumberTemplateContainer.PageNumber.ToString();
+
+                container.Controls.Add(label);
+            }
+        }
+
+        [
+            Browsable(false),
+            PersistenceMode(PersistenceMode.InnerProperty),
         ]
         public virtual ITemplate PreviousPageTemplate { get; set; }
 
@@ -95,6 +141,36 @@ namespace SpeakFriend.Utilities
             {
                 var button = new LinkButton { Text = "Previous" };
                 container.Controls.Add(button);
+            }
+        }
+
+        [
+        Browsable(false),
+        PersistenceMode(PersistenceMode.InnerProperty),
+        ]
+        public virtual ITemplate NextPageTemplate { get; set; }
+
+        sealed class DefaultNextPageTemplate : ITemplate
+        {
+            void ITemplate.InstantiateIn(Control container)
+            {
+                var button = new LinkButton { Text = "Next" };
+                container.Controls.Add(button);
+            }
+        }
+
+        [
+        Browsable(false),
+        PersistenceMode(PersistenceMode.InnerProperty),
+        ]
+        public virtual ITemplate SpacerTemplate { get; set; }
+
+        sealed class DefaultSpacerTemplate : ITemplate
+        {
+            void ITemplate.InstantiateIn(Control container)
+            {
+                var literal = new Literal { Text = "..." };
+                container.Controls.Add(literal);
             }
         }
 
@@ -109,6 +185,13 @@ namespace SpeakFriend.Utilities
 
             if (_pager == null) return;
 
+            CreatePreviousPageControl();
+            CreatePageNumberControls();
+            CreateNextPageControl();
+        }
+
+        private void CreatePreviousPageControl()
+        {
             if (PreviousPageTemplate == null) PreviousPageTemplate = new DefaultPreviousPageTemplate();
             var previousPageTemplateContainer = new PlaceHolder();
             PreviousPageTemplate.InstantiateIn(previousPageTemplateContainer);
@@ -117,27 +200,84 @@ namespace SpeakFriend.Utilities
                 button.CommandName = "PreviousPage";
             }
             Controls.Add(previousPageTemplateContainer);
+        }
+
+        private void CreateNextPageControl()
+        {
+            if (NextPageTemplate == null) NextPageTemplate = new DefaultNextPageTemplate();
+            var nextPageTemplateContainer = new PlaceHolder();
+            NextPageTemplate.InstantiateIn(nextPageTemplateContainer);
+            foreach (var button in nextPageTemplateContainer.Controls.OfType<IButtonControl>())
+            {
+                button.CommandName = "NextPage";
+            }
+            Controls.Add(nextPageTemplateContainer);
+        }
+
+        private void CreatePageNumberControls()
+        {
+            var pageAnchor = Math.Min(Math.Max(pageNavigationRange + 2, _pager.CurrentPage),
+                                      _pager.PageCount - pageNavigationRange - 1);
             
-            if (PageNumberTemplate == null) PageNumberTemplate = new DefaultPageNumberTemplate();
-            for (int number = 1; number <= _pager.PageCount; number++)
+            if (PageNumberTemplate == null) 
+                PageNumberTemplate = new DefaultPageNumberTemplate();
+            if (CurrentPageNumberTemplate == null) 
+                CurrentPageNumberTemplate = new DefaultCurrentPageNumberTemplate();
+            
+            for (int number = 1; number <= _pager.PageCount;)
             {
                 var pageNumberTemplateContainer = new PageNumberTemplateContainer {PageNumber = number};
-                PageNumberTemplate.InstantiateIn(pageNumberTemplateContainer);
+                
+                if (number == _pager.CurrentPage)
+                    CurrentPageNumberTemplate.InstantiateIn(pageNumberTemplateContainer);
+                else
+                    PageNumberTemplate.InstantiateIn(pageNumberTemplateContainer);
+                
                 pageNumberTemplateContainer.DataBind();
+                
                 foreach (var button in pageNumberTemplateContainer.Controls.OfType<IButtonControl>())
                 {
                     button.CommandName = "GoToPage";
                     button.CommandArgument = number.ToString();
                 }
+                
                 Controls.Add(pageNumberTemplateContainer);
-            }
 
+                if (number < pageAnchor - pageNavigationRange) 
+                {
+                    number = pageAnchor - pageNavigationRange;
+                    if (number != 2) CreateSpacer();
+                    continue;
+                }
+
+                if (number >= pageAnchor + pageNavigationRange && number < _pager.PageCount) 
+                {
+                    if(number != _pager.PageCount - 1) CreateSpacer();
+                    number = _pager.PageCount;
+                    continue;
+                }
+                
+                number++;
+            }
+        }
+
+        private void CreateSpacer()
+        {
+            if (SpacerTemplate == null) SpacerTemplate = new DefaultSpacerTemplate();
+            var spacerTemplateContainer = new PlaceHolder();
+            SpacerTemplate.InstantiateIn(spacerTemplateContainer);
+            Controls.Add(spacerTemplateContainer);
         }
 
         protected override void Render(HtmlTextWriter writer)
         {
             foreach (var child in Controls.OfType<Control>())
                 child.RenderControl(writer);
+        }
+
+        public void Update()
+        {
+            CreateChildControls();
         }
     }
 }

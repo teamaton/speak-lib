@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Pager.aspx.cs" Inherits="SpeakFriend.Web.Utilities.frmPager" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <asp:Literal runat="server" ID="ltPage">Test</asp:Literal>
-    
+      
     <ul class="pager-new clear">            
       <speakFriend:PagerControl runat="server" ID="PagerControl1">
         <PreviousPageTemplate>
@@ -11,10 +9,25 @@
             </li>
         </PreviousPageTemplate>
         <PageNumberTemplate>            
-            <li class="number current">
+            <li class="number">
                 <asp:LinkButton runat="server"><%# Container.PageNumber %></asp:LinkButton>
             </li>            
-        </PageNumberTemplate>        
+        </PageNumberTemplate> 
+        <CurrentPageNumberTemplate>
+            <li class="number current">
+                <a><%# Container.PageNumber %></a>
+            </li>
+        </CurrentPageNumberTemplate> 
+        <NextPageTemplate>
+            <li class="next">
+                <asp:LinkButton runat="server">Vor</asp:LinkButton>
+            </li>
+        </NextPageTemplate> 
+        <SpacerTemplate>
+            <li class="gap">
+                <a>...</a>
+            </li>
+        </SpacerTemplate>     
       </speakFriend:PagerControl>
     </ul>
 
