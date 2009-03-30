@@ -147,7 +147,7 @@ namespace SpeakFriend.Utilities
 		
         public static bool IsNumeric(this string value)
         {
-            var regex = new Regex(@"[0-9]");
+            var regex = new Regex(@"^\-?[0-9]+$");
             return regex.IsMatch(value);
         }
     }

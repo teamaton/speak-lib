@@ -11,7 +11,7 @@ using SpeakFriend.Utilities.Web;
 namespace Tests.Utilities.Web
 {
     [TestFixture]
-    public class StringExtensionsTest
+    public class StringExtensionsTest : AssertionHelper
     {
         [Test]
         public void LineWrap()
@@ -44,6 +44,20 @@ wunderschönen Kiesstrand und kristallklarem Meer befindet sich Camp sowie Appar
             wrapped.ForEach(Console.WriteLine);
 
             wrapped.ForEach(line => Assert.LessOrEqual(line.Count(), 80));
+        }
+
+        [Test]
+        public void IsNumeric()
+        {
+            Expect("0".IsNumeric());
+            Expect("5".IsNumeric());
+            Expect("23".IsNumeric());
+            Expect("-17".IsNumeric());
+
+            Expect(!"".IsNumeric());
+            Expect(!"-".IsNumeric());
+            Expect(!"A".IsNumeric());
+            Expect(!"23B".IsNumeric());
         }
     }
 }
