@@ -8,6 +8,11 @@
                 <asp:LinkButton runat="server">Zurück</asp:LinkButton>
             </li>
         </PreviousPageTemplate>
+        <DisabledPreviousPageTemplate>
+            <li class="previous disabled">
+                <a>Zurück</a>
+            </li>
+        </DisabledPreviousPageTemplate>
         <PageNumberTemplate>            
             <li class="number">
                 <asp:LinkButton runat="server"><%# Container.PageNumber %></asp:LinkButton>
@@ -23,6 +28,11 @@
                 <asp:LinkButton runat="server">Vor</asp:LinkButton>
             </li>
         </NextPageTemplate> 
+        <DisabledNextPageTemplate>
+            <li class="next disabled">
+                <a>Vor</a>
+            </li>
+        </DisabledNextPageTemplate>
         <SpacerTemplate>
             <li class="gap">
                 <a>...</a>

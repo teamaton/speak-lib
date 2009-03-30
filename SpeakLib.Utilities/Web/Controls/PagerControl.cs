@@ -148,6 +148,21 @@ namespace SpeakFriend.Utilities
         Browsable(false),
         PersistenceMode(PersistenceMode.InnerProperty),
         ]
+        public virtual ITemplate DisabledPreviousPageTemplate { get; set; }
+
+        sealed class DefaultDisabledPreviousPageTemplate : ITemplate
+        {
+            void ITemplate.InstantiateIn(Control container)
+            {
+                var literal = new Literal { Text = "Previous" };
+                container.Controls.Add(literal);
+            }
+        }
+
+        [
+        Browsable(false),
+        PersistenceMode(PersistenceMode.InnerProperty),
+        ]
         public virtual ITemplate NextPageTemplate { get; set; }
 
         sealed class DefaultNextPageTemplate : ITemplate
@@ -156,6 +171,21 @@ namespace SpeakFriend.Utilities
             {
                 var button = new LinkButton { Text = "Next" };
                 container.Controls.Add(button);
+            }
+        }
+
+        [
+        Browsable(false),
+        PersistenceMode(PersistenceMode.InnerProperty),
+        ]
+        public virtual ITemplate DisabledNextPageTemplate { get; set; }
+
+        sealed class DefaultDisabledNextPageTemplate : ITemplate
+        {
+            void ITemplate.InstantiateIn(Control container)
+            {
+                var literal = new Literal { Text = "Next" };
+                container.Controls.Add(literal);
             }
         }
 
@@ -192,25 +222,45 @@ namespace SpeakFriend.Utilities
 
         private void CreatePreviousPageControl()
         {
-            if (PreviousPageTemplate == null) PreviousPageTemplate = new DefaultPreviousPageTemplate();
+            if (PreviousPageTemplate == null) 
+                PreviousPageTemplate = new DefaultPreviousPageTemplate();
+            if (DisabledPreviousPageTemplate == null)
+                DisabledPreviousPageTemplate = new DefaultDisabledPreviousPageTemplate();
+
             var previousPageTemplateContainer = new PlaceHolder();
-            PreviousPageTemplate.InstantiateIn(previousPageTemplateContainer);
-            foreach (var button in previousPageTemplateContainer.Controls.OfType<IButtonControl>())
+            if (_pager.IsFirstPage)
+                DisabledPreviousPageTemplate.InstantiateIn(previousPageTemplateContainer);
+            else
             {
-                button.CommandName = "PreviousPage";
+                PreviousPageTemplate.InstantiateIn(previousPageTemplateContainer);
+                foreach (var button in previousPageTemplateContainer.Controls.OfType<IButtonControl>())
+                {
+                    button.CommandName = "PreviousPage";
+                }
             }
+
             Controls.Add(previousPageTemplateContainer);
         }
 
         private void CreateNextPageControl()
         {
-            if (NextPageTemplate == null) NextPageTemplate = new DefaultNextPageTemplate();
+            if (NextPageTemplate == null) 
+                NextPageTemplate = new DefaultNextPageTemplate();
+            if (DisabledNextPageTemplate == null) 
+                DisabledNextPageTemplate = new DefaultDisabledNextPageTemplate();
+
             var nextPageTemplateContainer = new PlaceHolder();
-            NextPageTemplate.InstantiateIn(nextPageTemplateContainer);
-            foreach (var button in nextPageTemplateContainer.Controls.OfType<IButtonControl>())
+            if (_pager.IsLastPage)
+                DisabledNextPageTemplate.InstantiateIn(nextPageTemplateContainer);
+            else
             {
-                button.CommandName = "NextPage";
+                NextPageTemplate.InstantiateIn(nextPageTemplateContainer);
+                foreach (var button in nextPageTemplateContainer.Controls.OfType<IButtonControl>())
+                {
+                    button.CommandName = "NextPage";
+                }
             }
+
             Controls.Add(nextPageTemplateContainer);
         }
 
