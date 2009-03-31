@@ -146,6 +146,7 @@
     <Compile Include="Web\Controls\PagerControl.cs" />
     <Compile Include="Web\ControlUtils\ControlUtil.cs" />
     <Compile Include="Web\ControlUtils\HtmlControlExtensionMethods.cs" />
+    <Compile Include="Web\ControlUtils\TextBox\TextBoxUtils.cs" />
     <Compile Include="Web\ControlUtils\WebControlExtensionMethods.cs" />
     <Compile Include="Web\Interaction\Feedback\UserFeedback.cs" />
     <Compile Include="Web\Interaction\Validation\ValidationSettings.cs" />
