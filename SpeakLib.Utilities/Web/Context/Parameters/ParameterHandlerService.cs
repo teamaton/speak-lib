@@ -33,5 +33,18 @@ namespace SpeakFriend.Utilities.Web
                     handler.Action(queryParams[itemKey]);
                 }
         }
+
+        public bool IsHandlerActive(ParameterHandler parameterHandler)
+        {
+            return IsHandlerActive(HttpContext.Current.Request.QueryString, parameterHandler);
+        }
+
+        private bool IsHandlerActive(NameValueCollection queryParams, ParameterHandler parameterHandler)
+        {
+            var value = queryParams.Get(parameterHandler.Name);
+
+            return !string.IsNullOrEmpty(value);
+
+        }
     }
 }

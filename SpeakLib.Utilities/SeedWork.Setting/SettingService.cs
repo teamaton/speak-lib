@@ -30,7 +30,7 @@ namespace SpeakFriend.Utilities
             _repository.Create(list);
         }
 
-        public void Update(SettingList settings)
+        public void CreateOrUpdate(SettingList settings)
         {
             foreach (var setting in settings)
                 CreateOrUpdate(setting);
@@ -102,11 +102,7 @@ namespace SpeakFriend.Utilities
         /// <returns></returns>
         public SettingList GetBy(string settingType, int settingTypeId)
         {
-            var settingSearchDesc = new SettingSearchDesc();
-            settingSearchDesc.Filter.SettingType.EqualTo(settingType);
-            settingSearchDesc.Filter.SettingTypeId.EqualTo(settingTypeId);
-
-            return GetBy(settingSearchDesc);
+            return GetBy(new SettingSearchDesc(settingType, settingTypeId));
         }
 
         public SettingList GetBy(string settingType)

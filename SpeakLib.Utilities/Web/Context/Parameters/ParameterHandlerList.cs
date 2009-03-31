@@ -7,15 +7,15 @@ namespace SpeakFriend.Utilities.Web
 {
     public class ParameterHandlerList : List<ParameterHandler>
     {
-        public bool Contains(object key)
+        public bool Contains(string key)
         {
             if (key == null) return false;
-            return GetByName(key.ToString()) != null;
+            return GetByName(key) != null;
         }
 
-        public ParameterHandler GetByName(object key)
+        public ParameterHandler GetByName(string key)
         {
-            return Find(handler => handler.Name.ToLower() == key.ToString().ToLower());
+            return Find(handler => handler.Name.ToLower() == key.ToLower());
         }
     }
 }
