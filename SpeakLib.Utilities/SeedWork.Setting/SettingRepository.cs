@@ -11,7 +11,7 @@ namespace SpeakFriend.Utilities
 {
     public class SettingRepository : RepositoryDb, ISettingRepository 
     {
-        private readonly ISession _session;
+        private new readonly ISession _session;
 
         public SettingRepository(ISession session) : base(session)
         {

@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeakLib.ValueObjects", "Sp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frontend.Web.Utilities", "Frontend.Web.Utilities\Frontend.Web.Utilities.csproj", "{AB91E651-03C8-4E27-844C-73A2A10703A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frontend.Web.SpeakTag", "Frontend.Web.SpeakTag\Frontend.Web.SpeakTag.csproj", "{89907A61-1C0B-4F4C-9682-92F4C949CA45}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.SpeakTag", "Tests.SpeakTag\Test.SpeakTag.csproj", "{65922793-BC5E-4ABD-8357-6EF1896249E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frontend.Web.Starter-Layout-Basic", "Frontend.Web.Starter-Layout-Basic\Frontend.Web.Starter-Layout-Basic.csproj", "{C7284E6A-0454-4A86-B84D-50179F23A42F}"
@@ -18,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebShot", "WebShot\WebShot.csproj", "{213FA635-4F2B-44FC-916A-15552A9C69A0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeakLib.FileUpload", "SpeakLib.FileUpload\SpeakLib.FileUpload.csproj", "{3C59702B-AC0A-46F1-8859-324C40A13A19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleApp.Core", "ExampleApp.Core\ExampleApp.Core.csproj", "{678E2425-56AD-4DCD-99BB-78F71E630C97}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,12 +50,6 @@ Global
 		{AB91E651-03C8-4E27-844C-73A2A10703A3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AB91E651-03C8-4E27-844C-73A2A10703A3}.ShowTranslationPanel|Any CPU.ActiveCfg = Release|Any CPU
 		{AB91E651-03C8-4E27-844C-73A2A10703A3}.ShowTranslationPanel|Any CPU.Build.0 = Release|Any CPU
-		{89907A61-1C0B-4F4C-9682-92F4C949CA45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89907A61-1C0B-4F4C-9682-92F4C949CA45}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89907A61-1C0B-4F4C-9682-92F4C949CA45}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89907A61-1C0B-4F4C-9682-92F4C949CA45}.Release|Any CPU.Build.0 = Release|Any CPU
-		{89907A61-1C0B-4F4C-9682-92F4C949CA45}.ShowTranslationPanel|Any CPU.ActiveCfg = Release|Any CPU
-		{89907A61-1C0B-4F4C-9682-92F4C949CA45}.ShowTranslationPanel|Any CPU.Build.0 = Release|Any CPU
 		{65922793-BC5E-4ABD-8357-6EF1896249E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{65922793-BC5E-4ABD-8357-6EF1896249E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65922793-BC5E-4ABD-8357-6EF1896249E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -80,6 +74,12 @@ Global
 		{3C59702B-AC0A-46F1-8859-324C40A13A19}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3C59702B-AC0A-46F1-8859-324C40A13A19}.ShowTranslationPanel|Any CPU.ActiveCfg = Release|Any CPU
 		{3C59702B-AC0A-46F1-8859-324C40A13A19}.ShowTranslationPanel|Any CPU.Build.0 = Release|Any CPU
+		{678E2425-56AD-4DCD-99BB-78F71E630C97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{678E2425-56AD-4DCD-99BB-78F71E630C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{678E2425-56AD-4DCD-99BB-78F71E630C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{678E2425-56AD-4DCD-99BB-78F71E630C97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{678E2425-56AD-4DCD-99BB-78F71E630C97}.ShowTranslationPanel|Any CPU.ActiveCfg = Release|Any CPU
+		{678E2425-56AD-4DCD-99BB-78F71E630C97}.ShowTranslationPanel|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

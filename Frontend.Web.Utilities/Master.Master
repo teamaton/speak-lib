@@ -15,7 +15,8 @@
         <h1>Speak-Lib Examples</h1>
         
         <h2>Frontend</h2>
-        Components having a visual representation.        
+        
+        <p>Components having a visual representation.</p>
         <ul>
             <li><a href="/ExamplesFrontend/UserMessage.aspx">User-Message</a></li>
             <li><a href="/ExamplesFrontend/Validation.aspx">Validation</a></li>
@@ -24,9 +25,10 @@
             <li><a href="/ExamplesFrontend/Pager.aspx">Pager</a></li>  
         </ul>
         
-        <h2>Utilities</h2>        
+        <h2>Seed-Works</h2>        
         <ul>
             <li><a href="/ExamplesSetting/Settings.aspx">Settings</a></li>
+            <li><a href="/ExamplesSetting/Settings.aspx">Tagging</a></li>            
         </ul>
         
         <h2>Web</h2>

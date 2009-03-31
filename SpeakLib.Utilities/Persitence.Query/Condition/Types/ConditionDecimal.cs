@@ -82,16 +82,6 @@ namespace SpeakFriend.Utilities
             return _value != _noValue;
         }
 
-        /// <summary>
-        /// Checks whether this condition is set and contained in the ConditionList.
-        /// </summary>
-        /// <returns>True if this condition is contained in the ConditionList AND if 
-        /// its value is set to something other than the default, else false.</returns>
-        public bool IsActive()
-        {
-            return IsSet() && Conditions.Contains(this);
-        }
-
 		public override void Reset()
         {
             _value = _noValue;

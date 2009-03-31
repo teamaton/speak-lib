@@ -22,7 +22,7 @@ namespace SpeakFriend.Utilities
                 PageChanged(this, e);
         }
 
-        private int pageNavigationRange = 2 ;
+        private int pageNavigationRange = 2;
         public int PageNavigationRange
         {
             get { return pageNavigationRange; }
