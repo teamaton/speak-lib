@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace SpeakFriend.Web.Utilities
 {
-    public partial class frmWelcome : System.Web.UI.Page
+    public partial class frmDownload : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -11,6 +11,6 @@
 namespace SpeakFriend.Web.Utilities {
     
     
-    public partial class frmWelcome {
+    public partial class WebForm1 {
     }
 }

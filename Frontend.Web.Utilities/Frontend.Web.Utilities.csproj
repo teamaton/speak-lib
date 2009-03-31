@@ -134,6 +134,27 @@
     <Compile Include="UserControls\Message.ascx.designer.cs">
       <DependentUpon>Message.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Imprint.aspx.cs">
+      <DependentUpon>Imprint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Imprint.aspx.designer.cs">
+      <DependentUpon>Imprint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Download.aspx.cs">
+      <DependentUpon>Download.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Download.aspx.designer.cs">
+      <DependentUpon>Download.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Seedwork.aspx.cs">
+      <DependentUpon>Seedwork.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Seedwork.aspx.designer.cs">
+      <DependentUpon>Seedwork.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Welcome.aspx.cs">
       <DependentUpon>Welcome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -154,6 +175,9 @@
     <Content Include="ExamplesSetting\Settings.aspx" />
     <Content Include="ExamplesUtilities\ExtensionMethods.aspx" />
     <Content Include="UserControls\Message.ascx" />
+    <Content Include="Imprint.aspx" />
+    <Content Include="Download.aspx" />
+    <Content Include="Pages\Seedwork.aspx" />
     <Content Include="Welcome.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -183,7 +207,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>64692</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

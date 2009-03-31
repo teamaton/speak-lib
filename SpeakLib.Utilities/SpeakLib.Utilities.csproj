@@ -196,6 +196,7 @@
     <EmbeddedResource Include="SeedWork.Tagging\Prototype\TagPrototype.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="SeedWork.Comment\" />
     <Folder Include="Service\Security\" />
     <Folder Include="Web\Tracking\User\" />
   </ItemGroup>

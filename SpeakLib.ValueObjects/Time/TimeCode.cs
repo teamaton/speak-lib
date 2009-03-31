@@ -6,8 +6,7 @@ using System.Text;
 namespace SpeakFriend.ValueObjects
 {
     /// <summary>
-    /// TimeCodes are use int the movie world to identify 
-    /// a specific frame in a movie
+    /// TimeCodes are used to identify a specific frame in a movie
     /// </summary>
     public class TimeCode
     {
