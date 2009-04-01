@@ -179,6 +179,17 @@
     <Content Include="Download.aspx" />
     <Content Include="Pages\Seedwork.aspx" />
     <Content Include="Welcome.aspx" />
+    <Content Include="_style\ie-below-7.css" />
+    <Content Include="_style\ie7.css" />
+    <Content Include="_style\img\favicon-speak-friend.ico" />
+    <Content Include="_style\img\speak-friend-logo.png" />
+    <Content Include="_style\js\clear.gif" />
+    <Content Include="_style\js\jquery-1.3.2.min.js" />
+    <Content Include="_style\js\unitpngfix.js" />
+    <Content Include="_style\layout.css" />
+    <Content Include="_style\print.css" />
+    <Content Include="_style\reset.css" />
+    <Content Include="_style\_import.css" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SpeakLib.FileUpload\SpeakLib.FileUpload.csproj">

@@ -128,6 +128,7 @@
   <ItemGroup>
     <Content Include="Test.Master" />
     <Content Include="test-sticky.aspx" />
+    <Content Include="_style\js\jquery-1.3.2.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

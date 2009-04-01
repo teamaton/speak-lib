@@ -9,11 +9,24 @@ namespace SpeakFriend.Utilities
 {
     public class SessionFactoryContainer
     {
+        private readonly Func<ISessionFactory> _buildSessionFactory;
+
+        public SessionFactoryContainer()
+        {
+            _buildSessionFactory = ()=> new Configuration().Configure().BuildSessionFactory();
+        }
+
+        public SessionFactoryContainer(Func<ISessionFactory> func)
+        {
+            _buildSessionFactory = func;
+        }
+
         private ISessionFactory _sessionFactory;
+
         public ISessionFactory GetSessionFactory()
         {
             if (_sessionFactory == null)
-                _sessionFactory = new Configuration().Configure().BuildSessionFactory();
+                _sessionFactory = _buildSessionFactory();
 
             return _sessionFactory;
         }
