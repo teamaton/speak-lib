@@ -1,0 +1,99 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Test.Master.cs" Inherits="Frontend.Web.Starter_Layout_Basic.Site1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head id="Head1" runat="server">
+    <title></title>
+
+    <link rel="shortcut icon" href="/_style/icons/favicon-speak-friend.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/_style/_import.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/_style/print.css" type="text/css" media="print" />    
+    <!--[if lt IE 7]><link rel="stylesheet" href="/_style/ie-below-7.css" type="text/css" media="screen" /><![endif]-->
+    <!-- png for ie6 fix via: http://labs.unitinteractive.com/unitpngfix.php-->
+        <!--[if lt IE 7]>
+            <script type="text/javascript" src="/_style/js/unitpngfix.js"></script>
+        <![endif]-->
+    <!-- momentan nicht benötigt: compliance patch for microsoft browsers directly from google
+        <!--[if lt IE 7]>
+            <script src="http://ie7-js.googlecode.com/svn/version/2.0(beta3)/IE7.js" type="text/javascript"></script>
+        <![endif]-->
+        
+    <!-- Einbinden von jquery - für Live muss der api key angepasst werden - derzeit für "speak-lib" -->        
+    <script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAAJA_P6rbSdDaAYhWvPEL3BTvSNN0D_Ijgoo7gHWOE4AGom7ZoRTv8zK1mK6E6N9ARAiH0JK_P0DZcQ"></script>
+    
+    <script type="text/javascript">
+        google.load("jquery", "1.3.1");
+    </script>
+    
+    <style>
+        html, body, #wrap {height: 100%;}
+
+        body > #wrap {height: auto; min-height: 100%;}
+
+        #main {padding-bottom: 150px;}  /* must be same height as the footer */
+
+        #footer {position: relative;
+	        margin-top: -150px; /* negative value of footer height */
+	        height: 150px;
+	        clear:both;} 
+    </style>
+    
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <div id="wrap">
+            <div id="main" class="clearfix">
+                <div class="header center clear">
+                    <a class="logo" href="../startseite.aspx">
+                        <img src="/_style/img/speak-friend-logo.png" alt="Startseite - Logo - speak-friend" 
+                            onmouseover="src='/_style/img/speak-friend-logo.png'"
+                            onmouseout="src='/_style/img/speak-friend-logo.png'" />
+                    </a>
+                    <span class="tagline">Design Komponenten</span>
+                    <ul class="nav">
+                        <li><a href="../start.aspx">Übersicht</a></li>
+                        <li><a href="../layout.aspx">Layout</a></li>
+                        <li><a href="../typography.aspx">Typografie</a></li>
+                        <li><a href="../forms.aspx">Formulare</a></li>
+                        <li class="last-nav"><a href="../interactiv.aspx">Interaktiv</a></li>
+                    </ul>
+                    <div class="mini-nav">
+                        <a href="../contact.aspx">Kontakt</a>
+                        <a href="http://code.speak-friend.com/">Code Blog</a>
+                        <a href="../help.aspx">Hilfe</a>
+                    </div>
+                    
+                </div>
+                
+                <div class="container center">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+    
+        <div id="footer">
+            <ul class="center">
+                <li><a href="../impressum.aspx">Impressum</a></li>
+                <li><a href="../kontakt.aspx">Kontakt</a></li>
+            </ul>
+            <p class="center">Design und Umsetzung: <a href="http://www.speak-friend.com" target="blank">speak-friend.com</a></p>
+        </div>
+    
+    </form>
+    
+    <!-- Anpassen! 
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+    _uacct = "UA-1651443-8";
+    urchinTracker();
+    </script>
+    -->    
+    
+</body>
+</html>

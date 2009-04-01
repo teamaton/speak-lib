@@ -1,4 +1,4 @@
-/* Layout for ximag.de */
+/* Css für speak-lib Frontend.Web Starter Kit - erstellt am 1.3.2009 - von Andrej Telle - speak-friend.com */
 
 
 /* COLORS, MARGINS, PADDINGS */
@@ -11,12 +11,12 @@
 
 /* END COLORS, MARGINS, PADDINGS */
 
-/* GLOBAL */
+/* GLOBAL*/
 
 	html {height:100%;}
-	body {background:#1f1f1f url(/_style/img/background-6.jpg) no-repeat 50% 0 ; height:100%; min-width:952px;}
+	body {background:#1f1f1f url(/_style/img/background-6.jpg) no-repeat 50% 0 ; height:100%; min-width:95.2em;}
 
-	.center {margin:0 auto; width:932px;}
+	.center {margin:0 auto; width:93.2em;}
 	
 	.floatr {float:right;}
 
@@ -24,29 +24,24 @@
 	
 	.clearb {clear:both;}
 	
-	/*clearing floats*/
-
-	
-	object {border: solid 2px #111;}
-	
-	.colored {color:#E19638;}
-	
-	
 /* GLOBAL */
 
 /* Global Typography */
 
-	body { font-family: Georgia, trebuchet MS, georgia , Arial, Helvetica, sans-serif; font-size:63%;}
+	body { font-family: verdana, Arial, trebuchet MS, georgia , Arial, Helvetica, sans-serif; font-size:62.5%; color:#fff;}
 	
-	h1, h2, h3, h4, h5, h6, p, a, li, td, tr, blockquote {color:#ccc; }
-	h1, h2, h3, h4, h5, h6 {font-family: Georgia, Verdana, Trebuchet MS, Arial; font-weight:normal; color:#fff;}
+	h1, h2, h3, h4, h5, h6, p, a, li, td, tr, blockquote {color:#ccc;}
+	h1, h2, h3, h4, h5, h6, a {font-family: Georgia, Verdana, Trebuchet MS, Arial; font-weight:normal;}
 	
 	p, th, td, a, blockquote {font-size:1.2em; line-height:1.7em; }
 	p a {font-size:1em; line-height:1em;}
 	h1 a, h2 a, h3 a {font-size:1em;}
 	
-	a {border:none; text-decoration:none;}
-	a:hover {border-bottom: none;}
+	a {color:#CCFF33; border:none; text-decoration:none;}
+    a:visited { color: #EAFF78;}
+    a:hover { color: #ff6600;}
+    a:focus { color: #ff6600;}
+    a:active { color: #ED5F00;}
 	
 	h1 {font-size:2.5em; line-height:2em;}
 	h2 {font-size:2em; line-height:1.5em;}
@@ -56,8 +51,7 @@
 	blockquote:before {content:"\201E"; font-weight:bold; font-family:Serif; font-size:2em; color:#E19638;}
 	blockquote:after {content:"\201D"; font-weight:bold; font-family:Serif; font-size:2em; color:#E19638;}
 	
-	
-	b {font-weight:bold;}
+	b, .bold {font-weight:bold;}
 	
 	.caps {font-variant:small-caps;}
 	
@@ -65,7 +59,7 @@
 	
 	.text-right {text-align:right}
 	
-	.highlight {color:#fff; font-weight:bold; font-variant:small-caps;}
+	.highlight {color:#111; background:#ff6600; font-weight:bold; font-variant:small-caps;}
 	
 	.special-ad {float:none; text-align:right;}
 	
@@ -107,20 +101,14 @@
 
 	/* End Rounded Corners */
 	
-	/* Sticky Footer via http://ryanfait.com/sticky-footer/ -----------*/
+    /* sticky footer via http://ryanfait.com/resources/footer-stick-to-bottom-of-page/ */
 	
-	    /*
-	    html, body, #aspnetForm, #non-footer {height:100%;}  
-        
-        #non-footer {min-height:100%; height: auto !important; height: 100%; height:auto; margin-bottom:100px;}
-        
-        #footer, #push {height:100px;}
-        */
-        
-        * {margin: 0;}
+		* {margin: 0;}
 		html, body, .sticky-footer {height: 100%;}
-		.non-footer {min-height: 100%; height: auto !important; height: 100%; margin: 0 auto -10em;}
-		.footer, .push {height: 10em;}
+		.non-footer {min-height: 100%; height: auto !important; height: 100%; margin-bottom:-30em;}
+		.footer, .push {height: 30em;}
+	
+	/* Ende sticky footer */
         
 	/* End Sticky Footer */
 	
@@ -135,44 +123,60 @@
 
 /* End Snippets */
 
+/* BOXEN ----------------------------------------------------------------*/
+
+    .box {float:left; margin:0 1.4em 1.4em 0;}
+    .box.last {margin-right:0;}
+    
+    .box.five {}
+
+
+/* ENDE BOXEN */
+
+/* CONTAINER ----------------   ------------------------------------------------------*/
+
+    .container {padding-bottom:2em;}
+
+/* ENDE CONTAINER */
+
 /* HEADER */
+   
+    .header {position:relative;}
 
 	.logo {float:left; border:none;}
 	
 	.logo img {margin:2em 0 1.2em 0; border:none;}
 	
-	/* NAV */
+	.tagline {position:relative; left:156px; width:200px; top:-30px; display:block; float:none; clear:both;
+	            text-align:right; font-size:1.5em; font-family:Verdana, Arial; color:#aaa;}
+	
+	/* Navigation */
 		
+		.nav {margin:0.5em 0 0 0; clear:left; float:right; margin:1.6em 0 0 0;}
 		
-		
-		.nav {float:right;position:relative; margin:1.6em 0 0 0; max-width:576px;}
-		
-			.mini-nav {position:absolute; right:0; }
-				.mini-nav a {padding:1.2em 0 1.2em 1.2em;}		
-				.mini-nav a:hover {color:#E19638;}
+			.nav li {background:none; float:left; margin:0 0 0 1.2em;}
 			
-			.nav ul {margin:2.6em 0 0 0;}
+			.nav li a {background: #000; display:block; margin:0 0 0.5em 0.5em; padding:0.5em 1.2em 1.2em 0.5em;
+			        font-size:1.5em; font-variant:small-caps;}
+				
+			.nav li a:hover {background: #444;}
 			
-				.nav li {background:url(img/nav-left.gif) no-repeat 0 0; float:left; margin:0 0 0 1.2em;}
-				
-				.nav li a {background: url(img/nav-right.gif) no-repeat top right; display:block; margin:0 0 0.5em 0.5em; padding:2.3em 1.2em 1.2em 0.5em;
-				        font-size:1.5em; font-variant:small-caps;}
-					
-				.nav li a:hover {background: url(img/nav-right-on.gif) no-repeat 100% 0; color:#E19638;}
-				
-				.nav ul li.current-nav {background:#999;}
-				
-				.nav .current-nav a:hover {background:background: url(img/nav-right-on.gif) no repeat 100% 0;}
+			.nav ul li.current-nav {background:#999;}
+			
+			.nav .current-nav a:hover {background:background: url(img/nav-right-on.gif) no repeat 100% 0;}
 		
-	/* END NAV */
+		.mini-nav {position:absolute; top:1em; right:0;}
+			.mini-nav a {padding:1.2em 0 1.2em 1.2em;}		
+		
+	/* End Navigation */
 
 /* END HEADER */
 
 /* SIDEBAR */
 	
-	.sidebar {float:left; width:356px;}
+	.sidebar {float:left; width:35.6em;}
 	
-		.sidebar li {background: #181818 url(img/sidebar-nav-li-bg.gif) repeat-y;margin: 0 1.2em 0.5em 1.2em; }
+		.sidebar li {background: #181818 url(img/sidebar-nav-li-bg.gif) repeat-y; margin: 0 1.2em 0.5em 1.2em; }
 		
 		.sidebar li a {background: url(img/sidebar-nav-bg.jpg) no-repeat 0 0; display:block; border:none; padding:0.3em 12px;
 		               font-size:1.7em;}
@@ -207,11 +211,9 @@
 
 /* CONTENT */
 	
-	.hidden {z-index: -2; position:absolute; top:0; left:50%; width:50%; height:50%; background:yellow;}
+	.content {background: #181818 url(/_style/img/content-bg-2.jpg) no-repeat top right ; float:left; width:57.6em; min-height:5em;}
 	
-	.content {background: #181818 url(/_style/img/content-bg-2.jpg) no-repeat top right ; float:left; width:576px; margin-bottom:2em;}
-	
-		.content .wrapper {background: url(/_style/img/wrapper-bg.jpg) no-repeat bottom left; min-height:500px; padding:0 1.2em 2.4em 1.2em;}
+		.content .wrapper {background: url(/_style/img/wrapper-bg.jpg) no-repeat bottom left;  padding:0 1.2em 2.4em 1.2em;}
 		
 		.content .floated-left-352 {margin-left:352px;}
 		
@@ -250,7 +252,7 @@
 	
 	/* Special ------------------------------------------------------ */
 		
-		.special {border:dashed 2px #E19638; border-width:2	px; padding:8px 8px 0 8px; margin: 12px 0;}
+		.special {border:dashed 2px #E19638; border-width:2px; padding:8px 8px 0 8px; margin: 12px 0;}
 		.special h2 {color:#E19638;}
 	
 	/* Ende Special */
@@ -285,20 +287,11 @@
 
 /* END CONTENT */
 
-			
-
-
 /* FOOTER */
-
-
-/* END FOOTER */
     
     .footer {background:#111;}
-	.footer ul, .footer p { color: #fff; width:932px; text-align:center; padding:1.2em;}
-		.footer ul li {display:inline; margin:1.2em;}
-		.footer a {font-size:1.4em; color:#fff;}
-		.footer a:hover {color:#222; background:#E19638;}
-		.footer p a {font-size:1em; text-decoration:underline;}
-	
+    .footer h2 {padding:1em 0;}
+
+/* END FOOTER */	
 
 /* END LAYOUT */

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Frontend.Master" AutoEventWireup="true" CodeBehind="startseite.aspx.cs" Inherits="Frontend.Web.Starter_Layout_Basic.WebForm1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Frontend.Master" AutoEventWireup="true" CodeBehind="start.aspx.cs" Inherits="Frontend.Web.Starter_Layout_Basic.WebForm1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     
     <title>Startseite</title>

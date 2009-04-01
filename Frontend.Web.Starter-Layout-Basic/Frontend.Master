@@ -6,7 +6,7 @@
 <head id="Head1" runat="server">
     <title></title>
 
-    <link rel="shortcut icon" href="/_style/icons/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/_style/icons/favicon-speak-friend.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/_style/_import.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="/_style/print.css" type="text/css" media="print" />    
     <!--[if lt IE 7]><link rel="stylesheet" href="/_style/ie-below-7.css" type="text/css" media="screen" /><![endif]-->
@@ -31,36 +31,30 @@
 
 <body>
     <form id="form1" runat="server" class="sticky-footer">
-        <div class="non-footer clear">
-            <div class="header clear">
-                    
-                    <div class="center">
-                        
-                        <div class="nav clear">
-                            <p class="mini-nav">
-                                <a href="../kontakt/presse.aspx">Presse</a>
-                                <a href="http://www.ximag-magazin.blogspot.com/">Blog</a>
-                            </p>
-                            <ul>
-                                <li><a href="../magazin.aspx">Magazin</a></li>
-                                <li><a href="../kuenstler.aspx">Künstler</a></li>
-                                <li><a href="../szene.aspx">Szene</a></li>
-                                <li><a href="../interaktiv.aspx">Interaktiv</a></li>
-                                <li class="last-nav"><a href="../kontakt.aspx">Kontakt</a></li>
-                            </ul>
-                        </div>
-                        
-                        <a class="logo" href="../startseite.aspx">
-                            <img src="/_style/img/ximag-logo-claim.gif" alt="Startseite - Logo Ximag - Face the Fantastic" 
-                                onmouseover="src='/_style/img/ximag-logo-claim-on.gif'"
-                                onmouseout="src='/_style/img/ximag-logo-claim.gif'" />
-                        </a>
-                        
-                    </div>
-                    
+        <div class="non-footer">
+            <div class="header center clear">
+                <a class="logo" href="../start.aspx">
+                    <img src="/_style/img/speak-friend-logo.png" alt="Startseite - Logo - speak-friend" 
+                        onmouseover="src='/_style/img/speak-friend-logo.png'"
+                        onmouseout="src='/_style/img/speak-friend-logo.png'" />
+                </a>
+                <span class="tagline">Design Komponenten</span>
+                <ul class="nav">
+                    <li><a href="../start.aspx">Übersicht</a></li>
+                    <li><a href="../layout.aspx">Layout</a></li>
+                    <li><a href="../typografie.aspx">Typografie</a></li>
+                    <li><a href="../formulare.aspx">Formulare</a></li>
+                    <li class="last-nav"><a href="../interaktiv.aspx">Interaktiv</a></li>
+                </ul>
+                <div class="mini-nav">
+                    <a href="../kontakt.aspx">Kontakt</a>
+                    <a href="http://code.speak-friend.com/">Code Blog</a>
+                    <a href="../hilfe.aspx">Hilfe</a>
                 </div>
+                
+            </div>
             
-            <div class="center">
+            <div class="container center">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
@@ -68,12 +62,51 @@
         </div>
     
         <div class="footer">
-            <div class="center">
-                <ul>
-                    <li><a href="../impressum.aspx">Impressum</a></li>
-                    <li><a href="../kontakt.aspx">Kontakt</a></li>
-                </ul>
-                <p>Design und Umsetzung: <a href="http://www.speak-friend.com" target="blank">speak-friend.com</a></p>
+            <div class="center clear">
+                <h2>Suchst Du etwas bestimmtes?</h2>
+                <div class="box five">
+                    <h3>Layout</h3>
+                    <ul>
+                        <li><a href="#">Standard - 2-spaltig</a></li>
+                        <li><a href="#">Standard - 3-spaltig</a></li>
+                    </ul>
+                </div>
+                <div class="box five">
+                    <h3>Typografie</h3>
+                    <ul>
+                        <li><a href="#">Standard-Elemente</a></li>
+                        <li><a href="#">Sonder-Elemente</a></li>
+                    </ul>
+                </div>
+                <div class="box five">
+                    <h3>Formulare</h3>
+                    <ul>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Adress-Eingabe</a></li>
+                        <li><a href="#">Anmeldung</a></li>
+                        <li><a href="#">Style-Eingabe</a></li>
+                    </ul>
+                </div>
+                <div class="box five">
+                    <h3>Interaktiv</h3>
+                    <ul>
+                        <li><a href="#">Gallerie</a></li>
+                        <li><a href="#">Collapsible Panel</a></li>
+                        <li><a href="#">Tabs</a></li>
+                        <li><a href="#">Tooltip (Hilfe)</a></li>
+                    </ul>
+                </div>
+                <div class="box five">
+                    <h3>Über Uns</h3>
+                    <ul>
+                        <li><a href="ueber-uns.aspx">Warum speak-lib?</a></li>
+                        <li><a href="kontakt.aspx">Kontakt</a></li>
+                        <li><a href="impressum.aspx">Impressum</a></li>
+                    </ul>
+                </div>
+                <div class="box last">
+                    Design und Umsetzung: <a href="http://www.speak-friend.com" target="blank">speak-friend.com</a>
+                </div>    
             </div>
         </div>
     
