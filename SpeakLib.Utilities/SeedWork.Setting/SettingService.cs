@@ -36,11 +36,16 @@ namespace SpeakFriend.Utilities
                 CreateOrUpdate(setting);
         }
 
-        public void Update(Setting list)
+        public void Update(Setting setting)
         {
-            list.Modified = DateTime.Now;
+            setting.Modified = DateTime.Now;
+            _repository.Update(setting);
+        }
 
-            _repository.Update(list);
+        public void Update(SettingList settings)
+        {
+            foreach(var setting in settings)
+                Update(setting);
         }
 
         public void CreateOrUpdate(Setting setting)

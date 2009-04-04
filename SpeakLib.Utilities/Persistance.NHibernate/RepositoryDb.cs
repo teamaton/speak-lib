@@ -87,6 +87,11 @@ namespace SpeakFriend.Utilities
             _session.Delete(domainObject);
         }
 
+        public virtual void Delete(int id)
+        {
+            Delete(GetById(id));
+        }
+
         public virtual TDomainObjectList GetAll()
         {
             var list = new TDomainObjectList();

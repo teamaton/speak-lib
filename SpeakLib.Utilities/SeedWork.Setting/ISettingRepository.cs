@@ -1,4 +1,4 @@
-﻿namespace SpeakFriend.Utilities
+namespace SpeakFriend.Utilities
 {
     public interface ISettingRepository
     {

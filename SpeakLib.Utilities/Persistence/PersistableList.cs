@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities
 {
-    public abstract class PersistableList<T> : List<T> where T : IPersistable
+    public abstract class PersistableList<T> : List<T>
     {
         protected PersistableList(){}
 
