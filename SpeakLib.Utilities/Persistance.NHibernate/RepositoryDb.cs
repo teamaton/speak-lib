@@ -1,4 +1,5 @@
-﻿using NHibernate;
+﻿using System;
+using NHibernate;
 using NHibernate.Criterion;
 
 namespace SpeakFriend.Utilities
@@ -74,6 +75,7 @@ namespace SpeakFriend.Utilities
 
         public virtual void Create(TDomainObject domainObject)
         {
+            domainObject.Created = DateTime.Now;
             _session.Save(domainObject);
         }
 
