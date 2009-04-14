@@ -18,7 +18,7 @@ namespace SpeakFriend.Utilities
         public void EqualTo(Enum value)
         {
             _value = value;
-            AddUnique(this);
+            AddUniqueToContainer();
         }
 
         public override void AddToCriteria(ICriteria criteria)

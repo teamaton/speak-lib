@@ -56,14 +56,14 @@ namespace SpeakFriend.Utilities
             return true;
         }
 
-        public void AddUnique(Condition condition)
+        private void AddUniqueToContainer(Condition condition)
         {
             Conditions.AddUnique(condition);
         }
 
-        public void AddUnique()
+        public void AddUniqueToContainer()
         {
-            AddUnique(this);
+            AddUniqueToContainer(this);
         }
 
         public abstract void AddToCriteria(ICriteria criteria);
