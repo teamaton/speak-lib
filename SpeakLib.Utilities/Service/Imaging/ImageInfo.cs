@@ -13,5 +13,6 @@ namespace SpeakFriend.Utilities
         public string AbsolutePath { get; set; }
         public string RelativePath { get; set; }
         public int HashCode { get; set; }
+        public bool UseJpeg { get; set; }
     }
 }

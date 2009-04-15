@@ -25,17 +25,32 @@ namespace SpeakFriend.Utilities
             _pathRelative = pathRelative;
         }
 
-        public void Store(string imageKey, string sourcePath)
+        public void Store(string imageKey, string sourcePath, bool useJpeg)
         {
+            if (useJpeg)
+            {
+                File.Delete(GetPathAbsolute(imageKey, false));
+                File.Delete(GetPathAbsolute(imageKey, true));
 
-            using (var image = Image.FromFile(sourcePath))
-                Store(imageKey, image);
+                //copy original file to avoid quality loss
+                var path = GetPathAbsolute(imageKey, true);
+                File.Copy(sourcePath, path);
+                CalculateHashCode(path, imageKey);
+            }
+            else
+            {
+                using (var image = Image.FromFile(sourcePath))
+                    Store(imageKey, image, false);
+            }
         }
 
-        public void Store(string imageKey, Image image)
+        public void Store(string imageKey, Image image, bool useJpeg)
         {
-            var path = GetPathAbsolute(imageKey);
-            image.Save(path, ImageFormat.Png);
+            File.Delete(GetPathAbsolute(imageKey, false));
+            File.Delete(GetPathAbsolute(imageKey, true));
+
+            var path = GetPathAbsolute(imageKey, useJpeg);
+            image.Save(path, useJpeg ? ImageFormat.Jpeg : ImageFormat.Png);
             CalculateHashCode(path, imageKey);
         }
 
@@ -54,13 +69,16 @@ namespace SpeakFriend.Utilities
   
         public ImageInfo Get(string imageKey)
         {
+            var useJpeg = File.Exists(GetPathAbsolute(imageKey, true));
+
             var imageInfo = new ImageInfo
-                          {
-                              AbsolutePath = GetPathAbsolute(imageKey),
-                              RelativePath = GetPathRelative(imageKey),
-                              Name = imageKey,
-                              Id = -1
-                          };
+                                {
+                                    UseJpeg = useJpeg,
+                                    AbsolutePath = GetPathAbsolute(imageKey, useJpeg),
+                                    RelativePath = GetPathRelative(imageKey, useJpeg),
+                                    Name = imageKey,
+                                    Id = -1
+                                };
 
             EnsureHashCode(imageInfo);
 
@@ -73,6 +91,7 @@ namespace SpeakFriend.Utilities
 
             var thumb = new ImageInfo
                             {
+                                UseJpeg = image.UseJpeg,
                                 AbsolutePath = GetThumbPathAbsolute(image, maxSize),
                                 RelativePath = GetThumbPathRelative(image, maxSize),
                                 Name = imageKey,
@@ -148,25 +167,29 @@ namespace SpeakFriend.Utilities
             using (var image = Image.FromFile(sourcePath))
             using (var resized = image.Width <= maxSize.Width && image.Height <= maxSize.Height
                                      ? image
-                                     : maxSize.Width != 0 && (maxSize.Height == 0
-                                       || (double) image.Width/image.Height >= (double) maxSize.Width/maxSize.Height)
+                                     : maxSize.Width != 0
+                                       && (maxSize.Height == 0
+                                           || (double) image.Width/image.Height
+                                              >= (double) maxSize.Width/maxSize.Height)
                                            ? ImageUtils.ResizeImage(image, maxSize.Width, false)
                                            : ImageUtils.ResizeImage(image, maxSize.Height, true))
-                resized.Save(thumb.AbsolutePath, ImageFormat.Png);
+                resized.Save(thumb.AbsolutePath, thumb.UseJpeg ? ImageFormat.Jpeg : ImageFormat.Png);
         }
 
         private string GetThumbPathRelative(ImageInfo image, Size maxSize)
         {
             return Path.Combine(
                 Path.Combine(_pathRelative, _pathThumbs),
-                string.Format("{0}_{1}x{2}px.png", image.HashCode, maxSize.Width, maxSize.Height));
+                string.Format("{0}_{1}x{2}px.{3}", image.HashCode, maxSize.Width, maxSize.Height,
+                              image.UseJpeg ? "jpg" : "png"));
         }
 
         private string GetThumbPathAbsolute(ImageInfo image, Size maxSize)
         {
             return Path.Combine(
                 Path.Combine(_pathAbsolute, _pathThumbs),
-                string.Format("{0}_{1}x{2}px.png", image.HashCode, maxSize.Width, maxSize.Height));
+                string.Format("{0}_{1}x{2}px.{3}", image.HashCode, maxSize.Width, maxSize.Height,
+                              image.UseJpeg ? "jpg" : "png"));
         }
 
         private void EnsureHashCode(ImageInfo info)
@@ -214,14 +237,14 @@ namespace SpeakFriend.Utilities
             return Path.Combine(_pathAbsolute, groupKey);
         }
 
-        private string GetPathAbsolute(string imageKey)
+        private string GetPathAbsolute(string imageKey, bool useJpeg)
         {
-            return Path.Combine(_pathAbsolute, string.Format("{0}.png", imageKey));
+            return Path.Combine(_pathAbsolute, string.Format("{0}.{1}", imageKey, useJpeg ? "jpg" : "png"));
         }
 
-        private string GetPathRelative(string imageKey)
+        private string GetPathRelative(string imageKey, bool useJpeg)
         {
-            return Path.Combine(_pathRelative, string.Format("{0}.png", imageKey));
+            return Path.Combine(_pathRelative, string.Format("{0}.{1}", imageKey, useJpeg ? "jpg" : "png"));
         }
 
         public void Delete(string groupKey, int id)
