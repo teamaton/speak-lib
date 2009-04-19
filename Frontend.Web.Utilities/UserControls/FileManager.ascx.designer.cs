@@ -68,49 +68,49 @@ namespace SpeakFriend.Web.Utilities.UserControls {
         protected global::System.Web.UI.WebControls.HyperLink hplCancel;
         
         /// <summary>
-        /// hplSelectAll control.
+        /// btnSelectAll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hplSelectAll;
+        protected global::System.Web.UI.WebControls.LinkButton btnSelectAll;
         
         /// <summary>
-        /// hplDelete control.
+        /// btnDelete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hplDelete;
+        protected global::System.Web.UI.WebControls.LinkButton btnDelete;
         
         /// <summary>
-        /// hplList control.
+        /// btnList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hplList;
+        protected global::System.Web.UI.WebControls.LinkButton btnList;
         
         /// <summary>
-        /// hplIcons control.
+        /// btnIcons control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hplIcons;
+        protected global::System.Web.UI.WebControls.LinkButton btnIcons;
         
         /// <summary>
-        /// cbSelectAll control.
+        /// cbTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbSelectAll;
+        protected global::System.Web.UI.WebControls.CheckBox cbTitle;
         
         /// <summary>
         /// btnOrderByFileName control.

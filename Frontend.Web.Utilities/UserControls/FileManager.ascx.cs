@@ -19,22 +19,14 @@ namespace SpeakFriend.Web.Utilities.UserControls
 
         private ImageStore _imageStore;
         private string _groupKey;
-        private int selectedId;
+        private int currentId;
+        private readonly List<int> selectedIds = new List<int>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             rptFiles.ItemCommand += rptFiles_ItemCommand;
-        }
-
-        void rptFiles_ItemCommand(object source, RepeaterCommandEventArgs e)
-        {
-            switch(e.CommandName)
-            {
-                case "selectItem":
-                    int.TryParse(e.CommandArgument.ToString(), out selectedId);
-                    Populate();
-                    break;
-            }
+            btnDelete.Click += btnDelete_Click;
+            btnSelectAll.Click += ((sender1, e1) => SetAllChecked(true));
         }
 
         public void Register(ImageStore imageStore, string groupKey)
@@ -42,14 +34,50 @@ namespace SpeakFriend.Web.Utilities.UserControls
             _imageStore = imageStore;
             _groupKey = groupKey;
 
+            FindSelectedItems();
             Populate();
         }
 
         private void Populate()
         {
-            rptFiles.DataSource = _imageStore.GetGroup(_groupKey);
+            rptFiles.DataSource = GetImages();
             rptFiles.ItemDataBound += rptFiles_ItemDataBound;
             rptFiles.DataBind();
+        }
+
+        private void PopulateSelectedItemPanel(ImageInfo image)
+        {
+            pnlSelectedItemDetails.Visible = true;
+            ltName.Text = image.Name;
+            imgPreview.ImageUrl =
+                _imageStore.GetThumb(_groupKey, image.Id, new Size(previewMaxWidth, previewMaxHeight)).RelativePath;
+            imgOriginal.ImageUrl = image.RelativePath;
+        }
+
+        private void FindSelectedItems()
+        {
+            selectedIds.Clear();
+            var images = GetImages();
+            foreach(var item in rptFiles.Items.OfType<RepeaterItem>())
+            {
+                var itemHelper = new ItemTemplateHelper(item);
+                if (itemHelper.Find<CheckBox>("cbSelectItem").Checked)
+                    selectedIds.Add(images[item.ItemIndex].Id);
+            }
+        }
+
+        private void SetAllChecked(bool value)
+        {
+            foreach (var item in rptFiles.Items.OfType<RepeaterItem>())
+            {
+                var itemHelper = new ItemTemplateHelper(item);
+                itemHelper.Find<CheckBox>("cbSelectItem").Checked = value;
+            }
+        }
+
+        private List<ImageInfo> GetImages()
+        {
+            return _imageStore.GetGroup(_groupKey);
         }
 
         void rptFiles_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -76,20 +104,31 @@ namespace SpeakFriend.Web.Utilities.UserControls
                 button.CommandArgument = image.Id.ToString();
             }
 
-            if(image.Id == selectedId)
+            if(image.Id == currentId)
             {
                 itemHelper.Find<Panel>("pnlItem").AddCssClass("current");
                 PopulateSelectedItemPanel(image);
             }
         }
 
-        private void PopulateSelectedItemPanel(ImageInfo image)
+        void rptFiles_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            pnlSelectedItemDetails.Visible = true;
-            ltName.Text = image.Name;
-            imgPreview.ImageUrl =
-                _imageStore.GetThumb(_groupKey, image.Id, new Size(previewMaxWidth, previewMaxHeight)).RelativePath;
-            imgOriginal.ImageUrl = image.RelativePath;
+            switch(e.CommandName)
+            {
+                case "selectItem":
+                    int.TryParse(e.CommandArgument.ToString(), out currentId);
+                    Populate();
+                    break;
+            }
         }
+
+        void btnDelete_Click(object sender, EventArgs e)
+        {
+            foreach (var id in selectedIds)
+                _imageStore.Delete(_groupKey, id);
+            Populate();
+        }
+
+
     }
 }

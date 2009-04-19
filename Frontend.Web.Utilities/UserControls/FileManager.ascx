@@ -22,14 +22,14 @@
     
     <div class="file-list">
         <div class="file-actions">
-            <asp:Hyperlink ID="hplSelectAll" CssClass="choose-all" runat="server">alle auswählen</asp:Hyperlink>
-            <asp:HyperLink ID="hplDelete" cssclass="delete" runat="server">Löschen</asp:HyperLink>
-            <asp:HyperLink ID="hplList" cssclass="list" runat="server">Liste</asp:HyperLink>
-            <asp:HyperLink ID="hplIcons" cssclass="tile" runat="server">Symbole</asp:HyperLink>
+            <asp:LinkButton ID="btnSelectAll" CssClass="choose-all" runat="server">alle auswählen</asp:LinkButton>
+            <asp:LinkButton ID="btnDelete" cssclass="delete" runat="server">Löschen</asp:LinkButton>
+            <asp:LinkButton ID="btnList" cssclass="list" runat="server">Liste</asp:LinkButton>
+            <asp:LinkButton ID="btnIcons" cssclass="tile" runat="server">Symbole</asp:LinkButton>
         </div>
         <div class="g-head">
             <div class="g-row clear">
-                <span class="g-col one"><asp:CheckBox ID="cbSelectAll" runat="server" /></span>
+                <span class="g-col one"><asp:CheckBox ID="cbTitle" runat="server" Enabled="false" /></span>
                 <span class="g-col two"><asp:LinkButton ID="btnOrderByFileName" runat="server">Datei-Name</asp:LinkButton></span>
                 <span class="g-col three"><asp:LinkButton ID="btnOrderBySize" runat="server">Größe</asp:LinkButton></span>
                 <span class="g-col four"><asp:LinkButton ID="btnOrderByType" runat="server">Typ</asp:LinkButton></span>
