@@ -16,6 +16,7 @@
         <ul>
             <li><a href="/ExamplesFrontend/Pager.aspx">Pager</a></li>          
             <li><a href="/ExamplesFrontend/FileUpload/Basics.aspx">FileUpload</a></li>            
+            <li><a href="/ExamplesFrontend/FileManager.aspx">FileManager</a></li>
             <li><a href="/ExamplesFrontend/UserMessage.aspx">User-Message</a></li>
             <li><a href="/ExamplesFrontend/Validation.aspx">Validation</a></li>
             <li><a href="/ExamplesFrontend/Navigation.aspx">Navigation</a></li>  

@@ -60,6 +60,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExamplesFrontend\FileManager.aspx.cs">
+      <DependentUpon>FileManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExamplesFrontend\FileManager.aspx.designer.cs">
+      <DependentUpon>FileManager.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ExamplesFrontend\Pager.aspx.cs">
       <DependentUpon>Pager.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -127,6 +134,14 @@
     <Compile Include="ExamplesUtilities\ExtensionMethods.aspx.designer.cs">
       <DependentUpon>ExtensionMethods.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="UserControls\FileManager.ascx.cs">
+      <DependentUpon>FileManager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\FileManager.ascx.designer.cs">
+      <DependentUpon>FileManager.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Message.ascx.cs">
       <DependentUpon>Message.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -134,12 +149,12 @@
     <Compile Include="UserControls\Message.ascx.designer.cs">
       <DependentUpon>Message.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Imprint.aspx.cs">
-      <DependentUpon>Imprint.aspx</DependentUpon>
+    <Compile Include="LegalNotice.aspx.cs">
+      <DependentUpon>LegalNotice.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Imprint.aspx.designer.cs">
-      <DependentUpon>Imprint.aspx</DependentUpon>
+    <Compile Include="LegalNotice.aspx.designer.cs">
+      <DependentUpon>LegalNotice.aspx</DependentUpon>
     </Compile>
     <Compile Include="Download.aspx.cs">
       <DependentUpon>Download.aspx</DependentUpon>
@@ -164,6 +179,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ExamplesFrontend\FileManager.aspx" />
     <Content Include="ExamplesFrontend\Pager.aspx" />
     <Content Include="ExamplesFrontend\FileUpload\Basics.aspx" />
     <Content Include="ExamplesFrontend\FileUpload\UploadContent\DefaultContent.aspx" />
@@ -174,8 +190,9 @@
     <Content Include="ExamplesFrontend\Validation.aspx" />
     <Content Include="ExamplesSetting\Settings.aspx" />
     <Content Include="ExamplesUtilities\ExtensionMethods.aspx" />
+    <Content Include="UserControls\FileManager.ascx" />
     <Content Include="UserControls\Message.ascx" />
-    <Content Include="Imprint.aspx" />
+    <Content Include="LegalNotice.aspx" />
     <Content Include="Download.aspx" />
     <Content Include="Pages\Seedwork.aspx" />
     <Content Include="Welcome.aspx" />
@@ -203,6 +220,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="FileManagerExampleDir\" />
     <Folder Include="TempFiles\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

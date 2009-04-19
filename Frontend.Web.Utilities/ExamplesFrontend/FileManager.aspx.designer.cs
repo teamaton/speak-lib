@@ -11,6 +11,15 @@
 namespace SpeakFriend.Web.Utilities {
     
     
-    public partial class frmWelcome {
+    public partial class frmFileManager {
+        
+        /// <summary>
+        /// FileManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SpeakFriend.Web.Utilities.UserControls.FileManager FileManager1;
     }
 }

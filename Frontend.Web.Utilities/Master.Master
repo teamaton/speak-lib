@@ -28,6 +28,9 @@
 </head>
 <body>
     <form id="form1" runat="server" class="sticky-footer">
+    
+    <ajaxToolkit:ToolkitScriptManager runat="Server" ID="scriptManager" EnablePageMethods="true" /> 
+    
     <div>
     
         <div class="non-footer">
@@ -103,8 +106,8 @@
                     <ul>
                         <li><a href="ueber-uns.aspx">Warum speak-lib?</a></li>
                         <li><a href="kontakt.aspx">Kontakt</a></li>
-                        <li><a href="/Imprint.aspx">imprint</a></li>
-                        <li><a href="/Download.aspx">download</a></li>
+                        <li><a href="/Imprint.aspx">Impressum</a></li>
+                        <li><a href="/Download.aspx">Download</a></li>
                     </ul>
                 </div>
                 <div class="box last">
