@@ -14,6 +14,15 @@ namespace SpeakFriend.Web.Utilities.UserControls {
     public partial class FileManager {
         
         /// <summary>
+        /// btnUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnUpload;
+        
+        /// <summary>
         /// pnlSelectedItemDetails control.
         /// </summary>
         /// <remarks>
@@ -21,6 +30,33 @@ namespace SpeakFriend.Web.Utilities.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlSelectedItemDetails;
+        
+        /// <summary>
+        /// mvPreview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.MultiView mvPreview;
+        
+        /// <summary>
+        /// vwNoFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vwNoFile;
+        
+        /// <summary>
+        /// vwImagePreview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vwImagePreview;
         
         /// <summary>
         /// imgPreview control.
@@ -66,6 +102,42 @@ namespace SpeakFriend.Web.Utilities.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hplCancel;
+        
+        /// <summary>
+        /// vwUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vwUpload;
+        
+        /// <summary>
+        /// fufUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SpeakFriend.FileUpload.FileUploadFrame fufUpload;
+        
+        /// <summary>
+        /// btnSaveUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnSaveUpload;
+        
+        /// <summary>
+        /// hplCancelUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hplCancelUpload;
         
         /// <summary>
         /// btnSelectAll control.

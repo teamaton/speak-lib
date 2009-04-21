@@ -1,24 +1,38 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="FileManager.ascx.cs" Inherits="SpeakFriend.Web.Utilities.UserControls.FileManager" %>
 
-    <asp:Panel runat="server" ID="pnlSelectedItemDetails" CssClass="preview-panel form" Visible="false">
-        <h3>Vorschau</h3>        
-        <asp:Image runat="server" ID="imgPreview" CssClass="preview" AlternateText="Vorschau" />
-        <p class="img-title"><asp:Literal runat="server" ID="ltName">Name</asp:Literal></p>
-        <p><asp:HyperLink runat="server" id="hplEnlarge" CssClass="enlarge">Original anzeigen</asp:HyperLink></p>
-        <h4 class="link clear">
-<%--            <asp:HyperLink class="small" ID="hplMoreSettings" runat="server"><asp:Image runat="server" ID="imgExpand"/>Details <asp:Label runat="server" ID="lblText"/></asp:HyperLink>
-        </h4>
-        <asp:Panel ID="pnlMoreSettings" height="0" cssclass="collapsible-panel clear" runat="server">
-            <asp:Label ID="Label3" AssociatedControlId="txtAltTag" runat="server">Alt Tag</asp:Label>
-            <asp:TextBox runat="server" CssClass="alt-tag" ID="txtAltTag"></asp:TextBox>
-            <p class="light">
-                Wählen Sie einen möglichst deskriptiven Text, der angezeigt wird, sollte das von Ihnen hochgeladene Bild nicht verfügbar sein.
-            </p>
-        </asp:Panel>--%>
-        
-        <asp:LinkButton ID="btnSave" runat="server" class="primary button-small"><span>Speichern</span></asp:LinkButton>
-        <asp:HyperLink ID="hplCancel" CssClass="secondary" runat="server">Abbrechen</asp:HyperLink>
+<div class="box">
+    <asp:LinkButton ID="btnUpload" runat="server" CssClass="upload-button">Neue Datei hochladen</asp:LinkButton>
+    <asp:Panel runat="server" ID="pnlSelectedItemDetails" CssClass="preview-panel form">
+        <h3>Vorschau</h3>
+        <asp:MultiView runat="server" ID="mvPreview" ActiveViewIndex="0">
+          <asp:View runat="server" ID="vwNoFile">
+            Sie haben keine Datei ausgew&auml;hlt.
+          </asp:View>
+          <asp:View runat="server" ID="vwImagePreview">
+            <asp:Image runat="server" ID="imgPreview" CssClass="preview" AlternateText="Vorschau" />
+            <p class="img-title"><asp:Literal runat="server" ID="ltName">Name</asp:Literal></p>
+            <p><asp:HyperLink runat="server" id="hplEnlarge" CssClass="enlarge">Original anzeigen</asp:HyperLink></p>
+            <h4 class="link clear">
+<%--                <asp:HyperLink class="small" ID="hplMoreSettings" runat="server"><asp:Image runat="server" ID="imgExpand"/>Details <asp:Label runat="server" ID="lblText"/></asp:HyperLink>
+            </h4>
+            <asp:Panel ID="pnlMoreSettings" height="0" cssclass="collapsible-panel clear" runat="server">
+                <asp:Label ID="Label3" AssociatedControlId="txtAltTag" runat="server">Alt Tag</asp:Label>
+                <asp:TextBox runat="server" CssClass="alt-tag" ID="txtAltTag"></asp:TextBox>
+                <p class="light">
+                    Wählen Sie einen möglichst deskriptiven Text, der angezeigt wird, sollte das von Ihnen hochgeladene Bild nicht verfügbar sein.
+                </p>
+            </asp:Panel>--%>
+            <asp:LinkButton ID="btnSave" runat="server" class="primary button-small"><span>Speichern</span></asp:LinkButton>
+            <asp:HyperLink ID="hplCancel" CssClass="secondary" runat="server">Abbrechen</asp:HyperLink>
+          </asp:View>        
+          <asp:View runat="server" ID="vwUpload">
+            <speakFriend:FileUploadFrame id="fufUpload" runat="server" ContentUrl="../ExamplesFrontend/FileUpload/UploadContent/DefaultContent.aspx" />
+            <asp:LinkButton ID="btnSaveUpload" runat="server" class="primary button-small"><span>Speichern</span></asp:LinkButton>
+            <asp:HyperLink ID="hplCancelUpload" CssClass="secondary" runat="server">Abbrechen</asp:HyperLink>
+          </asp:View>
+        </asp:MultiView>
     </asp:Panel>
+</div>
     
     <div class="file-list">
         <div class="file-actions">

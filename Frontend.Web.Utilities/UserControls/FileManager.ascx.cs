@@ -24,6 +24,9 @@ namespace SpeakFriend.Web.Utilities.UserControls
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            btnUpload.Click += btnUpload_Click;
+            btnSaveUpload.Click += btnSaveUpload_Click;
+
             rptFiles.ItemCommand += rptFiles_ItemCommand;
             btnDelete.Click += btnDelete_Click;
             btnSelectAll.Click += ((sender1, e1) => SetAllChecked(true));
@@ -47,7 +50,7 @@ namespace SpeakFriend.Web.Utilities.UserControls
 
         private void PopulateSelectedItemPanel(ImageInfo image)
         {
-            pnlSelectedItemDetails.Visible = true;
+            mvPreview.SetActiveView(vwImagePreview);
             ltName.Text = image.Name;
             imgPreview.ImageUrl =
                 _imageStore.GetThumb(_groupKey, image.Id, new Size(previewMaxWidth, previewMaxHeight)).RelativePath;
@@ -94,9 +97,9 @@ namespace SpeakFriend.Web.Utilities.UserControls
             var btnDate = itemHelper.Find<LinkButton>("btnDate");
 
             btnName.Text = image.Name;
-            btnSize.Text = "unknown";
+            btnSize.Text = string.Format("{0} KB", Math.Ceiling(new FileInfo(image.AbsolutePath).Length/1024d));
             btnType.Text = Path.GetExtension(image.AbsolutePath);
-            btnDate.Text = File.GetCreationTime(image.AbsolutePath).ToString();
+            btnDate.Text = File.GetCreationTime(image.AbsolutePath).ToString("dd.MM.yyyy");
 
             foreach (var button in new[] { btnName, btnSize, btnType, btnDate })
             {
@@ -120,6 +123,21 @@ namespace SpeakFriend.Web.Utilities.UserControls
                     Populate();
                     break;
             }
+        }
+
+        void btnUpload_Click(object sender, EventArgs e)
+        {
+            mvPreview.SetActiveView(vwUpload);
+        }
+
+        void btnSaveUpload_Click(object sender, EventArgs e)
+        {
+            var file = fufUpload.UploadedFiles.Last();
+            var image = _imageStore.StoreToGroup(_groupKey, file.TempFilePathAbsolute,
+                                                 Path.GetFileNameWithoutExtension(file.Name));
+            currentId = image.Id;
+            mvPreview.SetActiveView(vwImagePreview);
+            Populate();
         }
 
         void btnDelete_Click(object sender, EventArgs e)

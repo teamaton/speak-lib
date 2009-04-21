@@ -54,7 +54,7 @@ namespace SpeakFriend.Utilities
             CalculateHashCode(path, imageKey);
         }
 
-        public void StoreToGroup(string groupKey, string sourcePath, string name)
+        public ImageInfo StoreToGroup(string groupKey, string sourcePath, string name)
         {
             var groupDirectory = GetGroupDirectoryAbsolute(groupKey);
             Directory.CreateDirectory(groupDirectory);
@@ -65,6 +65,8 @@ namespace SpeakFriend.Utilities
 
             using (var image = Image.FromFile(sourcePath))
                 image.Save(path, ImageFormat.Png);
+
+            return Get(groupKey, id);
         }
   
         public ImageInfo Get(string imageKey)
