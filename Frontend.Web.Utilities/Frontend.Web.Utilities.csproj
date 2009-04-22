@@ -60,6 +60,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExamplesFrontend\SeoLinkButton.aspx.cs">
+      <DependentUpon>SeoLinkButton.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExamplesFrontend\SeoLinkButton.aspx.designer.cs">
+      <DependentUpon>SeoLinkButton.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ExamplesFrontend\FileManager.aspx.cs">
       <DependentUpon>FileManager.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -146,9 +153,6 @@
       <DependentUpon>Message.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserControls\Message.ascx.designer.cs">
-      <DependentUpon>Message.ascx</DependentUpon>
-    </Compile>
     <Compile Include="LegalNotice.aspx.cs">
       <DependentUpon>LegalNotice.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -170,6 +174,9 @@
     <Compile Include="Pages\Seedwork.aspx.designer.cs">
       <DependentUpon>Seedwork.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Message.ascx.designer.cs">
+      <DependentUpon>Message.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Welcome.aspx.cs">
       <DependentUpon>Welcome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -179,6 +186,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ExamplesFrontend\SeoLinkButton.aspx" />
     <Content Include="ExamplesFrontend\FileManager.aspx" />
     <Content Include="ExamplesFrontend\Pager.aspx" />
     <Content Include="ExamplesFrontend\FileUpload\Basics.aspx" />

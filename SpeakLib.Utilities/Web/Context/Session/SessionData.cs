@@ -17,8 +17,8 @@ namespace SpeakFriend.Utilities.Web
         {
             get
             {
-                if (ContextUtil.IsWebContext)
-                    return HttpContext.Current.Session[index];
+				if (ContextUtil.IsWebContext)
+					return HttpContext.Current.Session[index];
 
                 return AppDomain.CurrentDomain.GetData(index);
             }
@@ -26,8 +26,8 @@ namespace SpeakFriend.Utilities.Web
             {
                 if (ContextUtil.IsWebContext)
                     HttpContext.Current.Session[index] = value;
-
-                AppDomain.CurrentDomain.SetData(index, value);
+				else
+					AppDomain.CurrentDomain.SetData(index, value);
             }
         }
 

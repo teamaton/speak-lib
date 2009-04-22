@@ -149,6 +149,30 @@ namespace SpeakFriend.Utilities
         {
             var regex = new Regex(@"^\-?[0-9]+$");
             return regex.IsMatch(value);
-        }
+		}
+
+		/// <summary>
+		/// Ensures that the given string ends with the given suffix.
+		/// Appends the suffix to the string if not.
+		/// </summary>
+		public static string EnsureEndsWith(this string value, string suffix)
+		{
+			if (value.EndsWith(suffix))
+				return value;
+
+			return value + suffix;
+		}
+
+		/// <summary>
+		/// Ensures that the given string starts with the given suffix.
+		/// Prepends the prefix to the string if not.
+		/// </summary>
+		public static string EnsureStartsWith(this string value, string prefix)
+		{
+			if (value.StartsWith(prefix))
+				return value;
+
+			return prefix + value;
+		}
     }
 }

@@ -165,6 +165,7 @@
     <Compile Include="Web\Context\Parameters\ParameterHandlerService.cs" />
     <Compile Include="Web\Controls\HoverImageButton.cs" />
     <Compile Include="Web\Controls\HoverImage.cs" />
+    <Compile Include="Web\Controls\SeoLinkButton.cs" />
     <Compile Include="Web\Controls\PagerControl.cs" />
     <Compile Include="Web\ControlUtils\ControlUtil.cs" />
     <Compile Include="Web\ControlUtils\HtmlControlExtensionMethods.cs" />

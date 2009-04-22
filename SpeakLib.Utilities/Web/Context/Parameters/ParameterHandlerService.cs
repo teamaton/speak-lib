@@ -34,6 +34,19 @@ namespace SpeakFriend.Utilities.Web
                 }
         }
 
+		public void ProcessParam(ParameterHandler parameterHandler)
+		{
+			ProcessParam(HttpContext.Current.Request.QueryString, parameterHandler);
+		}
+
+		public void ProcessParam(NameValueCollection queryParams, ParameterHandler parameterHandler)
+		{
+			if (parameterHandler.AppliesOnlyLocal && !ContextUtil.IsLocal)
+				return;
+
+			parameterHandler.Action(queryParams[parameterHandler.Name]);
+		}
+
         public bool IsHandlerActive(ParameterHandler parameterHandler)
         {
             return IsHandlerActive(HttpContext.Current.Request.QueryString, parameterHandler);

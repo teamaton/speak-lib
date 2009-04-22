@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Message.ascx.cs" Inherits="SpeakFriend.Web.Utilities.UserControls.Message" %>
+﻿<%@ Control Language="C#" AutoEventWireup="True" CodeBehind="Message.ascx.cs" Inherits="SpeakFriend.Web.Utilities.UserControls.Message" %>
 
 <asp:Panel runat="server" ID="pnlUserMsg" class="user-message success" Visible="false" EnableViewState="false" >
     <h3>
