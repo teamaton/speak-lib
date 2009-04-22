@@ -137,24 +137,53 @@ namespace SpeakFriend.Utilities
 
         public List<ImageInfo> GetGroup(string groupKey)
         {
+            return GetGroup(groupKey, ImageSort.None);
+        }
+
+        public List<ImageInfo> GetGroup(string groupKey, ImageSort imageSort)
+        {
             if(!Directory.Exists(GetGroupDirectoryAbsolute(groupKey))) 
                 return new List<ImageInfo>();
 
-            return
-                Directory.GetFiles(GetGroupDirectoryAbsolute(groupKey)).ToList().ConvertAll(
-                    path =>
-                        {
-                            var filename = Path.GetFileNameWithoutExtension(path);
-                            var extension = Path.GetExtension(path);
-                            return new ImageInfo
-                                       {
-                                           Id = Convert.ToInt32(filename.Split('-').First()),
-                                           AbsolutePath = path,
-                                           RelativePath = GetPathRelative(groupKey, filename + extension),
-                                           Name = filename.Substring(filename.IndexOf('-') + 1)
-                                       };
-                        });
-            
+            var result = Directory.GetFiles(GetGroupDirectoryAbsolute(groupKey)).ToList().ConvertAll(
+                path =>
+                    {
+                        var filename = Path.GetFileNameWithoutExtension(path);
+                        var extension = Path.GetExtension(path);
+                        return new ImageInfo
+                                   {
+                                       Id = Convert.ToInt32(filename.Split('-').First()),
+                                       AbsolutePath = path,
+                                       RelativePath = GetPathRelative(groupKey, filename + extension),
+                                       Name = filename.Substring(filename.IndexOf('-') + 1)
+                                   };
+                    });
+
+            if(imageSort == ImageSort.None) return result;
+
+            Comparison<ImageInfo> comparison;
+
+            switch(imageSort)
+            {
+                case ImageSort.Name:
+                    comparison = (i1, i2) => i1.Name.CompareTo(i2.Name);
+                    break;
+                case ImageSort.Size:
+                    comparison = (i1, i2) => i1.FileSize.CompareTo(i2.FileSize);
+                    break;
+                case ImageSort.Type:
+                    comparison = (i1, i2) => i1.FileExtension.CompareTo(i2.FileExtension);
+                    break;
+                case ImageSort.Date:
+                    comparison = (i1, i2) => i1.CreationTime.CompareTo(i2.CreationTime);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("imageSort");
+            }
+
+            result.Sort(comparison);
+
+            return result;
         }
 
         private void EnsureThumb(ImageInfo original, ImageInfo thumb, Size maxSize)

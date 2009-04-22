@@ -19,8 +19,46 @@ namespace SpeakFriend.Web.Utilities.UserControls
 
         private ImageStore _imageStore;
         private string _groupKey;
-        private int currentId;
-        private readonly List<int> selectedIds = new List<int>();
+        private readonly List<int> _selectedIds = new List<int>();
+
+        private int _currentId
+        {
+            get
+            {
+                var value = ViewState["currentId"];
+                return value is int ? (int) value : 0;
+            }
+            set
+            {
+                ViewState["currentId"] = value;
+            }
+        }
+
+        private ImageSort _imageSort
+        {
+            get
+            {
+                var value = ViewState["imageSort"];
+                return value is ImageSort ? (ImageSort) value : ImageSort.None;
+            }
+            set
+            {
+                ViewState["imageSort"] = value;
+            }
+        }
+
+        private bool _reverseSort
+        {
+            get
+            {
+                var value = ViewState["reverseSort"];
+                return value is bool ? (bool) value : false;
+            }
+            set
+            {
+                ViewState["reverseSort"] = value;
+            }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,6 +68,11 @@ namespace SpeakFriend.Web.Utilities.UserControls
             rptFiles.ItemCommand += rptFiles_ItemCommand;
             btnDelete.Click += btnDelete_Click;
             btnSelectAll.Click += ((sender1, e1) => SetAllChecked(true));
+
+            btnOrderByFileName.Click += btnOrderByFileName_Click;
+            btnOrderBySize.Click += btnOrderBySize_Click;
+            btnOrderByType.Click += btnOrderByType_Click;
+            btnOrderByDate.Click += btnOrderByDate_Click;
         }
 
         public void Register(ImageStore imageStore, string groupKey)
@@ -57,15 +100,22 @@ namespace SpeakFriend.Web.Utilities.UserControls
             imgOriginal.ImageUrl = image.RelativePath;
         }
 
+        private List<ImageInfo> GetImages()
+        {
+            var images = _imageStore.GetGroup(_groupKey, _imageSort);
+            if (_reverseSort) images.Reverse();
+            return images;
+        }
+
         private void FindSelectedItems()
         {
-            selectedIds.Clear();
+            _selectedIds.Clear();
             var images = GetImages();
             foreach(var item in rptFiles.Items.OfType<RepeaterItem>())
             {
                 var itemHelper = new ItemTemplateHelper(item);
                 if (itemHelper.Find<CheckBox>("cbSelectItem").Checked)
-                    selectedIds.Add(images[item.ItemIndex].Id);
+                    _selectedIds.Add(images[item.ItemIndex].Id);
             }
         }
 
@@ -78,9 +128,14 @@ namespace SpeakFriend.Web.Utilities.UserControls
             }
         }
 
-        private List<ImageInfo> GetImages()
+        private void SetImageSort(ImageSort sort)
         {
-            return _imageStore.GetGroup(_groupKey);
+            if (_imageSort == sort) _reverseSort = !_reverseSort;
+            else
+            {
+                _imageSort = sort;
+                _reverseSort = false;
+            }
         }
 
         void rptFiles_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -97,9 +152,9 @@ namespace SpeakFriend.Web.Utilities.UserControls
             var btnDate = itemHelper.Find<LinkButton>("btnDate");
 
             btnName.Text = image.Name;
-            btnSize.Text = string.Format("{0} KB", Math.Ceiling(new FileInfo(image.AbsolutePath).Length/1024d));
-            btnType.Text = Path.GetExtension(image.AbsolutePath);
-            btnDate.Text = File.GetCreationTime(image.AbsolutePath).ToString("dd.MM.yyyy");
+            btnSize.Text = string.Format("{0} KB", Math.Ceiling(image.FileSize/1024d));
+            btnType.Text = image.FileExtension;
+            btnDate.Text = image.CreationTime.ToString("dd.MM.yyyy");
 
             foreach (var button in new[] { btnName, btnSize, btnType, btnDate })
             {
@@ -107,7 +162,7 @@ namespace SpeakFriend.Web.Utilities.UserControls
                 button.CommandArgument = image.Id.ToString();
             }
 
-            if(image.Id == currentId)
+            if(image.Id == _currentId)
             {
                 itemHelper.Find<Panel>("pnlItem").AddCssClass("current");
                 PopulateSelectedItemPanel(image);
@@ -119,7 +174,9 @@ namespace SpeakFriend.Web.Utilities.UserControls
             switch(e.CommandName)
             {
                 case "selectItem":
+                    int currentId;
                     int.TryParse(e.CommandArgument.ToString(), out currentId);
+                    _currentId = currentId;
                     Populate();
                     break;
             }
@@ -135,18 +192,40 @@ namespace SpeakFriend.Web.Utilities.UserControls
             var file = fufUpload.UploadedFiles.Last();
             var image = _imageStore.StoreToGroup(_groupKey, file.TempFilePathAbsolute,
                                                  Path.GetFileNameWithoutExtension(file.Name));
-            currentId = image.Id;
+            _currentId = image.Id;
             mvPreview.SetActiveView(vwImagePreview);
             Populate();
         }
 
         void btnDelete_Click(object sender, EventArgs e)
         {
-            foreach (var id in selectedIds)
+            foreach (var id in _selectedIds)
                 _imageStore.Delete(_groupKey, id);
             Populate();
         }
 
+        void btnOrderByFileName_Click(object sender, EventArgs e)
+        {
+            SetImageSort(ImageSort.Name);
+            Populate();
+        }
 
+        void btnOrderBySize_Click(object sender, EventArgs e)
+        {
+            SetImageSort(ImageSort.Size);
+            Populate();
+        }
+
+        void btnOrderByType_Click(object sender, EventArgs e)
+        {
+            SetImageSort(ImageSort.Type);
+            Populate();
+        }
+
+        void btnOrderByDate_Click(object sender, EventArgs e)
+        {
+            SetImageSort(ImageSort.Date);
+            Populate();
+        }
     }
 }

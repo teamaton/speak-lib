@@ -151,6 +151,7 @@
     <Compile Include="Service\ExtensionMethods\StringExtensions.cs" />
     <Compile Include="Service\IHideObjectMembers.cs" />
     <Compile Include="Service\Imaging\ImageInfo.cs" />
+    <Compile Include="Service\Imaging\ImageSort.cs" />
     <Compile Include="Service\Imaging\ImageStore.cs" />
     <Compile Include="Service\Imaging\WebScreenshotGenerator.cs" />
     <Compile Include="Web\Ajax\AjaxUtils.cs" />
