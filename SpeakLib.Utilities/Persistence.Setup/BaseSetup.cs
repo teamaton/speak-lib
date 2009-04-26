@@ -1,72 +1,92 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities
 {
-    /// <summary>
-    /// The BaseSetup class provides an easy way to 
-    /// </summary>
-    /// <typeparam name="TData"></typeparam>
-    /// <typeparam name="TSetup"></typeparam>
-    public abstract class BaseSetup<TData, TSetup>
-        where TSetup : BaseSetup<TData, TSetup>, 
-        IHideObjectMembers
+    public abstract class BaseSetup<TSubject, TDerivedClass> where TDerivedClass : BaseSetup<TSubject, TDerivedClass>
     {
-        private readonly IDataService<TData> _dataService;
+        private readonly IDataService<TSubject> _dataService;
 
-        private readonly List<TData> _itemsToCreate = new List<TData>();
-        public List<TData> Created = new List<TData>();
+        private readonly List<TSubject> _itemsToCreate = new List<TSubject>();
+        public TSubject LastAdded { get { return _itemsToCreate.Last(); } }
 
-        public TData LastAdded { get { return _itemsToCreate.Last(); } }
-        public TData LastCreated { get { return Created.Last(); } }
 
-        protected BaseSetup(IDataService<TData> dataService)
+        public List<TSubject> Created = new List<TSubject>();
+        public TSubject LastCreated { get { return Created.Last(); } }
+
+        protected BaseSetup(IDataService<TSubject> dataService)
         {
             _dataService = dataService;
         }
 
-        public TSetup Add()
+        public TDerivedClass Add()
         {
             return Add(Get());
         }
 
-        public TSetup Add(int amount)
+        public TDerivedClass Add(int amount)
         {
             for (int i = 0; i < amount; i++)
                 Add(Get());
 
-            return (TSetup)this;
+            return (TDerivedClass)this;
         }
 
-        public TSetup Add(TData data)
+        public TDerivedClass Add(TSubject subject)
         {
-            _itemsToCreate.Add(data);
+            _itemsToCreate.Add(subject);
 
-            return (TSetup)this;
+            return (TDerivedClass)this;
         }
 
-        public abstract TData Get();
+        public abstract TSubject Get();
 
-        public TSetup Persist()
+        public List<TSubject> Get(int amount)
         {
-            foreach (var item in _itemsToCreate)
+            var result = new List<TSubject>();
+            for (int i = 0; i < amount; i++)
+                result.Add(Get());
+
+            return result;
+        }
+
+        public void Persist()
+        {
+            foreach (var subject in _itemsToCreate)
             {
-                _dataService.Create(item);
-                Created.Add(item);
+                _dataService.Create(subject);
+                Created.Add(subject);
             }
 
-            _itemsToCreate.Clear();    
-            return (TSetup)this;
+            _itemsToCreate.Clear();
         }
 
-        /// <summary> Persists a setup subject and returns it. </summary>
-        public TData GetPersisted()
+        public TSubject GetPersisted()
         {
-            var data = Get();
-            Add(data);
-            Persist();
-            return data;
+            Add().Persist();
+            return Created.Last();
         }
+
+        public TSubject GetPersisted(Func<TSubject, TSubject> modifier)
+        {
+            Add();
+            var subject = modifier(LastAdded);
+            Persist();
+            return subject;
+        }
+
+        public List<TSubject> GetPersisted(int amount)
+        {
+            var subjects = Get(amount);
+            Persist();
+            return subjects;
+        }
+
+
 
     }
 }
