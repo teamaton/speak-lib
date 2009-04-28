@@ -10,6 +10,7 @@ namespace SpeakFriend.Utilities
     public class ImageInfo
     {
         public string Name { get; set; }
+        public string GroupKey { get; set; }
         public int Id { get; set; }
         public string AbsolutePath { get; set; }
         public string RelativePath { get; set; }
@@ -19,5 +20,6 @@ namespace SpeakFriend.Utilities
         public long FileSize { get { return new FileInfo(AbsolutePath).Length; } }
         public string FileExtension { get { return Path.GetExtension(AbsolutePath); } }
         public DateTime CreationTime { get { return File.GetCreationTime(AbsolutePath); } }
+
     }
 }

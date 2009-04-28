@@ -190,8 +190,10 @@ namespace SpeakFriend.Web.Utilities.UserControls
         void btnSaveUpload_Click(object sender, EventArgs e)
         {
             var file = fufUpload.UploadedFiles.Last();
+            var extension = Path.GetExtension(file.Name);
             var image = _imageStore.StoreToGroup(_groupKey, file.TempFilePathAbsolute,
-                                                 Path.GetFileNameWithoutExtension(file.Name));
+                                                 Path.GetFileNameWithoutExtension(file.Name),
+                                                 extension == ".jpg" || extension == ".jpeg");
             _currentId = image.Id;
             mvPreview.SetActiveView(vwImagePreview);
             Populate();
