@@ -84,6 +84,13 @@ namespace SpeakFriend.Utilities
             return _repository.GetAll();
         }
 
+        private SettingList _allSettings;
+        public SettingList GetAllCached()
+        {
+            if (_allSettings == null) _allSettings = GetAll();
+            return _allSettings;
+        }
+
         public SettingList GetBy(SettingSearchDesc searchDesc)
         {
             return _repository.GetBy(searchDesc);

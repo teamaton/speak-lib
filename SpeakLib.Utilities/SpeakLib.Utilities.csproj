@@ -136,7 +136,7 @@
     <Compile Include="Persistence.Query\Pager\Pager.cs" />
     <Compile Include="Persistence.Query\Projections.cs" />
     <Compile Include="Persistence.Query\QueryBatcher.cs" />
-    <Compile Include="Persistence.Query\RepositoryBase.cs" />
+    <Compile Include="Persistance.NHibernate\RepositoryBase.cs" />
     <Compile Include="SeedWork.Setting\EntitySettingList.cs" />
     <Compile Include="SeedWork.Setting\ISettingRepository.cs" />
     <Compile Include="SeedWork.Setting\SettingRepository.cs" />
