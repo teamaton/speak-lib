@@ -108,6 +108,11 @@ namespace SpeakFriend.Utilities
                            .Add(Restrictions.Eq("Id", id))
                            .UniqueResult<TDomainObject>();
         }
+
+        public void Flush()
+        {
+            _session.Flush();
+        }
     }
 
 }
