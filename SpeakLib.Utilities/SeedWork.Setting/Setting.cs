@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities
 {
-    public class Setting : ICloneable
+    public class Setting : ICloneable, IPersistable
     {
         protected object _default;
 

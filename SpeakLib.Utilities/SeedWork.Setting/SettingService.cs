@@ -103,7 +103,7 @@ namespace SpeakFriend.Utilities
         /// <returns></returns>
         public T GetUnique<T>(SettingSearchDesc settingSearchDesc) where T : Setting, new() 
         {
-            return _repository.GetUnique<T>(settingSearchDesc);
+            return _repository.GetUnique(settingSearchDesc) as T;
         }
 
         /// <summary>

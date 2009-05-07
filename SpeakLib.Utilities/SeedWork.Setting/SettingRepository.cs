@@ -9,24 +9,16 @@ using NHibernate.SqlCommand;
 
 namespace SpeakFriend.Utilities
 {
-    public class SettingRepository : RepositoryDb, ISettingRepository 
+    public class SettingRepository : RepositoryDb<Setting, SettingList>, ISettingRepository 
     {
-        private new readonly ISession _session;
-
         public SettingRepository(ISession session) : base(session)
         {
-            _session = session;
         }
 
-        public void Create(Setting setting)
+        public override void Update(Setting setting)
         {
-            _session.Save(setting);
-        }
-
-        public void Update(Setting setting)
-        {
-            _session.Update(setting);
-            _session.Flush();
+            base.Update(setting);
+            Flush();
         }
 
         public void CreateOrUpdate(Setting setting)
@@ -34,41 +26,27 @@ namespace SpeakFriend.Utilities
             _session.SaveOrUpdate(setting);
         }
 
-        public void Delete(Setting setting)
+        public override void Delete(Setting setting)
         {
-            _session.Delete(setting);
-            _session.Flush();
-        }
-
-        public SettingList GetAll()
-        {
-            return new SettingList(_session.CreateCriteria(typeof (Setting)).List<Setting>());
-        }
-
-        public Setting GetById(int settingId)
-        {
-            return _session.CreateCriteria(typeof(Setting))
-                    .Add(Restrictions.Eq("Id", settingId))
-                    .UniqueResult<Setting>();
+            base.Delete(setting);
+            Flush();
         }
 
         public SettingList GetBy(SettingSearchDesc searchDesc)
         {
-            ICriteria criteria = GetCriteria<Setting>(searchDesc);
-
-            return new SettingList(criteria.List<Setting>());
+            return GetBy(searchDesc as ISearchDesc);
         }
 
-        public T GetUnique<T>(SettingSearchDesc searchDesc)
+        public Setting GetUnique(SettingSearchDesc searchDesc)
         {
-            ICriteria criteria = GetCriteria<Setting>(searchDesc);
+            ICriteria criteria = GetCriteria(searchDesc);
 
-            return criteria.UniqueResult<T>();
+            return criteria.UniqueResult<Setting>();
         }
 
-        private ICriteria GetCriteria<T>(SettingSearchDesc searchDesc)
+        private ICriteria GetCriteria(SettingSearchDesc searchDesc)
         {
-            var criteria = GetExecutable<T>();
+            var criteria = GetExecutableCriteria();
 
             AddConditions(searchDesc, criteria);
             AddOrderBy(criteria, searchDesc.OrderBy);

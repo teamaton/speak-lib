@@ -10,6 +10,6 @@ namespace SpeakFriend.Utilities
         SettingList GetAll();
         Setting GetById(int settingId);
         SettingList GetBy(SettingSearchDesc searchDesc);
-        T GetUnique<T>(SettingSearchDesc searchDesc);
+        Setting GetUnique(SettingSearchDesc searchDesc);
     }
 }

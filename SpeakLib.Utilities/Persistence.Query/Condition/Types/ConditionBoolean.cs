@@ -66,7 +66,7 @@ namespace SpeakFriend.Utilities
         /// </summary>
         /// <returns>True if this condition is contained in the ConditionList AND if 
         /// its value is set to something other than the default, else false.</returns>
-        public bool IsActive()
+        public override bool IsActive()
         {
             return IsTrue() && Conditions.Contains(this);
         }

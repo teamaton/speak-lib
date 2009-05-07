@@ -8,16 +8,15 @@ namespace SpeakFriend.Utilities
     /// <summary>
     /// Use EntitySettings as your base class if you want to handle settings for a specific entity.
     /// </summary>
-    public class SettingList : List<Setting>
+    public class SettingList : PersistableList<Setting>
     {
         public SettingList()
         {
         }
 
         public SettingList(IEnumerable<Setting> list)
+            : base(list)
         {
-            AddRange(list);
         }
-
     }
 }
