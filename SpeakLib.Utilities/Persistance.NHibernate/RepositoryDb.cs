@@ -9,7 +9,7 @@ namespace SpeakFriend.Utilities
         where TDomainObjectList : PersistableList<TDomainObject>, new()
     {
         protected readonly ISession _session;
-        private TDomainObjectList allItemsCached;
+        private TDomainObjectList _allItemsCached;
 
         protected RepositoryDb(ISession session)
         {
@@ -97,22 +97,22 @@ namespace SpeakFriend.Utilities
 
         private void ClearAllItemCache()
         {
-            allItemsCached = null;
+            _allItemsCached = null;
         }
 
         public virtual TDomainObjectList GetAll()
         {
             var list = new TDomainObjectList();
 
-            if (allItemsCached != null)
-                list.AddRange(allItemsCached);
+            if (_allItemsCached != null)
+                list.AddRange(_allItemsCached);
             else
             {
                 list.AddRange(_session.CreateCriteria(typeof (TDomainObject))
                                   .List<TDomainObject>());
 
-                allItemsCached = new TDomainObjectList();
-                allItemsCached.AddRange(list);
+                _allItemsCached = new TDomainObjectList();
+                _allItemsCached.AddRange(list);
             }
 
             return list;
@@ -129,8 +129,8 @@ namespace SpeakFriend.Utilities
         {
             var criteria = GetExecutableCriteria();
 
-            AddGenericConditions(criteria, searchDesc.Filter);
-            AddOrderBy(criteria, searchDesc.OrderBy);
+            AddGenericConditions(criteria, searchDesc.GetFilter());
+            AddOrderBy(criteria, searchDesc.GetOrderBy());
 
             SetTotalItemCount(criteria, searchDesc);
             SetPager(criteria, searchDesc);

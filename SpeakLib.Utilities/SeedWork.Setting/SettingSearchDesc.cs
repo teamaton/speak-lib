@@ -12,7 +12,7 @@ namespace SpeakFriend.Utilities
     }
 
 
-    public class SettingSearchDesc : Pager 
+    public class SettingSearchDesc : Pager, ISearchDesc
     {
         private SettingSearchFilter _filter = new SettingSearchFilter();
         public SettingSearchFilter Filter { get { return _filter ?? (_filter = new SettingSearchFilter()); } }
@@ -33,6 +33,16 @@ namespace SpeakFriend.Utilities
         {
             Filter.SettingType.EqualTo(settingType);
             Filter.SettingTypeIds.Add(settingTypeId);
+        }
+
+        public ConditionContainer GetFilter()
+        {
+            return Filter;
+        }
+
+        public OrderByCriteria GetOrderBy()
+        {
+            return OrderBy;
         }
     }
 }
