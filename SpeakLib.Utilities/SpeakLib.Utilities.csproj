@@ -155,11 +155,6 @@
     <Compile Include="Service\Imaging\WebScreenshotGenerator.cs" />
     <Compile Include="Web\Ajax\AjaxUtils.cs" />
     <Compile Include="Web\Context\ContextUtil.cs" />
-    <Compile Include="Web\Context\Context\IViewStateStore.cs" />
-    <Compile Include="Web\Context\Context\PageStatePersister.cs" />
-    <Compile Include="Web\Context\Context\ViewStoreCache.cs" />
-    <Compile Include="Web\Context\Context\ViewStoreSession.cs" />
-    <Compile Include="Web\Context\Context\ViewStoreType.cs" />
     <Compile Include="Web\Context\Parameters\ParameterHandler.cs" />
     <Compile Include="Web\Context\Parameters\ParameterHandlerList.cs" />
     <Compile Include="Web\Context\Parameters\ParameterHandlerService.cs" />
