@@ -55,7 +55,7 @@
     <Compile Include="Utilities\Service\StringExtensionsTest.cs" />
     <Compile Include="Utilities\Web\Context\HttpCurrent\HttpCurrentTest.cs" />
     <Compile Include="Utilities\Web\WebHtmlExtensionsTest.cs" />
-    <Compile Include="Utilities\Web\UriTest.cs" />
+    <Compile Include="Utilities\Web\UriUtilsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SpeakLib.Utilities\SpeakLib.Utilities.csproj">

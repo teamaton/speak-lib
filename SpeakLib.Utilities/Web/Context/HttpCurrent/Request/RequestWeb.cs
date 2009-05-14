@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -13,6 +14,7 @@ namespace SpeakFriend.Utilities.Web
         public Uri Url { get { return _request.Url; } }
         public string[] UserLanguages { get { return _request.UserLanguages; } }
         public HttpCookieCollection Cookies { get { return _request.Cookies; } }
+        public NameValueCollection QueryString { get { return _request.QueryString;  } }
         
         
 

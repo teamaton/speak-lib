@@ -10,9 +10,19 @@ namespace SpeakFriend.Utilities.Web
 {
     public class ParameterHandlerService
     {
+        private IHttpCurrent _httpCurrent;
+
+        private IRequest _request { get { return _httpCurrent.Request; } }
+        private IResponse _response { get { return _httpCurrent.Response; } }
+
+        public ParameterHandlerService(IHttpCurrent httpCurrent)
+        {
+            _httpCurrent = httpCurrent;
+        }
+
         public void ProcessGlobalParams(ParameterHandlerList parameterHandlers)
         {
-            ProcessGlobalParams(HttpContext.Current.Request.QueryString, parameterHandlers);
+            ProcessGlobalParams(_request.QueryString, parameterHandlers);
         }
 
         /// <summary>
@@ -36,7 +46,7 @@ namespace SpeakFriend.Utilities.Web
 
 		public void ProcessParam(ParameterHandler parameterHandler)
 		{
-			ProcessParam(HttpContext.Current.Request.QueryString, parameterHandler);
+			ProcessParam(_request.QueryString, parameterHandler);
 		}
 
 		public void ProcessParam(NameValueCollection queryParams, ParameterHandler parameterHandler)
@@ -47,17 +57,28 @@ namespace SpeakFriend.Utilities.Web
 			parameterHandler.Action(queryParams[parameterHandler.Name]);
 		}
 
-        public bool IsHandlerActive(ParameterHandler parameterHandler)
+
+        /// <summary>
+        /// True if query string contains a paramter handeld by an registered <see cref="ParameterHandler">ParamaterHandler</see>
+        /// </summary>
+        /// <param name="parameterHandler"></param>
+        /// <returns></returns>
+        public bool DoesApply(ParameterHandler parameterHandler)
         {
-            return IsHandlerActive(HttpContext.Current.Request.QueryString, parameterHandler);
+            return DoesApply(_request.QueryString, parameterHandler);
         }
 
-        private bool IsHandlerActive(NameValueCollection queryParams, ParameterHandler parameterHandler)
+        /// <summary>
+        /// True if query string contains a paramter handeld by an registered <see cref="ParameterHandler">ParamaterHandler</see>
+        /// </summary>
+        /// <param name="queryParams"></param>
+        /// <param name="parameterHandler"></param>
+        /// <returns></returns>
+        private bool DoesApply(NameValueCollection queryParams, ParameterHandler parameterHandler)
         {
             var value = queryParams.Get(parameterHandler.Name);
 
             return !string.IsNullOrEmpty(value);
-
         }
     }
 }

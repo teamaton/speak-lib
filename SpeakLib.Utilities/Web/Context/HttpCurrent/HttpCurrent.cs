@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -16,6 +17,7 @@ namespace SpeakFriend.Utilities.Web
     {
         public virtual IRequest Request { get; protected set; }
         public virtual IResponse Response { get; protected set; }
+
 
         protected HttpCurrent(){}
 

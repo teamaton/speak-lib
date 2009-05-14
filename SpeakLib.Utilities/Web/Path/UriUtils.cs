@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 
@@ -54,6 +55,23 @@ namespace SpeakFriend.Utilities.Web
             return !string.IsNullOrEmpty(value) && value.StartsWith("/");
         }
 		
+        public static NameValueCollection GetNameValueCollectionFromQuery(string query)
+        {
+            if(query.Trim().Length == 0)
+                return new NameValueCollection();
+            
+            var result = new NameValueCollection();
+
+            query = query.Substring(1);
+
+            foreach(var nameValue in query.Split('&'))
+            {
+                var pairNameValue = nameValue.Split('=');
+                result.Add(pairNameValue[0], pairNameValue[1]);
+            }
+
+            return result;
+        }
 
         public static string FirstSubdomainNotWww(Uri uri)
         {
@@ -108,27 +126,21 @@ namespace SpeakFriend.Utilities.Web
         /// </summary>
         /// <param name="uri"></param>
         /// <returns></returns>
-        public static string DomainString(Uri uri)
+        public static string GetDomainPart(Uri uri)
         {
-            var subdomains = SubdomainString(uri);
+            var subdomains = GetSubdomain(uri);
 
             var tmp = uri.Host.Remove(0, subdomains.Length);
             
             return tmp.StartsWith(".") ? tmp.Remove(0, 1) : tmp;
         }
 
-
-        //public static string SubdomainString()
-        //{
-            
-        //}
-
         /// <summary>
         /// Returns all the subdomains in front of rootDomain as a string.
         /// </summary>
         /// <param name="uri"></param>
         /// <returns></returns>
-        public static string SubdomainString(Uri uri)
+        public static string GetSubdomain(Uri uri)
         {
             var host = uri.Host;
 
@@ -154,8 +166,8 @@ namespace SpeakFriend.Utilities.Web
         /// <returns></returns>
         public static Uri ReplaceLeftMostSubdomain(Uri uri, string newSubdomain)
         {
-            var domain = DomainString(uri);
-            var subdomains = SubdomainString(uri);
+            var domain = GetDomainPart(uri);
+            var subdomains = GetSubdomain(uri);
 
             if (string.IsNullOrEmpty(subdomains))
             {

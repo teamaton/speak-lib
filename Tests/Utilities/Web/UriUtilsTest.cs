@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
@@ -8,7 +9,7 @@ using SpeakFriend.Utilities.Web;
 namespace Tests.Utilities.Web
 {
     [TestFixture]
-    public class UriTest
+    public class UriUtilsTest
     {
         [Test]
         public void Subdomain()
@@ -16,22 +17,22 @@ namespace Tests.Utilities.Web
             var domain = "speak-lib.com";
             var url = "http://" + domain;
             var uri = new Uri(url);
-            var subdomain = UriUtils.SubdomainString(uri);
+            var subdomain = UriUtils.GetSubdomain(uri);
             Assert.AreEqual("", subdomain);
 
             url = "http://www." + domain;
             uri = new Uri(url);
-            subdomain = UriUtils.SubdomainString(uri);
+            subdomain = UriUtils.GetSubdomain(uri);
             Assert.AreEqual("www", subdomain);
 
             url = "http://en." + domain;
             uri = new Uri(url);
-            subdomain = UriUtils.SubdomainString(uri);
+            subdomain = UriUtils.GetSubdomain(uri);
             Assert.AreEqual("en", subdomain);
 
             url = "http://www.en." + domain;
             uri = new Uri(url);
-            subdomain = UriUtils.SubdomainString(uri);
+            subdomain = UriUtils.GetSubdomain(uri);
             Assert.AreEqual("www.en", subdomain);
         }
 
@@ -60,23 +61,23 @@ namespace Tests.Utilities.Web
         }
 
         [Test]
-        public void DomainString()
+        public void GetDomainPart()
         {
             var domain = "speak-lib.com";
             var url = "http://en." + domain;
             var uri = new Uri(url);
-            var newDomain = UriUtils.DomainString(uri);
+            var newDomain = UriUtils.GetDomainPart(uri);
             Assert.AreEqual(domain, newDomain);
 
             domain = "speak-lib.com";
             url = "http://" + domain;
             uri = new Uri(url);
-            newDomain = UriUtils.DomainString(uri);
+            newDomain = UriUtils.GetDomainPart(uri);
             Assert.AreEqual(domain, newDomain);
         }
 
         [Test]
-        public void ChangeSubdomain()
+        public void ReplaceLeftMostSubdomain()
         {
             var domain = "speak-lib.com";
             var url = "http://en." + domain;
@@ -105,7 +106,7 @@ namespace Tests.Utilities.Web
         }
 
         [Test]
-        public void GetRootDomain()
+        public void FirstSubdomainNotWww()
         {
             var host = "http://pl.camping.info";
             var subdomain = UriUtils.FirstSubdomainNotWww(new Uri(host));
@@ -118,6 +119,18 @@ namespace Tests.Utilities.Web
             host = "http://sub.pl.camping-info";
             subdomain = UriUtils.FirstSubdomainNotWww(new Uri(host));
             Assert.AreEqual("pl", subdomain);
+        }
+
+        [Test]
+        public void QueryToNameValueCollection()
+        {
+            var uri = new Uri("http://camping.info?rules=true&willGrow=yes");
+            
+            NameValueCollection querySring = UriUtils.GetNameValueCollectionFromQuery(uri.Query);
+            Assert.That(querySring["rules"], Is.EqualTo("true"));
+            Assert.That(querySring["willGrow"], Is.EqualTo("yes"));
+
+
         }
     }
 }
