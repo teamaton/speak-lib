@@ -155,6 +155,16 @@
     <Compile Include="Service\Imaging\WebScreenshotGenerator.cs" />
     <Compile Include="Web\Ajax\AjaxUtils.cs" />
     <Compile Include="Web\Context\ContextUtil.cs" />
+    <Compile Include="Web\Context\HttpCurrent\HttpCurrent.cs" />
+    <Compile Include="Web\Context\HttpCurrent\HttpCurrentNoWeb.cs" />
+    <Compile Include="Web\Context\HttpCurrent\HttpCurrentWeb.cs" />
+    <Compile Include="Web\Context\HttpCurrent\Request\IRequest.cs" />
+    <Compile Include="Web\Context\HttpCurrent\Request\RequestNoWeb.cs" />
+    <Compile Include="Web\Context\HttpCurrent\Request\RequestWeb.cs" />
+    <Compile Include="Web\Context\HttpCurrent\Response\IResponse.cs" />
+    <Compile Include="Web\Context\HttpCurrent\Response\Response.cs" />
+    <Compile Include="Web\Context\HttpCurrent\Response\ResponseNoWeb.cs" />
+    <Compile Include="Web\Context\HttpCurrent\Response\ResponseWeb.cs" />
     <Compile Include="Web\Context\Parameters\ParameterHandler.cs" />
     <Compile Include="Web\Context\Parameters\ParameterHandlerList.cs" />
     <Compile Include="Web\Context\Parameters\ParameterHandlerService.cs" />

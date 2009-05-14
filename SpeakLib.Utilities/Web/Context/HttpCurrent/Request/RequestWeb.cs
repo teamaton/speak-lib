@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Web;
+
+namespace SpeakFriend.Utilities.Web
+{
+    public class RequestWeb : IRequest
+    {
+        private readonly HttpRequest _request = HttpContext.Current.Request;
+
+        public Uri Url { get { return _request.Url; } }
+        public string[] UserLanguages { get { return _request.UserLanguages; } }
+        public HttpCookieCollection Cookies { get { return _request.Cookies; } }
+        
+        
+
+    }
+}

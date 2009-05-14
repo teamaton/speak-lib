@@ -54,30 +54,34 @@ namespace SpeakFriend.Utilities.Web
             return !string.IsNullOrEmpty(value) && value.StartsWith("/");
         }
 		
+
+        public static string FirstSubdomainNotWww(Uri uri)
+        {
+            return FirstSubdomainNotWww(uri.Host);
+        }
+
         /// <summary>
         /// Returns the first subdomain under the domain that is not www.<br/>
         /// sub.pl.speak-friend.com -> pl<br/>
         /// www.speak-friend.com -> string.Empty.
         /// </summary>
-        /// <param name="uri"></param>
+        /// <param name="uri">Uri.Host</param>
         /// <returns></returns>
-        public static string FirstSubdomainNotWww(Uri uri)
+        public static string FirstSubdomainNotWww(string uriHost)
         {
-            var host = uri.Host;
-
-            if (string.IsNullOrEmpty(host))
+            if (string.IsNullOrEmpty(uriHost))
                 return string.Empty;
 
-            host = RemoveTopLevelDomain(host);
+            uriHost = RemoveTopLevelDomain(uriHost);
 
-            if (!host.Contains("."))
+            if (!uriHost.Contains("."))
                 return string.Empty;
 
             // remove leading www.
-            if (host.StartsWith("www."))
-                host = host.Substring("www.".Length);
+            if (uriHost.StartsWith("www."))
+                uriHost = uriHost.Substring("www.".Length);
 
-            var parts = host.Split('.');
+            var parts = uriHost.Split('.');
 
             if (parts.Count() >= 2)
                 return parts[parts.Count() - 2];
@@ -112,6 +116,12 @@ namespace SpeakFriend.Utilities.Web
             
             return tmp.StartsWith(".") ? tmp.Remove(0, 1) : tmp;
         }
+
+
+        //public static string SubdomainString()
+        //{
+            
+        //}
 
         /// <summary>
         /// Returns all the subdomains in front of rootDomain as a string.
