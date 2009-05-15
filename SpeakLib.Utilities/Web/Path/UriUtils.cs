@@ -50,9 +50,9 @@ namespace SpeakFriend.Utilities.Web
             return requestPath.Split('?')[1];
         }
 
-        public static bool IsRelativePath(string value)
+        public static bool IsRelativePath(string url)
         {
-            return !string.IsNullOrEmpty(value) && value.StartsWith("/");
+            return !string.IsNullOrEmpty(url) && url.StartsWith("/");
         }
 		
         public static NameValueCollection GetNameValueCollectionFromQuery(string query)
