@@ -7,5 +7,6 @@ namespace SpeakFriend.Utilities.Web
 {
     public class HttpCurrentWeb : HttpCurrent
     {
+
     }
 }

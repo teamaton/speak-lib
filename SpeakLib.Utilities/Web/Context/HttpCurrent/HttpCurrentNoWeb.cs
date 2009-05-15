@@ -13,5 +13,11 @@ namespace SpeakFriend.Utilities.Web
 
         public RequestNoWeb Request { get; set; }
         public ResponseNoWeb Response { get; set; }
+
+        public void Reset()
+        {
+            Response = new ResponseNoWeb();
+            Request = new RequestNoWeb();
+        }
     }
 }

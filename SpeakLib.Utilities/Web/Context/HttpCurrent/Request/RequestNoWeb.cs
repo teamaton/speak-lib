@@ -21,5 +21,9 @@ namespace SpeakFriend.Utilities.Web
         }
 
 
+        public void Clear()
+        {
+            
+        }
     }
 }

@@ -20,9 +20,9 @@ namespace SpeakFriend.Utilities.Web
             _httpCurrent = httpCurrent;
         }
 
-        public void ProcessGlobalParams(ParameterHandlerList parameterHandlers)
+        public void ProcessParams(ParameterHandlerList parameterHandlers)
         {
-            ProcessGlobalParams(_request.QueryString, parameterHandlers);
+            ProcessParams(_request.QueryString, parameterHandlers);
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace SpeakFriend.Utilities.Web
         /// </summary>
         /// <param name="queryParams"></param>
         /// <param name="parameterHandlers"></param>
-        public void ProcessGlobalParams(NameValueCollection queryParams, ParameterHandlerList parameterHandlers)
+        public void ProcessParams(NameValueCollection queryParams, ParameterHandlerList parameterHandlers)
         {
             foreach (string itemKey in queryParams.Keys)
                 if (parameterHandlers.Contains(itemKey))
@@ -63,9 +63,9 @@ namespace SpeakFriend.Utilities.Web
         /// </summary>
         /// <param name="parameterHandler"></param>
         /// <returns></returns>
-        public bool DoesApply(ParameterHandler parameterHandler)
+        public bool DoesHandlerExist(ParameterHandler parameterHandler)
         {
-            return DoesApply(_request.QueryString, parameterHandler);
+            return DoesHandlerExist(_request.QueryString, parameterHandler);
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace SpeakFriend.Utilities.Web
         /// <param name="queryParams"></param>
         /// <param name="parameterHandler"></param>
         /// <returns></returns>
-        private bool DoesApply(NameValueCollection queryParams, ParameterHandler parameterHandler)
+        private bool DoesHandlerExist(NameValueCollection queryParams, ParameterHandler parameterHandler)
         {
             var value = queryParams.Get(parameterHandler.Name);
 
