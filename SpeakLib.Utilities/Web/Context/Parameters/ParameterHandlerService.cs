@@ -59,7 +59,7 @@ namespace SpeakFriend.Utilities.Web
 
 
         /// <summary>
-        /// True if query string contains a paramter handeld by an registered <see cref="ParameterHandler">ParamaterHandler</see>
+        /// True if query string contains a parameter handled by a registered <see cref="ParameterHandler">ParamaterHandler</see>.
         /// </summary>
         /// <param name="parameterHandler"></param>
         /// <returns></returns>
@@ -69,7 +69,7 @@ namespace SpeakFriend.Utilities.Web
         }
 
         /// <summary>
-        /// True if query string contains a paramter handeld by an registered <see cref="ParameterHandler">ParamaterHandler</see>
+        /// True if query string contains a parameter handled by a registered <see cref="ParameterHandler">ParamaterHandler</see>.
         /// </summary>
         /// <param name="queryParams"></param>
         /// <param name="parameterHandler"></param>
