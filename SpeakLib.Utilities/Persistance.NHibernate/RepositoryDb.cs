@@ -129,8 +129,8 @@ namespace SpeakFriend.Utilities
         {
             var criteria = GetExecutableCriteria();
 
-            AddGenericConditions(criteria, searchDesc.GetFilter());
-            AddOrderBy(criteria, searchDesc.GetOrderBy());
+            AddGenericConditions(criteria, searchDesc.Filter);
+            AddOrderBy(criteria, searchDesc.OrderBy);
 
             SetTotalItemCount(criteria, searchDesc);
             SetPager(criteria, searchDesc);

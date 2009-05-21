@@ -20,6 +20,9 @@ namespace SpeakFriend.Utilities
         private readonly SettingOrderBy _orderBy = new SettingOrderBy();
         public SettingOrderBy OrderBy { get { return _orderBy; } }
 
+        ConditionContainer ISearchDesc.Filter { get { return Filter; } }
+        OrderByCriteria ISearchDesc.OrderBy { get { return OrderBy; } }
+
         public SettingSearchDesc()
         {
             QueryAll = true;
@@ -33,16 +36,6 @@ namespace SpeakFriend.Utilities
         {
             Filter.SettingType.EqualTo(settingType);
             Filter.SettingTypeIds.Add(settingTypeId);
-        }
-
-        public ConditionContainer GetFilter()
-        {
-            return Filter;
-        }
-
-        public OrderByCriteria GetOrderBy()
-        {
-            return OrderBy;
         }
     }
 }

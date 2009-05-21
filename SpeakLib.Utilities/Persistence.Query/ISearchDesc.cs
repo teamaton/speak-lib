@@ -7,7 +7,7 @@ namespace SpeakFriend.Utilities
 {
     public interface ISearchDesc : IPager
     {
-        ConditionContainer GetFilter();
-        OrderByCriteria GetOrderBy();
+        ConditionContainer Filter { get; }
+        OrderByCriteria OrderBy { get; }
     }
 }
