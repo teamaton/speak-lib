@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -174,5 +175,17 @@ namespace SpeakFriend.Utilities
 
 			return prefix + value;
 		}
+
+        public static DateTime? ToDate(this string dateText)
+        {
+            DateTime date;
+            return DateTime.TryParseExact(dateText,
+                                          "dd.MM.yyyy",
+                                          CultureInfo.InvariantCulture,
+                                          DateTimeStyles.None,
+                                          out date)
+                       ? (DateTime?)date
+                       : null;
+        }
     }
 }
