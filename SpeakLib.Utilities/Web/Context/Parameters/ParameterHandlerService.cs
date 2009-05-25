@@ -10,10 +10,10 @@ namespace SpeakFriend.Utilities.Web
 {
     public class ParameterHandlerService
     {
-        private IHttpCurrent _httpCurrent;
+        protected IHttpCurrent _httpCurrent;
 
-        private IRequest _request { get { return _httpCurrent.Request; } }
-        private IResponse _response { get { return _httpCurrent.Response; } }
+        protected IRequest _request { get { return _httpCurrent.Request; } }
+        protected IResponse _response { get { return _httpCurrent.Response; } }
 
         public ParameterHandlerService(IHttpCurrent httpCurrent)
         {
