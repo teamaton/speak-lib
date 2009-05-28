@@ -6,7 +6,7 @@ using System.Text;
 using NHibernate;
 using NHibernate.Criterion;
 
-namespace CampingInfo.Core
+namespace SpeakFriend.Utilities
 {
     /// <summary>
     /// From http://nhforge.org/blogs/nhibernate/archive/2008/08/31/the-query-batcher.aspx.

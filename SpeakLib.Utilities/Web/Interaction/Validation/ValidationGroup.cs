@@ -74,9 +74,9 @@ namespace SpeakFriend.Utilities.Web
             return this;
         }
 
-        public ValidationGroup AsPositiveDecimal()
+        public ValidationGroup AsPrice()
         {
-            _items.Last().Type = ValidationType.Positive_Decimal;
+            _items.Last().Type = ValidationType.Price;
             return this;
         }
 
@@ -128,6 +128,9 @@ namespace SpeakFriend.Utilities.Web
 
                     else if (item.Type == ValidationType.Positive_Integer)
                         _validationService.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_PositiveInteger);
+
+                    else if (item.Type == ValidationType.Price)
+                        _validationService.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_Price);
                 }
             }
 

@@ -13,6 +13,6 @@ namespace SpeakFriend.Utilities.Web
         Compare,
         Uri,
         Positive_Integer,
-        Positive_Decimal
+        Price
     }
 }

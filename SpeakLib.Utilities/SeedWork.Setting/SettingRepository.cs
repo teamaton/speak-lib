@@ -21,11 +21,6 @@ namespace SpeakFriend.Utilities
             Flush();
         }
 
-        public void CreateOrUpdate(Setting setting)
-        {
-            _session.SaveOrUpdate(setting);
-        }
-
         public override void Delete(Setting setting)
         {
             base.Delete(setting);

@@ -83,6 +83,11 @@ namespace SpeakFriend.Utilities
             _session.Update(domainObject);
         }
 
+        public void CreateOrUpdate(TDomainObject domainObject)
+        {
+            _session.SaveOrUpdate(domainObject);
+        }
+
         public virtual void Delete(TDomainObject domainObject)
         {
             _session.Delete(domainObject);
