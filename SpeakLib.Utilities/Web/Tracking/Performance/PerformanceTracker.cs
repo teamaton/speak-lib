@@ -25,7 +25,7 @@ namespace SpeakFriend.Utilities.Web
 
         public PerformanceTracker(HttpApplication globalAsax)
         {
-            if(globalAsax.Response.)
+            //if(globalAsax.Response.)
             globalAsax.BeginRequest += globalAsax_BeginRequest;
             globalAsax.EndRequest += globalAsax_EndRequest;
         }
