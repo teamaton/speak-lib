@@ -48,6 +48,14 @@ namespace SpeakFriend.Utilities
             _criteria.Current = this;
         }
 
+        public void AscOrToggle()
+        {
+            if (!IsCurrent())
+                Asc();
+            else
+                Toggle();
+        }
+
         public bool IsDesc()
         {
             return _direction == OrderDirection.Descending;
@@ -58,5 +66,11 @@ namespace SpeakFriend.Utilities
         {
             return _direction == OrderDirection.Ascending;
         }
+
+        public bool IsCurrent()
+        {
+            return _criteria.Current == this;
+        }
+
     }
 }

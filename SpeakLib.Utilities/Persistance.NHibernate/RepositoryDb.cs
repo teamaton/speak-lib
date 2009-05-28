@@ -49,7 +49,7 @@ namespace SpeakFriend.Utilities
                 propertyName = tableAlias + orderBy.Current.PropertyName;
             else
                 return;
-
+            
             if (orderBy.Current.Direction == OrderDirection.Ascending)
                 criteria.AddOrder(NHibernate.Criterion.Order.Asc(propertyName));
             else
