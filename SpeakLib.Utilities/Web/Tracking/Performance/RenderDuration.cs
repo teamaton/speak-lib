@@ -10,8 +10,12 @@ namespace SpeakFriend.Utilities.Web
     /// </summary>
     public class RenderDuration
     {
-        public DateTime RequestStart = DateTime.MinValue;
-        public DateTime RequestEnd = DateTime.MinValue;
+        private DateTime _requestStart = DateTime.MinValue;
+        private DateTime _requestEnd = DateTime.MinValue;
+
+        public DateTime RequestStart { get { return _requestStart; } }
+        public DateTime RequestEnd { get { return _requestEnd; } }
+        
         public string RequestedPage = "";
 
         public TimeSpan Value{
@@ -19,5 +23,16 @@ namespace SpeakFriend.Utilities.Web
         }
 
         public bool IsCompleted { get { return RequestEnd != DateTime.MinValue; } }
+
+        public void StartsNow()
+        {
+            _requestStart = DateTime.Now;
+        }
+
+        public void StopsNow()
+        {
+            _requestEnd = DateTime.Now;
+        }
+
     }
 }

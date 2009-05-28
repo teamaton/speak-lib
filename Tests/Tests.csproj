@@ -54,6 +54,8 @@
     <Compile Include="Utilities\Query\PagerTest.cs" />
     <Compile Include="Utilities\Service\StringExtensionsTest.cs" />
     <Compile Include="Utilities\Web\Context\HttpCurrent\HttpCurrentTest.cs" />
+    <Compile Include="Utilities\Web\Tracking\Performance\PerformanceTrackerTest.cs" />
+    <Compile Include="Utilities\Web\Tracking\User\UserTrackerTest.cs" />
     <Compile Include="Utilities\Web\WebHtmlExtensionsTest.cs" />
     <Compile Include="Utilities\Web\UriUtilsTest.cs" />
   </ItemGroup>

@@ -8,11 +8,11 @@ namespace SpeakFriend.Utilities.Web
 {
     public static class RenderDurationBuilder
     {
-        public static RenderDuration GetEntry()
+        public static RenderDuration GetNewEntry()
         {
             var result = new RenderDuration();
 
-            result.RequestStart = DateTime.Now;
+            result.StartsNow();
 
             if(ContextUtil.IsWebContext){
                 result.RequestedPage = HttpContext.Current.Request.Path;

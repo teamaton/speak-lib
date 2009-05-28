@@ -214,6 +214,7 @@
     <Compile Include="Web\Tracking\Performance\RenderDurationBuilder.cs" />
     <Compile Include="Web\Tracking\Performance\RenderDurationFiFo.cs" />
     <Compile Include="Web\Tracking\Performance\PerformanceTracker.cs" />
+    <Compile Include="Web\Tracking\User\UserTracker.cs" />
     <Compile Include="Wpf\Controls\Span.cs" />
     <Compile Include="Wpf\Utilites\UIUtilities.cs" />
   </ItemGroup>
@@ -228,7 +229,6 @@
   <ItemGroup>
     <Folder Include="SeedWork.Comment\" />
     <Folder Include="Service\Security\" />
-    <Folder Include="Web\Tracking\User\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
