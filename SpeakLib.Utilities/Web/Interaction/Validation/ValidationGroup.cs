@@ -74,6 +74,13 @@ namespace SpeakFriend.Utilities.Web
             return this;
         }
 
+        public ValidationGroup AsPositiveDecimal()
+        {
+            _items.Last().Type = ValidationType.Positive_Decimal;
+            return this;
+        }
+
+
         public ValidationGroup AsEmail()
         {
             _items.Last().Type = ValidationType.Email;
@@ -128,5 +135,6 @@ namespace SpeakFriend.Utilities.Web
 
             return _validationService;
         }
+
     }
 }

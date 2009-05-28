@@ -12,6 +12,7 @@ namespace SpeakFriend.Utilities.Web
         GUID,
         Compare,
         Uri,
-        Positive_Integer
+        Positive_Integer,
+        Positive_Decimal
     }
 }
