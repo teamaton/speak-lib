@@ -59,4 +59,9 @@ namespace SpeakFriend.Utilities.Web
             return _cache.GetEnumerator();
         }
     }
+
+    /// <summary>
+    /// Convenience Name in case the "Cache" is used as MemberVariable. E.g: System.Web.Page.Cache
+    /// </summary>
+    public class CacheSf : Cache{}
 }

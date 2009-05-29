@@ -153,7 +153,14 @@
     <Compile Include="Service\Imaging\ImageSort.cs" />
     <Compile Include="Service\Imaging\ImageStore.cs" />
     <Compile Include="Service\Imaging\WebScreenshotGenerator.cs" />
+    <Compile Include="ValueObjects\BinarySize.cs" />
+    <Compile Include="ValueObjects\MediaSize\MediaLength.cs" />
+    <Compile Include="ValueObjects\MediaSize\TimeCode.cs" />
     <Compile Include="Web\Ajax\AjaxUtils.cs" />
+    <Compile Include="Web\Context\Cache\CacheAnalyzer\CacheAnalyzer.cs" />
+    <Compile Include="Web\Context\Cache\CacheAnalyzer\CacheItemTypeSummary.cs" />
+    <Compile Include="Web\Context\Cache\CacheAnalyzer\CacheItemTypeSummaryList.cs" />
+    <Compile Include="Web\Context\Cache\CacheAnalyzer\CacheItemWrapper.cs" />
     <Compile Include="Web\Context\ContextUtil.cs" />
     <Compile Include="Web\Context\HttpCurrent\HttpCurrent.cs" />
     <Compile Include="Web\Context\HttpCurrent\HttpCurrentNoWeb.cs" />
@@ -229,6 +236,7 @@
   <ItemGroup>
     <Folder Include="SeedWork.Comment\" />
     <Folder Include="Service\Security\" />
+    <Folder Include="ValueObjects\Money\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

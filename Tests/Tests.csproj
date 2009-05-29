@@ -53,11 +53,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Query\PagerTest.cs" />
     <Compile Include="Utilities\Service\StringExtensionsTest.cs" />
+    <Compile Include="Utilities\Web\Context\Cache\CacheAnalyzerTest.cs" />
     <Compile Include="Utilities\Web\Context\HttpCurrent\HttpCurrentTest.cs" />
     <Compile Include="Utilities\Web\Tracking\Performance\PerformanceTrackerTest.cs" />
     <Compile Include="Utilities\Web\Tracking\User\UserTrackerTest.cs" />
     <Compile Include="Utilities\Web\WebHtmlExtensionsTest.cs" />
     <Compile Include="Utilities\Web\UriUtilsTest.cs" />
+    <Compile Include="ValueObjects\BinarySizeTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SpeakLib.Utilities\SpeakLib.Utilities.csproj">
@@ -72,7 +74,6 @@
   <ItemGroup>
     <Folder Include="Utilities\SeedWork.Setting\" />
     <Folder Include="Utilities\SeedWork.Tagging\" />
-    <Folder Include="ValueObjects\" />
     <Folder Include="_Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
