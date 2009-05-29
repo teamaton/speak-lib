@@ -27,8 +27,8 @@ namespace SpeakFriend.Utilities.Web.Analysis
                 base.Add(typeSummary);
             else
             {
-                item.Amount =+ typeSummary.Amount;
-                item.Size = item.Size + typeSummary.Size;
+                item.Amount += typeSummary.Amount;
+                item.Size += typeSummary.Size;
             }
                 
         }
