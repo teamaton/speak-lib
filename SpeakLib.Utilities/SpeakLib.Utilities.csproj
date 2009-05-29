@@ -147,6 +147,11 @@
     <Compile Include="SeedWork.Tagging\TagService.cs" />
     <Compile Include="SeedWork.Tagging\Tag.cs" />
     <Compile Include="SeedWork.Tagging\Prototype\TagPrototype.cs" />
+    <Compile Include="Service.Type\Types\EnumAnnotated.cs" />
+    <Compile Include="Service.Type\Types\EnumAnnotatedList.cs" />
+    <Compile Include="Service.Type\Types\EnumHelperBase.cs" />
+    <Compile Include="Service.Type\Types\EnumOfT.cs" />
+    <Compile Include="Service.Type\Types\EnumOfTList.cs" />
     <Compile Include="Service\ExtensionMethods\StringExtensions.cs" />
     <Compile Include="Service\IHideObjectMembers.cs" />
     <Compile Include="Service\Imaging\ImageInfo.cs" />
@@ -181,6 +186,8 @@
     <Compile Include="Web\Controls\PagerControl.cs" />
     <Compile Include="Web\ControlUtils\ControlUtil.cs" />
     <Compile Include="Web\ControlUtils\HtmlControlExtensionMethods.cs" />
+    <Compile Include="Web\ControlUtils\ListControls\DdlProxyEnum.cs" />
+    <Compile Include="Web\ControlUtils\ListControls\ListPopulator.cs" />
     <Compile Include="Web\ControlUtils\TextBox\TextBoxUtils.cs" />
     <Compile Include="Web\ControlUtils\WebControlExtensionMethods.cs" />
     <Compile Include="Web\Interaction\Feedback\UserFeedback.cs" />

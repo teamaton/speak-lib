@@ -30,6 +30,9 @@ namespace SpeakFriend.Utilities.Web.Analysis
         /// </remarks>
         public BinarySize GetSize()
         {
+            if(!_dictionaryEntry.Value.GetType().IsSerializable)
+                return new BinarySize(0);
+
             var formatter = new BinaryFormatter();
             var memoryStream = new MemoryStream();
             
