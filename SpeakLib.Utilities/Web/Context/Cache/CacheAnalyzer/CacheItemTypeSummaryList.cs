@@ -13,6 +13,24 @@ namespace SpeakFriend.Utilities.Web.Analysis
     /// </summary>
     public class CacheItemTypeSummaryList : List<CacheItemTypeSummary>
     {
+        /// <summary>
+        /// The total size, in case of serialization
+        /// </summary>
+        public BinarySize TotalSize
+        {
+            get{ return new BinarySize(this.Sum(summary => summary.Size.Bytes)); }
+        }
+
+        public int TotalAmountOfNonSizeableElements
+        {
+            get { return this.Count(summary => summary.Size.Bytes == 0); }
+        }
+
+        public int TotalCount
+        {
+            get {return this.Sum(summary => summary.Amount);}
+        }
+
         public void Add(DictionaryEntry summary)
         {
             var wrapper = new CacheItemWrapper(summary);
@@ -48,19 +66,6 @@ namespace SpeakFriend.Utilities.Web.Analysis
             return GetByType(type) != null;
         }
 
-        /// <summary>
-        /// The total size, in case of serilization
-        /// </summary>
-        public BinarySize TotalSize
-        {
-            get
-            {
-                var result = new BinarySize();
-                foreach (var summary in this)
-                    result.Bytes =+ summary.Size.Bytes;
 
-                return result;
-            }
-        }
     }
 }
