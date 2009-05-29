@@ -33,11 +33,21 @@ namespace SpeakFriend.Utilities.Web.Analysis
             if(!_dictionaryEntry.Value.GetType().IsSerializable)
                 return new BinarySize(0);
 
-            var formatter = new BinaryFormatter();
-            var memoryStream = new MemoryStream();
-            
-            formatter.Serialize(memoryStream, _dictionaryEntry.Value);
-            return new BinarySize(memoryStream.Length);
+            try
+            {
+                var formatter = new BinaryFormatter();
+                var memoryStream = new MemoryStream();
+
+                formatter.Serialize(memoryStream, _dictionaryEntry.Value);
+                return new BinarySize(memoryStream.Length);
+            }
+            //its not worth the effort to use reflection for checking the object graph 
+            //if every member and its childs are serializable
+            catch (SerializationException e) 
+            {
+                return new BinarySize(0);
+            }
+
         }
 
         public CacheItemTypeSummary ToCacheItemSummary()
