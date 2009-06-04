@@ -12,7 +12,7 @@ namespace SpeakFriend.Utilities.Web
         {
             get
             {
-                if (!IsWebContext) // helps unit-testing
+                if (!IsWebContext) // helps unit testing
                     return false;
 
                 return HttpContext.Current.Request.IsLocal;
