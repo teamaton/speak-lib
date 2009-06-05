@@ -18,8 +18,8 @@ namespace SpeakFriend.Utilities
         {
             var result = new List<int>();
 
-            ForEach(catalog 
-                    => result.Add(catalog.Id));
+            ForEach(item 
+                    => result.Add(item.Id));
 
             return result;
         }
