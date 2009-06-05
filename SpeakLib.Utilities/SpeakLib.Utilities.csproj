@@ -173,6 +173,7 @@
     <Compile Include="Web\Context\HttpCurrent\Request\IRequest.cs" />
     <Compile Include="Web\Context\HttpCurrent\Request\RequestNoWeb.cs" />
     <Compile Include="Web\Context\HttpCurrent\Request\RequestWeb.cs" />
+    <Compile Include="Web\Context\HttpCurrent\HttpExtensionMethods.cs" />
     <Compile Include="Web\Context\HttpCurrent\Response\IResponse.cs" />
     <Compile Include="Web\Context\HttpCurrent\Response\Response.cs" />
     <Compile Include="Web\Context\HttpCurrent\Response\ResponseNoWeb.cs" />
