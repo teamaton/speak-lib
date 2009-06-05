@@ -16,12 +16,7 @@ namespace SpeakFriend.Utilities
 
         public List<int> Ids()
         {
-            var result = new List<int>();
-
-            ForEach(item 
-                    => result.Add(item.Id));
-
-            return result;
+            return (from item in this select item.Id).ToList();
         }
     }
 }
