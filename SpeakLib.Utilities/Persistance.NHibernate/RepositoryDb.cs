@@ -80,6 +80,9 @@ namespace SpeakFriend.Utilities
 
         public virtual void Update(TDomainObject domainObject)
         {
+			if (domainObject is IMutablePersistable)
+				(domainObject as IMutablePersistable).Modified = DateTime.Now;
+
             _session.Update(domainObject);
         }
 
