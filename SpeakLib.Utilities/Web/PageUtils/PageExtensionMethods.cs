@@ -9,6 +9,22 @@ namespace SpeakFriend.Utilities
 {
     public static class PageExtensionMethods
     {
+		/// <summary>
+		/// Typed version of Master, runs up the MasterPage hierarchy to find the provided
+		/// MasterPage type T. Returns null, if no match found.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="page"></param>
+		/// <returns></returns>
+		public static T Master<T>(this Page page) where T:MasterPage
+		{
+			var master = page.Master;
+			while (master != null && !(master is T))
+				master = master.Master;
+
+			return master as T;
+		}
+
         /// <summary>
         /// Add a CSS file reference to the HEAD section of a Page.
         /// </summary>
