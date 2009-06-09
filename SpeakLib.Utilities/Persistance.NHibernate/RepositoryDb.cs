@@ -84,12 +84,17 @@ namespace SpeakFriend.Utilities
 				(domainObject as IMutablePersistable).Modified = DateTime.Now;
 
             _session.Update(domainObject);
-        }
+			ClearAllItemCache();
+		}
 
         public void CreateOrUpdate(TDomainObject domainObject)
         {
-            _session.SaveOrUpdate(domainObject);
-        }
+			if (domainObject is IMutablePersistable)
+				(domainObject as IMutablePersistable).Modified = DateTime.Now;
+
+			_session.SaveOrUpdate(domainObject);
+			ClearAllItemCache();
+		}
 
         public virtual void Delete(TDomainObject domainObject)
         {
