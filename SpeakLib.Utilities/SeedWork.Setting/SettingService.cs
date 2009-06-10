@@ -25,7 +25,7 @@ namespace SpeakFriend.Utilities
 
         public void Create(Setting list)
         {
-            list.Created = list.Modified = DateTime.Now;
+            list.DateCreated = list.DateModified = DateTime.Now;
 
             _repository.Create(list);
         }
@@ -38,7 +38,7 @@ namespace SpeakFriend.Utilities
 
         public void Update(Setting setting)
         {
-            setting.Modified = DateTime.Now;
+            setting.DateModified = DateTime.Now;
             _repository.Update(setting);
         }
 
@@ -50,10 +50,10 @@ namespace SpeakFriend.Utilities
 
         public void CreateOrUpdate(Setting setting)
         {
-            if (setting.Created == DateTime.MinValue)
-                setting.Created = DateTime.Now;
+            if (setting.DateCreated == DateTime.MinValue)
+                setting.DateCreated = DateTime.Now;
 
-            setting.Modified = DateTime.Now;
+            setting.DateModified = DateTime.Now;
 
             _repository.CreateOrUpdate(setting);
         }

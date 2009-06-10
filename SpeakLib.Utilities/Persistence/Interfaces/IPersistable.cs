@@ -9,6 +9,6 @@ namespace SpeakFriend.Utilities
     {
         int Id { get; set; }
 
-        DateTime Created { get; set; }
+        DateTime DateCreated { get; set; }
     }
 }

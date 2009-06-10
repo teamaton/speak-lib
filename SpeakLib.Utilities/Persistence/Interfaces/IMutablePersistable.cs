@@ -4,6 +4,6 @@ namespace SpeakFriend.Utilities
 {
     public interface IMutablePersistable : IPersistable
     {
-        DateTime Modified { get; set; }
+        DateTime DateModified { get; set; }
     }
 }

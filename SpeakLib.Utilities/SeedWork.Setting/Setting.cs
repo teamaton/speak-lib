@@ -24,8 +24,8 @@ namespace SpeakFriend.Utilities
         /// </summary>
         public virtual int SettingTypeId { get; set; }
 
-        public virtual DateTime Created { get; set; }
-        public virtual DateTime Modified { get; set; }
+        public virtual DateTime DateCreated { get; set; }
+        public virtual DateTime DateModified { get; set; }
 
         /// <summary>
         /// This c'tor is used by generic methods to create a new Setting.
@@ -66,10 +66,10 @@ namespace SpeakFriend.Utilities
             return new T
                        {
                            _default = _default,
-                           Created = Created,
+                           DateCreated = DateCreated,
                            Id = Id,
                            Key = Key,
-                           Modified = Modified,
+                           DateModified = DateModified,
                            SettingType = SettingType,
                            SettingTypeId = SettingTypeId,
                            ValueStr = ValueStr

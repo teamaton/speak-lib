@@ -73,7 +73,7 @@ namespace SpeakFriend.Utilities
 
         public virtual void Create(TDomainObject domainObject)
         {
-            domainObject.Created = DateTime.Now;
+            domainObject.DateCreated = DateTime.Now;
             _session.Save(domainObject);
             ClearAllItemCache();
         }
@@ -81,7 +81,7 @@ namespace SpeakFriend.Utilities
         public virtual void Update(TDomainObject domainObject)
         {
 			if (domainObject is IMutablePersistable)
-				(domainObject as IMutablePersistable).Modified = DateTime.Now;
+				(domainObject as IMutablePersistable).DateModified = DateTime.Now;
 
             _session.Update(domainObject);
 			ClearAllItemCache();
@@ -90,7 +90,7 @@ namespace SpeakFriend.Utilities
         public void CreateOrUpdate(TDomainObject domainObject)
         {
 			if (domainObject is IMutablePersistable)
-				(domainObject as IMutablePersistable).Modified = DateTime.Now;
+				(domainObject as IMutablePersistable).DateModified = DateTime.Now;
 
 			_session.SaveOrUpdate(domainObject);
 			ClearAllItemCache();
