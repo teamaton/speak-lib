@@ -101,6 +101,7 @@
     <Compile Include="Persistance.NHibernate\SessionFactoryContainer.cs" />
     <Compile Include="Persistance.NHibernate\SessionManager.cs" />
     <Compile Include="Persistence.Setup\BaseSetup.cs" />
+    <Compile Include="Persistence\Interfaces\IDeletable.cs" />
     <Compile Include="Persistence\Interfaces\IDataService.cs" />
     <Compile Include="Persistance.NHibernate\RepositoryDb.cs" />
     <Compile Include="Persistence\PersistableList.cs" />
