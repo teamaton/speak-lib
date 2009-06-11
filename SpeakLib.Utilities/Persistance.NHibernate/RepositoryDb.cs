@@ -51,9 +51,9 @@ namespace SpeakFriend.Utilities
                 return;
             
             if (orderBy.Current.Direction == OrderDirection.Ascending)
-                criteria.AddOrder(NHibernate.Criterion.Order.Asc(propertyName));
+                criteria.AddOrder(Order.Asc(propertyName));
             else
-                criteria.AddOrder(NHibernate.Criterion.Order.Desc(propertyName));
+                criteria.AddOrder(Order.Desc(propertyName));
         }
 
         public void SetPager(ICriteria criteria, IPager pager)
@@ -74,7 +74,10 @@ namespace SpeakFriend.Utilities
         public virtual void Create(TDomainObject domainObject)
         {
             domainObject.DateCreated = DateTime.Now;
-            _session.Save(domainObject);
+			if (domainObject is IMutablePersistable)
+				(domainObject as IMutablePersistable).DateModified = DateTime.Now;
+
+			_session.Save(domainObject);
             ClearAllItemCache();
         }
 
@@ -87,8 +90,11 @@ namespace SpeakFriend.Utilities
 			ClearAllItemCache();
 		}
 
-        public void CreateOrUpdate(TDomainObject domainObject)
-        {
+        public virtual void CreateOrUpdate(TDomainObject domainObject)
+		{
+			if (domainObject.DateCreated == DateTime.MinValue)
+				domainObject.DateCreated = DateTime.Now;
+
 			if (domainObject is IMutablePersistable)
 				(domainObject as IMutablePersistable).DateModified = DateTime.Now;
 
