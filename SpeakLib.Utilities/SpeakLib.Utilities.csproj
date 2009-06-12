@@ -161,8 +161,11 @@
     <Compile Include="Service\Imaging\ImageStore.cs" />
     <Compile Include="Service\Imaging\WebScreenshotGenerator.cs" />
     <Compile Include="ValueObjects\BinarySize.cs" />
+    <Compile Include="ValueObjects\Gender.cs" />
+    <Compile Include="ValueObjects\MaritalStatus.cs" />
     <Compile Include="ValueObjects\MediaSize\MediaLength.cs" />
     <Compile Include="ValueObjects\MediaSize\TimeCode.cs" />
+    <Compile Include="ValueObjects\ProfileVisibility.cs" />
     <Compile Include="Web\Ajax\AjaxUtils.cs" />
     <Compile Include="Web\Context\Cache\CacheAnalyzer\CacheAnalyzer.cs" />
     <Compile Include="Web\Context\Cache\CacheAnalyzer\CacheItemTypeSummary.cs" />
