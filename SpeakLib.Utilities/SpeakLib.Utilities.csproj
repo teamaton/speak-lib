@@ -96,6 +96,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Wpf\Controls\Image.cs" />
     <Compile Include="Persistance.NHibernate\ISessionManager.cs" />
     <Compile Include="Persistance.NHibernate\Logging\NHibernateLogger.cs" />
     <Compile Include="Persistance.NHibernate\SessionFactoryContainer.cs" />
@@ -232,6 +233,7 @@
     <Compile Include="Web\Tracking\Performance\PerformanceTracker.cs" />
     <Compile Include="Web\Tracking\User\UserTracker.cs" />
     <Compile Include="Wpf\Controls\Span.cs" />
+    <Compile Include="Wpf\Utilites\ListViewUtilities.cs" />
     <Compile Include="Wpf\Utilites\UIUtilities.cs" />
   </ItemGroup>
   <ItemGroup>

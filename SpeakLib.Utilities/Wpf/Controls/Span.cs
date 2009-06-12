@@ -78,7 +78,7 @@ namespace SpeakFriend.Utilities.Wpf
                 if (IsMouseOver)
                     RaiseEvent(new RoutedEventArgs(ClickEvent, this));
             }
-
         }
+
     }
 }
