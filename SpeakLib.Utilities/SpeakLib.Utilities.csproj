@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Persistence.Query\SearchDescriptionBase.cs" />
+    <Compile Include="Service\Login\LoginUtils.cs" />
     <Compile Include="Wpf\Controls\Image.cs" />
     <Compile Include="Persistance.NHibernate\ISessionManager.cs" />
     <Compile Include="Persistance.NHibernate\Logging\NHibernateLogger.cs" />
