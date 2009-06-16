@@ -8,7 +8,7 @@ using SpeakFriend.Utilities;
 namespace Tests.Utilities.Query
 {
     [TestFixture]
-    public class PagerTest : AssertionHelper
+    public class PagerBehaviourTest : AssertionHelper
     {
         private IPager _pager;
 

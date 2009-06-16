@@ -152,6 +152,11 @@ namespace SpeakFriend.Utilities
             return regex.IsMatch(value);
 		}
 
+        public static int ToInt32(this string value)
+        {
+            return Int32.Parse(value);
+        }
+
 		/// <summary>
 		/// Ensures that the given string ends with the given suffix.
 		/// Appends the suffix to the string if not.

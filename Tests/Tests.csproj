@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\Query\PagerTest.cs" />
+    <Compile Include="Utilities\Query\PagerBehaviourTest.cs" />
     <Compile Include="Utilities\Service\StringExtensionsTest.cs" />
     <Compile Include="Utilities\Web\Context\Cache\CacheAnalyzerTest.cs" />
     <Compile Include="Utilities\Web\Context\HttpCurrent\HttpCurrentTest.cs" />
