@@ -14,7 +14,7 @@ namespace SpeakFriend.Utilities
         private readonly List<TSubject> _itemsToCreate = new List<TSubject>();
         public TSubject LastAdded { get { return _itemsToCreate.Last(); } }
 
-
+        public List<TSubject> Added { get { return _itemsToCreate; } }
         public List<TSubject> Created = new List<TSubject>();
         public TSubject LastCreated { get { return Created.Last(); } }
 
