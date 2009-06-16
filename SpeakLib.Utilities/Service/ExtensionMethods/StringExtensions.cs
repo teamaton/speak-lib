@@ -157,7 +157,19 @@ namespace SpeakFriend.Utilities
             return Int32.Parse(value);
         }
 
-		/// <summary>
+    	/// <summary>
+    	/// Ensures that the given string starts with the given suffix.
+    	/// Prepends the prefix to the string if not.
+    	/// </summary>
+    	public static string EnsureStartsWith(this string value, string prefix)
+    	{
+    		if (value.StartsWith(prefix))
+    			return value;
+
+    		return prefix + value;
+    	}
+
+    	/// <summary>
 		/// Ensures that the given string ends with the given suffix.
 		/// Appends the suffix to the string if not.
 		/// </summary>
@@ -170,18 +182,18 @@ namespace SpeakFriend.Utilities
 		}
 
 		/// <summary>
-		/// Ensures that the given string starts with the given suffix.
-		/// Prepends the prefix to the string if not.
+		/// Ensures that the given string ends with the given suffix.
+		/// Appends the suffix to the string if not.
 		/// </summary>
-		public static string EnsureStartsWith(this string value, string prefix)
+		public static string EnsureEndsNotWith(this string value, string suffix)
 		{
-			if (value.StartsWith(prefix))
-				return value;
+			if (value.EndsWith(suffix))
+				return value.Substring(0, value.Length - suffix.Length);
 
-			return prefix + value;
+			return value;
 		}
 
-        public static DateTime? ToDate(this string dateText)
+    	public static DateTime? ToDate(this string dateText)
         {
             DateTime date;
             return DateTime.TryParseExact(dateText,
