@@ -9,14 +9,27 @@ namespace SpeakFriend.Utilities
         where TDomainObjectList : PersistableList<TDomainObject>, new()
     {
         protected readonly ISession _session;
-        private TDomainObjectList _allItemsCached;
+		private TDomainObjectList _allItemsCached;
+		protected event EventHandler<RepositoryDbEventArgs> OnItemMutated;
+    	protected event EventHandler<RepositoryDbEventArgs> OnItemCreated;
+		protected event EventHandler<RepositoryDbEventArgs> OnItemDeleted;
+		protected event EventHandler<RepositoryDbEventArgs> OnItemUpdated;
 
         protected RepositoryDb(ISession session)
         {
             _session = session;
+        	OnItemCreated += ItemMutated;
+			OnItemDeleted += ItemMutated;
+			OnItemUpdated += ItemMutated;
         }
 
-        public DetachedCriteria GetDetachedCriteria()
+    	private void ItemMutated(object sender, RepositoryDbEventArgs e)
+    	{
+			if (OnItemMutated != null)
+				OnItemMutated(this, e);
+    	}
+
+    	public DetachedCriteria GetDetachedCriteria()
         {
             return DetachedCriteria.For(typeof(TDomainObject));
         }
@@ -79,19 +92,27 @@ namespace SpeakFriend.Utilities
 
 			_session.Save(domainObject);
             ClearAllItemCache();
+
+			if (OnItemCreated != null)
+				OnItemCreated(this, new RepositoryDbEventArgs(domainObject));
         }
 
-        public virtual void Update(TDomainObject domainObject)
+    	public virtual void Update(TDomainObject domainObject)
         {
 			if (domainObject is IMutablePersistable)
 				(domainObject as IMutablePersistable).DateModified = DateTime.Now;
 
             _session.Update(domainObject);
 			ClearAllItemCache();
+
+			if (OnItemUpdated != null)
+				OnItemUpdated(this, new RepositoryDbEventArgs(domainObject));
 		}
 
         public virtual void CreateOrUpdate(TDomainObject domainObject)
 		{
+        	var creating = domainObject.Id == 0;
+
 			if (domainObject.DateCreated == DateTime.MinValue)
 				domainObject.DateCreated = DateTime.Now;
 
@@ -100,6 +121,11 @@ namespace SpeakFriend.Utilities
 
 			_session.SaveOrUpdate(domainObject);
 			ClearAllItemCache();
+
+			if (creating && OnItemCreated != null)
+				OnItemCreated(this, new RepositoryDbEventArgs(domainObject));
+			else if(!creating && OnItemUpdated != null)
+				OnItemUpdated(this, new RepositoryDbEventArgs(domainObject));				
 		}
 
         public virtual void Delete(TDomainObject domainObject)
@@ -107,7 +133,10 @@ namespace SpeakFriend.Utilities
             _session.Delete(domainObject);
             ClearAllItemCache();
             Flush();
-        }
+
+			if (OnItemDeleted != null)
+				OnItemDeleted(this, new RepositoryDbEventArgs(domainObject));
+		}
 
         public virtual void Delete(int id)
         {
@@ -162,8 +191,18 @@ namespace SpeakFriend.Utilities
         public void Flush()
         {
             _session.Flush();
-        }
-    }
+		}
 
+		protected class RepositoryDbEventArgs : EventArgs
+		{
+			private readonly TDomainObject _item;
+			public TDomainObject Item { get { return _item; } }
+
+			public RepositoryDbEventArgs(TDomainObject item)
+			{
+				_item = item;
+			}
+		}
+	}
 }
 
