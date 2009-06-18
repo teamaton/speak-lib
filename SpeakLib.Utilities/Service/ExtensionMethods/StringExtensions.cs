@@ -204,5 +204,11 @@ namespace SpeakFriend.Utilities
                        ? (DateTime?)date
                        : null;
         }
+
+		public static string JoinNonEmpty(this List<string> values, string separator)
+		{
+			values.RemoveAll(s => string.IsNullOrEmpty(s));
+			return String.Join(separator, values.ToArray());
+		}
     }
 }
