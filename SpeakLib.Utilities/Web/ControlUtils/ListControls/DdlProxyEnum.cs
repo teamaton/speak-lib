@@ -12,6 +12,7 @@ namespace SpeakFriend.Utilities
         private readonly DropDownList _ddl;
 
         private const int _noSelection = -1;
+        private readonly string _noSelectionValue = _noSelection.ToString();
 
         public DdlProxyEnum(DropDownList ddl, EnumAnnotatedList annotadedEnums)
         {
@@ -32,7 +33,7 @@ namespace SpeakFriend.Utilities
 
         public bool HasSelectedValue()
         {
-            return Convert.ToInt32(_ddl.SelectedValue) != -1;
+            return _ddl.SelectedValue != _noSelectionValue;
         }
 
         public Enum GetSelectedType()
@@ -41,6 +42,14 @@ namespace SpeakFriend.Utilities
                 throw new Exception("no valid value: use 'HasSelectedValue()'");
 
             return _annotadedEnums.GetById(Convert.ToInt32(_ddl.SelectedValue)).Enum;
+        }
+
+        public void SetSelected(Enum @enum)
+        {
+            if (@enum == null)
+                _ddl.SelectedValue = _noSelectionValue;
+            else 
+                _ddl.SelectedValue = new EnumAnnotated(@enum.ToString(), @enum).Value.ToString();
         }
     }
 }

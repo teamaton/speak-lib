@@ -8,7 +8,12 @@ namespace SpeakFriend.Utilities
     public enum Gender
     {
         Unspecified,
-        Male,
-        Female
+        Female,
+        Male        
+    }
+
+    public class GenderHelper : EnumHelperBase<Gender>
+    {
+
     }
 }
