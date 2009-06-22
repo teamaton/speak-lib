@@ -39,5 +39,10 @@ namespace SpeakFriend.Utilities
             htmlLink.Attributes.Add("media", "all");
             page.Header.Controls.Add(htmlLink);
         }
+
+		public static void AddMetaTag(this Page page, string name, string content)
+		{
+			page.Header.Controls.Add(new HtmlMeta {Name = name, Content = content});
+		}
     }
 }
