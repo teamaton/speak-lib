@@ -13,5 +13,6 @@ namespace SpeakFriend.Utilities.Web
         string[] UserLanguages { get;  }
         HttpCookieCollection Cookies { get; }
         NameValueCollection QueryString { get; }
+    	string Path { get; }
     }
 }

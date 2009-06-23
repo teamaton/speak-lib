@@ -20,6 +20,7 @@ namespace SpeakFriend.Utilities.Web
 
         public void SetCookie(HttpCookie cookie)
         {
+        	_cookiesCreated.RemoveAll(cook => cook.Name == cookie.Name);
             _cookiesCreated.Add(cookie);
         }
     }
