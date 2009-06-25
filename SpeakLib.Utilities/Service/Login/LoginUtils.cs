@@ -20,7 +20,7 @@ namespace SpeakFriend.Utilities
         /// <returns></returns>
         public static bool IsValidPassword(string userInput, string hashedMd5)
         {
-            return GetPasswordHash(userInput) == hashedMd5;
+            return GetPasswordHash(userInput).Equals(hashedMd5, StringComparison.InvariantCultureIgnoreCase);
         }
 
         /// <summary>
