@@ -5,6 +5,7 @@ using System.Text;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using SpeakFriend.Utilities.Web;
 
 namespace SpeakFriend.Utilities.Web
 {
@@ -43,15 +44,16 @@ namespace SpeakFriend.Utilities.Web
 
         private void SetActive(NavigationItem<T> navItem)
         {
-            navItem.Anchor.Attributes.Add("class", activeItemClass);
+            navItem.Anchor.AddCssClass(activeItemClass);
 
             if (navItem.Parent != null)
-                navItem.Parent.Attributes.Add("class", activeItemClass);
+                navItem.Parent.AddCssClass(activeItemClass);
         }
 
         private void SetInactive(NavigationItem<T> navItem)
         {
-            navItem.Anchor.Attributes.Remove("class");
+            if (navItem.Anchor.Attributes["class"] != null)
+                navItem.Anchor.Attributes["class"].Replace(activeItemClass, "");
         }
     }
 }
