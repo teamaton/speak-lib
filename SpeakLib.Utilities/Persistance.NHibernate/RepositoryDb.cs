@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using NHibernate;
 using NHibernate.Criterion;
 
@@ -203,6 +205,17 @@ namespace SpeakFriend.Utilities
 				_item = item;
 			}
 		}
-	}
+
+    	public IList<int> GetAllIds()
+    	{
+    		DetachedCriteria queryObjects =
+    			DetachedCriteria.For(typeof(TDomainObject), "o");
+
+    		ICriteria criteria = queryObjects.GetExecutableCriteria(_session)
+    			.SetProjection(Projections.Property("Id")); // guaranteed to exist by IPersistable
+
+    		return criteria.List<int>();
+    	}
+    }
 }
 
