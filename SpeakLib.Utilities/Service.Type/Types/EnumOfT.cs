@@ -27,5 +27,14 @@ namespace SpeakFriend.Utilities
             return (T)Enum.Parse(typeof (T), value.ToString());
         }
 
+		public static int ParseToInt(T value)
+		{
+			return Convert.ToInt32(value);
+		}
+
+		public static string ParseToIntString(T value)
+		{
+			return ParseToInt(value).ToString();
+		}
     }
 }
