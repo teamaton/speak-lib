@@ -154,7 +154,7 @@ namespace SpeakFriend.Utilities
         {
             var list = new TDomainObjectList();
 
-            if (_allItemsCached != null)
+            if (_allItemsCached != null && _allItemsCached.Count != 0)
                 list.AddRange(_allItemsCached);
             else
             {

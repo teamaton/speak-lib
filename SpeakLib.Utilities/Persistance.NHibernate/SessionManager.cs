@@ -7,7 +7,7 @@ using NHibernate;
 namespace SpeakFriend.Utilities
 {
     /// <summary>
-    /// Überwacht den Lifecycle einer Session, damit
+    /// Überwacht den Lifecycle einer NHibernate Session, damit
     /// Daten vor dem Schließen gespeichert werden.
     /// </summary>
     public class SessionManager : ISessionManager
