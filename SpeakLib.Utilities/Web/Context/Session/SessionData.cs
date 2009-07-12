@@ -20,7 +20,13 @@ namespace SpeakFriend.Utilities.Web
             get
             {
 				if (ContextUtil.IsWebContext)
-					return HttpContext.Current.Session[key];
+				{
+                    if(HttpContext.Current.Session == null)
+                        throw new NullReferenceException("Probably you access session data to late or to early in the page life cycle.");
+
+                    return HttpContext.Current.Session[key];
+				}
+					
 
                 return AppDomain.CurrentDomain.GetData(key);
             }
