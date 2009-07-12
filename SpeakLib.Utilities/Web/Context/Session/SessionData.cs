@@ -13,21 +13,29 @@ namespace SpeakFriend.Utilities.Web
     /// </summary>
     public class SessionData
     {
-        public object this[string index]
+        public List<string> _appDomainInsertedKeys = new List<string>();
+
+        public object this[string key]
         {
             get
             {
 				if (ContextUtil.IsWebContext)
-					return HttpContext.Current.Session[index];
+					return HttpContext.Current.Session[key];
 
-                return AppDomain.CurrentDomain.GetData(index);
+                return AppDomain.CurrentDomain.GetData(key);
             }
             set
             {
                 if (ContextUtil.IsWebContext)
-                    HttpContext.Current.Session[index] = value;
+                    HttpContext.Current.Session[key] = value;
 				else
-					AppDomain.CurrentDomain.SetData(index, value);
+                {
+                    AppDomain.CurrentDomain.SetData(key, value);
+                    
+                    if(!_appDomainInsertedKeys.Contains(key))
+                        _appDomainInsertedKeys.Add(key);
+                }
+					
             }
         }
 
@@ -95,6 +103,17 @@ namespace SpeakFriend.Utilities.Web
                 this[key] = new T();    
 
             return Get<T>(key);
+        }
+
+        public void Clear()
+        {
+            if (ContextUtil.IsWebContext)
+                HttpContext.Current.Session.Clear();            
+
+            foreach(string key in _appDomainInsertedKeys)
+                AppDomain.CurrentDomain.SetData(key, null);
+
+            _appDomainInsertedKeys.Clear();
         }
     }
 }
