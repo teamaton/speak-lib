@@ -8,61 +8,60 @@ namespace SpeakFriend.Utilities.Web
 {
     public class UserMessage
     {
-        private string _Title;
-        private readonly List<UserMessageItem> _Messages = new List<UserMessageItem>();
+        private string _title;
+        private readonly List<UserMessageItem> _messages = new List<UserMessageItem>();
 
         public string Title
         {
-            get { return _Title; }
-            set { _Title = value; }
+            get { return _title; }
+            set { _title = value; }
         }
 
         public List<UserMessageItem> Messages
         {
-            get { return _Messages; }
+            get { return _messages; }
         }
-
 
         public UserMessage() { }
 
         public UserMessage(string title)
         {
-            _Title = title;
+            _title = title;
         }
 
         public UserMessage(string title, string message)
             : this(title)
         {
-            _Messages.Add(new UserMessageItem(message));
+            _messages.Add(new UserMessageItem(message));
         }
 
         public UserMessage AddItem(string message, Control control)
         {
-            _Messages.Add(new UserMessageItem(message, control));
+            _messages.Add(new UserMessageItem(message, control));
             return this;
         }
 
         public UserMessage AddItem(string message, params Control[] controls)
         {
-            _Messages.Add(new UserMessageItem(message, controls));
+            _messages.Add(new UserMessageItem(message, controls));
             return this;
         }
 
         public UserMessage AddItem(string message)
         {
-            _Messages.Add(new UserMessageItem(message));
+            _messages.Add(new UserMessageItem(message));
             return this;
         }
 
         public UserMessage SetTitle(string title)
         {
-            _Title = title;
+            _title = title;
             return this;
         }
 
         public bool HasMessages()
         {
-            return _Messages.Count > 0;
+            return _messages.Count > 0;
         }
     }
 }
