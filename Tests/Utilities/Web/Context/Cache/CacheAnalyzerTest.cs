@@ -30,7 +30,8 @@ namespace Tests.Utilities.Web.Context
             Assert.That(typeSummeries.GetByType(typeof(Int32)), Is.Not.Null);
             Assert.That(typeSummeries.GetByType(typeof(String)), Is.Not.Null);
             Assert.That(typeSummeries.GetByType(typeof(String)).Amount, Is.EqualTo(2));
-            Assert.That(typeSummeries.TotalSize.Bytes, Is.InRange(50, 70)); //sanity check
+            //sanity check, result varies on platforms
+            Assert.That(typeSummeries.TotalSize.Bytes, Is.InRange(50, 300)); 
         }
 
     }

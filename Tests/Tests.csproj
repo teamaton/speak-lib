@@ -35,6 +35,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="NUnitEx, Version=1.0.2.0, Culture=neutral, PublicKeyToken=57e34ad207e9e5a3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\NUnitEx.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -51,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\StringExtensionTests.cs" />
     <Compile Include="Utilities\Query\PagerBehaviourTest.cs" />
     <Compile Include="Utilities\Service\StringExtensionsTest.cs" />
     <Compile Include="Utilities\Web\Context\Cache\CacheAnalyzerTest.cs" />
