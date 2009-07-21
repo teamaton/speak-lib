@@ -63,5 +63,16 @@ namespace SpeakFriend.Utilities.Web
         {
             return _messages.Count > 0;
         }
+
+        public override string ToString()
+        {
+            if (HasMessages())
+                return Messages[0].Text;
+            
+            if (String.IsNullOrEmpty(Title))
+                return Title;
+
+            return "empty";
+        }
     }
 }
