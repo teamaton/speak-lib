@@ -33,7 +33,7 @@ namespace SpeakFriend.Utilities
 
     	public DetachedCriteria GetDetachedCriteria()
         {
-            return DetachedCriteria.For(typeof(TDomainObject));
+            return DetachedCriteria.For(typeof(TDomainObject), typeof(TDomainObject).Name.ToLower());
         }
 
         public ICriteria GetExecutableCriteria()
