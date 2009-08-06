@@ -98,6 +98,23 @@
   <ItemGroup>
     <Compile Include="Persistence.Query\SearchDescriptionBase.cs" />
     <Compile Include="Service\Login\LoginUtils.cs" />
+    <Compile Include="Service\Message\DistributionType.cs" />
+    <Compile Include="Service\Message\Email\EmailAddresses.cs" />
+    <Compile Include="Service\Message\Email\EmailService.cs" />
+    <Compile Include="Service\Message\Email\EmailSettings.cs" />
+    <Compile Include="Service\Message\MessageAddress.cs" />
+    <Compile Include="Service\Message\MessageBase.cs" />
+    <Compile Include="Service\Message\MessageListBase.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="Service\Message\MessageServiceBase.cs" />
+    <Compile Include="Service\Message\Repository\MessageOrderBy.cs" />
+    <Compile Include="Service\Message\Repository\MessageRepositoryDbBase.cs" />
+    <Compile Include="Service\Message\Repository\MessageSearchDesc.cs" />
+    <Compile Include="Service\Message\Repository\MessageSearchFilter.cs" />
+    <Compile Include="Service\SpeakLibSettings.cs" />
+    <Compile Include="Service\SettingTypes.cs" />
     <Compile Include="Web\Controls\ButtonEffect.cs" />
     <Compile Include="Web\Controls\ButtonGenerator.cs" />
     <Compile Include="Web\Controls\RenderedButton.cs" />
