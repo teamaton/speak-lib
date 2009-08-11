@@ -97,6 +97,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Persistence.Query\SearchDescriptionBase.cs" />
+    <Compile Include="Service\FileStore\StoredFile.cs" />
+    <Compile Include="Service\FileStore\StoredFileList.cs" />
+    <Compile Include="Service\FileStore\FileStore.cs" />
     <Compile Include="Service\Login\LoginUtils.cs" />
     <Compile Include="Service\Message\DistributionType.cs" />
     <Compile Include="Service\Message\Email\EmailAddresses.cs" />
