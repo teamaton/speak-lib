@@ -3,39 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
 
 namespace SpeakFriend.Utilities.Web
 {
     public class UserMessageItem
     {
-        public string Text;
+		private readonly Literal _literal = new Literal();
+    	public string Text
+    	{
+    		get { return _literal.Text; } 
+			set { _literal.Text = value; }
+    	}
 
         /// <summary>
-        /// Controls to highlight
+        /// Arbitrary controls to show inside this list item.
         /// </summary>
         public List<Control> Controls = new List<Control>();
 
         public UserMessageItem(string text)
         {
             Text = text;
+			Controls.Add(_literal);
         }
 
-        public UserMessageItem(string text, Control control)
+        public UserMessageItem(params Control[] controls)
         {
-            Text = text;
-            Controls.Add(control);
-        }
-
-        public UserMessageItem(string text, params Control[] controls)
-        {
-            Text = text;
             Controls.AddRange(controls);
         }
 
-        public bool IsSetControl()
-        {
-            return Controls.Count > 0;
-        }
+		public Control ToControl(Control container)
+		{
+			foreach (var control in Controls)
+				container.Controls.Add(control);
 
+			return container;
+		}
     }
 }
