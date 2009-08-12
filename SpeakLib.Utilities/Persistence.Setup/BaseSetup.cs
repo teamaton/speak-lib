@@ -48,10 +48,14 @@ namespace SpeakFriend.Utilities
         public List<TSubject> Get(int amount)
         {
             var result = new List<TSubject>();
-            for (int i = 0; i < amount; i++)
-                result.Add(Get());
+			for (int i = 0; i < amount; i++)
+			{
+				var item = Get();
+				result.Add(item);
+				Add(item);
+			}
 
-            return result;
+        	return result;
         }
 
         public void Persist()
@@ -85,8 +89,5 @@ namespace SpeakFriend.Utilities
             Persist();
             return subjects;
         }
-
-
-
     }
 }

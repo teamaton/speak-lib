@@ -14,8 +14,17 @@ namespace SpeakFriend.Utilities
 
         public ConditionList(ConditionContainer conditions, string propertyName) : base(conditions, propertyName)
         {
-            if (Conditions != null) Conditions.Add(this);
-        }
+            if (Conditions != null) 
+				Conditions.Add(this);
+		}
+
+		public void Set(List<T> items)
+		{
+			Clear();
+			Add(items);
+			if (!Conditions.Contains(this))
+				Conditions.Add(this);
+		}
 
         public void Add(params T[] values)
         {
