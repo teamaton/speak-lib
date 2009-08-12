@@ -158,7 +158,7 @@ namespace SpeakFriend.Utilities
         }
 
     	/// <summary>
-    	/// Ensures that the given string starts with the given prefix.
+    	/// Ensures that the string starts with the given prefix.
     	/// Prepends the prefix to the string if not.
     	/// </summary>
     	public static string EnsureStartsWith(this string value, string prefix)
@@ -170,19 +170,19 @@ namespace SpeakFriend.Utilities
     	}
 
     	/// <summary>
-    	/// Ensures that the given string does not start with the given prefix.
+    	/// Ensures that the string does not start with the given prefix.
     	/// Removes the prefix if it does.
     	/// </summary>
     	public static string EnsureStartsNotWith(this string value, string prefix)
     	{
     		if (value.StartsWith(prefix))
-    			return value;
+    			return value.Substring(prefix.Length);
 
-    		return prefix + value;
+    		return value;
     	}
 
     	/// <summary>
-		/// Ensures that the given string ends with the given suffix.
+		/// Ensures that the string ends with the given suffix.
 		/// Appends the suffix to the string if not.
 		/// </summary>
 		public static string EnsureEndsWith(this string value, string suffix)
@@ -194,7 +194,7 @@ namespace SpeakFriend.Utilities
 		}
 
 		/// <summary>
-		/// Ensures that the given string does not end with the given suffix.
+		/// Ensures that the string does not end with the given suffix.
 		/// Removes the suffix if it exists.
 		/// </summary>
 		public static string EnsureEndsNotWith(this string value, string suffix)
