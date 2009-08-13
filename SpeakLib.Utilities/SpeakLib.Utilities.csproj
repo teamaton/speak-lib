@@ -102,7 +102,6 @@
     <Compile Include="Service\FileStore\FileStore.cs" />
     <Compile Include="Service\Login\LoginUtils.cs" />
     <Compile Include="Service\Message\DistributionType.cs" />
-    <Compile Include="Service\Message\Email\EmailAddresses.cs" />
     <Compile Include="Service\Message\Email\EmailService.cs" />
     <Compile Include="Service\Message\Email\EmailSettings.cs" />
     <Compile Include="Service\Message\MessageAddress.cs" />
@@ -271,6 +270,9 @@
   <ItemGroup>
     <EmbeddedResource Include="SeedWork.Tagging\Tag.hbm.xml" />
     <EmbeddedResource Include="SeedWork.Tagging\Prototype\TagPrototype.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Service\FileStore\StoredFile.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SeedWork.Comment\" />

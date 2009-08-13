@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using NHibernate;
@@ -18,9 +19,36 @@ namespace SpeakFriend.Utilities
             _pathRelative = pathRelative;
         }
 
-        public StoredFile Store(string sourcePath)
+        public StoredFile Store(string sourcePath, IPersistable entity)
         {
-            throw new NotImplementedException();
+            return Store(sourcePath, entity, sourcePath);
         }
+
+        public StoredFile Store(string sourcePath, IPersistable entity, string fileName)
+        {
+            var storedFile = new StoredFile
+            {
+                OriginalFileName = Path.GetFileName(fileName),
+                EntityType = "FIXME!",
+                EntityId = entity.Id
+            };
+
+            Create(storedFile);
+
+            File.Copy(sourcePath, GetPathAbsolute(storedFile));
+
+            return storedFile;
+        }
+
+        public string GetPathAbsolute(StoredFile storedFile)
+        {
+            return Path.Combine(_pathAbsolute, GetFileName(storedFile));
+        }
+
+        public string GetFileName(StoredFile storedFile)
+        {
+            return string.Format("File{0}.dat", storedFile.Id);
+        }
+       
     }
 }

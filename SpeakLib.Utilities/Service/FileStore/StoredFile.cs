@@ -10,7 +10,7 @@ namespace SpeakFriend.Utilities
         public int Id { get; set; }
         public DateTime DateCreated { get; set; }
 
-        public Type EntityType { get; set; }
+        public string EntityType { get; set; }
         public int EntityId { get; set; }
 
         public string OriginalFileName { get; set; }
