@@ -5,7 +5,7 @@ using System.Text;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 
-namespace SpeakFriend.Utilities
+namespace SpeakFriend.Utilities.Web
 {
     public static class PageExtensionMethods
     {
