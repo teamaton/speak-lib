@@ -121,5 +121,16 @@ namespace SpeakFriend.Utilities.Web
 
             _appDomainInsertedKeys.Clear();
         }
+
+    	public void Remove(string key)
+    	{
+    		if (ContextUtil.IsWebContext)
+                HttpContext.Current.Session.Remove(key);
+			else
+    		{
+				AppDomain.CurrentDomain.SetData(key, null);
+    			_appDomainInsertedKeys.Remove(key);
+    		}
+    	}
     }
 }
