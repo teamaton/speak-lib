@@ -40,6 +40,12 @@ namespace Tests.Utilities.Web
 
             htmlControl.AddCssClass("second");
             Assert.AreEqual("first second-trick second", htmlControl.Attributes["class"]);
+
+			htmlControl.SetCssClass("second", "third");
+			Assert.AreEqual("second third", htmlControl.Attributes["class"]);
+
+			htmlControl.ResetCssClass();
+			Assert.AreEqual(string.Empty, htmlControl.Attributes["class"]);
         }
     }
 }
