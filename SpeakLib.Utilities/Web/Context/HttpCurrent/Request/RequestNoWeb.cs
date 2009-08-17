@@ -23,11 +23,10 @@ namespace SpeakFriend.Utilities.Web
             UserLanguages = new string[]{};
             Cookies = new HttpCookieCollection();
         }
-
-
+        
         public void Clear()
         {
-            
+            throw new NotImplementedException();
         }
     }
 }

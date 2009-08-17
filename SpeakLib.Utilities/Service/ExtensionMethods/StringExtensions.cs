@@ -199,11 +199,22 @@ namespace SpeakFriend.Utilities
 		/// </summary>
 		public static string EnsureEndsNotWith(this string value, string suffix)
 		{
+			return EnsureEndsNotWith(value, suffix, false);
+		}
+
+    	public static string EnsureEndsNotWith(this string value, string suffix, bool ignoreCase)
+    	{
+			if (ignoreCase)
+			{
+				value = value.ToLower();
+				suffix = suffix.ToLower();
+			}
+
 			if (value.EndsWith(suffix))
 				return value.Substring(0, value.Length - suffix.Length);
 
 			return value;
-		}
+    	}
 
     	public static DateTime? ToDate(this string dateText)
         {
