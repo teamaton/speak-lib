@@ -22,13 +22,19 @@ namespace SpeakFriend.Utilities
         }
 
         private ISessionFactory _sessionFactory;
+    	private static readonly object _sessionFactoryLock = new object();
 
         public ISessionFactory GetSessionFactory()
         {
-            if (_sessionFactory == null)
-                _sessionFactory = _buildSessionFactory();
-
-            return _sessionFactory;
+			if (_sessionFactory == null)
+			{
+				lock (_sessionFactoryLock)
+				{
+					if (_sessionFactory == null)
+						_sessionFactory = _buildSessionFactory();
+				}
+			}
+        	return _sessionFactory;
         }
     }
 }
