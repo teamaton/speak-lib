@@ -99,6 +99,7 @@
     <Compile Include="Persistence.Query\Condition\Types\ConditionObject.cs" />
     <Compile Include="Persistence.Query\SearchDescriptionBase.cs" />
     <Compile Include="Reflection\ReflectionHelper.cs" />
+    <Compile Include="Service\ExtensionMethods\CollectionExtensions.cs" />
     <Compile Include="Service\FileStore\StoredFile.cs" />
     <Compile Include="Service\FileStore\StoredFileList.cs" />
     <Compile Include="Service\FileStore\FileStore.cs" />
