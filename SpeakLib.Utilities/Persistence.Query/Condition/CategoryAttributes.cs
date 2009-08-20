@@ -12,6 +12,13 @@ namespace SpeakFriend.Utilities
 		Prominent = 1
 	}
 
+	[Flags]
+	public enum RatingOptionsFlags
+	{
+		None = 2^0,
+		ShowRatingCount = 2^1
+	}
+
 	public interface ICategoryNumericAttribute
 	{
 		object Value { get; }
@@ -24,13 +31,23 @@ namespace SpeakFriend.Utilities
 	public class RatingCategoryAttribute : CategoryBaseAttribute
     {
 		private readonly Importance _importance = Importance.None;
+		private readonly RatingOptionsFlags _ratingOptions = RatingOptionsFlags.None;
 
 		public bool IsProminent { get { return _importance == Importance.Prominent; } }
+		public bool ShowRatingCount
+		{
+			get { return (_ratingOptions & RatingOptionsFlags.ShowRatingCount) == RatingOptionsFlags.ShowRatingCount; }
+		}
 
 		public RatingCategoryAttribute(){}
 		public RatingCategoryAttribute(Importance importance)
 		{
 			_importance = importance;
+		}
+		public RatingCategoryAttribute(Importance importance, RatingOptionsFlags ratingOptions)
+			: this(importance)
+		{
+			_ratingOptions = ratingOptions;
 		}
     }
 
