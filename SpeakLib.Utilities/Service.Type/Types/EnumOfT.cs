@@ -7,22 +7,42 @@ namespace SpeakFriend.Utilities
 {
     public class Enum<T> 
     {
-        public static T Parse(string value)
+    	public static IList<T> GetValues()
+    	{
+    		IList<T> list = new List<T>();
+    		foreach (object value in Enum.GetValues(typeof(T)))
+    		{
+    			list.Add((T)value);
+    		}
+    		return list;
+    	}
+
+		/// <summary>
+		/// Ignores the case of the enum string.
+		/// </summary>
+    	public static T Parse(string value)
         {
-            return (T)Enum.Parse(typeof(T), value);
+            return (T)Enum.Parse(typeof(T), value, true);
         }
 
-        public static IList<T> GetValues()
-        {
-            IList<T> list = new List<T>();
-            foreach (object value in Enum.GetValues(typeof(T)))
-            {
-                list.Add((T)value);
-            }
-            return list;
-        }
+		/// <summary>
+		/// Ignores the case of the enum string.
+		/// </summary>
+    	public static bool TryParse(string value, out T tab)
+    	{
+    		try
+    		{
+    			tab = Parse(value);
+    			return true;
+    		}
+			catch(ArgumentException)
+			{
+				tab = default(T);
+				return false;
+			}
+    	}
 
-        public static T Parse(int value)
+    	public static T Parse(int value)
         {
             return (T)Enum.Parse(typeof (T), value.ToString());
         }

@@ -19,7 +19,7 @@ namespace SpeakFriend.Utilities.Web
         /// </summary>
         public string Description = "";
 
-        public delegate void ActionDelegate(object value);
+        public delegate void ActionDelegate(string value);
         public ActionDelegate Action;
 
         public bool AppliesOnlyLocal = false;
