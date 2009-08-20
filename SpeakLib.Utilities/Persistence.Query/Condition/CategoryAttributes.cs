@@ -6,6 +6,12 @@ using System.Text;
 
 namespace SpeakFriend.Utilities
 {
+	public enum Importance
+	{
+		None = 0,
+		Prominent = 1
+	}
+
 	public interface ICategoryNumericAttribute
 	{
 		object Value { get; }
@@ -14,6 +20,19 @@ namespace SpeakFriend.Utilities
 	public abstract class CategoryBaseAttribute : Attribute
 	{
 	}
+
+	public class RatingCategoryAttribute : CategoryBaseAttribute
+    {
+		private readonly Importance _importance = Importance.None;
+
+		public bool IsProminent { get { return _importance == Importance.Prominent; } }
+
+		public RatingCategoryAttribute(){}
+		public RatingCategoryAttribute(Importance importance)
+		{
+			_importance = importance;
+		}
+    }
 
 	public class CategoryBooleanAttribute : CategoryBaseAttribute
     {
