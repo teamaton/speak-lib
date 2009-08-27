@@ -126,6 +126,7 @@
     <Compile Include="Web\Controls\ButtonGenerator.cs" />
     <Compile Include="Web\Controls\RenderedButton.cs" />
     <Compile Include="Web\Interaction\OrderBy\OrderByService.cs" />
+    <Compile Include="Web\Navigation\TagCloud.cs" />
     <Compile Include="Wpf\Controls\Image.cs" />
     <Compile Include="Persistance.NHibernate\ISessionManager.cs" />
     <Compile Include="Persistance.NHibernate\Logging\NHibernateLogger.cs" />
