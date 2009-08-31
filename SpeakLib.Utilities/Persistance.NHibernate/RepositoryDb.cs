@@ -17,6 +17,16 @@ namespace SpeakFriend.Utilities
 		protected event EventHandler<RepositoryDbEventArgs> OnItemDeleted;
 		protected event EventHandler<RepositoryDbEventArgs> OnItemUpdated;
 
+        /// <summary>
+        /// Occurs after a TDomainObject is retrieved from DB
+        /// </summary>
+        protected event EventHandler<TDomainObjectArgs> AfterItemRetrieved;
+
+        /// <summary>
+        /// Occurs after a TDomainObjectList is retrieved from DB
+        /// </summary>
+        protected event EventHandler<TDomainObjectListArgs> AfterItemListRetrieved;
+
         protected RepositoryDb(ISession session)
         {
             _session = session;
@@ -165,14 +175,22 @@ namespace SpeakFriend.Utilities
                 _allItemsCached.AddRange(list);
             }
 
+            if (AfterItemListRetrieved != null)
+                AfterItemListRetrieved(this, new TDomainObjectListArgs(list));
+
             return list;
         }
         
         public virtual TDomainObject GetById(int id)
         {
-            return _session.CreateCriteria(typeof(TDomainObject))
+            var result = _session.CreateCriteria(typeof(TDomainObject))
                            .Add(Restrictions.Eq("Id", id))
                            .UniqueResult<TDomainObject>();
+
+            if (AfterItemRetrieved != null)
+                AfterItemRetrieved(this, new TDomainObjectArgs(result));
+
+            return result;
         }
 
         public TDomainObjectList GetBy(ISearchDesc searchDesc)
@@ -187,6 +205,10 @@ namespace SpeakFriend.Utilities
 
             var list = new TDomainObjectList();
             list.AddRange(criteria.List<TDomainObject>());
+
+            if (AfterItemListRetrieved != null)
+                AfterItemListRetrieved(this, new TDomainObjectListArgs(list));
+
             return list;
         }
 
@@ -205,6 +227,24 @@ namespace SpeakFriend.Utilities
 				_item = item;
 			}
 		}
+
+        protected class TDomainObjectArgs : RepositoryDbEventArgs
+        {
+            public TDomainObjectArgs(TDomainObject item) : base(item)
+            {
+            }
+        }
+
+        protected class TDomainObjectListArgs : EventArgs
+        {
+			private readonly TDomainObjectList _items;
+			public TDomainObjectList Items { get { return _items; } }
+
+            public TDomainObjectListArgs(TDomainObjectList items)
+			{
+				_items = items;
+			}            
+        }
 
     	public IList<int> GetAllIds()
     	{
