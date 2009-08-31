@@ -9,7 +9,7 @@ namespace SpeakFriend.Utilities
 	public static class CollectionExtensions
 	{
 		/// <summary>
-		/// Shuffles the items in the list, changes the list!
+		/// Shuffles the items in the list, changes the list! Uses a Random instance with changing seed.
 		/// </summary>
 		/// <remarks>
 		/// User Fisher-Yates (see http://en.wikipedia.org/wiki/Fisher-Yates_shuffle)
@@ -17,7 +17,7 @@ namespace SpeakFriend.Utilities
 		/// </remarks>
 		public static void Shuffle(this IList elements)
 		{
-			var random = new Random();
+			var random = new Random(DateTime.Now.Millisecond);
 			int n = elements.Count;
 			while (n > 1)
 			{
