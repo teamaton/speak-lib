@@ -58,7 +58,7 @@ namespace SpeakFriend.Utilities
         	return result;
         }
 
-        public void Persist()
+        public TDerivedClass Persist()
         {
             foreach (var subject in _itemsToCreate)
             {
@@ -67,6 +67,8 @@ namespace SpeakFriend.Utilities
             }
 
             _itemsToCreate.Clear();
+
+            return (TDerivedClass)this;
         }
 
         public TSubject GetPersisted()
