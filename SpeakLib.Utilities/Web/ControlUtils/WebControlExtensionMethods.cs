@@ -21,8 +21,6 @@ namespace SpeakFriend.Utilities.Web
             control.CssClass = ControlUtil.GetNewCssString(control.CssClass, classToAdd);
         }
 
-
-
         public static bool IsContentItem(this RepeaterItem item)
         {
             return item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem;
