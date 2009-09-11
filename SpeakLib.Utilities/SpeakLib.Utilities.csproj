@@ -122,6 +122,7 @@
     <Compile Include="Service\Message\Repository\MessageSearchFilter.cs" />
     <Compile Include="Service\SpeakLibSettings.cs" />
     <Compile Include="Service\SettingTypes.cs" />
+    <Compile Include="Web\Context\HttpCurrent\Response\ResponseActionFilter.cs" />
     <Compile Include="Web\Controls\ButtonEffect.cs" />
     <Compile Include="Web\Controls\ButtonGenerator.cs" />
     <Compile Include="Web\Controls\RenderedButton.cs" />
