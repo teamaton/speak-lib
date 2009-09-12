@@ -12,6 +12,8 @@ namespace SpeakFriend.Utilities.Web
 	{
 		public static Regex RegexFormAction = new Regex("(?'pre'<form.*action=\")(?'action'[^\"]*)(?'post'\"[^>]*>)",
 		                                                RegexOptions.IgnoreCase | RegexOptions.Compiled);
+		public static Regex RegexFormActionPostback = new Regex("(?'pre'\\|formAction\\|\\|)(?'action'[^\\|]*)(?'post'\\|)",
+														RegexOptions.IgnoreCase | RegexOptions.Compiled);
 		private readonly Stream _sink;
 		private readonly HttpServerUtility _server;
 		
@@ -78,6 +80,19 @@ namespace SpeakFriend.Utilities.Web
 				string stringNew = RegexFormAction.Replace(s, 
 					match.Groups["pre"].Value + _server.UrlEncode(action) + match.Groups["post"].Value);
 				s = stringNew;
+			}
+			else
+			{
+				// Do not encode the formAction field in the Postback because it leads to an exception on the client :-(
+				// But this is how it would be done...
+//				match = RegexFormActionPostback.Match(s);
+//				if (match.Success)
+//				{
+//					var action = match.Groups["action"].Value;
+//					string stringNew = RegexFormActionPostback.Replace(s,
+//						match.Groups["pre"].Value + _server.UrlEncode(action) + match.Groups["post"].Value);
+//					s = stringNew;
+//				}
 			}
 			byte[] bytes = Encoding.UTF8.GetBytes(s);
 			_sink.Write(bytes, 0, bytes.Length);
