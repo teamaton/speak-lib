@@ -78,5 +78,13 @@ namespace SpeakFriend.Utilities
         {
             return _conditions.Contains(this);
         }
+
+        public static Condition ForType(Type type, ConditionContainer conditions, string propertyName)
+        {
+            if (type == typeof(bool))
+                return new ConditionBoolean(conditions, propertyName);
+
+            throw new ArgumentException(string.Format("There is no condition for type {0}.", type.Name), "type");
+        }
     }
 }

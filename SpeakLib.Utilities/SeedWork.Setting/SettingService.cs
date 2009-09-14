@@ -68,6 +68,11 @@ namespace SpeakFriend.Utilities
             throw new System.NotImplementedException();
         }
 
+        public List<Setting> GetBy(ISearchDesc searchDesc)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Delete(Setting setting)
         {
             _repository.Delete(setting);

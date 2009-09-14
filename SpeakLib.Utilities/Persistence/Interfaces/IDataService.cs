@@ -11,5 +11,6 @@ namespace SpeakFriend.Utilities
         
         List<T> GetAll();
         T GetById(int id);
+        List<T> GetBy(ISearchDesc searchDesc);
     }
 }
