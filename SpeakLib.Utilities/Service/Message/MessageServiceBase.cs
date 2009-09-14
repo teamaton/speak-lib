@@ -33,6 +33,12 @@ namespace SpeakFriend.Utilities
             _session.Save(message);
         }
 
+		public void Update(TMessage message)
+		{
+			message.DateModified = DateTime.Now;
+
+			_session.Update(message);
+		}
 
         public void Send(TMessage message)
         {

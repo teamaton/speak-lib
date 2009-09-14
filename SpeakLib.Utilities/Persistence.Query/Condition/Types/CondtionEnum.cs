@@ -10,6 +10,7 @@ namespace SpeakFriend.Utilities
     public class ConditionEnum : Condition
     {
         private Enum _value;
+		public Enum Value { get { return _value; } }
 
         public ConditionEnum(ConditionContainer conditions, string propertyName) : base(conditions, propertyName)
         {
