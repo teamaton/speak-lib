@@ -63,25 +63,35 @@ namespace SpeakFriend.Utilities
             AddOrderBy(criteria, orderBy, null);
         }
 
-        public virtual void AddOrderBy(ICriteria criteria, OrderByCriteria orderBy, string tableAlias)
-        {
-            var propertyName = "";
+		public virtual void AddOrderBy(ICriteria criteria, OrderByCriteria orderByCriteria, string tableAlias)
+		{
+			if (!orderByCriteria.IsSet()) return;
 
-            if (!String.IsNullOrEmpty(tableAlias) && !tableAlias.EndsWith("."))
-                tableAlias = tableAlias + ".";
+			foreach (var orderBy in orderByCriteria.CurrentList)
+			{
+				if (orderBy.HasCriteriaAction)
+					orderBy.CriteriaAction(criteria);
 
-            if (orderBy.IsSet())
-                propertyName = tableAlias + orderBy.Current.PropertyName;
-            else
-                return;
-            
-            if (orderBy.Current.Direction == OrderDirection.Ascending)
-                criteria.AddOrder(Order.Asc(propertyName));
-            else
-                criteria.AddOrder(Order.Desc(propertyName));
-        }
+				AddOrderBy(criteria, orderBy, orderBy.HasAlias ? orderBy.Alias : tableAlias);
+			}
+		}
 
-        public void SetPager(ICriteria criteria, IPager pager)
+    	private static void AddOrderBy(ICriteria criteria, OrderBy orderBy, string tableAlias)
+    	{
+			if (orderBy == null) return;
+
+    		var propertyName = (string.IsNullOrEmpty(tableAlias)
+    		                    	? string.Empty
+    		                    	: tableAlias.EnsureEndsWith("."))
+    		                   + orderBy.PropertyName;
+
+    		if (orderBy.Direction == OrderDirection.Ascending)
+    			criteria.AddOrder(Order.Asc(propertyName));
+    		else
+    			criteria.AddOrder(Order.Desc(propertyName));
+    	}
+
+    	public void SetPager(ICriteria criteria, IPager pager)
         {
             if (!pager.QueryAll)
             {
@@ -193,12 +203,26 @@ namespace SpeakFriend.Utilities
             return result;
         }
 
-        public TDomainObjectList GetBy(ISearchDesc searchDesc)
+		public TDomainObjectList GetBy(ISearchDesc searchDesc)
+		{
+			return GetBy(searchDesc, null);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="searchDesc"></param>
+		/// <param name="criteriaExtender">Here you can plug in additional changes of the criteria.</param>
+		/// <returns></returns>
+        public TDomainObjectList GetBy(ISearchDesc searchDesc, Action<ICriteria> criteriaExtender)
         {
             var criteria = GetExecutableCriteria();
 
             AddGenericConditions(criteria, searchDesc.Filter);
             AddOrderBy(criteria, searchDesc.OrderBy);
+
+			if (criteriaExtender != null)
+				criteriaExtender.Invoke(criteria);
 
             SetTotalItemCount(criteria, searchDesc);
             SetPager(criteria, searchDesc);

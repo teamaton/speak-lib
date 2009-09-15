@@ -2,43 +2,115 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using NHibernate;
 
 namespace SpeakFriend.Utilities
 {
+	public class OrderByExtender
+	{
+		private OrderByCriteria _andOrderBy;
+
+		public T AndOrderBy<T>() where T:OrderByCriteria
+		{
+			_andOrderBy.BeginAdding();
+			return (T)_andOrderBy;
+		}
+
+//		public OrderByCriteria AndOrderBy
+//		{
+//			get
+//			{
+//				_andOrderBy.BeginAdding();
+//				return _andOrderBy;
+//			}
+//			set { _andOrderBy = value; }
+//		}
+
+		public OrderByExtender(OrderByCriteria orderBy)
+		{
+			_andOrderBy = orderBy;
+		}
+	}
+	
+	public class OrderByExtenderT<T> where T:OrderByCriteria
+	{
+		private T _andOrderBy;
+
+		public T AndOrderBy
+		{
+			get
+			{
+				_andOrderBy.BeginAdding();
+				return _andOrderBy;
+			}
+			set { _andOrderBy = value; }
+		}
+
+		public OrderByExtenderT(OrderByCriteria orderBy)
+		{
+			AndOrderBy = (T)orderBy;
+		}
+	}
+
     public class OrderBy
     {
         private readonly OrderByCriteria _criteria;
-        private readonly string _propertyName;
-        private OrderDirection _direction = OrderDirection.Ascending;
+		private readonly OrderByExtender _andOrderBy;
+		private OrderDirection _direction = OrderDirection.Ascending;
 
-        public string PropertyName { get { return _propertyName; } }
+		/// <summary>The table alias used in associations.</summary>
+		public string Alias { get; private set; }
+		public bool HasAlias { get { return !string.IsNullOrEmpty(Alias); } }
+
+		/// <summary>
+		/// An action to perform before adding the OrderBy to the Criteria 
+		/// (e.g. CreateAlias) with this instance's <see cref="Alias"/>.
+		/// </summary>
+		public Action<ICriteria> CriteriaAction { get; private set; }
+		public bool HasCriteriaAction { get { return CriteriaAction != null; } }
+
+		public string PropertyName { get; private set; }
         public OrderDirection Direction { get{ return _direction; } }
+
 
         public OrderBy(string propertyName, OrderByCriteria criteria)
         {
             _criteria = criteria;
-            _propertyName = propertyName;
+            PropertyName = propertyName;
+			_andOrderBy = new OrderByExtender(criteria);
         }
 
-        public void Asc()
+		public OrderBy(string propertyName, OrderByCriteria criteria, string alias, Action<ICriteria> criteriaAction)
+			: this(propertyName, criteria)
+		{
+			Alias = alias;
+			CriteriaAction = criteriaAction;
+		}
+
+    	public OrderByExtender Asc()
         {
-            _direction = OrderDirection.Ascending;
-            _criteria.Current = this;
+            return Set(OrderDirection.Ascending);
         }
 
-        public void Desc()
+        public OrderByExtender Desc()
         {
-            _direction = OrderDirection.Descending;
-            _criteria.Current = this;
+            return Set(OrderDirection.Descending);
         }
 
-        public void Set(OrderDirection direction)
-        {
-            _direction = direction;
-            _criteria.Current = this;
-        }
+		public OrderByExtender Set(OrderDirection direction)
+		{
+			_direction = direction;
 
-        public void Toggle()
+			if (_criteria.IsAdding)
+				_criteria.Add(this);
+			else
+				_criteria.Current = this;
+			_criteria.EndAdding();
+
+			return _andOrderBy;
+		}
+
+    	public void Toggle()
         {
             if (_direction == OrderDirection.Descending)
                 _direction = OrderDirection.Ascending;
@@ -73,4 +145,6 @@ namespace SpeakFriend.Utilities
         }
 
     }
+
+	public class OrderByList : List<OrderBy>{}
 }

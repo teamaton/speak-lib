@@ -14,16 +14,49 @@ namespace SpeakFriend.Utilities
 
     public class OrderByCriteria : IOrderByCriteria
     {
-        public OrderBy Current { get; set; }
+		internal bool IsAdding { get; set; }
 
-        public void Unset()
-        {
-            Current = null;
-        }
+    	public OrderBy Current
+    	{
+			get { return CurrentList.Count > 0 ? CurrentList[0] : null; }
+			set
+			{
+				Unset();
+				Add(value);
+			}
+    	}
 
-        public bool IsSet()
+		public OrderByList CurrentList { get; private set; }
+
+		public OrderByCriteria()
+		{
+			CurrentList = new OrderByList();
+		}
+
+    	internal void BeginAdding()
+    	{
+    		IsAdding = true;
+    	}
+
+    	internal void EndAdding()
+    	{
+    		IsAdding = false;
+    	}
+
+		public void Add(OrderBy orderBy)
+		{
+			CurrentList.RemoveAll(order => order.PropertyName == orderBy.PropertyName);
+			CurrentList.Add(orderBy);
+		}
+
+    	public bool IsSet()
+    	{
+    		return CurrentList.Count > 0;
+    	}
+
+    	public void Unset()
         {
-            return Current != null;
+            CurrentList.Clear();
         }
     }
 }
