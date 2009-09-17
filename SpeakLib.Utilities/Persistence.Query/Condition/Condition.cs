@@ -84,7 +84,18 @@ namespace SpeakFriend.Utilities
             if (type == typeof(bool))
                 return new ConditionBoolean(conditions, propertyName);
 
+            if (type == typeof(string))
+                return new ConditionSingle(conditions, propertyName);
+
+            if (type == typeof(int))
+                return new ConditionInteger(conditions, propertyName);
+
             throw new ArgumentException(string.Format("There is no condition for type {0}.", type.Name), "type");
+        }
+
+        public static List<Type> SupportedTypes()
+        {
+            return new List<Type> {typeof(bool), typeof(string), typeof(int)};
         }
     }
 }
