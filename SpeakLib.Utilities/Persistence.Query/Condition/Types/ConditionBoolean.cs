@@ -47,7 +47,12 @@ namespace SpeakFriend.Utilities
             Conditions.AddUnique(this);
         }
 
-        /// <summary>
+		public bool IsFalse()
+		{
+			return !_value;
+		}
+
+		/// <summary>
         /// Sets the condition to false (and leaves it ACTIVE!).
         /// </summary>
         public void SetFalse()
