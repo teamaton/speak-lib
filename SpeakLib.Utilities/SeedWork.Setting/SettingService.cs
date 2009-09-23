@@ -68,9 +68,9 @@ namespace SpeakFriend.Utilities
             throw new System.NotImplementedException();
         }
 
-        public List<Setting> GetBy(ISearchDesc searchDesc)
+    	List<Setting> IDataService<Setting>.GetBy(ISearchDesc searchDesc)
         {
-            throw new NotImplementedException();
+    		return _repository.GetBy((SettingSearchDesc) searchDesc);
         }
 
         public void Delete(Setting setting)
