@@ -58,6 +58,11 @@ namespace SpeakFriend.Utilities
             _repository.CreateOrUpdate(setting);
         }
 
+        public void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         List<Setting> IDataService<Setting>.GetAll()
         {
             return GetAll();
