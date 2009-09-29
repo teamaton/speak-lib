@@ -280,6 +280,18 @@ namespace SpeakFriend.Utilities
 
     		return criteria.List<int>();
     	}
+
+    	public IList<int> GetAllIds(ISearchDesc searchDesc)
+    	{
+			var criteria = GetExecutableCriteria();
+
+			AddGenericConditions(criteria, searchDesc.Filter);
+			AddOrderBy(criteria, searchDesc.OrderBy);
+
+			criteria.SetProjection(Projections.Property("Id")); // guaranteed to exist by IPersistable
+
+    		return criteria.List<int>();
+    	}
     }
 }
 
