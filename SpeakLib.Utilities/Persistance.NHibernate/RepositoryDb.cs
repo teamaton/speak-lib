@@ -292,6 +292,19 @@ namespace SpeakFriend.Utilities
 
     		return criteria.List<int>();
     	}
+
+		public IList GetProjectionBy(ISearchDesc searchDesc, params string[] projectionProperties)
+		{
+			var criteria = GetExecutableCriteria();
+
+			AddGenericConditions(criteria, searchDesc.Filter);
+			AddOrderBy(criteria, searchDesc.OrderBy);
+
+			foreach (var property in projectionProperties)
+				criteria.SetProjection(Projections.Property(property));
+
+			return criteria.List();
+		}
     }
 }
 
