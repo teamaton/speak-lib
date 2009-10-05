@@ -52,5 +52,13 @@ namespace SpeakFriend.Utilities
 
 			return list;
 		}
+
+		/// <summary>
+		/// Returns all elements of a collection that occur more than once in the given collection.
+		/// </summary>
+		public static IEnumerable<T> Duplicates<T>(this IEnumerable<T> collection)
+		{
+			return collection.Where(item1 => collection.Count(item2 => item2.Equals(item1)) > 1);
+		}
 	}
 }
