@@ -45,7 +45,7 @@ namespace SpeakFriend.Utilities
             return resultCount;
         }
 
-        private Dictionary<string, string> _aliases = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> _aliases = new Dictionary<string, string>();
 
         protected void AddAlias(string associationPath, string alias)
         {
@@ -57,5 +57,10 @@ namespace SpeakFriend.Utilities
             foreach (var alias in _aliases)
                 criteria.CreateAlias(alias.Key, alias.Value, JoinType.LeftOuterJoin);
         }
+
+		public virtual void Reset()
+		{
+			ForEach(cond => cond.Reset());
+		}
     }
 }
