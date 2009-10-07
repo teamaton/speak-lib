@@ -56,5 +56,10 @@ namespace SpeakFriend.Utilities
 		{
 			return ParseToInt(value).ToString();
 		}
+
+    	public static string ParseToIntString(string value)
+    	{
+    		return ParseToIntString(Parse(value));
+    	}
     }
 }

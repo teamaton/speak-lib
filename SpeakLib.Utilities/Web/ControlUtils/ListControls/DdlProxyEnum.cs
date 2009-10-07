@@ -10,9 +10,10 @@ namespace SpeakFriend.Utilities
     {
         private readonly EnumAnnotatedList _annotadedEnums;
         private readonly DropDownList _ddl;
+    	private bool _setFirstItem;
 
-        private const int _noSelection = -1;
-        private readonly string _noSelectionValue = _noSelection.ToString();
+        private const int NoSelection = -1;
+        private readonly string _noSelectionValue = NoSelection.ToString();
 
         public DdlProxyEnum(DropDownList ddl, EnumAnnotatedList annotadedEnums)
         {
@@ -20,10 +21,18 @@ namespace SpeakFriend.Utilities
             _ddl = ddl;
         }
 
+		public DdlProxyEnum SetAddFirstItem(bool setFirstItem)
+		{
+			_setFirstItem = setFirstItem;
+			return this;
+		}
+
         public void Populate()
         {
             _ddl.Items.Clear();
-            _ddl.Items.Add(new ListItem("- Alle -", _noSelection.ToString()));
+
+			if (_setFirstItem)
+				_ddl.Items.Add(new ListItem("- Alle -", NoSelection.ToString()));
 
             foreach(var item in _annotadedEnums)
             {
