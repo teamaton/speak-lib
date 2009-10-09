@@ -16,19 +16,25 @@ namespace SpeakFriend.Utilities
         /// <param name="cultureInfo"></param>
         public static void PopulateMonthNames(this ListControl listControl, CultureInfo cultureInfo)
         {
-            var date = new DateTime(1, 1, 1); // used only for the month
+        	listControl.PopulateMonthNames(cultureInfo, false);
+        }
 
+    	public static void PopulateMonthNames(this ListControl listControl, CultureInfo cultureInfo, bool shortNames)
+    	{
+    		var date = new DateTime(1, 1, 1); // used only for the month
+
+    		var format = shortNames ? "MMM" : "MMMM";
             for (int i = 0; i < 12; i++)
             {
                 listControl.Items.Add(new ListItem(
-                    date.ToString("MMMM", cultureInfo.NumberFormat), // full month name as TEXT
+                    date.ToString(format, cultureInfo.NumberFormat), // full month name as TEXT
                     date.ToString("%M"))); // e.g. "9" as ListItem.Value for September
 
                 date = date.AddMonths(1);
             }
-        }
+    	}
 
-        /// <summary>
+    	/// <summary>
         /// Adds all months of the year as <see cref="ListItem"/>s to the given ListControl.
         /// </summary>
         /// <param name="listControl"></param>
