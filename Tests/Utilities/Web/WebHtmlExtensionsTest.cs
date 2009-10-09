@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using NUnit.Framework;
@@ -47,5 +48,24 @@ namespace Tests.Utilities.Web
 			htmlControl.ResetCssClass();
 			Assert.AreEqual(string.Empty, htmlControl.Attributes["class"]);
         }
+
+		[Test]
+		public void ChildControlsOfType()
+		{
+			var userControl = new UserControl {ID = "uc"};
+			var panel = new Panel {ID = "pl"};
+			var htmlUl = new HtmlGenericControl("ul") {ID = "ul"};
+			var htmlLi = new HtmlGenericControl("li") {ID = "li"};
+			htmlLi.Controls.Add(new CheckBox {ID = "ckb1"});
+			htmlUl.Controls.Add(htmlLi);
+			panel.Controls.Add(htmlUl);
+			panel.Controls.Add(new CheckBox {ID = "ckb2"});
+			userControl.Controls.Add(panel);
+
+			var checkBoxes = userControl.Controls<CheckBox>();
+			Assert.AreEqual(2, checkBoxes.Count());
+			Console.Write("Found: ");
+			checkBoxes.ToList().ForEach(ckb => Console.Write(ckb.ID + ", "));
+		}
     }
 }

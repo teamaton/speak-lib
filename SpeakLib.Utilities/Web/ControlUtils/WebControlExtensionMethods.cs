@@ -53,5 +53,29 @@ namespace SpeakFriend.Utilities.Web
                 throw new Exception("The controlName:'" + controlName + "' was not found");
             return item;
         }
+
+		/// <summary>
+		/// Returns all controls of the given Type that are found inside this control.
+		/// Searches recursively.
+		/// </summary>
+		public static IEnumerable<T> Controls<T>(this Control control) where T : Control
+		{
+			var controls = control.Controls;
+			
+			if (controls == null || controls.Count == 0) return new List<T>(0);
+
+			var newColl = new HashSet<T>();
+			foreach (Control child in controls)
+			{
+				if (child is T)
+					newColl.Add((T) child);
+
+				var childColl = child.Controls<T>();
+				foreach (T ctrl in childColl)
+					newColl.Add(ctrl);
+			}
+
+			return newColl;
+		}
     }
 }
