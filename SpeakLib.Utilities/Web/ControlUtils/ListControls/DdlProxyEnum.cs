@@ -10,7 +10,7 @@ namespace SpeakFriend.Utilities
     {
         private readonly EnumAnnotatedList _annotadedEnums;
         private readonly DropDownList _ddl;
-    	private bool _setFirstItem;
+    	private bool _setFirstItem = true;
 
         private const int NoSelection = -1;
         private readonly string _noSelectionValue = NoSelection.ToString();
