@@ -35,13 +35,13 @@ namespace SpeakFriend.Utilities
     	}
 
     	/// <summary>
-        /// Adds all months of the year as <see cref="ListItem"/>s to the given ListControl.
+        /// Adds all week day names as <see cref="ListItem"/>s to the given ListControl.
         /// </summary>
         /// <param name="listControl"></param>
         /// <param name="cultureInfo"></param>
         public static void PopulateWeekDayNames(this ListControl listControl, CultureInfo cultureInfo)
         {
-			// Use this approach rather than DateTimeFormatInfo.GetInstance(cultureInfo).DayNames
+    		// Use this approach rather than DateTimeFormatInfo.GetInstance(cultureInfo).DayNames
 			// because the first day of the week differs between cultures!!!
 
 			var date = new DateTime(2009, 10, 5); // used only for the weekday: 05.10.2009 was a Monday
