@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Web.UI.WebControls;
 
-namespace SpeakFriend.Utilities
+namespace SpeakFriend.Utilities.Web
 {
     public static class ListPopulator
     {
@@ -60,10 +60,12 @@ namespace SpeakFriend.Utilities
     	/// <summary>
 		/// Adds the given numbers as <see cref="ListItem"/>s to the given ListControl.
 		/// </summary>
-		public static void PopulateNumbers(this ListControl listControl, int min, int max, int step)
+		public static void PopulateNumbers(this ListControl listControl, int start, int end, int step)
 		{
+			if (step == 0) throw new ArgumentException("Step must be != 0.", "step");
+
 			listControl.Items.Clear();
-			for (int i = min; i <= max; i += step)
+			for (int i = start; (step > 0 && i <= end) || (step < 0 && i >= end); i += step)
 				listControl.Items.Add(new ListItem(i.ToString(), i.ToString()));
 		}
     }
