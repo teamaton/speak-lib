@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using AjaxControlToolkit;
 
 namespace SpeakFriend.Utilities.Web
 {
@@ -112,7 +111,7 @@ namespace SpeakFriend.Utilities.Web
             AddToForm(validator, calloutExtender);
         }
 
-        private void AddToForm(BaseValidator validator, ValidatorCalloutExtender calloutExtender)
+        private void AddToForm(Control validator, Control calloutExtender)
         {
             _messagePlaceHolder.FindControl("div").Controls.Add(validator);
             _messagePlaceHolder.FindControl("div").Controls.Add(calloutExtender);

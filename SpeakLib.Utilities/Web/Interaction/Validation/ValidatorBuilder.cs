@@ -5,6 +5,13 @@ using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using AjaxControlToolkit;
+// http://blogs.msdn.com/mattgi/archive/2007/01/23/asp-net-ajax-validators.aspx 
+using CompareValidator = Sample.Web.UI.Compatibility.CompareValidator;
+using CustomValidator = Sample.Web.UI.Compatibility.CustomValidator;
+using RangeValidator = Sample.Web.UI.Compatibility.RangeValidator;
+using RegularExpressionValidator = Sample.Web.UI.Compatibility.RegularExpressionValidator;
+using RequiredFieldValidator = Sample.Web.UI.Compatibility.RequiredFieldValidator;
+using ValidationSummary = Sample.Web.UI.Compatibility.ValidationSummary;
 
 namespace SpeakFriend.Utilities.Web
 {
@@ -12,7 +19,6 @@ namespace SpeakFriend.Utilities.Web
     {
         readonly string _groupIdentifier;
         readonly ValidationSettings _settings;
-        
 
         public ValidatorBuilder(string groupIdentifier, ValidationSettings setting)
         {
