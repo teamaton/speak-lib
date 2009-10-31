@@ -61,6 +61,7 @@ namespace SpeakFriend.Utilities
 		public virtual void Reset()
 		{
 			ForEach(cond => cond.Reset());
+			Clear();
 		}
     }
 }
