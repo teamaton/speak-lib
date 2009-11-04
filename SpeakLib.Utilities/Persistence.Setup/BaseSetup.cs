@@ -85,6 +85,15 @@ namespace SpeakFriend.Utilities
             return subject;
         }
 
+        public TSubject GetPersisted(Action<TSubject> modifier)
+        {
+            Add();
+            var subject = LastAdded;
+        	modifier(subject);
+            Persist();
+            return subject;
+        }
+
         public List<TSubject> GetPersisted(int amount)
         {
             var subjects = Get(amount);
