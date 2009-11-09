@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace SpeakFriend.Utilities.Web
 {
-    public class ValidationService
+    public class ValidationBuilder
     {
         private bool _isPageRegistered;
         private bool _isPlaceHolderRegistered;
@@ -19,7 +19,7 @@ namespace SpeakFriend.Utilities.Web
         private static string NextValidationControlId { get { return "vd_" + _validatorControlId++; } }
 
         private Page _page;
-        private PlaceHolder _messagePlaceHolder;
+        private Control _messagePlaceHolder;
         private ValidationGroup _lastCreatedValidationGroup;
 
         public readonly List<BaseValidator> Validators = new List<BaseValidator>();
@@ -28,21 +28,30 @@ namespace SpeakFriend.Utilities.Web
         
         public ValidationGroup CurrentValidationGroup{get { return _lastCreatedValidationGroup; }}
 
-        public ValidationService()
+        public ValidationBuilder()
         {
-            _validationSettings = new ValidationSettings();
-            _validationSettings.CssClass_Callout = "validatorCallout";
-            _validationSettings.CssClass_CalloutHighlight = "validatorCallout-highlight";
-            _validationSettings.ImgPath_CalloutWarning = "/style/img/warning-large.gif";
-            
+            _validationSettings = new ValidationSettings
+                                  	{
+                                  		CssClass_Callout = "validatorCallout",
+                                  		CssClass_CalloutHighlight = "validatorCallout-highlight",
+                                  		ImgPath_CalloutWarning = "/style/img/warning-large.gif"
+                                  	};
         }
 
-        public ValidationService(ValidationSettings settings)
+        public ValidationBuilder(ValidationSettings settings)
         {
             _validationSettings = settings;
         }
 
-        public ValidationService Register(Page page)
+		/// <summary>
+		/// Static factory method for more concise initialization.
+		/// </summary>
+		public static ValidationGroup Create(Page page, Control placeHolder, IButtonControl button)
+		{
+			return new ValidationBuilder().Register(page).RegisterPlaceHolder(placeHolder).RegisterButton(button);
+		}
+
+        public ValidationBuilder Register(Page page)
         {
             if (_isPageRegistered)
                 throw new Exception("Only one Page can be registered!");
@@ -52,10 +61,10 @@ namespace SpeakFriend.Utilities.Web
             return this;
         }
 
-        public ValidationService RegisterMessage(PlaceHolder placeHolder)
+        public ValidationBuilder RegisterPlaceHolder(Control placeHolder)
         {
             if (_isPlaceHolderRegistered)
-                throw new Exception("Only one PlaceHolder can be registered!");
+                throw new Exception("Only one placeholder Control can be registered!");
 
             _messagePlaceHolder = placeHolder;
             _messagePlaceHolder.Controls.Add(

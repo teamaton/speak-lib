@@ -9,7 +9,7 @@ namespace SpeakFriend.Utilities.Web
 {
     public class ValidationGroup
     {
-        private readonly ValidationService _validationService;
+        private readonly ValidationBuilder _validationBuilder;
 
         private readonly ValidationItemList _items = new ValidationItemList();
         private readonly ValidatorBuilder _validatorBuilder;
@@ -19,9 +19,9 @@ namespace SpeakFriend.Utilities.Web
 
         public bool IsFinished = false;
 
-        public ValidationGroup(ValidationService validationService, ValidationSettings settings, string validationGroupId)
+        public ValidationGroup(ValidationBuilder validationBuilder, ValidationSettings settings, string validationGroupId)
         {
-            _validationService = validationService;
+            _validationBuilder = validationBuilder;
             _groupIdentifier = validationGroupId;
             _validatorBuilder = new ValidatorBuilder(_groupIdentifier, settings);
         }
@@ -105,38 +105,38 @@ namespace SpeakFriend.Utilities.Web
             return this;
         }
 
-        public ValidationService FinishGroup()
+        public ValidationBuilder FinishGroup()
         {
             foreach (var item in _items)
             {
                 if (item.IsTextBox())
                 {
                     if (item.Type == ValidationType.RequiredField)
-                        _validationService.AddRequiredFieldValidator(_validatorBuilder, item);
+                        _validationBuilder.AddRequiredFieldValidator(_validatorBuilder, item);
 
                     else if (item.Type == ValidationType.Compare)
-                        _validationService.AddCompareValidator(_validatorBuilder, item);
+                        _validationBuilder.AddCompareValidator(_validatorBuilder, item);
 
                     else if (item.Type == ValidationType.Email)
-                        _validationService.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_Email);
+                        _validationBuilder.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_Email);
 
                     else if (item.Type == ValidationType.GUID)
-                        _validationService.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_GUID);
+                        _validationBuilder.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_GUID);
 
                     else if (item.Type == ValidationType.Uri)
-                        _validationService.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_Uri);
+                        _validationBuilder.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_Uri);
 
                     else if (item.Type == ValidationType.Positive_Integer)
-                        _validationService.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_PositiveInteger);
+                        _validationBuilder.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_PositiveInteger);
 
                     else if (item.Type == ValidationType.Price)
-                        _validationService.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_Price);
+                        _validationBuilder.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_Price);
                 }
             }
 
             IsFinished = true;
 
-            return _validationService;
+            return _validationBuilder;
         }
 
     }

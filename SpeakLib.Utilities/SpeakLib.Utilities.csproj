@@ -262,7 +262,7 @@
     <Compile Include="Web\Interaction\Validation\ValidationItem.cs" />
     <Compile Include="Web\Interaction\Validation\ValidationItemList.cs" />
     <Compile Include="Web\Interaction\Validation\ValidationMessage.cs" />
-    <Compile Include="Web\Interaction\Validation\ValidationService.cs" />
+    <Compile Include="Web\Interaction\Validation\ValidationBuilder.cs" />
     <Compile Include="Web\Interaction\Validation\ValidationType.cs" />
     <Compile Include="Web\Interaction\Validation\ValidationUtil.cs" />
     <Compile Include="Web\Interaction\Validation\ValidatorBuilder.cs" />
