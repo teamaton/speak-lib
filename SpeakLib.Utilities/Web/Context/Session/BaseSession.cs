@@ -36,5 +36,13 @@ namespace SpeakFriend.Utilities.Web
             }
             return true;
         }
+
+		/// <summary>
+		/// Calls Clear() on the encapsulated SessionData object.
+		/// </summary>
+		public void Clear()
+		{
+			Data.Clear();
+		}
     }
 }

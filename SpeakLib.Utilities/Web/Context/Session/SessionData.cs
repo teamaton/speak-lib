@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Windows.Forms;
+using Iesi.Collections.Generic;
 
 namespace SpeakFriend.Utilities.Web
 {
@@ -13,7 +14,7 @@ namespace SpeakFriend.Utilities.Web
     /// </summary>
     public class SessionData
     {
-        public List<string> _appDomainInsertedKeys = new List<string>();
+    	private readonly HashedSet<string> _appDomainInsertedKeys = new HashedSet<string>();
 
         public object this[string key]
         {
@@ -26,22 +27,20 @@ namespace SpeakFriend.Utilities.Web
 
                     return HttpContext.Current.Session[key];
 				}
-					
 
                 return AppDomain.CurrentDomain.GetData(key);
             }
             set
             {
-                if (ContextUtil.IsWebContext)
-                    HttpContext.Current.Session[key] = value;
+				if (ContextUtil.IsWebContext)
+				{
+					HttpContext.Current.Session[key] = value;
+				}
 				else
-                {
-                    AppDomain.CurrentDomain.SetData(key, value);
-                    
-                    if(!_appDomainInsertedKeys.Contains(key))
-                        _appDomainInsertedKeys.Add(key);
-                }
-					
+				{
+					AppDomain.CurrentDomain.SetData(key, value);
+				}
+				_appDomainInsertedKeys.Add(key);					
             }
         }
 
@@ -111,21 +110,24 @@ namespace SpeakFriend.Utilities.Web
             return Get<T>(key);
         }
 
-        public void Clear()
-        {
-            if (ContextUtil.IsWebContext)
-                HttpContext.Current.Session.Clear();            
+		public void Clear()
+		{
+			if (ContextUtil.IsWebContext)
+				foreach (string key in _appDomainInsertedKeys)
+					HttpContext.Current.Session.Remove(key);
+			else
+				foreach (string key in _appDomainInsertedKeys)
+					AppDomain.CurrentDomain.SetData(key, null);
 
-            foreach(string key in _appDomainInsertedKeys)
-                AppDomain.CurrentDomain.SetData(key, null);
-
-            _appDomainInsertedKeys.Clear();
-        }
+			_appDomainInsertedKeys.Clear();
+		}
 
     	public void Remove(string key)
     	{
     		if (ContextUtil.IsWebContext)
-                HttpContext.Current.Session.Remove(key);
+    		{
+    			HttpContext.Current.Session.Remove(key);
+    		}
 			else
     		{
 				AppDomain.CurrentDomain.SetData(key, null);
