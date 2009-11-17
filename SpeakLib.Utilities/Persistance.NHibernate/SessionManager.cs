@@ -12,14 +12,11 @@ namespace SpeakFriend.Utilities
     /// </summary>
     public class SessionManager : ISessionManager
     {
-//		public static int Counter = 0;
         private readonly ISession _session;
 
         public SessionManager(ISession session)
         {
             _session = session;
-//			Console.WriteLine("New SessionManager: {0} (SesMgr: {1})", Session.GetHashCode(), GetHashCode());
-//        	Counter++;
 		}
 
         public ISession Session
@@ -31,7 +28,6 @@ namespace SpeakFriend.Utilities
         {
             if (Session.IsOpen)
             {
-//				Console.WriteLine("Closing NH session: {0} (SesMgr: {1})", Session.GetHashCode(), GetHashCode());
                 Session.Flush();
                 Session.Close();
             }
