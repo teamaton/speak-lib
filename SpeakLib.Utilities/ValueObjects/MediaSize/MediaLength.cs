@@ -5,6 +5,9 @@ using System.Text;
 
 namespace SpeakFriend.ValueObjects
 {
+	/// <summary>
+	/// Why not use TimeSpan internally instead of seconds? Less conversion code. - Oliver
+	/// </summary>
     public class MediaLength
     {
         public int Seconds;
@@ -37,11 +40,11 @@ namespace SpeakFriend.ValueObjects
 
         public override string ToString()
         {
-            int reminderHours = 0;
-            int hours = Math.DivRem(Seconds, 3600, out reminderHours);
+            int remainderHours = 0;
+            int hours = Math.DivRem(Seconds, 3600, out remainderHours);
             int reminderMinutes = 0;
 
-            int minutes = Math.DivRem(reminderHours, 60, out reminderMinutes);
+            int minutes = Math.DivRem(remainderHours, 60, out reminderMinutes);
             int seconds = reminderMinutes;
 
             return String.Format("{00:00}", hours) + ":" + String.Format("{00:00}", minutes) + ":" + String.Format("{00:00}", seconds);

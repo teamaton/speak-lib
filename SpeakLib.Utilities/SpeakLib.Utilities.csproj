@@ -58,6 +58,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Camping.Info\Libraries\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="MergeSystem.Indexus.WinServiceCommon, Version=2.0.3.270, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\MergeSystem.Indexus.WinServiceCommon.dll</HintPath>
@@ -104,10 +108,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Persistance.NHibernate\NHibernateHelperSF.cs" />
     <Compile Include="Persistence.Query\Condition\CategoryAttributes.cs" />
     <Compile Include="Persistence.Query\Condition\Types\ConditionObject.cs" />
     <Compile Include="Persistence.Query\SearchDescriptionBase.cs" />
     <Compile Include="Reflection\ReflectionHelper.cs" />
+    <Compile Include="SeedWork.Usefulness\AnonymousRater.cs" />
+    <Compile Include="SeedWork.Usefulness\ICanRateUsefulness.cs" />
+    <Compile Include="SeedWork.Usefulness\ICanBeUseful.cs" />
+    <Compile Include="SeedWork.Usefulness\UsefulnessEntryList.cs" />
+    <Compile Include="SeedWork.Usefulness\UsefulnessService.cs" />
+    <Compile Include="SeedWork.Usefulness\UsefulnessValue.cs" />
+    <Compile Include="SeedWork.Usefulness\UsefulnessEntry.cs" />
+    <Compile Include="SeedWork.Usefulness\UsefulnessExtensions.cs" />
     <Compile Include="Service.Type\Class.cs" />
     <Compile Include="Service\ExtensionMethods\CollectionExtensions.cs" />
     <Compile Include="Service\FileStore\StoredFile.cs" />

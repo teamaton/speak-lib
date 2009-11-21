@@ -10,7 +10,9 @@ namespace SpeakFriend.Utilities
     public abstract class PersistableList<T> : List<T> where T : IPersistable
     {
         private ISet<T> _persistentItems = new HashedSet<T>();
+// ReSharper disable UnusedMember.Local
         private ISet<T> Items
+// ReSharper restore UnusedMember.Local
         {
             get
             {

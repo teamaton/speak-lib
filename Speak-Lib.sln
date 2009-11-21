@@ -17,7 +17,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeakLib.FileUpload", "Spea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleApp.Core", "ExampleApp.Core\ExampleApp.Core.csproj", "{678E2425-56AD-4DCD-99BB-78F71E630C97}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Usefulness", "Tests.Usefulness\Tests.Usefulness.csproj", "{39CF618D-60C4-45A7-8F79-92D716EE2F7A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0D02A517-D939-4BAD-AD65-3E22D52EF0EC}"
+	ProjectSection(SolutionItems) = preProject
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+		Speak-Lib.vsmdi = Speak-Lib.vsmdi
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Speak-Lib.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -72,6 +83,12 @@ Global
 		{678E2425-56AD-4DCD-99BB-78F71E630C97}.Release|Any CPU.Build.0 = Release|Any CPU
 		{678E2425-56AD-4DCD-99BB-78F71E630C97}.ShowTranslationPanel|Any CPU.ActiveCfg = Release|Any CPU
 		{678E2425-56AD-4DCD-99BB-78F71E630C97}.ShowTranslationPanel|Any CPU.Build.0 = Release|Any CPU
+		{39CF618D-60C4-45A7-8F79-92D716EE2F7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39CF618D-60C4-45A7-8F79-92D716EE2F7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39CF618D-60C4-45A7-8F79-92D716EE2F7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39CF618D-60C4-45A7-8F79-92D716EE2F7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39CF618D-60C4-45A7-8F79-92D716EE2F7A}.ShowTranslationPanel|Any CPU.ActiveCfg = Release|Any CPU
+		{39CF618D-60C4-45A7-8F79-92D716EE2F7A}.ShowTranslationPanel|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
