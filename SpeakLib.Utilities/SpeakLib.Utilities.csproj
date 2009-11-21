@@ -114,8 +114,8 @@
     <Compile Include="Persistence.Query\SearchDescriptionBase.cs" />
     <Compile Include="Reflection\ReflectionHelper.cs" />
     <Compile Include="SeedWork.Usefulness\AnonymousRater.cs" />
-    <Compile Include="SeedWork.Usefulness\ICanRateUsefulness.cs" />
-    <Compile Include="SeedWork.Usefulness\ICanBeUseful.cs" />
+    <Compile Include="SeedWork.Usefulness\IUsefulnessCreator.cs" />
+    <Compile Include="SeedWork.Usefulness\IUsefulnessEntity.cs" />
     <Compile Include="SeedWork.Usefulness\UsefulnessEntryList.cs" />
     <Compile Include="SeedWork.Usefulness\UsefulnessService.cs" />
     <Compile Include="SeedWork.Usefulness\UsefulnessValue.cs" />
@@ -302,6 +302,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Service\FileStore\StoredFile.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SeedWork.Usefulness\UsefulnessEntry.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SeedWork.Comment\" />

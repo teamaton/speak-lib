@@ -7,15 +7,17 @@ namespace SpeakFriend.Utilities.Usefulness
 {
 	public class UsefulnessValue
 	{
-		public uint Positive { get; private set; }
-		public uint Negative { get; private set; }
+		public int Positive { get; private set; }
+		public int Negative { get; private set; }
 
-		public UsefulnessValue(uint initialPositive, uint initialNegative)
+		public UsefulnessValue(){}
+
+		public UsefulnessValue(int initialPositive, int initialNegative)
 		{
 			Positive = initialPositive;
 			Negative = initialNegative;
 		}
 
-		public uint Count { get { return Positive + Negative; } }
+		public int Count { get { return Convert.ToInt32(Positive + Math.Abs(Negative)); } }
 	}
 }

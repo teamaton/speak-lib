@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities.Usefulness
 {
-	public interface ICanRateUsefulness
+	public interface IUsefulnessCreator
 	{
 		int Id { get; set; }
 	}

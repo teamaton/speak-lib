@@ -7,9 +7,15 @@ namespace SpeakFriend.Utilities.Usefulness
 {
 	public static class UsefulnessExtensions
 	{
-		public static void Add(this UsefulnessValue entity, ICanRateUsefulness rater)
+		public static void Add(this UsefulnessValue entity, IUsefulnessCreator rater)
 		{
 			
+		}
+
+		public static void LoadUsefulness(this IUsefulnessEntity entity, UsefulnessService service)
+		{
+			var usefulnessValue = service.GetByEntity(entity);
+			entity.Usefulness = usefulnessValue;
 		}
 	}
 }

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class name="SpeakFriend.Utilities.Usefulness.UsefulnessEntry, SpeakFriend.Utilities"
+      table="UsefulnessEntry" lazy="false">
+
+    <id name="Id" column="Id" type="Int32">
+      <generator class="native" />
+    </id>
+
+    <property name="PositiveValue" access="field.camelcase-underscore" />
+    <property name="NegativeValue" access="field.camelcase-underscore" />
+    <property name="EntityId"  not-null="true"/>
+    <property name="EntityType"  not-null="true"/>
+    <property name="CreatorId" />
+    <property name="CreatorType" />
+    <property name="DateCreated"  not-null="true"/>
+		
+	</class>
+</hibernate-mapping>

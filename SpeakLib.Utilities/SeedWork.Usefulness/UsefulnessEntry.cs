@@ -5,30 +5,45 @@ namespace SpeakFriend.Utilities.Usefulness
 	public class UsefulnessEntry : IMutablePersistable
 	{
 		public int Id { get; set; }
-		public int Value { get; set; }
+		private int? _positiveValue;
+		private int? _negativeValue;
+		public int Value
+		{
+			get { return _positiveValue.HasValue ? _positiveValue.Value : _negativeValue.Value; }
+			set
+			{
+				if (value == 0)
+					throw new ArgumentException("Value must be positive or negative!", "value");
+				if (value > 0)
+					_positiveValue = value;
+				else
+					_negativeValue = value;
+			}
+		}
 
-		public int UsefulEntityId { get; set; }
-		public string UsefulEntityType { get; set; }
+		public int EntityId { get; set; }
+		public string EntityType { get; set; }
 
-		public int RatingEntityId { get; set; }
-		public string RatingEntityType { get; set; }
+		public int CreatorId { get; set; }
+		public string CreatorType { get; set; }
 
 		public DateTime DateCreated { get; set; }
 		public DateTime DateModified { get; set; }
 
-		public UsefulnessEntry(ICanBeUseful usefulEntity, int value)
+		public UsefulnessEntry(){}
+
+		public UsefulnessEntry(IUsefulnessEntity usefulEntity, int value)
 		{
-			UsefulEntityId = usefulEntity.Id;
 			Value = value;
+			EntityId = usefulEntity.Id;
+			EntityType = usefulEntity.GetType().Name;
 		}
 
-		public UsefulnessEntry(ICanBeUseful usefulEntity, int value, ICanRateUsefulness rater)
+		public UsefulnessEntry(IUsefulnessEntity usefulEntity, int value, IUsefulnessCreator rater)
+			:this(usefulEntity, value)
 		{
-			Value = value;
-			UsefulEntityId = usefulEntity.Id;
-			UsefulEntityType = usefulEntity.GetType().Name;
-			RatingEntityId = rater.Id;
-			RatingEntityType = rater.GetType().Name;
+			CreatorId = rater.Id;
+			CreatorType = rater.GetType().Name;
 		}
 	}
 }

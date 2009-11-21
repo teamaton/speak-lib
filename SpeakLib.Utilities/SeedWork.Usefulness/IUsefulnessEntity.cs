@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities.Usefulness
 {
-	public interface ICanBeUseful
+	public interface IUsefulnessEntity
 	{
 		int Id { get; set; }
 		UsefulnessValue Usefulness { get; set; }

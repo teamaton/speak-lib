@@ -26,10 +26,17 @@ namespace Tests.Usefulness
 			_entity = _usefulEntityService.GetById(_entity.Id);
 		}
 
+		private void Arrange_usefulness_loaded_in_entity()
+		{
+			_entity.LoadUsefulness(_usefulnessService);
+		}
+
 		[Test]
 		public void Should_have_one_positive_vote()
 		{
 			Arrange_entity_with_one_positive_vote();
+
+			Arrange_usefulness_loaded_in_entity();
 			
 			Assert.That(_entity.Usefulness.Positive, EqualTo(1));
 		}

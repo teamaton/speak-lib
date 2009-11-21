@@ -7,7 +7,7 @@ using SpeakFriend.Utilities.Usefulness;
 
 namespace Tests.Usefulness
 {
-	public class UsefulEntity : IPersistable, ICanBeUseful
+	public class UsefulEntity : IPersistable, IUsefulnessEntity
 	{
 		public int Id { get; set; }
 		public DateTime DateCreated{get; set;}

@@ -9,6 +9,11 @@ namespace Tests.Usefulness.Environment
 {
     class Setup : BaseTest
     {
+		public static void InitializeAll()
+		{
+			
+		}
+
         public static void CleanUp()
         {
             foreach (var type in new[] { typeof(UsefulEntity), typeof(UsefulnessEntry)})
