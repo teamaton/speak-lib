@@ -14,12 +14,16 @@ namespace Tests.Usefulness
 		public int Id { get; set; }
 		public DateTime DateCreated{get; set;}
 
-		public UsefulnessValue Usefulness { get; set; }
+		private UsefulnessValue _usefulness;
+		public UsefulnessValue Usefulness
+		{
+			get { return _usefulness ?? (_usefulness = _usefulnessValueFactory(this)); }
+			set { _usefulness = value; }
+		}
 
 		public UsefulEntity(UsefulnessValue.Factory usefulnessValueFactory)
 		{
 			_usefulnessValueFactory = usefulnessValueFactory;
-			Usefulness = _usefulnessValueFactory.Invoke(this);
 		}
 	}
 }

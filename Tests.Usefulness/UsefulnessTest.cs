@@ -15,6 +15,8 @@ namespace Tests.Usefulness
 		private void Arrange_entity_with_one_positive_vote()
 		{
 			_entity = _usefulEntity; // gets new entity
+			Assert.That(_entity.Usefulness, Is.Not.Null);
+			Assert.That(_entity.Usefulness.Count, EqualTo(0));
 			_usefulEntityService.Create(_entity);
 
 			var usefulnessEntry = new UsefulnessEntry(_entity, 1);

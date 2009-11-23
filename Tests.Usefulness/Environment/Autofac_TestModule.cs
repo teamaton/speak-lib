@@ -27,7 +27,8 @@ namespace Tests.Usefulness.TestEnvironment
 		{
 			base.Load(builder);
 
-			builder.Register(c => new Configuration().Configure().BuildSessionFactory().OpenSession()).ContainerScoped();
+			builder.Register(c => new Configuration().Configure().BuildSessionFactory()).SingletonScoped();
+			builder.Register(c => c.Resolve<ISessionFactory>().OpenSession()).ContainerScoped();
 
 			builder.Register<UsefulnessService>().ContainerScoped();
 
