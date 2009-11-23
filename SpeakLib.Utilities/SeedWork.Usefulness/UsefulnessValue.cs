@@ -38,9 +38,11 @@ namespace SpeakFriend.Utilities.Usefulness
 			private set { _negative = value; }
 		}
 
+		public int Count { get { return Convert.ToInt32(Positive + Math.Abs(Negative)); } }
+
 		private void InitializeValues()
 		{
-			var usefulnessValue = _usefulnessService.GetByEntity(_entity);
+			var usefulnessValue = _usefulnessService.GetUsefulnessValueByEntity(_entity);
 			_positive = usefulnessValue.Positive;
 			_negative = usefulnessValue.Negative;
 		}
@@ -61,7 +63,5 @@ namespace SpeakFriend.Utilities.Usefulness
 			Positive = initialPositive;
 			Negative = initialNegative;
 		}
-
-		public int Count { get { return Convert.ToInt32(Positive + Math.Abs(Negative)); } }
 	}
 }

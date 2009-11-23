@@ -15,14 +15,6 @@ namespace Tests.Usefulness.TestEnvironment
 {
 	public class Autofac_TestModule : Module
 	{
-		public override void Configure(IContainer container)
-		{
-			base.Configure(container);
-
-			NHibernate.Cfg.Environment.BytecodeProvider = new AutofacBytecodeProvider(
-				container, new ProxyFactoryFactory(), new NHibernate.Type.DefaultCollectionTypeFactory());
-		}
-
 		protected override void Load(ContainerBuilder builder)
 		{
 			base.Load(builder);
@@ -30,11 +22,6 @@ namespace Tests.Usefulness.TestEnvironment
 			builder.Register(c => new Configuration().Configure().BuildSessionFactory()).SingletonScoped();
 			builder.Register(c => c.Resolve<ISessionFactory>().OpenSession()).ContainerScoped();
 
-			builder.Register<UsefulnessService>().ContainerScoped();
-
-			builder.Register<UsefulnessValue>().FactoryScoped();
-			builder.RegisterGeneratedFactory<UsefulnessValue.Factory>();
-			
 			builder.Register<UsefulEntity>().FactoryScoped();
 			builder.Register<UsefulEntityService>().ContainerScoped();
 

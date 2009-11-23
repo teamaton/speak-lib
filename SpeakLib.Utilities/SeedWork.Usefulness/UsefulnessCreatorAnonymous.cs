@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities.Usefulness
 {
-	public class AnonymousRater : IUsefulnessCreator
+	public class UsefulnessCreatorAnonymous : IUsefulnessCreator
 	{
 		public int Id { get; set; }
 	}

@@ -14,7 +14,7 @@ namespace SpeakFriend.Utilities.Usefulness
 		{
 		}
 
-		public UsefulnessValue GetByEntity(IUsefulnessEntity usefulEntity)
+		public UsefulnessValue GetUsefulnessValueByEntity(IUsefulnessEntity usefulEntity)
 		{
 			var result = _session.CreateCriteria(typeof (UsefulnessEntry))
 				.Add(Restrictions.Eq("EntityId", usefulEntity.Id))

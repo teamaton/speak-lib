@@ -73,7 +73,6 @@
     <Compile Include="Environment\UsefulEntity.cs" />
     <Compile Include="UsefulnessTest.cs" />
     <Compile Include="_Code\BaseTest.cs" />
-    <Compile Include="_Code\ServiceLocator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SpeakLib.Utilities\SpeakLib.Utilities.csproj">
