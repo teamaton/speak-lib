@@ -12,7 +12,7 @@ namespace SpeakFriend.Utilities.Usefulness
 			
 		}
 
-		public static void LoadUsefulness(this IUsefulnessEntity entity, UsefulnessService service)
+		public static void Usefulness(this IUsefulnessEntity entity, UsefulnessService service)
 		{
 			var usefulnessValue = service.GetByEntity(entity);
 			entity.Usefulness = usefulnessValue;

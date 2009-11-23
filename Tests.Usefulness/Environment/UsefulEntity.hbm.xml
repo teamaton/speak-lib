@@ -8,5 +8,7 @@
     </id>
 
     <property name="DateCreated" column="DateCreated" type="DateTime" not-null="true"/>
+
+		<component name="Usefulness" />
   </class>
 </hibernate-mapping>
