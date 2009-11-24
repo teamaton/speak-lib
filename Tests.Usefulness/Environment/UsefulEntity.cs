@@ -9,21 +9,14 @@ namespace Tests.Usefulness
 {
 	public class UsefulEntity : IPersistable, IUsefulnessEntity
 	{
-		private readonly UsefulnessValue.Factory _usefulnessValueFactory;
-
 		public int Id { get; set; }
-		public DateTime DateCreated{get; set;}
+		public DateTime DateCreated { get; set; }
 
-		private UsefulnessValue _usefulness;
-		public UsefulnessValue Usefulness
-		{
-			get { return _usefulness ?? (_usefulness = _usefulnessValueFactory(this)); }
-			set { _usefulness = value; }
-		}
+		public UsefulnessValue Usefulness { get; set; }
 
-		public UsefulEntity(UsefulnessValue.Factory usefulnessValueFactory)
+		public UsefulEntity(UsefulnessValue usefulnessValue)
 		{
-			_usefulnessValueFactory = usefulnessValueFactory;
+			Usefulness = usefulnessValue;
 		}
 	}
 }
