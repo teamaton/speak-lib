@@ -5,9 +5,12 @@ using System.Text;
 
 namespace SpeakFriend.Utilities.Usefulness
 {
+	[Serializable]
 	public class UsefulnessValue
 	{
+		[NonSerialized]
 		private readonly UsefulnessService _usefulnessService;
+		[NonSerialized]
 		private readonly IUsefulnessEntity _entity;
 
 		public delegate UsefulnessValue Factory(IUsefulnessEntity entity);
@@ -39,6 +42,8 @@ namespace SpeakFriend.Utilities.Usefulness
 		}
 
 		public int Count { get { return Convert.ToInt32(Positive + Math.Abs(Negative)); } }
+
+		public double Percentage { get { return Count > 0 ? Positive / (double) Count : 0; } }
 
 		private void InitializeValues()
 		{
