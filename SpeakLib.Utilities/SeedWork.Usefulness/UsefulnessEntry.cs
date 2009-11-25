@@ -33,15 +33,15 @@ namespace SpeakFriend.Utilities.Usefulness
 		public UsefulnessEntry(){}
 
 		public UsefulnessEntry(IUsefulnessEntity usefulEntity, int value)
+			: this(usefulEntity, value, new UsefulnessCreatorAnonymous())
+		{
+		}
+
+		public UsefulnessEntry(IUsefulnessEntity usefulEntity, int value, IUsefulnessCreator rater)
 		{
 			Value = value;
 			EntityId = usefulEntity.Id;
 			EntityType = usefulEntity.GetType().Name;
-		}
-
-		public UsefulnessEntry(IUsefulnessEntity usefulEntity, int value, IUsefulnessCreator rater)
-			:this(usefulEntity, value)
-		{
 			CreatorId = rater.Id;
 			CreatorType = rater.GetType().Name;
 		}

@@ -23,6 +23,8 @@ namespace SpeakFriend.Utilities.Usefulness
 
 			builder.Register<UsefulnessValue>().FactoryScoped();
 			builder.RegisterGeneratedFactory<UsefulnessValue.Factory>();
+
+			builder.RegisterTypesMatching(t => typeof(IUsefulnessEntity).IsAssignableFrom(t)).FactoryScoped();
 		}
 	}
 }

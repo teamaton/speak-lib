@@ -22,10 +22,9 @@ namespace Tests.Usefulness.TestEnvironment
 			builder.Register(c => new Configuration().Configure().BuildSessionFactory()).SingletonScoped();
 			builder.Register(c => c.Resolve<ISessionFactory>().OpenSession()).ContainerScoped();
 
-			builder.Register<UsefulEntity>().FactoryScoped();
-			builder.Register<UsefulEntityService>().ContainerScoped();
-
 			builder.Register<NHibernateHelperSF>().ContainerScoped();
+
+			builder.Register<UsefulEntityService>().ContainerScoped();
 		}
 	}
 }
