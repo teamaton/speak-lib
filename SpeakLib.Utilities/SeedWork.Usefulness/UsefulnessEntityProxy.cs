@@ -6,18 +6,21 @@ using System.Text;
 namespace SpeakFriend.Utilities.Usefulness
 {
 	[Serializable]
-	public class UsefulnessEntityCore : IUsefulnessEntity
+	public class UsefulnessEntityProxy : IUsefulnessEntity
 	{
 		public int Id { get; set; }
+		public string Type { get; private set; }
+
 		public UsefulnessValue Usefulness { get; private set; }
 
-		public UsefulnessEntityCore(IUsefulnessEntity usefulnessEntity)
+		public UsefulnessEntityProxy(IUsefulnessEntity usefulnessEntity)
 		{
 			Id = usefulnessEntity.Id;
+			Type = usefulnessEntity.Type;
 			Usefulness = usefulnessEntity.Usefulness;
 		}
 
-		public UsefulnessEntityCore()
+		public UsefulnessEntityProxy()
 		{
 			
 		}

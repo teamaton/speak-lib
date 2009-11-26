@@ -8,6 +8,7 @@ namespace SpeakFriend.Utilities.Usefulness
 	public interface IUsefulnessEntity
 	{
 		int Id { get; set; }
+		string Type { get; }
 		UsefulnessValue Usefulness { get; }
 	}
 }

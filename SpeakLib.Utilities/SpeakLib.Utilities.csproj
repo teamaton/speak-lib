@@ -129,7 +129,7 @@
     <Compile Include="SeedWork.Usefulness\AutofacModuleUsefulness.cs" />
     <Compile Include="SeedWork.Usefulness\IUsefulnessCreator.cs" />
     <Compile Include="SeedWork.Usefulness\IUsefulnessEntity.cs" />
-    <Compile Include="SeedWork.Usefulness\UsefulnessEntityCore.cs" />
+    <Compile Include="SeedWork.Usefulness\UsefulnessEntityProxy.cs" />
     <Compile Include="SeedWork.Usefulness\UsefulnessEntryList.cs" />
     <Compile Include="SeedWork.Usefulness\UsefulnessService.cs" />
     <Compile Include="SeedWork.Usefulness\UsefulnessValue.cs" />

@@ -18,7 +18,7 @@ namespace SpeakFriend.Utilities.Usefulness
 		{
 			var result = _session.CreateCriteria(typeof (UsefulnessEntry))
 				.Add(Restrictions.Eq("EntityId", usefulEntity.Id))
-				.Add(Restrictions.Eq("EntityType", usefulEntity.GetType().Name))
+				.Add(Restrictions.Eq("EntityType", usefulEntity.Type))
 				.SetProjection(Projections.Sum("PositiveValue").As("Positive"),
 				               Projections.Sum("NegativeValue").As("Negative"))
 				.SetResultTransformer(Transformers.AliasToBean(typeof (UsefulnessValue)))

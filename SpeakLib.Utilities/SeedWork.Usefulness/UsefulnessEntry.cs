@@ -37,13 +37,13 @@ namespace SpeakFriend.Utilities.Usefulness
 		{
 		}
 
-		public UsefulnessEntry(IUsefulnessEntity usefulEntity, int value, IUsefulnessCreator rater)
+		public UsefulnessEntry(IUsefulnessEntity usefulEntity, int value, IUsefulnessCreator creator)
 		{
 			Value = value;
 			EntityId = usefulEntity.Id;
-			EntityType = usefulEntity.GetType().Name;
-			CreatorId = rater.Id;
-			CreatorType = rater.GetType().Name;
+			EntityType = usefulEntity.Type;
+			CreatorId = creator.Id;
+			CreatorType = creator.Type;
 		}
 	}
 }

@@ -10,6 +10,7 @@ namespace Tests.Usefulness
 	public class UsefulEntity : IPersistable, IUsefulnessEntity
 	{
 		public int Id { get; set; }
+		public string Type { get { return GetType().Name; } }
 		public DateTime DateCreated { get; set; }
 
 		public UsefulEntity(UsefulnessValue.Factory usefulnessValueFactory)
@@ -22,6 +23,7 @@ namespace Tests.Usefulness
 		private readonly UsefulnessValue.Factory _usefulnessValueFactory;
 
 		private UsefulnessValue _usefulness;
+
 		public UsefulnessValue Usefulness
 		{
 			get { return _usefulness ?? (_usefulness = _usefulnessValueFactory(this)); }

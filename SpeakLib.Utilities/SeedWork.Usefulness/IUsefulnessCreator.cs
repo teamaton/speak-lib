@@ -8,5 +8,9 @@ namespace SpeakFriend.Utilities.Usefulness
 	public interface IUsefulnessCreator
 	{
 		int Id { get; set; }
+		/// <summary>
+		/// Usually this should just be the Type of the class.
+		/// </summary>
+		string Type { get; }
 	}
 }
