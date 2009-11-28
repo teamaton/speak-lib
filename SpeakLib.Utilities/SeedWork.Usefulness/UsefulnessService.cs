@@ -27,14 +27,23 @@ namespace SpeakFriend.Utilities.Usefulness
 			return result;
 		}
 
+		/// <summary>
+		/// Returns a list of all usefulness entries for the given creator; in case of a
+		/// <see cref="UsefulnessCreatorAnonymous"/> the search is done based on IP address and a time span.
+		/// </summary>
 		public UsefulnessEntityList GetUsefulnessEntitiesByCreator(IUsefulnessCreator creator)
 		{
 			var criteria = _session.CreateCriteria(typeof (UsefulnessEntry))
 				.Add(Restrictions.Eq("CreatorId", creator.Id))
 				.Add(Restrictions.Eq("CreatorType", creator.Type));
 
-			if(creator is UsefulnessCreatorAnonymous)
-				criteria.Add(Restrictions.Eq("IpAddress", ((UsefulnessCreatorAnonymous) creator).IpAddress));
+			if (creator is UsefulnessCreatorAnonymous)
+			{
+				var anonymous = (UsefulnessCreatorAnonymous) creator;
+				criteria.Add(Restrictions.Eq("IpAddress", anonymous.IpAddress));
+				if (anonymous.BlockingPeriod.HasValue)
+					criteria.Add(Restrictions.Ge("DateCreated", DateTime.Now.Add(-anonymous.BlockingPeriod.Value)));
+			}
 
 			var entries = criteria.List<UsefulnessEntry>();
 			var entityList = new UsefulnessEntityList();

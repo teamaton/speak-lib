@@ -10,5 +10,10 @@ namespace SpeakFriend.Utilities.Usefulness
 		public int Id { get; set; }
 		public string Type { get { return GetType().Name; } }
 		public string IpAddress { get; set; }
+		/// <summary>
+		/// The time span into the past during which an anonymous visitor can not submit 
+		/// new usefulness ratings from the same IP address.
+		/// </summary>
+		public TimeSpan? BlockingPeriod { get; set; }
 	}
 }
