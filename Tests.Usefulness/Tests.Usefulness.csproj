@@ -39,6 +39,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\AutofacContrib.NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Camping.Info\Libraries\Iesi.Collections.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\NHibernate.dll</HintPath>
@@ -67,10 +71,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Environment\Autofac_TestModule.cs" />
-    <Compile Include="Environment\UsefulEntityService.cs" />
+    <Compile Include="Deny_duplicate_usefulness_rating.cs" />
+    <Compile Include="_Code\Autofac_TestModule.cs" />
+    <Compile Include="_Code\UsefulTestCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Environment\UsefulEntity.cs" />
+    <Compile Include="_Code\UsefulTestEntity.cs" />
     <Compile Include="UsefulnessTest.cs" />
     <Compile Include="_Code\BaseTest.cs" />
   </ItemGroup>
@@ -81,10 +86,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Environment\UsefulEntity.hbm.xml" />
+    <EmbeddedResource Include="_Code\UsefulTestEntity.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="_Code\UsefulTestCreator.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

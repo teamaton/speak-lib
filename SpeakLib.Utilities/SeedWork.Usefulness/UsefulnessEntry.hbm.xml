@@ -13,6 +13,7 @@
     <property name="EntityType"  not-null="true"/>
     <property name="CreatorId" />
     <property name="CreatorType" />
+    <property name="IpAddress" />
     <property name="DateCreated"  not-null="true"/>
 		
 	</class>

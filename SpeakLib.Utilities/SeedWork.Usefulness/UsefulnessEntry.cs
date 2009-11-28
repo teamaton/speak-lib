@@ -27,23 +27,26 @@ namespace SpeakFriend.Utilities.Usefulness
 		public int CreatorId { get; set; }
 		public string CreatorType { get; set; }
 
+		public string IpAddress { get; set; }
+
 		public DateTime DateCreated { get; set; }
 		public DateTime DateModified { get; set; }
 
 		public UsefulnessEntry(){}
 
-		public UsefulnessEntry(IUsefulnessEntity usefulEntity, int value)
-			: this(usefulEntity, value, new UsefulnessCreatorAnonymous())
+		public UsefulnessEntry(IUsefulnessEntity usefulEntity, int value, string ipAddress)
+			: this(usefulEntity, value, ipAddress, new UsefulnessCreatorAnonymous())
 		{
 		}
 
-		public UsefulnessEntry(IUsefulnessEntity usefulEntity, int value, IUsefulnessCreator creator)
+		public UsefulnessEntry(IUsefulnessEntity usefulEntity, int value, string ipAddress, IUsefulnessCreator creator)
 		{
 			Value = value;
 			EntityId = usefulEntity.Id;
 			EntityType = usefulEntity.Type;
 			CreatorId = creator.Id;
 			CreatorType = creator.Type;
+			IpAddress = ipAddress;
 		}
 	}
 }

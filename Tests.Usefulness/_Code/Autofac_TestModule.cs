@@ -24,7 +24,8 @@ namespace Tests.Usefulness.TestEnvironment
 
 			builder.Register<NHibernateHelperSF>().ContainerScoped();
 
-			builder.Register<UsefulEntityService>().ContainerScoped();
+			builder.Register<UsefulTestEntityService>().ContainerScoped();
+			builder.Register<UsefulTestCreatorService>().ContainerScoped();
 		}
 	}
 }

@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using NHibernate;
 using SpeakFriend.Utilities;
 using SpeakFriend.Utilities.Usefulness;
 
 namespace Tests.Usefulness
 {
-	public class UsefulEntity : IPersistable, IUsefulnessEntity
+	public class UsefulTestEntity : IPersistable, IUsefulnessEntity
 	{
 		public int Id { get; set; }
 		public string Type { get { return GetType().Name; } }
 		public DateTime DateCreated { get; set; }
 
-		public UsefulEntity(UsefulnessValue.Factory usefulnessValueFactory)
+		public UsefulTestEntity(UsefulnessValue.Factory usefulnessValueFactory)
 		{
 			_usefulnessValueFactory = usefulnessValueFactory;
 		}
@@ -31,5 +32,18 @@ namespace Tests.Usefulness
 		}
 
 		#endregion
+	}
+
+	public class UsefulTestEntityList : PersistableList<UsefulTestEntity>
+	{
+
+	}
+
+	public class UsefulTestEntityService : RepositoryDb<UsefulTestEntity, UsefulTestEntityList>
+	{
+		public UsefulTestEntityService(ISession session)
+			: base(session)
+		{
+		}
 	}
 }

@@ -16,8 +16,9 @@ namespace Tests.Usefulness
     {
     	protected NHibernateHelperSF _nHibernateHelper { get { return Resolve<NHibernateHelperSF>(); } }
 		protected UsefulnessService _usefulnessService { get { return Resolve<UsefulnessService>(); } }
-		protected UsefulEntity _usefulEntity { get { return Resolve<UsefulEntity>(); } }
-		protected UsefulEntityService _usefulEntityService { get { return Resolve<UsefulEntityService>(); } }
+		protected UsefulTestEntity _usefulTestEntity { get { return Resolve<UsefulTestEntity>(); } }
+		protected UsefulTestEntityService _usefulTestEntityService { get { return Resolve<UsefulTestEntityService>(); } }
+		protected UsefulTestCreatorService _usefulTestCreatorService { get { return Resolve<UsefulTestCreatorService>(); } }
 
 		private IContainer _rootContainer;
 		protected IContainer _currentContainer { get; private set; }

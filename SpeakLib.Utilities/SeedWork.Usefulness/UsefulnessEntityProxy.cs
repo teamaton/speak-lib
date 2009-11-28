@@ -20,6 +20,14 @@ namespace SpeakFriend.Utilities.Usefulness
 			Usefulness = usefulnessEntity.Usefulness;
 		}
 
+		public UsefulnessEntityProxy(UsefulnessEntry usefulnessEntry)
+		{
+			Id = usefulnessEntry.EntityId;
+			Type = usefulnessEntry.EntityType;
+//			Usefulness = new UsefulnessValue(usefulnessEntry.Value > 0 ? usefulnessEntry.Value : 0,
+//			                                 usefulnessEntry.Value < 0 ? usefulnessEntry.Value : 0);
+		}
+
 		public UsefulnessEntityProxy()
 		{
 			

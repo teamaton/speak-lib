@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
-  <class name="Tests.Usefulness.UsefulEntity, Tests.Usefulness"
-      table="UsefulEntity" lazy="false">
+  <class name="Tests.Usefulness.UsefulTestCreator, Tests.Usefulness"
+      table="UsefulTestCreator" lazy="false">
 
     <id name="Id" column="Id" type="Int32">
       <generator class="native" />

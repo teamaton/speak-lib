@@ -13,24 +13,24 @@ namespace Tests.Usefulness
 		public override void SetUp()
 		{
 			base.SetUp();
-			_nHibernateHelper.EmptyTable(typeof(UsefulEntity), typeof(UsefulnessEntry));
+			_nHibernateHelper.EmptyTable(typeof(UsefulTestEntity), typeof(UsefulnessEntry));
 		}
 
-		private UsefulEntity _entity;
+		private UsefulTestEntity _testEntity;
 
 		private void Reload_entity()
 		{
 			_nHibernateHelper.Flush();
-			_nHibernateHelper.Session.Evict(_entity);
-			_entity = _usefulEntityService.GetById(_entity.Id);
+			_nHibernateHelper.Session.Evict(_testEntity);
+			_testEntity = _usefulTestEntityService.GetById(_testEntity.Id);
 		}
 
 		private void Arrange_persisted_entity()
 		{
-			_entity = _usefulEntity; // gets new entity
-			Assert.That(_entity.Usefulness, Is.Not.Null);
-			Assert.That(_entity.Usefulness.Count, EqualTo(0));
-			_usefulEntityService.Create(_entity);
+			_testEntity = _usefulTestEntity; // gets new entity
+			Assert.That(_testEntity.Usefulness, Is.Not.Null);
+			Assert.That(_testEntity.Usefulness.Count, EqualTo(0));
+			_usefulTestEntityService.Create(_testEntity);
 
 			Reload_entity();
 		}
@@ -39,7 +39,7 @@ namespace Tests.Usefulness
 		{
 			Arrange_persisted_entity();
 
-			var usefulnessEntry = new UsefulnessEntry(_entity, 1);
+			var usefulnessEntry = new UsefulnessEntry(_testEntity, 1, "127.0.0.1");
 			_usefulnessService.Create(usefulnessEntry);
 
 			Reload_entity();
@@ -49,7 +49,7 @@ namespace Tests.Usefulness
 		{
 			Arrange_persisted_entity();
 
-			var usefulnessEntry = new UsefulnessEntry(_entity, 1, new UsefulnessCreatorAnonymous());
+			var usefulnessEntry = new UsefulnessEntry(_testEntity, 1, "127.0.0.1", new UsefulnessCreatorAnonymous());
 			_usefulnessService.Create(usefulnessEntry);
 
 			Reload_entity();
@@ -60,7 +60,7 @@ namespace Tests.Usefulness
 		{
 			Arrange_entity_with_one_positive_vote();
 
-			Assert.That(_entity.Usefulness.Positive, EqualTo(1));
+			Assert.That(_testEntity.Usefulness.Positive, EqualTo(1));
 		}
 
 		[Test]
@@ -68,7 +68,7 @@ namespace Tests.Usefulness
 		{
 			Arrange_entity_with_one_positive_vote_by_anonymous();
 
-			Assert.That(_entity.Usefulness.Positive, EqualTo(1));
+			Assert.That(_testEntity.Usefulness.Positive, EqualTo(1));
 
 			var all = _usefulnessService.GetAll();
 

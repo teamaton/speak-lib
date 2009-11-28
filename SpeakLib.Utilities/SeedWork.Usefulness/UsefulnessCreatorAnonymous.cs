@@ -9,5 +9,6 @@ namespace SpeakFriend.Utilities.Usefulness
 	{
 		public int Id { get; set; }
 		public string Type { get { return GetType().Name; } }
+		public string IpAddress { get; set; }
 	}
 }
