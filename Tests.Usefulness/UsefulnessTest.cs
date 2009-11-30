@@ -17,6 +17,7 @@ namespace Tests.Usefulness
 		}
 
 		private UsefulTestEntity _testEntity;
+		private const string _ipAddress = "127.0.0.1";
 
 		private void Reload_entity()
 		{
@@ -39,7 +40,7 @@ namespace Tests.Usefulness
 		{
 			Arrange_persisted_entity();
 
-			var usefulnessEntry = new UsefulnessEntry(_testEntity, 1, "127.0.0.1");
+			var usefulnessEntry = new UsefulnessEntry(_testEntity, 1, _ipAddress, new UsefulnessCreatorAnonymous(_ipAddress, new TimeSpan(0,0,3)));
 			_usefulnessService.Create(usefulnessEntry);
 
 			Reload_entity();
@@ -49,7 +50,7 @@ namespace Tests.Usefulness
 		{
 			Arrange_persisted_entity();
 
-			var usefulnessEntry = new UsefulnessEntry(_testEntity, 1, "127.0.0.1", new UsefulnessCreatorAnonymous());
+			var usefulnessEntry = new UsefulnessEntry(_testEntity, 1, "127.0.0.1", new UsefulnessCreatorAnonymous(_ipAddress, new TimeSpan(0, 0, 3)));
 			_usefulnessService.Create(usefulnessEntry);
 
 			Reload_entity();

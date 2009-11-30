@@ -38,7 +38,7 @@ namespace Tests.Usefulness
 
 		private void Arrange_visitor_as_creator()
 		{
-			_creator = new UsefulnessCreatorAnonymous {IpAddress = _ipAddress};
+			_creator = new UsefulnessCreatorAnonymous (_ipAddress, new TimeSpan(0,0,3));
 		}
 
 		private void Arrange_usefulnessentry()
