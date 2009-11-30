@@ -34,11 +34,6 @@ namespace SpeakFriend.Utilities.Usefulness
 
 		public UsefulnessEntry(){}
 
-		public UsefulnessEntry(IUsefulnessEntity usefulEntity, int value, string ipAddress)
-			: this(usefulEntity, value, ipAddress, new UsefulnessCreatorAnonymous())
-		{
-		}
-
 		public UsefulnessEntry(IUsefulnessEntity usefulEntity, int value, string ipAddress, IUsefulnessCreator creator)
 		{
 			Value = value;
