@@ -36,5 +36,20 @@ namespace SpeakFriend.Utilities
 			}
         	return _sessionFactory;
         }
+
+        private ISessionFactory _sqlServer;
+        public ISessionFactory GetSqlServer()
+        {
+            if (_sqlServer == null)
+            {
+                lock (_sessionFactoryLock)
+                {
+                    if (_sqlServer == null)
+                        _sqlServer = new Configuration().Configure().BuildSessionFactory();
+                }
+            }
+            return _sqlServer;
+        }
+
     }
 }
