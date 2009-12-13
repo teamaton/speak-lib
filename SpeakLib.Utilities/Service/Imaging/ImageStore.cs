@@ -14,7 +14,6 @@ namespace SpeakFriend.Utilities
         private readonly AppData _appData = new AppData();
         private const string _appDataKey = "imageStore_";
 
-
         private readonly string _pathAbsolute;
         private readonly string _pathRelative;
         private const string _pathThumbs = "thumbs";
@@ -80,46 +79,29 @@ namespace SpeakFriend.Utilities
             return Get(groupKey, id);
         }
   
-        public ImageInfo Get(string imageKey)
+        public string Get(string imageKey)
         {
             var useJpeg = File.Exists(GetPathAbsolute(imageKey, true));
-
-            var imageInfo = new ImageInfo
-                                {
-                                    UseJpeg = useJpeg,
-                                    AbsolutePath = GetPathAbsolute(imageKey, useJpeg),
-                                    RelativePath = GetPathRelative(imageKey, useJpeg),
-                                    Name = imageKey,
-                                    GroupKey = null,
-                                    Id = -1
-                                };
-
-            EnsureHashCode(imageInfo);
-
-            return imageInfo;
+        	return GetPathAbsolute(imageKey, useJpeg);
         }
 
-        public ImageInfo GetThumb(string imageKey, Size maxSize)
+        public string GetThumb(string imageKey, Size imageSize)
         {
-            var image = Get(imageKey);
+			var useJpeg = File.Exists(GetPathAbsolute(imageKey, true));
 
-            var thumb = new ImageInfo
-                            {
-                                UseJpeg = image.UseJpeg,
-                                AbsolutePath = GetThumbPathAbsolute(image, maxSize),
-                                RelativePath = GetThumbPathRelative(image, maxSize),
-                                Name = imageKey,
-                                GroupKey = null,
-                                Id = -1,
-                                HashCode = image.HashCode
-                            };
+			if (!File.Exists(GetPathAbsolute(imageKey, useJpeg)))
+				return null;
 
-            EnsureThumb(image, thumb, maxSize);
-
-            return thumb;
+        	return EnsureThumb(imageKey, useJpeg, imageSize);
         }
 
-        public ImageInfo Get(string groupKey, int id)
+    	public void EnforceUpdate(string imageKey)
+    	{
+    		var key = _appDataKey + imageKey;
+    		_appData[key] = null;
+    	}
+
+    	public ImageInfo Get(string groupKey, int id)
         {
             return GetGroup(groupKey).Find(image => image.Id == id);
         }
@@ -221,7 +203,27 @@ namespace SpeakFriend.Utilities
                 resized.Save(thumb.AbsolutePath, thumb.UseJpeg ? ImageFormat.Jpeg : ImageFormat.Png);
         }
 
-        private string GetThumbPathRelative(ImageInfo image, Size maxSize)
+    	private string EnsureThumb(string imageKey, bool useJpeg, Size imageSize)
+    	{
+    		var thumbPath = GetThumbPathAbsolute(imageKey, useJpeg, imageSize);
+			if (File.Exists(thumbPath)) 
+				return thumbPath;
+
+			using (var image = Image.FromFile(GetPathAbsolute(imageKey, useJpeg)))
+			using (var resized = image.Width <= imageSize.Width && image.Height <= imageSize.Height
+									 ? image
+									 : imageSize.Width != 0
+									   && (imageSize.Height == 0
+										   || (double)image.Width / image.Height
+											  >= (double)imageSize.Width / imageSize.Height)
+										   ? ImageUtils.ResizeImage(image, imageSize.Width, false)
+										   : ImageUtils.ResizeImage(image, imageSize.Height, true))
+				resized.Save(thumbPath, useJpeg ? ImageFormat.Jpeg : ImageFormat.Png);
+
+    		return thumbPath;
+		}
+
+    	private string GetThumbPathRelative(ImageInfo image, Size maxSize)
         {
             return Path.Combine(
                 Path.Combine(_pathRelative, _pathThumbs),
@@ -237,7 +239,14 @@ namespace SpeakFriend.Utilities
                               image.UseJpeg ? "jpg" : "png"));
         }
 
-        private void EnsureHashCode(ImageInfo info)
+    	private string GetThumbPathAbsolute(string key, bool jpeg, Size imageSize)
+    	{
+			return Path.Combine(
+				Path.Combine(_pathAbsolute, _pathThumbs),
+				string.Format("{0}_{1}x{2}px.{3}", key, imageSize.Width, imageSize.Height, jpeg ? "jpg" : "png"));
+		}
+
+    	private void EnsureHashCode(ImageInfo info)
         {
             var imageKey = info.GroupKey != null ? info.GroupKey + info.Id : info.Name;
             var key = _appDataKey + imageKey;
@@ -293,21 +302,10 @@ namespace SpeakFriend.Utilities
             return Path.Combine(_pathAbsolute, string.Format("{0}.{1}", imageKey, useJpeg ? "jpg" : "png"));
         }
 
-        private string GetPathRelative(string imageKey, bool useJpeg)
-        {
-            return Path.Combine(_pathRelative, string.Format("{0}.{1}", imageKey, useJpeg ? "jpg" : "png"));
-        }
-
         public void Delete(string groupKey, int id)
         {
             var file = GetGroup(groupKey).Find(image => image.Id == id);
             if (file != null) File.Delete(file.AbsolutePath);
-        }
-        
-        public void EnforceUpdate(string imageKey)
-        {
-             var key = _appDataKey + imageKey;
-            _appData[key] = null;
         }
     }
 }
