@@ -246,6 +246,11 @@ namespace SpeakFriend.Utilities
 				string.Format("{0}_{1}x{2}px.{3}", key, imageSize.Width, imageSize.Height, jpeg ? "jpg" : "png"));
 		}
 
+    	public string GetThumbDirectoryRelative()
+    	{
+    		return Path.Combine(_pathRelative, _pathThumbs);
+    	}
+
     	private void EnsureHashCode(ImageInfo info)
         {
             var imageKey = info.GroupKey != null ? info.GroupKey + info.Id : info.Name;
@@ -302,7 +307,7 @@ namespace SpeakFriend.Utilities
             return Path.Combine(_pathAbsolute, string.Format("{0}.{1}", imageKey, useJpeg ? "jpg" : "png"));
         }
 
-        public void Delete(string groupKey, int id)
+    	public void Delete(string groupKey, int id)
         {
             var file = GetGroup(groupKey).Find(image => image.Id == id);
             if (file != null) File.Delete(file.AbsolutePath);
