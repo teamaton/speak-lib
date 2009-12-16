@@ -44,5 +44,13 @@ namespace SpeakFriend.Utilities.Web
 		{
 			page.Header.Controls.Add(new HtmlMeta {Name = name, Content = content});
 		}
+
+		public static void AddScriptTag(this Page page, string src)
+		{
+			var scriptTag = new HtmlGenericControl("script");
+			scriptTag.Attributes.Add("src", src);
+			scriptTag.Attributes.Add("type", "text/javascript");
+			page.Header.Controls.Add(scriptTag);
+		}
     }
 }

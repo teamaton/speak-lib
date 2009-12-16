@@ -2,7 +2,9 @@ using System;
 using System.IO;
 using log4net;
 using NHibernate;
+using NHibernate.Cfg;
 using NHibernate.Stat;
+using NHibernate.Tool.hbm2ddl;
 
 namespace SpeakFriend.Utilities
 {
@@ -10,6 +12,7 @@ namespace SpeakFriend.Utilities
 	{ 
 		internal ISession _session;
 		protected static ILog Logger = LogManager.GetLogger(typeof (NHibernateHelperSF));
+		private Configuration _cfg;
 
 		public NHibernateHelperSF(ISession session)
 		{
@@ -92,6 +95,18 @@ namespace SpeakFriend.Utilities
 		public IStatistics GetStatistics()
 		{
 			return _session.SessionFactory.Statistics;
+		}
+
+		public static void ExportSchema(Configuration cfg)
+		{
+			var schemaUpdate = new SchemaExport(cfg);
+			schemaUpdate.Execute(true, true, true);
+		}
+
+		public void ExportSchema()
+		{
+			_cfg = new Configuration();
+			ExportSchema(_cfg);
 		}
 	}
 }
