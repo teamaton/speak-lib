@@ -32,5 +32,11 @@ namespace SpeakFriend.Utilities.Usefulness
 		{
 			
 		}
+
+		public UsefulnessEntityProxy(string entityType, int entitiyId)
+		{
+			Id = entitiyId;
+			Type = entityType;
+		}
 	}
 }
