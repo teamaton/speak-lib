@@ -16,6 +16,7 @@ namespace SpeakFriend.Utilities
 
         private DateTime? _before;
         private DateTime? _after;
+    	private bool _mayBeNull;
 
         public override void AddToCriteria(ICriteria criteria)
         {
@@ -28,34 +29,64 @@ namespace SpeakFriend.Utilities
             if (_after != null && _before != null)
                 return Restrictions.Between(PropertyName, _after.Value, _before.Value);
 
-            if (_after != null && _before == null)
-                return Restrictions.Gt(PropertyName, _after.Value);
+			if (_after == null && _before == null)
+				return null;
 
-            if (_after == null && _before != null)
-                return Restrictions.Lt(PropertyName, _before.Value);
+        	SimpleExpression criterion;
+            if (_after != null)
+                criterion = Restrictions.Ge(PropertyName, _after.Value);
+			else
+                criterion = Restrictions.Le(PropertyName, _before.Value);
 
-            return null;
+			if (!_mayBeNull)
+				return criterion;
+
+			var disjunction = new Disjunction();
+			disjunction.Add(criterion);
+			disjunction.Add(Restrictions.IsNull(PropertyName));
+        	return disjunction;
         }
 
-        public void After(DateTime time)
+        public void EqualOrAfter(DateTime time)
         {
-            _after = time;
+			_mayBeNull = false;
+			_after = time;
             _before = null;
 
             Conditions.AddUnique(this);
         }
 
-        public void Before(DateTime time)
+		public void NullOrEqualOrAfter(DateTime time)
+    	{
+			_mayBeNull = true;
+			_after = time;
+			_before = null;
+
+			Conditions.AddUnique(this);
+		}
+
+    	public void EqualOrBefore(DateTime time)
         {
-            _after = null;
+			_mayBeNull = false;
+			_after = null;
             _before = time;
 
             Conditions.AddUnique(this);
         }
 
-        public void Between(DateTime time1, DateTime time2)
+		public void NullOrEqualOrBefore(DateTime time)
+    	{
+			_mayBeNull = true;
+			_after = null;
+			_before = time;
+
+			Conditions.AddUnique(this);
+		}
+
+    	public void Between(DateTime time1, DateTime time2)
         {
-            if (time1 < time2)
+			_mayBeNull = false;
+			if (time1 < time2)
             {
                 _after = time1;
                 _before = time2;
@@ -71,7 +102,8 @@ namespace SpeakFriend.Utilities
 
         public void Year(int year)
         {
-            _after = new DateTime(year, 1, 1);
+			_mayBeNull = false;
+			_after = new DateTime(year, 1, 1);
             _before = new DateTime(year + 1, 1, 1);
 
             Conditions.AddUnique(this);
@@ -79,7 +111,8 @@ namespace SpeakFriend.Utilities
 
         public override void Reset()
         {
-            _after = null;
+			_mayBeNull = false;
+			_after = null;
             _before = null;
             base.Reset();
         }
