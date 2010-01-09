@@ -15,13 +15,12 @@ namespace SpeakFriend.Utilities.Web
 
         /// <summary>
         /// The description of what the Handler is supposed to, 
-        /// do with the catched parameter.
+        /// do with the caught parameter.
         /// </summary>
-        public string Description = "";
+        public string Description = string.Empty;
 
-        public delegate void ActionDelegate(string value);
-        public ActionDelegate Action;
+        public Action<string> Action;
 
-        public bool AppliesOnlyLocal = false;
+        public bool AppliesOnlyLocal;
     }
 }
