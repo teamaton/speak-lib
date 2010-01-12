@@ -106,7 +106,17 @@ namespace SpeakFriend.Utilities
             return _repository.GetBy(searchDesc);
         }
 
-    	/// <summary>
+		/// <summary>
+		/// Convenience method to get a single setting.
+		/// </summary>
+		/// <param name="settingSearchDesc"></param>
+		/// <returns></returns>
+		public T GetUnique<T>(SettingSearchDesc settingSearchDesc) where T : Setting, new()
+		{
+			return _repository.GetUnique(settingSearchDesc) as T;
+		}
+
+		/// <summary>
         /// Load all persisted settings from the SB for the given settingType and settingTypeId.
         /// </summary>
         /// <param name="settingType"></param>

@@ -41,22 +41,6 @@ namespace SpeakFriend.Utilities.Web
 			return result;
 		}
 
-		public static T TopMasterOfType<T>(this Page page) where T : MasterPage
-		{
-			var master = page.Master;
-			T result = null;
-
-			while (master != null)
-			{
-				if (typeof(T).IsAssignableFrom(master.GetType()))
-					result = master as T;
-			
-				master = master.Master;
-			}
-
-			return result;
-		}
-
         /// <summary>
         /// Add a CSS file reference to the HEAD section of a Page.
         /// </summary>

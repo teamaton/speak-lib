@@ -8,7 +8,13 @@ namespace SpeakFriend.Utilities
 {
     public class Pager : IPager
     {
-        /// <summary>
+    	public Pager()
+    	{
+    		TotalItems = 0;
+    		QueryAll = true;
+    	}
+
+    	/// <summary>
         /// The total amount of items the query would return without paging
         /// </summary>
         public int TotalItems { get; set; }
@@ -235,7 +241,7 @@ namespace SpeakFriend.Utilities
         /// <returns></returns>
         public List<int> GetPages(int totalToShow)
         {
-            int halfTotalToShow = (int)Math.Floor(totalToShow / 2m);
+            var halfTotalToShow = (int)Math.Floor(totalToShow / 2m);
 
             if (PageCount <= totalToShow)
                 return GetPages(1, PageCount);
@@ -252,19 +258,18 @@ namespace SpeakFriend.Utilities
 
         private List<int> GetPages(int startPage, int totalToShow)
         {
-            List<int> result = new List<int>();
+            var result = new List<int>();
 
             for (int currentPage = startPage; currentPage < totalToShow + startPage; currentPage++)
                 result.Add(currentPage);
 
             return result;
-        }
+		}
 
-    	public Pager()
-        {
-            TotalItems = 0;
-        	QueryAll = true;
-        }
-
+		public Pager SetItemsPerPage(int itemsPerPage)
+		{
+			PageSize = itemsPerPage;
+			return this;
+		}
     }
 }
