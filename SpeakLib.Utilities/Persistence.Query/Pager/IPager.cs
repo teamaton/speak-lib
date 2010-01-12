@@ -63,8 +63,5 @@ namespace SpeakFriend.Utilities
         /// <param name="totalToShow"></param>
         /// <returns></returns>
         List<int> GetPages(int totalToShow);
-
-        DataTable PagesDataTable();
-        Pager SetItemsPerPage(int itemsPerPage);
     }
 }

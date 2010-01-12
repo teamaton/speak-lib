@@ -260,26 +260,10 @@ namespace SpeakFriend.Utilities
             return result;
         }
 
-        public DataTable PagesDataTable()
-        {
-            DataTable tbl = new DataTable();
-            tbl.Columns.Add("Page");
-
-            for (int i = 0; i < PageCount; i++)
-                tbl.Rows.Add(tbl.NewRow()[0] = i + 1);
-
-            return tbl;
-        }
-
-        public Pager SetItemsPerPage(int itemsPerPage)
-        {
-            PageSize = itemsPerPage;
-            return this;
-        }
-
-        public Pager()
+    	public Pager()
         {
             TotalItems = 0;
+        	QueryAll = true;
         }
 
     }

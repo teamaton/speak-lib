@@ -6,7 +6,7 @@ using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities
 {
-    public class MessageFilter : ConditionContainer
+    public class MessageSearchFilter : ConditionContainer
     {
         public ConditionInteger Id;
         public ConditionEnum MessageType;
@@ -17,7 +17,7 @@ namespace SpeakFriend.Utilities
 
         public ConditionBoolean Seen;
 
-        public MessageFilter()
+        public MessageSearchFilter()
         {
             Id = new ConditionInteger(this, "Id");
             MessageType = new ConditionEnum(this, "Type");
@@ -28,10 +28,5 @@ namespace SpeakFriend.Utilities
 
             Seen = new ConditionBoolean(this, "Seen");
         }
-    }
-
-    public class MessageSearchFilter : MessageFilter
-    {
-
     }
 }

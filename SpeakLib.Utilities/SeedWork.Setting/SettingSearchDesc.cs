@@ -25,7 +25,6 @@ namespace SpeakFriend.Utilities
 
         public SettingSearchDesc()
         {
-            QueryAll = true;
         }
 
         /// <summary>
