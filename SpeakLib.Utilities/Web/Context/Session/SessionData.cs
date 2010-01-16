@@ -73,9 +73,9 @@ namespace SpeakFriend.Utilities.Web
         /// <param name="key"></param>
         /// <param name="initialValue"></param>
         /// <returns></returns>
-        public T Get<T>(string key, object initialValue)
+        public T Get<T>(string key, T initialValue)
         {
-            return Get(key, () => (T) initialValue);
+            return Get(key, () => initialValue);
         }
 
         public T Get<T>(string key, Func<T> initializer)
@@ -88,11 +88,6 @@ namespace SpeakFriend.Utilities.Web
             }
 
             return Get<T>(key);
-        }
-
-        public T Get<T>(string key, bool initialValue)
-        {
-            return Get<T>(key, (object)initialValue);
         }
 
         /// <summary>
