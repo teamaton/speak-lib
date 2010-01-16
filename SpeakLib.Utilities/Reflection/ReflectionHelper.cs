@@ -45,5 +45,31 @@ namespace SpeakFriend.Utilities.Reflection
 
 			return dictionary;
 		}
+
+		/// <summary>
+		/// Sets the field indicated by fieldName of the given obj to the given valueToSet. <br/>
+		/// Uses the following BindingFlags: NonPublic | Instance | DeclaredOnly.
+		/// </summary>
+		/// <param name="obj"></param>
+		/// <param name="fieldName"></param>
+		/// <param name="valueToSet"></param>
+		/// <returns></returns>
+		public static object SetPrivateField(this object obj, string fieldName, object valueToSet)
+		{
+			var flags = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly;
+
+			obj.GetType().GetField(fieldName, flags).SetValue(obj, valueToSet);
+
+			return obj;
+		}
+
+		public static object SetProperty(this object obj, string propertyName, object valueToSet)
+		{
+			var flags = BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.NonPublic;
+
+			obj.GetType().GetProperty(propertyName, flags).SetValue(obj, valueToSet, /*index*/ null);
+
+			return obj;
+		}
 	}
 }
