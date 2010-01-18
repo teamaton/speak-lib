@@ -14,6 +14,11 @@ namespace SpeakFriend.Utilities
         private readonly MessageOrderBy _orderBy = new MessageOrderBy();
         public MessageOrderBy OrderBy { get { return _orderBy; } }
 
+		public MessageSearchDesc()
+		{
+			PageSize = 10;
+		}
+
         public object Clone()
         {
         	var newSearchDesc = new MessageSearchDesc
