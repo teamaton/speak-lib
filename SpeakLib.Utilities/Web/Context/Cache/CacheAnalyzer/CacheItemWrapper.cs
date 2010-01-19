@@ -43,7 +43,7 @@ namespace SpeakFriend.Utilities.Web.Analysis
             }
             //its not worth the effort to use reflection for checking the object graph 
             //if every member and its childs are serializable
-            catch (SerializationException e) 
+            catch (SerializationException) 
             {
                 return new BinarySize(0);
             }
