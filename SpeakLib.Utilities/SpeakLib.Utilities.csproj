@@ -133,6 +133,7 @@
     <Compile Include="SeedWork.Usefulness\UsefulnessEntityList.cs" />
     <Compile Include="SeedWork.Usefulness\UsefulnessEntityProxy.cs" />
     <Compile Include="SeedWork.Usefulness\UsefulnessEntryList.cs" />
+    <Compile Include="SeedWork.Usefulness\UsefulnessException.cs" />
     <Compile Include="SeedWork.Usefulness\UsefulnessService.cs" />
     <Compile Include="SeedWork.Usefulness\UsefulnessValue.cs" />
     <Compile Include="SeedWork.Usefulness\UsefulnessEntry.cs" />

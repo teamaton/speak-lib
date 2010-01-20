@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using System;
+using Autofac;
 using Autofac.Builder;
 using AutofacContrib.NHibernate;
 using NHibernate.ByteCode.LinFu;
@@ -21,6 +22,7 @@ namespace SpeakFriend.Utilities.Usefulness
 		{
 			builder.Register<UsefulnessService>().ContainerScoped();
 
+			builder.Register<Func<UsefulnessService>>(c => () => c.Resolve<UsefulnessService>()).ContainerScoped();
 			builder.Register<UsefulnessValue>().FactoryScoped();
 			builder.RegisterGeneratedFactory<UsefulnessValue.Factory>();
 

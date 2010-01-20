@@ -53,5 +53,7 @@ namespace SpeakFriend.Utilities.Usefulness
 
 			return entityList;
 		}
+
+		internal ISession Session { get { return _session; } }
 	}
 }

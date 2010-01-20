@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SpeakFriend.Utilities.SeedWork.Usefulness;
 
 namespace SpeakFriend.Utilities.Usefulness
 {
@@ -9,7 +10,7 @@ namespace SpeakFriend.Utilities.Usefulness
 	public class UsefulnessValue
 	{
 		[NonSerialized]
-		private readonly UsefulnessService _usefulnessService;
+		private Func<UsefulnessService> _usefulnessService;
 		[NonSerialized]
 		private readonly IUsefulnessEntity _entity;
 
@@ -47,9 +48,22 @@ namespace SpeakFriend.Utilities.Usefulness
 
 		private void InitializeValues()
 		{
-			var usefulnessValue = _usefulnessService.GetUsefulnessValueByEntity(_entity);
-			_positive = usefulnessValue.Positive;
-			_negative = usefulnessValue.Negative;
+			var usefulnessServiceTemp = _usefulnessService();
+			try
+			{
+				var usefulnessValue = usefulnessServiceTemp.GetUsefulnessValueByEntity(_entity);
+				_positive = usefulnessValue.Positive;
+				_negative = usefulnessValue.Negative;
+			}
+			catch (InvalidOperationException ioe)
+			{
+				usefulnessServiceTemp.Session.Connection.Close();
+				usefulnessServiceTemp.Session.Connection.Dispose();
+
+				throw new UsefulnessException(
+					"Exception while reading Usefulness values from DB! " +
+					"Manually closed and disposed the ADO.NET Connection.", ioe);
+			}
 		}
 
 		public UsefulnessValue()
@@ -57,7 +71,7 @@ namespace SpeakFriend.Utilities.Usefulness
 			
 		}
 
-		public UsefulnessValue(IUsefulnessEntity entity, UsefulnessService usefulnessService)
+		public UsefulnessValue(IUsefulnessEntity entity, Func<UsefulnessService> usefulnessService)
 		{
 			_entity = entity;
 			_usefulnessService = usefulnessService;
@@ -68,5 +82,19 @@ namespace SpeakFriend.Utilities.Usefulness
 			Positive = initialPositive;
 			Negative = initialNegative;
 		}
+
+		#region Unused but might be useful?!
+
+		public bool HasService
+		{
+			get { return _usefulnessService != null; }
+		}
+
+		public void SetService(Func<UsefulnessService> usefulnessService)
+		{
+			_usefulnessService = usefulnessService;
+		}
+
+		#endregion
 	}
 }
