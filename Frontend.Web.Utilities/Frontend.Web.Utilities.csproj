@@ -60,39 +60,39 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExamplesFrontend\SeoLinkButton.aspx.cs">
+    <Compile Include="asp.net\SeoLinkButton.aspx.cs">
       <DependentUpon>SeoLinkButton.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExamplesFrontend\SeoLinkButton.aspx.designer.cs">
+    <Compile Include="asp.net\SeoLinkButton.aspx.designer.cs">
       <DependentUpon>SeoLinkButton.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ExamplesFrontend\FileManager.aspx.cs">
+    <Compile Include="asp.net\FileManager.aspx.cs">
       <DependentUpon>FileManager.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExamplesFrontend\FileManager.aspx.designer.cs">
+    <Compile Include="asp.net\FileManager.aspx.designer.cs">
       <DependentUpon>FileManager.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ExamplesFrontend\Pager.aspx.cs">
+    <Compile Include="asp.net\Pager.aspx.cs">
       <DependentUpon>Pager.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExamplesFrontend\Pager.aspx.designer.cs">
+    <Compile Include="asp.net\Pager.aspx.designer.cs">
       <DependentUpon>Pager.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ExamplesFrontend\FileUpload\Basics.aspx.cs">
+    <Compile Include="asp.net\FileUpload\Basics.aspx.cs">
       <DependentUpon>Basics.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExamplesFrontend\FileUpload\Basics.aspx.designer.cs">
+    <Compile Include="asp.net\FileUpload\Basics.aspx.designer.cs">
       <DependentUpon>Basics.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ExamplesFrontend\FileUpload\UploadContent\DefaultContent.aspx.cs">
+    <Compile Include="asp.net\FileUpload\UploadContent\DefaultContent.aspx.cs">
       <DependentUpon>DefaultContent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExamplesFrontend\FileUpload\UploadContent\DefaultContent.aspx.designer.cs">
+    <Compile Include="asp.net\FileUpload\UploadContent\DefaultContent.aspx.designer.cs">
       <DependentUpon>DefaultContent.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -106,39 +106,39 @@
       <DependentUpon>Master.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ExamplesFrontend\UserMessage.aspx.cs">
+    <Compile Include="asp.net\UserMessage.aspx.cs">
       <DependentUpon>UserMessage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExamplesFrontend\UserMessage.aspx.designer.cs">
+    <Compile Include="asp.net\UserMessage.aspx.designer.cs">
       <DependentUpon>UserMessage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ExamplesFrontend\Navigation.aspx.cs">
+    <Compile Include="asp.net\Navigation.aspx.cs">
       <DependentUpon>Navigation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExamplesFrontend\Navigation.aspx.designer.cs">
+    <Compile Include="asp.net\Navigation.aspx.designer.cs">
       <DependentUpon>Navigation.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ExamplesFrontend\Validation.aspx.cs">
+    <Compile Include="asp.net\Validation.aspx.cs">
       <DependentUpon>Validation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExamplesFrontend\Validation.aspx.designer.cs">
+    <Compile Include="asp.net\Validation.aspx.designer.cs">
       <DependentUpon>Validation.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ExamplesSetting\Settings.aspx.cs">
+    <Compile Include="Seedworks\Settings.aspx.cs">
       <DependentUpon>Settings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExamplesSetting\Settings.aspx.designer.cs">
+    <Compile Include="Seedworks\Settings.aspx.designer.cs">
       <DependentUpon>Settings.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ExamplesUtilities\ExtensionMethods.aspx.cs">
+    <Compile Include="Utilities\ExtensionMethods.aspx.cs">
       <DependentUpon>ExtensionMethods.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExamplesUtilities\ExtensionMethods.aspx.designer.cs">
+    <Compile Include="Utilities\ExtensionMethods.aspx.designer.cs">
       <DependentUpon>ExtensionMethods.aspx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
@@ -167,11 +167,11 @@
     <Compile Include="Download.aspx.designer.cs">
       <DependentUpon>Download.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Seedwork.aspx.cs">
+    <Compile Include="Seedworks\Seedwork.aspx.cs">
       <DependentUpon>Seedwork.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Seedwork.aspx.designer.cs">
+    <Compile Include="Seedworks\Seedwork.aspx.designer.cs">
       <DependentUpon>Seedwork.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Message.ascx.designer.cs">
@@ -186,23 +186,23 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ExamplesFrontend\SeoLinkButton.aspx" />
-    <Content Include="ExamplesFrontend\FileManager.aspx" />
-    <Content Include="ExamplesFrontend\Pager.aspx" />
-    <Content Include="ExamplesFrontend\FileUpload\Basics.aspx" />
-    <Content Include="ExamplesFrontend\FileUpload\UploadContent\DefaultContent.aspx" />
+    <Content Include="asp.net\SeoLinkButton.aspx" />
+    <Content Include="asp.net\FileManager.aspx" />
+    <Content Include="asp.net\Pager.aspx" />
+    <Content Include="asp.net\FileUpload\Basics.aspx" />
+    <Content Include="asp.net\FileUpload\UploadContent\DefaultContent.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Master.Master" />
-    <Content Include="ExamplesFrontend\UserMessage.aspx" />
-    <Content Include="ExamplesFrontend\Navigation.aspx" />
-    <Content Include="ExamplesFrontend\Validation.aspx" />
-    <Content Include="ExamplesSetting\Settings.aspx" />
-    <Content Include="ExamplesUtilities\ExtensionMethods.aspx" />
+    <Content Include="asp.net\UserMessage.aspx" />
+    <Content Include="asp.net\Navigation.aspx" />
+    <Content Include="asp.net\Validation.aspx" />
+    <Content Include="Seedworks\Settings.aspx" />
+    <Content Include="Utilities\ExtensionMethods.aspx" />
     <Content Include="UserControls\FileManager.ascx" />
     <Content Include="UserControls\Message.ascx" />
     <Content Include="LegalNotice.aspx" />
     <Content Include="Download.aspx" />
-    <Content Include="Pages\Seedwork.aspx" />
+    <Content Include="Seedworks\Seedwork.aspx" />
     <Content Include="Welcome.aspx" />
     <Content Include="_style\ie-below-7.css" />
     <Content Include="_style\ie7.css" />
@@ -228,8 +228,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="FileManagerExampleDir\" />
-    <Folder Include="TempFiles\" />
+    <Folder Include="Persistance\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

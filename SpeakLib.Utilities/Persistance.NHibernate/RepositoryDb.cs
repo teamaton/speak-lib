@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using NHibernate;
@@ -203,7 +203,7 @@ namespace SpeakFriend.Utilities
             return result;
         }
 
-		public TDomainObjectList GetBy(ISearchDesc searchDesc)
+		public virtual TDomainObjectList GetBy(ISearchDesc searchDesc)
 		{
 			return GetBy(searchDesc, null);
 		}

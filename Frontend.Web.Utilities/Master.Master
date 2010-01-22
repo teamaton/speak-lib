@@ -35,23 +35,23 @@
     
         <div class="non-footer">
             <div class="header center clear">
-                <a class="logo" href="../start.aspx">
+                <a class="logo" href="/welcome.aspx">
                     <img src="/_style/img/speak-friend-logo.png" alt="Startseite - Logo - speak-friend" 
                         onmouseover="src='/_style/img/speak-friend-logo.png'"
                         onmouseout="src='/_style/img/speak-friend-logo.png'" />
                 </a>
-                <span class="tagline">Design Komponenten</span>
+                <span class="tagline">Speak-Lib, Helfer für C#, ASP.NET und NHibernate</span>
                 <ul class="nav">
-                    <li><a href="../start.aspx">Frontend</a></li>
-                    <li><a href="../layout.aspx">Seed-Works</a></li>
-                    <li><a href="../typografie.aspx">Web</a></li>
-                    <li><a href="../formulare.aspx">Persistance</a></li>
-                    <li class="last-nav"><a href="../interaktiv.aspx">Interaktiv</a></li>
+                    <li><a href="/welcome.aspx">Übersicht</a></li>
+                    <li><a href="/asp.net/pager.aspx">ASP.NET</a></li>                    
+                    <li><a href="/seedworks/seedwork.aspx">Seed-Works</a></li>
+<%--                    <li><a href="/persistance/">Persistance</a></li>--%>
+                    <li class="last-nav"><a href="/utilities/ExtensionMethods.aspx">Utilties</a></li>                    
                 </ul>
                 <div class="mini-nav">
                     <a href="../kontakt.aspx">Kontakt</a>
                     <a href="http://code.speak-friend.com/">Code Blog</a>
-                    <a href="../hilfe.aspx">Hilfe</a>
+                    <a href="/download.aspx">Download</a>
                 </div>
                 
             </div>
