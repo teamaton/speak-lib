@@ -142,14 +142,14 @@
       <DependentUpon>ExtensionMethods.aspx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="UserControls\FileManager.ascx.cs">
+    <Compile Include="_userControls\FileManager.ascx.cs">
       <DependentUpon>FileManager.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserControls\FileManager.ascx.designer.cs">
+    <Compile Include="_userControls\FileManager.ascx.designer.cs">
       <DependentUpon>FileManager.ascx</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Message.ascx.cs">
+    <Compile Include="_userControls\Message.ascx.cs">
       <DependentUpon>Message.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -174,7 +174,7 @@
     <Compile Include="Seedworks\Seedwork.aspx.designer.cs">
       <DependentUpon>Seedwork.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Message.ascx.designer.cs">
+    <Compile Include="_userControls\Message.ascx.designer.cs">
       <DependentUpon>Message.ascx</DependentUpon>
     </Compile>
     <Compile Include="Welcome.aspx.cs">
@@ -198,8 +198,8 @@
     <Content Include="asp.net\Validation.aspx" />
     <Content Include="Seedworks\Settings.aspx" />
     <Content Include="Utilities\ExtensionMethods.aspx" />
-    <Content Include="UserControls\FileManager.ascx" />
-    <Content Include="UserControls\Message.ascx" />
+    <Content Include="_userControls\FileManager.ascx" />
+    <Content Include="_userControls\Message.ascx" />
     <Content Include="LegalNotice.aspx" />
     <Content Include="Download.aspx" />
     <Content Include="Seedworks\Seedwork.aspx" />
