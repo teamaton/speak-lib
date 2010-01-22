@@ -8,8 +8,37 @@
     <div class="wrapper">
     <h1>Speak-Lib</h1>
         
+	
+			
+		<div style="background-color:White; ">
+		
+			<p style="color:Black">
+				<b>Disclaimer:</b>
+				Was Sie hier finden erhebt keinerlei Anspruch auf Richtigkeit oder Nützlichkeit 
+				und dient ausschließlich dennen die positiv interessiert sind.
+			</p>
+			
+			<p style="color:Black">
+				Vieles hier gefällt <a href="">uns</a>, anderes finden wir eher zweifelhaft oder auch unfertig.
+				Natürlich freuen wir uns, wenn Sie einiges gebrauche können - doch bitten wir Sie <b>nicht</b>
+				hier ein Framework zu erwarten, sondern verstehen Sie <i>Speak-Lib</i> eher als Quellcode-Pool um 
+				Ihr eigenes Entwicklungs-Framework zu füllen.
+			</p>
+			
+		
+		</div>
+        
         
         <h2>Examples</h2>
+        
+        <p>Beispielnutzung-Syntaxhighlighter</p>
+        
+		<pre class="brush: c-sharp;">
+		function test() : String
+		{
+			return 10;
+		}
+		</pre>        
         
         <h3>Frontend</h3>
        
