@@ -11,15 +11,6 @@
 namespace SpeakFriend.Web.Utilities {
     
     
-    public partial class WebForm2 {
-        
-        /// <summary>
-        /// NavAspNet1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::SpeakFriend.Web.Utilities._userControls.NavAspNet NavAspNet1;
+    public partial class WebForm3 {
     }
 }

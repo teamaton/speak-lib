@@ -26,7 +26,7 @@
             <asp:HyperLink ID="hplCancel" CssClass="secondary" runat="server">Abbrechen</asp:HyperLink>
           </asp:View>        
           <asp:View runat="server" ID="vwUpload">
-            <speakFriend:FileUploadFrame id="fufUpload" runat="server" ContentUrl="../ExamplesFrontend/FileUpload/UploadContent/DefaultContent.aspx" />
+            <speakFriend:FileUploadFrame id="fufUpload" runat="server" ContentUrl="/asp.net/FileUpload/UploadContent/DefaultContent.aspx" />
             <asp:LinkButton ID="btnSaveUpload" runat="server" class="primary button-small"><span>Speichern</span></asp:LinkButton>
             <asp:HyperLink ID="hplCancelUpload" CssClass="secondary" runat="server">Abbrechen</asp:HyperLink>
           </asp:View>

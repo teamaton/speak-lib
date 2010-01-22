@@ -4,12 +4,26 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+<div class="sidebar">
+    <div class="sidebar-box">
+        <h2>Ein Sidebar-Block</h2>
+        <p>
+            Hier können Texte rein, wenn keine Seitennavigation vonnöten ist.
+        </p>    
+    </div>
+    <div class="sidebar-box">
+        <h2>Ein Sidebar-Block</h2>
+        <p>
+            Hier können Texte rein, wenn keine Seitennavigation vonnöten ist.
+        </p>    
+    </div>
+</div>
+
 <div class="content">
-    <div class="wrapper">
-    <h1>Speak-Lib</h1>
-        
-	
-			
+    <div class="wrapper">    
+    
+	    <h1>Speak-Lib</h1>
+        	
 		<div style="background-color:White; ">
 		
 			<p style="color:Black">
@@ -24,10 +38,8 @@
 				hier ein Framework zu erwarten, sondern verstehen Sie <i>Speak-Lib</i> eher als Quellcode-Pool um 
 				Ihr eigenes Entwicklungs-Framework zu füllen.
 			</p>
-			
-		
+
 		</div>
-        
         
         <h2>Examples</h2>
         
