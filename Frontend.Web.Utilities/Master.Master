@@ -31,7 +31,7 @@
 	<link type="text/css" rel="stylesheet" href="/_js/syntaxhighlighter/styles/shCore.css"/>
 	<link type="text/css" rel="stylesheet" href="/_js/syntaxhighlighter/styles/shThemeDefault.css"/>
 	<script type="text/javascript">
-		SyntaxHighlighter.config.clipboardSwf = 'scripts/clipboard.swf';
+		SyntaxHighlighter.config.clipboardSwf = '/_js/syntaxhighlighter/scripts/clipboard.swf';
 		SyntaxHighlighter.all();
 	</script>    
     
