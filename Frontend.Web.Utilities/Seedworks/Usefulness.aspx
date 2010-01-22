@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Settings.aspx.cs" Inherits="SpeakFriend.Web.Utilities.WebForm5" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Usefulness.aspx.cs" Inherits="SpeakFriend.Web.Utilities.frmUsefulness" %>
 <%@ Register Src="~/_userControls/NavSeedworks.ascx" TagPrefix="uc" TagName="NavSeedwork" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"></asp:Content>
@@ -13,18 +13,11 @@
 <div class="content">
     <div class="wrapper">    
     
-		<h1>Settings</h1>
+		<h1>Usefulness</h1>
 
 		<p>
 			....
 		</p>
-		
-		<pre class="brush: c-sharp;">
-		function test() : String
-		{
-			return 10;
-		}
-		</pre>        		
 		
 	</div>
 </div>

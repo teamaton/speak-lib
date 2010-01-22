@@ -127,6 +127,13 @@
     <Compile Include="asp.net\Validation.aspx.designer.cs">
       <DependentUpon>Validation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Seedworks\Usefulness.aspx.cs">
+      <DependentUpon>Usefulness.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seedworks\Usefulness.aspx.designer.cs">
+      <DependentUpon>Usefulness.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Seedworks\Settings.aspx.cs">
       <DependentUpon>Settings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -231,6 +238,7 @@
     <Content Include="asp.net\UserMessage.aspx" />
     <Content Include="asp.net\Navigation.aspx" />
     <Content Include="asp.net\Validation.aspx" />
+    <Content Include="Seedworks\Usefulness.aspx" />
     <Content Include="Seedworks\Settings.aspx" />
     <Content Include="Utilities\ExtensionMethods.aspx" />
     <Content Include="asp.net\Summary.aspx" />
