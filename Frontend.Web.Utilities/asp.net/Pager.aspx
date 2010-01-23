@@ -18,6 +18,9 @@
 			In Verbindung mit IPager.
 		</p>
 		
+		<h2>Styles/Skins</h2>
+		<p>Wir sollten vielleicht verschiedene Styles/Skins anbieten..</p>
+		
 		<pre class="brush: xml;">
 		
 &lt;speakFriend:PagerControl&nbsp;runat=&quot;server&quot;&nbsp;ID=&quot;PagerControl1&quot;&gt;
