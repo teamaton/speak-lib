@@ -125,6 +125,7 @@
     <Compile Include="Persistence.Query\Condition\CategoryAttributes.cs" />
     <Compile Include="Persistence.Query\Condition\Types\ConditionObject.cs" />
     <Compile Include="Persistence.Query\SearchDescriptionBase.cs" />
+    <Compile Include="Persistence\TypeExtensions.cs" />
     <Compile Include="Reflection\ReflectionHelper.cs" />
     <Compile Include="SeedWork.Usefulness\UsefulnessCreatorAnonymous.cs" />
     <Compile Include="SeedWork.Usefulness\AutofacModuleUsefulness.cs" />
