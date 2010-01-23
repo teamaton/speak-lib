@@ -15,8 +15,17 @@
 		<h1>Pager</h1>
 
 		<p>
-			In Verbindung mit IPager.
+			Ein einfach zu verwendender Pager der mit dem IPager Interface arbeitet.
+			Der Pager läst sich flexible anpassen und einfach verwenden.
 		</p>
+		
+		<h2>ToDos</h2>
+		<ul>
+			<li>MVC Version</li>
+			<li>Einbau des Controls über die web.config dokumentieren.
+				<%--<add tagPrefix="speakFriend" namespace="SpeakFriend.Utilities" assembly="SpeakFriend.Utilities"></add>--%>
+			</li>
+		</ul>
 		
 		<h2>Styles/Skins</h2>
 		<p>Wir sollten vielleicht verschiedene Styles/Skins anbieten..</p>
