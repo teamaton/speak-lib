@@ -163,12 +163,210 @@
     <Compile Include="Service\Message\Repository\MessageSearchFilter.cs" />
     <Compile Include="Service\SpeakLibSettings.cs" />
     <Compile Include="Service\SettingTypes.cs" />
-    <Compile Include="Web\Context\HttpCurrent\Response\ResponseActionFilter.cs" />
-    <Compile Include="Web\Controls\ButtonEffect.cs" />
-    <Compile Include="Web\Controls\ButtonGenerator.cs" />
-    <Compile Include="Web\Controls\RenderedButton.cs" />
-    <Compile Include="Web\Interaction\OrderBy\OrderByService.cs" />
-    <Compile Include="Web\Navigation\TagCloud.cs" />
+    <Compile Include="Web\View\WebForms\Ajax\AjaxUtils.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\Application\AppData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\Application\BaseAppState.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\Cache\Cache.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\Cache\CacheAnalyzer\CacheAnalyzer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\Cache\CacheAnalyzer\CacheItemTypeSummary.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\Cache\CacheAnalyzer\CacheItemTypeSummaryList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\Cache\CacheAnalyzer\CacheItemWrapper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\Cache\Impl\CacheAspNet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\Cache\Impl\CacheIndexus.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\Cache\Impl\ICache.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\ContextUtil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\HttpCurrent\HttpCurrent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\HttpCurrent\HttpCurrentNoWeb.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\HttpCurrent\HttpCurrentWeb.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\HttpCurrent\HttpExtensionMethods.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\HttpCurrent\Request\IRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\HttpCurrent\Request\RequestNoWeb.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\HttpCurrent\Request\RequestWeb.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\HttpCurrent\Response\IResponse.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\HttpCurrent\Response\Response.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\HttpCurrent\Response\ResponseActionFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\HttpCurrent\Response\ResponseNoWeb.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\HttpCurrent\Response\ResponseWeb.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\Parameters\ParameterHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\Parameters\ParameterHandlerList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\Parameters\ParameterHandlerService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\Session\BaseSession.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Context\Session\SessionData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\View\WebForms\Controls\ButtonEffect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\View\WebForms\Controls\ButtonGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\View\WebForms\Controls\HoverImage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\View\WebForms\Controls\HoverImageButton.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\View\WebForms\Controls\PagerControl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\View\WebForms\Controls\RenderedButton.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\View\WebForms\Controls\SeoLinkButton.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\View\WebForms\ControlUtils\ControlUtil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\View\WebForms\ControlUtils\HtmlControlExtensionMethods.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\View\WebForms\ControlUtils\ListControls\DdlProxyEnum.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\View\WebForms\ControlUtils\ListControls\ListPopulator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\View\WebForms\ControlUtils\Repeater\ItemTemplateHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\View\WebForms\ControlUtils\TextBox\TextBoxUtils.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\View\WebForms\ControlUtils\WebControlExtensionMethods.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Interaction\Feedback\UserFeedback.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Interaction\Message\UserMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Interaction\Message\UserMessageItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Interaction\Message\UserMessageText.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Interaction\OrderBy\OrderByService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Interaction\Validation\ValidationBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Interaction\Validation\ValidationGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Interaction\Validation\ValidationItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Interaction\Validation\ValidationItemList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Interaction\Validation\ValidationMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Interaction\Validation\ValidationSettings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Interaction\Validation\ValidationType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Interaction\Validation\ValidationUtil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Interaction\Validation\ValidatorBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\View\Navigation\NavigationItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\View\Navigation\NavigationItemList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\View\Navigation\NavigationItemService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\View\Navigation\TagCloud.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\View\WebForms\PageExtensionMethods.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Path\UriUtils.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Tracking\Performance\PerformanceTracker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Tracking\Performance\RenderDuration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Tracking\Performance\RenderDurationBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Tracking\Performance\RenderDurationFiFo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Tracking\User\UserTracker.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Wpf\Controls\Image.cs" />
     <Compile Include="Persistance.NHibernate\ISessionManager.cs" />
     <Compile Include="Persistance.NHibernate\Logging\NHibernateLogger.cs" />
@@ -239,43 +437,6 @@
     <Compile Include="ValueObjects\MediaSize\MediaLength.cs" />
     <Compile Include="ValueObjects\MediaSize\TimeCode.cs" />
     <Compile Include="ValueObjects\ProfileVisibility.cs" />
-    <Compile Include="Web\Ajax\AjaxUtils.cs" />
-    <Compile Include="Web\Context\Cache\CacheAnalyzer\CacheAnalyzer.cs" />
-    <Compile Include="Web\Context\Cache\CacheAnalyzer\CacheItemTypeSummary.cs" />
-    <Compile Include="Web\Context\Cache\CacheAnalyzer\CacheItemTypeSummaryList.cs" />
-    <Compile Include="Web\Context\Cache\CacheAnalyzer\CacheItemWrapper.cs" />
-    <Compile Include="Web\Context\ContextUtil.cs" />
-    <Compile Include="Web\Context\HttpCurrent\HttpCurrent.cs" />
-    <Compile Include="Web\Context\HttpCurrent\HttpCurrentNoWeb.cs" />
-    <Compile Include="Web\Context\HttpCurrent\HttpCurrentWeb.cs" />
-    <Compile Include="Web\Context\HttpCurrent\Request\IRequest.cs" />
-    <Compile Include="Web\Context\HttpCurrent\Request\RequestNoWeb.cs" />
-    <Compile Include="Web\Context\HttpCurrent\Request\RequestWeb.cs" />
-    <Compile Include="Web\Context\HttpCurrent\HttpExtensionMethods.cs" />
-    <Compile Include="Web\Context\HttpCurrent\Response\IResponse.cs" />
-    <Compile Include="Web\Context\HttpCurrent\Response\Response.cs" />
-    <Compile Include="Web\Context\HttpCurrent\Response\ResponseNoWeb.cs" />
-    <Compile Include="Web\Context\HttpCurrent\Response\ResponseWeb.cs" />
-    <Compile Include="Web\Context\Parameters\ParameterHandler.cs" />
-    <Compile Include="Web\Context\Parameters\ParameterHandlerList.cs" />
-    <Compile Include="Web\Context\Parameters\ParameterHandlerService.cs" />
-    <Compile Include="Web\Controls\HoverImageButton.cs" />
-    <Compile Include="Web\Controls\HoverImage.cs" />
-    <Compile Include="Web\Controls\SeoLinkButton.cs" />
-    <Compile Include="Web\Controls\PagerControl.cs" />
-    <Compile Include="Web\ControlUtils\ControlUtil.cs" />
-    <Compile Include="Web\ControlUtils\HtmlControlExtensionMethods.cs" />
-    <Compile Include="Web\ControlUtils\ListControls\DdlProxyEnum.cs" />
-    <Compile Include="Web\ControlUtils\ListControls\ListPopulator.cs" />
-    <Compile Include="Web\ControlUtils\TextBox\TextBoxUtils.cs" />
-    <Compile Include="Web\ControlUtils\WebControlExtensionMethods.cs" />
-    <Compile Include="Web\Interaction\Feedback\UserFeedback.cs" />
-    <Compile Include="Web\Interaction\Validation\ValidationSettings.cs" />
-    <Compile Include="Web\Navigation\NavigationItem.cs" />
-    <Compile Include="Web\Navigation\NavigationItemList.cs" />
-    <Compile Include="Web\Navigation\NavigationItemService.cs" />
-    <Compile Include="Web\PageUtils\PageExtensionMethods.cs" />
-    <Compile Include="Web\Path\UriUtils.cs" />
     <Compile Include="Service\Imaging\ImageUtils.cs" />
     <Compile Include="SeedWork.Setting\Setting.cs" />
     <Compile Include="SeedWork.Setting\SettingList.cs" />
@@ -283,31 +444,6 @@
     <Compile Include="SeedWork.Setting\Types\SettingBoolean.cs" />
     <Compile Include="SeedWork.Setting\Types\SettingInteger.cs" />
     <Compile Include="SeedWork.Setting\Types\SettingString.cs" />
-    <Compile Include="Web\Context\Application\AppData.cs" />
-    <Compile Include="Web\Context\Application\BaseAppState.cs" />
-    <Compile Include="Web\Context\Cache\Cache.cs" />
-    <Compile Include="Web\Context\Cache\Impl\CacheAspNet.cs" />
-    <Compile Include="Web\Context\Cache\Impl\CacheIndexus.cs" />
-    <Compile Include="Web\Context\Cache\Impl\ICache.cs" />
-    <Compile Include="Web\Context\Session\BaseSession.cs" />
-    <Compile Include="Web\Context\Session\SessionData.cs" />
-    <Compile Include="Web\ControlUtils\Repeater\ItemTemplateHelper.cs" />
-    <Compile Include="Web\Interaction\Message\UserMessage.cs" />
-    <Compile Include="Web\Interaction\Message\UserMessageItem.cs" />
-    <Compile Include="Web\Interaction\Message\UserMessageText.cs" />
-    <Compile Include="Web\Interaction\Validation\ValidationGroup.cs" />
-    <Compile Include="Web\Interaction\Validation\ValidationItem.cs" />
-    <Compile Include="Web\Interaction\Validation\ValidationItemList.cs" />
-    <Compile Include="Web\Interaction\Validation\ValidationMessage.cs" />
-    <Compile Include="Web\Interaction\Validation\ValidationBuilder.cs" />
-    <Compile Include="Web\Interaction\Validation\ValidationType.cs" />
-    <Compile Include="Web\Interaction\Validation\ValidationUtil.cs" />
-    <Compile Include="Web\Interaction\Validation\ValidatorBuilder.cs" />
-    <Compile Include="Web\Tracking\Performance\RenderDuration.cs" />
-    <Compile Include="Web\Tracking\Performance\RenderDurationBuilder.cs" />
-    <Compile Include="Web\Tracking\Performance\RenderDurationFiFo.cs" />
-    <Compile Include="Web\Tracking\Performance\PerformanceTracker.cs" />
-    <Compile Include="Web\Tracking\User\UserTracker.cs" />
     <Compile Include="Wpf\Controls\Span.cs" />
     <Compile Include="Wpf\Utilites\ListViewUtilities.cs" />
     <Compile Include="Wpf\Utilites\UIUtilities.cs" />
@@ -327,9 +463,81 @@
     <EmbeddedResource Include="SeedWork.Usefulness\UsefulnessEntry.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Web\View\WebForms\Ajax\_svn\all-wcprops" />
+    <None Include="Web\View\WebForms\Ajax\_svn\entries" />
+    <None Include="Web\View\WebForms\Ajax\_svn\text-base\AjaxUtils.cs.svn-base" />
+    <None Include="Web\View\WebForms\Controls\_svn\all-wcprops" />
+    <None Include="Web\View\WebForms\Controls\_svn\entries" />
+    <None Include="Web\View\WebForms\Controls\_svn\prop-base\PagerControl.cs.svn-base" />
+    <None Include="Web\View\WebForms\Controls\_svn\text-base\ButtonEffect.cs.svn-base" />
+    <None Include="Web\View\WebForms\Controls\_svn\text-base\ButtonGenerator.cs.svn-base" />
+    <None Include="Web\View\WebForms\Controls\_svn\text-base\HoverImage.cs.svn-base" />
+    <None Include="Web\View\WebForms\Controls\_svn\text-base\HoverImageButton.cs.svn-base" />
+    <None Include="Web\View\WebForms\Controls\_svn\text-base\PagerControl.cs.svn-base" />
+    <None Include="Web\View\WebForms\Controls\_svn\text-base\RenderedButton.cs.svn-base" />
+    <None Include="Web\View\WebForms\Controls\_svn\text-base\SeoLinkButton.cs.svn-base" />
+    <None Include="Web\View\WebForms\ControlUtils\ListControls\_svn\all-wcprops" />
+    <None Include="Web\View\WebForms\ControlUtils\ListControls\_svn\entries" />
+    <None Include="Web\View\WebForms\ControlUtils\ListControls\_svn\text-base\DdlProxyEnum.cs.svn-base" />
+    <None Include="Web\View\WebForms\ControlUtils\ListControls\_svn\text-base\ListPopulator.cs.svn-base" />
+    <None Include="Web\View\WebForms\ControlUtils\Repeater\_svn\all-wcprops" />
+    <None Include="Web\View\WebForms\ControlUtils\Repeater\_svn\entries" />
+    <None Include="Web\View\WebForms\ControlUtils\Repeater\_svn\text-base\ItemTemplateHelper.cs.svn-base" />
+    <None Include="Web\View\WebForms\ControlUtils\TextBox\_svn\all-wcprops" />
+    <None Include="Web\View\WebForms\ControlUtils\TextBox\_svn\entries" />
+    <None Include="Web\View\WebForms\ControlUtils\TextBox\_svn\text-base\TextBoxUtils.cs.svn-base" />
+    <None Include="Web\View\WebForms\ControlUtils\_svn\all-wcprops" />
+    <None Include="Web\View\WebForms\ControlUtils\_svn\dir-prop-base" />
+    <None Include="Web\View\WebForms\ControlUtils\_svn\entries" />
+    <None Include="Web\View\WebForms\ControlUtils\_svn\prop-base\ControlUtil.cs.svn-base" />
+    <None Include="Web\View\WebForms\ControlUtils\_svn\text-base\ControlUtil.cs.svn-base" />
+    <None Include="Web\View\WebForms\ControlUtils\_svn\text-base\HtmlControlExtensionMethods.cs.svn-base" />
+    <None Include="Web\View\WebForms\ControlUtils\_svn\text-base\WebControlExtensionMethods.cs.svn-base" />
+    <None Include="Web\View\Navigation\_svn\all-wcprops" />
+    <None Include="Web\View\Navigation\_svn\entries" />
+    <None Include="Web\View\Navigation\_svn\text-base\NavigationItem.cs.svn-base" />
+    <None Include="Web\View\Navigation\_svn\text-base\NavigationItemList.cs.svn-base" />
+    <None Include="Web\View\Navigation\_svn\text-base\NavigationItemService.cs.svn-base" />
+    <None Include="Web\View\Navigation\_svn\text-base\TagCloud.cs.svn-base" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="SeedWork.Comment\" />
     <Folder Include="Service\Security\" />
     <Folder Include="ValueObjects\Money\" />
+    <Folder Include="Web\View\MVC\" />
+    <Folder Include="Web\View\Navigation\_svn\prop-base\" />
+    <Folder Include="Web\View\Navigation\_svn\props\" />
+    <Folder Include="Web\View\Navigation\_svn\tmp\prop-base\" />
+    <Folder Include="Web\View\Navigation\_svn\tmp\props\" />
+    <Folder Include="Web\View\Navigation\_svn\tmp\text-base\" />
+    <Folder Include="Web\View\WebForms\Ajax\_svn\prop-base\" />
+    <Folder Include="Web\View\WebForms\Ajax\_svn\props\" />
+    <Folder Include="Web\View\WebForms\Ajax\_svn\tmp\prop-base\" />
+    <Folder Include="Web\View\WebForms\Ajax\_svn\tmp\props\" />
+    <Folder Include="Web\View\WebForms\Ajax\_svn\tmp\text-base\" />
+    <Folder Include="Web\View\WebForms\Controls\_svn\props\" />
+    <Folder Include="Web\View\WebForms\Controls\_svn\tmp\prop-base\" />
+    <Folder Include="Web\View\WebForms\Controls\_svn\tmp\props\" />
+    <Folder Include="Web\View\WebForms\Controls\_svn\tmp\text-base\" />
+    <Folder Include="Web\View\WebForms\ControlUtils\ListControls\_svn\prop-base\" />
+    <Folder Include="Web\View\WebForms\ControlUtils\ListControls\_svn\props\" />
+    <Folder Include="Web\View\WebForms\ControlUtils\ListControls\_svn\tmp\prop-base\" />
+    <Folder Include="Web\View\WebForms\ControlUtils\ListControls\_svn\tmp\props\" />
+    <Folder Include="Web\View\WebForms\ControlUtils\ListControls\_svn\tmp\text-base\" />
+    <Folder Include="Web\View\WebForms\ControlUtils\Repeater\_svn\prop-base\" />
+    <Folder Include="Web\View\WebForms\ControlUtils\Repeater\_svn\props\" />
+    <Folder Include="Web\View\WebForms\ControlUtils\Repeater\_svn\tmp\prop-base\" />
+    <Folder Include="Web\View\WebForms\ControlUtils\Repeater\_svn\tmp\props\" />
+    <Folder Include="Web\View\WebForms\ControlUtils\Repeater\_svn\tmp\text-base\" />
+    <Folder Include="Web\View\WebForms\ControlUtils\TextBox\_svn\prop-base\" />
+    <Folder Include="Web\View\WebForms\ControlUtils\TextBox\_svn\props\" />
+    <Folder Include="Web\View\WebForms\ControlUtils\TextBox\_svn\tmp\prop-base\" />
+    <Folder Include="Web\View\WebForms\ControlUtils\TextBox\_svn\tmp\props\" />
+    <Folder Include="Web\View\WebForms\ControlUtils\TextBox\_svn\tmp\text-base\" />
+    <Folder Include="Web\View\WebForms\ControlUtils\_svn\props\" />
+    <Folder Include="Web\View\WebForms\ControlUtils\_svn\tmp\prop-base\" />
+    <Folder Include="Web\View\WebForms\ControlUtils\_svn\tmp\props\" />
+    <Folder Include="Web\View\WebForms\ControlUtils\_svn\tmp\text-base\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
