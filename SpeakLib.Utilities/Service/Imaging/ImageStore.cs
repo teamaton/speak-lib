@@ -24,32 +24,31 @@ namespace SpeakFriend.Utilities
             _pathRelative = pathRelative;
         }
 
-        public void Store(string imageKey, string sourcePath, bool useJpeg)
+		public void Store(string imageKey, string sourcePath, bool useJpeg)
+		{
+			Delete(imageKey, useJpeg);
+			//copy original file to avoid quality loss
+			var path = GetPathAbsolute(imageKey, useJpeg);
+			// ein vorhandenes Bild wird überschrieben
+			File.Copy(sourcePath, path, true);
+		}
+
+    	private void Delete(string imageKey, bool useJpeg)
+    	{
+			// Lösche vorheriges Bild, falls dieses ein anderes Format hatte
+			File.Delete(GetPathAbsolute(imageKey, !useJpeg));
+
+			// Lösche alle zugehörigen thumbs
+    		var dirInfo = new DirectoryInfo(GetThumbDirectoryAbsolute());
+    		foreach(var file in dirInfo.GetFiles(imageKey + "*"))
+				file.Delete();
+    	}
+
+    	public void Store(string imageKey, Image image)
         {
-            if (useJpeg)
-            {
-                File.Delete(GetPathAbsolute(imageKey, false));
-
-                //copy original file to avoid quality loss
-                var path = GetPathAbsolute(imageKey, true);
-                File.Copy(sourcePath, path, true);
-                CalculateHashCode(path, imageKey);
-            }
-            else
-            {
-                using (var image = Image.FromFile(sourcePath))
-                    Store(imageKey, image, false);
-            }
-        }
-
-        public void Store(string imageKey, Image image, bool useJpeg)
-        {
-            File.Delete(GetPathAbsolute(imageKey, false));
-            File.Delete(GetPathAbsolute(imageKey, true));
-
-            var path = GetPathAbsolute(imageKey, useJpeg);
-            image.Save(path, useJpeg ? ImageFormat.Jpeg : ImageFormat.Png);
-            CalculateHashCode(path, imageKey);
+            var path = GetPathAbsolute(imageKey, false);
+			// ein vorhandenes Bild wird überschrieben
+			image.Save(path, ImageFormat.Png);
         }
 
         public ImageInfo StoreToGroup(string groupKey, string sourcePath, string name, bool useJpeg)
@@ -251,7 +250,12 @@ namespace SpeakFriend.Utilities
 			return Path.Combine(_pathRelative, _pathThumbs);
 		}
 
-		public string GetDirectoryRelative()
+    	private string GetThumbDirectoryAbsolute()
+    	{
+			return Path.Combine(_pathAbsolute, _pathThumbs);
+    	}
+
+    	public string GetDirectoryRelative()
 		{
 			return _pathRelative;
 		}
