@@ -27,7 +27,7 @@ namespace SpeakFriend.Utilities
 		public void Store(string imageKey, string sourcePath, bool useJpeg)
 		{
 			Delete(imageKey, useJpeg);
-			//copy original file to avoid quality loss
+			
 			var path = GetPathAbsolute(imageKey, useJpeg);
 			// ein vorhandenes Bild wird überschrieben
 			File.Copy(sourcePath, path, true);
@@ -46,7 +46,9 @@ namespace SpeakFriend.Utilities
 
     	public void Store(string imageKey, Image image)
         {
-            var path = GetPathAbsolute(imageKey, false);
+			Delete(imageKey, false);
+            
+			var path = GetPathAbsolute(imageKey, false);
 			// ein vorhandenes Bild wird überschrieben
 			image.Save(path, ImageFormat.Png);
         }
