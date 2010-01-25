@@ -57,6 +57,9 @@ namespace SpeakFriend.Utilities
         void LastPage();
         void FirstPage();
 
+    	bool HasNextPage();
+    	bool HasPreviousPage();
+
         /// <summary>
         /// 
         /// </summary>

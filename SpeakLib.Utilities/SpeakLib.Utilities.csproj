@@ -163,6 +163,7 @@
     <Compile Include="Service\Message\Repository\MessageSearchFilter.cs" />
     <Compile Include="Service\SpeakLibSettings.cs" />
     <Compile Include="Service\SettingTypes.cs" />
+    <Compile Include="Web\View\MVC\Controls\Pager.cs" />
     <Compile Include="Web\View\WebForms\Ajax\AjaxUtils.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -493,23 +494,11 @@
     <None Include="Web\View\WebForms\ControlUtils\_svn\text-base\ControlUtil.cs.svn-base" />
     <None Include="Web\View\WebForms\ControlUtils\_svn\text-base\HtmlControlExtensionMethods.cs.svn-base" />
     <None Include="Web\View\WebForms\ControlUtils\_svn\text-base\WebControlExtensionMethods.cs.svn-base" />
-    <None Include="Web\View\Navigation\_svn\all-wcprops" />
-    <None Include="Web\View\Navigation\_svn\entries" />
-    <None Include="Web\View\Navigation\_svn\text-base\NavigationItem.cs.svn-base" />
-    <None Include="Web\View\Navigation\_svn\text-base\NavigationItemList.cs.svn-base" />
-    <None Include="Web\View\Navigation\_svn\text-base\NavigationItemService.cs.svn-base" />
-    <None Include="Web\View\Navigation\_svn\text-base\TagCloud.cs.svn-base" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SeedWork.Comment\" />
     <Folder Include="Service\Security\" />
     <Folder Include="ValueObjects\Money\" />
-    <Folder Include="Web\View\MVC\" />
-    <Folder Include="Web\View\Navigation\_svn\prop-base\" />
-    <Folder Include="Web\View\Navigation\_svn\props\" />
-    <Folder Include="Web\View\Navigation\_svn\tmp\prop-base\" />
-    <Folder Include="Web\View\Navigation\_svn\tmp\props\" />
-    <Folder Include="Web\View\Navigation\_svn\tmp\text-base\" />
     <Folder Include="Web\View\WebForms\Ajax\_svn\prop-base\" />
     <Folder Include="Web\View\WebForms\Ajax\_svn\props\" />
     <Folder Include="Web\View\WebForms\Ajax\_svn\tmp\prop-base\" />

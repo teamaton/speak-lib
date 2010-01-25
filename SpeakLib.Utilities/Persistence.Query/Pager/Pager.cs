@@ -271,5 +271,15 @@ namespace SpeakFriend.Utilities
 			PageSize = itemsPerPage;
 			return this;
 		}
+
+		public bool HasNextPage()
+		{
+			return !IsLastPage;
+		}          
+        
+		public bool HasPreviousPage()
+		{
+			return !IsFirstPage;
+		}
     }
 }

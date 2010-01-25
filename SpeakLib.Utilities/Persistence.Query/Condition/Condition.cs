@@ -35,7 +35,10 @@ namespace SpeakFriend.Utilities
 		public void Remove()
         {
             if (_conditions.Contains(PropertyName))
-                _conditions.Remove(this);
+            {
+				_conditions.Reset();
+				_conditions.Remove(this);
+            }
         }
 
         public override int GetHashCode()
