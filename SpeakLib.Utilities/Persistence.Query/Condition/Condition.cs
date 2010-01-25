@@ -36,8 +36,8 @@ namespace SpeakFriend.Utilities
         {
             if (_conditions.Contains(PropertyName))
             {
-				_conditions.Reset();
 				_conditions.Remove(this);
+				Reset();
             }
         }
 
