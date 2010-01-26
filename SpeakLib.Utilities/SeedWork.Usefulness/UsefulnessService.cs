@@ -55,5 +55,11 @@ namespace SpeakFriend.Utilities.Usefulness
 		}
 
 		internal ISession Session { get { return _session; } }
+
+		public void FillWithUsefulnessValue(UsefulnessEntityProxy entity)
+		{
+			var value = GetUsefulnessValueByEntity(entity);
+			entity.Usefulness = value;
+		}
 	}
 }

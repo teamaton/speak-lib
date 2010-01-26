@@ -36,11 +36,11 @@ namespace Tests.Usefulness
 			Reload_entity();
 		}
 
-		private void Arrange_entity_with_one_positive_vote()
+		private void Arrange_entity_with_one_vote(int value)
 		{
 			Arrange_persisted_entity();
 
-			var usefulnessEntry = new UsefulnessEntry(_testEntity, 1, _ipAddress, new UsefulnessCreatorAnonymous(_ipAddress, new TimeSpan(0,0,3)));
+			var usefulnessEntry = new UsefulnessEntry(_testEntity, value, _ipAddress, new UsefulnessCreatorAnonymous(_ipAddress, new TimeSpan(0,0,3)));
 			_usefulnessService.Create(usefulnessEntry);
 
 			Reload_entity();
@@ -59,9 +59,17 @@ namespace Tests.Usefulness
 		[Test]
 		public void Should_have_one_positive_vote()
 		{
-			Arrange_entity_with_one_positive_vote();
+			Arrange_entity_with_one_vote(1);
 
 			Assert.That(_testEntity.Usefulness.Positive, EqualTo(1));
+		}
+
+		[Test]
+		public void Should_have_one_negative_vote()
+		{
+			Arrange_entity_with_one_vote(-1);
+
+			Assert.That(_testEntity.Usefulness.Negative, EqualTo(-1));
 		}
 
 		[Test]

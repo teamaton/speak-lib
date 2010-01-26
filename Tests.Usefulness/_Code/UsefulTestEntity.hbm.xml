@@ -8,5 +8,9 @@
     </id>
 
     <property name="DateCreated" column="DateCreated" type="DateTime" not-null="true"/>
-  </class>
+
+		<property name="UsefulPositive" formula="(select SUM(U.PositiveValue) from UsefulnessEntry U where U.EntityId = Id and U.EntityType = 'UsefulTestEntity')" />
+		<property name="UsefulNegative" formula="(select SUM(U.NegativeValue) from UsefulnessEntry U where U.EntityId = Id and U.EntityType = 'UsefulTestEntity')" />
+
+	</class>
 </hibernate-mapping>

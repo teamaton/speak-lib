@@ -22,10 +22,6 @@ namespace SpeakFriend.Utilities.Usefulness
 		{
 			builder.Register<UsefulnessService>().ContainerScoped();
 
-			builder.Register<Func<UsefulnessService>>(c => () => c.Resolve<UsefulnessService>()).ContainerScoped();
-			builder.Register<UsefulnessValue>().FactoryScoped();
-			builder.RegisterGeneratedFactory<UsefulnessValue.Factory>();
-
 			builder.RegisterTypesMatching(t => typeof(IUsefulnessEntity).IsAssignableFrom(t)).FactoryScoped();
 		}
 	}

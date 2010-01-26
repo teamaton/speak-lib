@@ -14,21 +14,18 @@ namespace Tests.Usefulness
 		public string Type { get { return GetType().Name; } }
 		public DateTime DateCreated { get; set; }
 
-		public UsefulTestEntity(UsefulnessValue.Factory usefulnessValueFactory)
-		{
-			_usefulnessValueFactory = usefulnessValueFactory;
-		}
-
 		#region Usefulness
 
-		private readonly UsefulnessValue.Factory _usefulnessValueFactory;
+		// ReSharper disable UnusedAutoPropertyAccessor.Local
+		private int UsefulPositive { get; set; }
+		private int UsefulNegative { get; set; }
+		// ReSharper restore UnusedAutoPropertyAccessor.Local
 
 		private UsefulnessValue _usefulness;
 
 		public UsefulnessValue Usefulness
 		{
-			get { return _usefulness ?? (_usefulness = _usefulnessValueFactory(this)); }
-			set { _usefulness = value; }
+			get { return _usefulness ?? (_usefulness = new UsefulnessValue(UsefulPositive, UsefulNegative)); }
 		}
 
 		#endregion
