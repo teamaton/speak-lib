@@ -62,6 +62,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\AutofacContrib.NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="FluentNHibernate, Version=1.0.0.593, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\FluentNHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Iesi.Collections.dll</HintPath>
@@ -120,6 +124,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Persistance.NHibernate\Fluent\EnumConvention.cs" />
     <Compile Include="Persistance.NHibernate\NHibernateHelperSF.cs" />
     <Compile Include="Persistance.NHibernate\SessionExtensions.cs" />
     <Compile Include="Persistence.Query\Condition\CategoryAttributes.cs" />

@@ -7,36 +7,35 @@ using NHibernate.Criterion;
 
 namespace SpeakFriend.Utilities
 {
-    public class ConditionEnum : Condition
-    {
-        private Enum _value;
-		public Enum Value { get { return _value; } }
+	public class ConditionEnum : Condition
+	{
+		public Enum Value { get; private set; }
 
-        public ConditionEnum(ConditionContainer conditions, string propertyName) : base(conditions, propertyName)
-        {
-        }
+		public ConditionEnum(ConditionContainer conditions, string propertyName)
+			: base(conditions, propertyName)
+		{
+		}
 
-        public void EqualTo(Enum value)
-        {
-            _value = value;
-            AddUniqueToContainer();
-        }
+		public void EqualTo(Enum value)
+		{
+			Value = value;
+			AddUniqueToContainer();
+		}
 
-        public override void AddToCriteria(ICriteria criteria)
-        {
-            criteria.Add(GetCriterion());
-        }
+		public override void AddToCriteria(ICriteria criteria)
+		{
+			criteria.Add(GetCriterion());
+		}
 
-        public override ICriterion GetCriterion()
-        {
-            return Restrictions.Eq(PropertyName, _value);
-        }
+		public override ICriterion GetCriterion()
+		{
+			return Restrictions.Eq(PropertyName, Value);
+		}
 
-        public override void Reset()
-        {
-            _value = null;
-            base.Reset();
-        }
-    }
-
+		public override void Reset()
+		{
+			Value = null;
+			base.Reset();
+		}
+	}
 }
