@@ -125,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Persistance.NHibernate\Fluent\EnumConvention.cs" />
+    <Compile Include="Persistance.NHibernate\Fluent\ReferenceConvention.cs" />
     <Compile Include="Persistance.NHibernate\NHibernateHelperSF.cs" />
     <Compile Include="Persistance.NHibernate\SessionExtensions.cs" />
     <Compile Include="Persistence.Query\Condition\CategoryAttributes.cs" />
