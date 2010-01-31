@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using NHibernate;
 using NHibernate.Criterion;
 
@@ -23,11 +24,19 @@ namespace SpeakFriend.Utilities
 		{
 		}
 
-		public ConditionHasAffiliateLink<TParent, TChild> Has(params int[] affiliateLinkIds)
+		public ConditionHasAffiliateLink<TParent, TChild> Add(params int[] affiliateLinkIds)
 		{
+			_affiliateLinkIds.RemoveAll(i => affiliateLinkIds.Contains(i));
 			_affiliateLinkIds.AddRange(affiliateLinkIds);
 			AddUniqueToContainer();
 			return this;
+		}
+
+		public void Remove(int value)
+		{
+			_affiliateLinkIds.RemoveAll(i => i == value);
+			if (_affiliateLinkIds.Count <= 0)
+				Reset();
 		}
 
 		public override void AddToCriteria(ICriteria criteria)
@@ -44,6 +53,18 @@ namespace SpeakFriend.Utilities
 				.SetProjection(Projections.CountDistinct("AffiliateLink.Id"));
 
 			return Restrictions.Eq(Projections.SubQuery(detachedCriteria), _affiliateLinkIds.Count);
+		}
+
+		public bool Contains(int affiliateLinkId)
+		{
+			return _affiliateLinkIds.Contains(affiliateLinkId);
+		}
+
+		public override void Reset()
+		{
+			_affiliateLinkIds.Clear();
+			Alias = null;
+			base.Reset();
 		}
 	}
 }
