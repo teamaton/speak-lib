@@ -18,7 +18,7 @@ namespace SpeakFriend.Utilities
     	}
 
 		/// <summary>
-		/// Ignores the case of the enum string.
+		/// Parses for the name or the value. Ignores the case of the enum string.
 		/// </summary>
     	public static T Parse(string value)
         {

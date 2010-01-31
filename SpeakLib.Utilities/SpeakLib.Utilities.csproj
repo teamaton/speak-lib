@@ -285,6 +285,7 @@
     <Compile Include="Web\View\WebForms\ControlUtils\HtmlControlExtensionMethods.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Web\View\WebForms\ControlUtils\ListControls\DdlPopulator.cs" />
     <Compile Include="Web\View\WebForms\ControlUtils\ListControls\DdlProxyEnum.cs">
       <SubType>Code</SubType>
     </Compile>

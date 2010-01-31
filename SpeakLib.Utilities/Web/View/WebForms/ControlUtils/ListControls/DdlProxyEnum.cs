@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 
 namespace SpeakFriend.Utilities
 {
+	[Obsolete("Use ddl.Populate<enum>().SelectedEnumValue<enum>() instead!")]
     public class DdlProxyEnum
     {
         private readonly EnumAnnotatedList _annotadedEnums;
