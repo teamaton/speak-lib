@@ -49,6 +49,7 @@ namespace SpeakFriend.Utilities
 		{
 			var detachedCriteria = DetachedCriteria.For<TChild>("CAL");
 			detachedCriteria.Add(Restrictions.EqProperty("GeoObject.Id", Alias + ".Id"))
+				.Add(Restrictions.Eq("IsActive", true))
 				.Add(Restrictions.InG("AffiliateLink.Id", _affiliateLinkIds))
 				.SetProjection(Projections.CountDistinct("AffiliateLink.Id"));
 
