@@ -124,6 +124,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\CollectionExtensions.cs" />
     <Compile Include="Persistance.NHibernate\Fluent\EnumConvention.cs" />
     <Compile Include="Persistance.NHibernate\Fluent\ReferenceConvention.cs" />
     <Compile Include="Persistance.NHibernate\NHibernateHelperSF.cs" />

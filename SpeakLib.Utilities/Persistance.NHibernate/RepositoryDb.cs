@@ -203,6 +203,19 @@ namespace SpeakFriend.Utilities
             return result;
         }
 
+        public virtual TDomainObjectList GetByIds(params int[] ids)
+        {
+            var list = new TDomainObjectList();
+        	list.AddRange(_session.CreateCriteria(typeof (TDomainObject))
+        	              	.Add(Restrictions.In("Id", ids))
+        	              	.List<TDomainObject>());
+
+			if (AfterItemListRetrieved != null)
+				AfterItemListRetrieved(this, new TDomainObjectListArgs(list));
+
+            return list;
+        }
+
 		public virtual TDomainObjectList GetBy(ISearchDesc searchDesc)
 		{
 			return GetBy(searchDesc, null);

@@ -67,5 +67,10 @@ namespace SpeakFriend.Utilities
 			Alias = null;
 			base.Reset();
 		}
+
+		public List<int> Ids
+		{
+			get { return _affiliateLinkIds; }
+		}
 	}
 }
