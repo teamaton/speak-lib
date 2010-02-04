@@ -60,5 +60,16 @@ namespace SpeakFriend.Utilities
 		{
 			return collection.Where(item1 => collection.Count(item2 => item2.Equals(item1)) > 1);
 		}
+
+		/// <summary>
+		/// Does the same as Where() but does not throw an exception when the collection is empty.
+		/// </summary>
+		public static IEnumerable<TItem> WhereSafe<TItem>(this IEnumerable<TItem> coll, Func<TItem, bool> predicate)
+		{
+			if (coll.Count() <= 0)
+				return coll;
+
+			return coll.Where(predicate);
+		}
 	}
 }
