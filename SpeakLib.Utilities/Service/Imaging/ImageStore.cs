@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using SpeakFriend.Utilities.Web;
 
@@ -23,6 +24,30 @@ namespace SpeakFriend.Utilities
             _pathAbsolute = pathAbsolute;
             _pathRelative = pathRelative;
         }
+
+		/// <summary>
+		/// Dient zum rudimentären Vergleich von Bildern.
+		/// </summary>
+		/// <param name="imageDataFirst">ein Bild</param>
+		/// <param name="imageDataSecond">ein anderes Bild</param>
+		/// <returns></returns>
+		public static bool CompareByteArrays(byte[] imageDataFirst, byte[] imageDataSecond)
+		{
+			if (imageDataSecond.Length != imageDataFirst.Length)
+				return false;
+
+			var shaM = new SHA256Managed();
+			byte[] imageFirst = shaM.ComputeHash(imageDataFirst);
+			byte[] imageSecond = shaM.ComputeHash(imageDataSecond);
+
+			//Compare the hash values
+			for (var i = 0; i < imageFirst.Length; i++)
+			{
+				if (imageFirst[i] != imageSecond[i])
+					return false;
+			}
+			return true;
+		}
 
 		public void Store(string imageKey, string sourcePath, bool useJpeg)
 		{
