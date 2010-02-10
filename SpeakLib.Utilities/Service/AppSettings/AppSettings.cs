@@ -78,6 +78,7 @@ namespace SpeakFriend.Utilities
 				string.Format("Conversion to the given Type {0} has not yet been implemented!", typeof(T)), "T" );
 		}
 
+    	private static string _applicationPath = null;
 		/// <summary>
 		/// Returns the root path of the currently running application incl. web.
 		/// </summary>
@@ -85,13 +86,21 @@ namespace SpeakFriend.Utilities
 		{
 			get
 			{
-				if (HttpContext.Current != null)
+				if (_applicationPath == null)
 				{
-					// don't use HttpContext.Current.Request.PhysicalApplicationPath
-					// bc it doesn't work without a Request (e.g. in Application_Start)
-					return HttpContext.Current.Server.MapPath("/");
+					if (HttpContext.Current != null)
+					{
+						// don't use HttpContext.Current.Request.PhysicalApplicationPath
+						// bc it doesn't work without a Request (e.g. in Application_Start)
+						_applicationPath = HttpContext.Current.Server.MapPath("/");
+					}
+					else
+					{
+						_applicationPath = Get<string>("ApplicationPath");
+					}
 				}
-				return Get<string>("ApplicationPath");
+
+				return _applicationPath;
 			}
 		}
 
