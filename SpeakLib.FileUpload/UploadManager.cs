@@ -37,6 +37,7 @@ namespace SpeakFriend.FileUpload
         public UploadedFile HandleFile(HttpPostedFile postedFile)
         {
             var uploadedFile = new UploadedFile {Name = postedFile.FileName};
+			uploadedFile.TempFilePathAbsolute.EnsurePathExists();
             postedFile.SaveAs(uploadedFile.TempFilePathAbsolute);
             Files.Add(uploadedFile);
             return uploadedFile;

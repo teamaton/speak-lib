@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.IO;
 using NUnit.Framework;
 using SpeakFriend.Utilities;
 
@@ -19,5 +19,57 @@ namespace Tests.Service
                 .Should().Throw<FormatException>();
 
         }
+
+		[Test]
+		public void EnsureFilePathsTest()
+		{
+			var newDir = Path.Combine(Environment.CurrentDirectory, "test/temp");
+			var newFile = Path.Combine(newDir, "file.txt");
+			try
+			{
+				Assert.That(Directory.Exists(newDir), Is.False);
+				Assert.Throws<DirectoryNotFoundException>(() => File.Create(newFile), "Should fail bc dir does not exist!");
+				newFile.EnsurePathExists();
+				var fileStream = File.Create(newFile);
+				fileStream.Close();
+				Assert.That(File.Exists(newFile));
+			}
+			catch (IOException ioe)
+			{
+				Assert.Fail(ioe.Message);
+			}
+			catch (Exception e)
+			{
+				Assert.Fail(e.Message);
+			}
+			finally
+			{
+				File.Delete(newFile);
+				Directory.Delete(newDir);
+			}
+		}
+		[Test]
+		public void EnsureDirPathsTest()
+		{
+			var newDir = Path.Combine(Environment.CurrentDirectory, "test/temp/");
+			try
+			{
+				Assert.That(Directory.Exists(newDir), Is.False);
+				newDir.EnsurePathExists();
+				Assert.That(Directory.Exists(newDir));
+			}
+			catch (IOException ioe)
+			{
+				Assert.Fail(ioe.Message);
+			}
+			catch (Exception e)
+			{
+				Assert.Fail(e.Message);
+			}
+			finally
+			{
+				Directory.Delete(newDir);
+			}
+		}
     }
 }
