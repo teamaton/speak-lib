@@ -7,10 +7,8 @@ using System.Web.Configuration;
 
 namespace SpeakFriend.Utilities
 {
-    public class SpeakLibSettings
+    public class SpeakLibSettings : AppSettings
     {
-        private static readonly AppSettingsReader _settingReader = new AppSettingsReader();
-
         #region Email
 
         public static bool EmailIsEnabled { get { return Get<bool>("EmailEnabled"); } }
@@ -34,10 +32,5 @@ namespace SpeakFriend.Utilities
         public static string SmtpUser { get { return Get<string>("SmtpUser"); } }
 
         #endregion
-
-        private static T Get<T>(string settingKey)
-        {
-            return (T)_settingReader.GetValue(settingKey, typeof(T));
-        }
     }
 }

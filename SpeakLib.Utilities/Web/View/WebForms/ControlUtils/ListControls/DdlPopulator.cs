@@ -20,6 +20,8 @@ namespace SpeakFriend.Utilities.Web
 
 		public static DropDownList SelectedEnumValue<T>(this DropDownList ddl, T value)
 		{
+			ddl.ClearSelection();
+
 			if (ddl.Items.Count <= 0)
 				return ddl;
 

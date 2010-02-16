@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
+﻿using SpeakFriend.Utilities;
 
 namespace SpeakFriend.FileUpload
 {
-    internal class Settings
+    internal class Settings : SpeakLibSettings
     {
-        private static readonly AppSettingsReader _settingReader = new AppSettingsReader();
+    	public static string FileUploadTempDirRelative
+    	{
+    		get { return Get<string>("FileUploadTempDirRelative"); }
+    	}
 
-        public static string FileUploadTempDirRelative { get { return Get<string>("FileUploadTempDirRelative"); } }
-        public static string FileUploadTempDirAbsolute { get { return Get<string>("FileUploadTempDirAbsolute"); } }
-
-        private static T Get<T>(string settingKey)
-        {
-            return (T)_settingReader.GetValue(settingKey, typeof(T));
-        }
+    	public static string FileUploadTempDirAbsolute
+    	{
+    		get { return GetAbsolute(FileUploadTempDirRelative); }
+    	}
     }
 }

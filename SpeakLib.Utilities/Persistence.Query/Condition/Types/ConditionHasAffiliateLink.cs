@@ -51,6 +51,8 @@ namespace SpeakFriend.Utilities
 			detachedCriteria.Add(Restrictions.EqProperty("GeoObject.Id", Alias + ".Id"))
 				.Add(Restrictions.Eq("IsActive", true))
 				.Add(Restrictions.InG("AffiliateLink.Id", _affiliateLinkIds))
+				.CreateAlias("AffiliateLink", "al")
+				.Add(Restrictions.Eq("al.IsActive", true))
 				.SetProjection(Projections.CountDistinct("AffiliateLink.Id"));
 
 			return Restrictions.Eq(Projections.SubQuery(detachedCriteria), _affiliateLinkIds.Count);

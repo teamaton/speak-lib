@@ -149,6 +149,7 @@
     <Compile Include="SeedWork.Usefulness\Web\IUsefulnessSubmitUC.cs" />
     <Compile Include="SeedWork.Usefulness\Web\IUsefulnessShowUC.cs" />
     <Compile Include="Service.Type\Class.cs" />
+    <Compile Include="Service\AppSettings\AppSettings.cs" />
     <Compile Include="Service\ExtensionMethods\CollectionExtensions.cs" />
     <Compile Include="Service\PathUtil.cs" />
     <Compile Include="Service\FileStore\StoredFile.cs" />
@@ -169,8 +170,9 @@
     <Compile Include="Service\Message\Repository\MessageRepositoryDbBase.cs" />
     <Compile Include="Service\Message\Repository\MessageSearchDesc.cs" />
     <Compile Include="Service\Message\Repository\MessageSearchFilter.cs" />
-    <Compile Include="Service\SpeakLibSettings.cs" />
+    <Compile Include="Service\AppSettings\SpeakLibSettings.cs" />
     <Compile Include="Service\SettingTypes.cs" />
+    <Compile Include="Service\SpeakLibException.cs" />
     <Compile Include="Web\View\MVC\Controls\Pager.cs" />
     <Compile Include="Web\View\WebForms\Ajax\AjaxUtils.cs">
       <SubType>Code</SubType>
