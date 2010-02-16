@@ -1,0 +1,17 @@
+_svn/
+.svn/
+obj/
+[Bb]in/
+[Dd]ebug/   
+[Rr]elease/   
+_Re[Ss]harper.*
+*.resharper
+*.user
+*.suo
+*.cache
+*~
+*.swp
+*.bak
+*.patch
+*.orig
+[Tt]humbs.db
