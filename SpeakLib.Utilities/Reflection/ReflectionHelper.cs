@@ -63,13 +63,48 @@ namespace SpeakFriend.Utilities.Reflection
 			return obj;
 		}
 
-		public static object SetProperty(this object obj, string propertyName, object valueToSet)
+		/// <summary>
+		/// Set the property of the given object to the given value.
+		/// </summary>
+		/// <returns>The given object instance.</returns>
+		public static object Property(this object obj, string propertyName, object valueToSet)
 		{
-			var flags = BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.NonPublic;
-
-			obj.GetType().GetProperty(propertyName, flags).SetValue(obj, valueToSet, /*index*/ null);
+			obj.PropertyInfo(propertyName).SetValue(obj, valueToSet, /*index*/ null);
 
 			return obj;
+		}
+
+		/// <summary>
+		/// Read the value of the property with the given name.
+		/// </summary>
+		/// <param name="obj"></param>
+		/// <param name="propertyName"></param>
+		/// <returns>The property value.</returns>
+		public static object Property(this object obj, string propertyName)
+		{
+			var value = obj.PropertyInfo(propertyName).GetValue(obj, /*index*/ null);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Read the value of the property with the given name and cast it to the given TResult type.
+		/// </summary>
+		/// <returns>The property value.</returns>
+		public static TResult Property<TResult>(this object obj, string propertyName)
+		{
+			return (TResult) obj.Property(propertyName);
+		}
+
+		/// <summary>
+		/// Returns the PropertyInfo object for the property with the given name.
+		/// </summary>
+		public static PropertyInfo PropertyInfo(this object obj, string propertyName)
+		{
+			const BindingFlags flags = BindingFlags.Static | BindingFlags.Instance |
+			                           BindingFlags.Public | BindingFlags.NonPublic;
+
+			return obj.GetType().GetProperty(propertyName, flags);
 		}
 	}
 }
