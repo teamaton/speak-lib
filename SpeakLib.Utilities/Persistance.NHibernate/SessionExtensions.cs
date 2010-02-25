@@ -52,13 +52,21 @@ namespace SpeakFriend.Utilities.Persistance.NHibernate
 			EntityEntry oldEntry = sessionImpl.PersistenceContext.GetEntry(entity);
 
 
-			if ((oldEntry == null) && (entity is INHibernateProxy))
+			if (oldEntry == null)
 			{
-				var proxy = entity as INHibernateProxy;
+				if (entity is INHibernateProxy)
+				{
+					var proxy = entity as INHibernateProxy;
 
-				Object obj = sessionImpl.PersistenceContext.Unproxy(proxy);
+					Object obj = sessionImpl.PersistenceContext.Unproxy(proxy);
 
-				oldEntry = sessionImpl.PersistenceContext.GetEntry(obj);
+					oldEntry = sessionImpl.PersistenceContext.GetEntry(obj);
+				}
+				else
+				{
+					// We don't know...
+					return true;
+				}
 			}
 
 
