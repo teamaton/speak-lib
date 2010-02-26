@@ -264,5 +264,11 @@ namespace SpeakFriend.Utilities
 			if (!Directory.Exists(dirPath))
 				throw new SpeakLibException(string.Format("Path '{0}' could not be created!", dirPath));
 		}
+
+
+        public static string Indent(this string value, int width)
+        {
+            return Regex.Replace(value, "(^|\n)", "$1".PadRight(width+2));
+        }
     }
 }
