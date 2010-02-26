@@ -11,7 +11,7 @@ namespace Tests.Usefulness
 	public class UsefulTestCreator : IPersistable, IUsefulnessCreator
 	{
 		public int Id { get; set; }
-		public string Type { get { return GetType().Name; } }
+		public string TypeName { get { return GetType().Name; } }
 		public DateTime DateCreated { get; set; }
 
 		#region Usefulness
