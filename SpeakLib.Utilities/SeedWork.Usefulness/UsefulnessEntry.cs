@@ -40,7 +40,7 @@ namespace SpeakFriend.Utilities.Usefulness
 			EntityId = usefulEntity.Id;
 			EntityType = usefulEntity.Type;
 			CreatorId = creator.Id;
-			CreatorType = creator.Type;
+			CreatorType = creator.TypeName;
 			IpAddress = ipAddress;
 		}
 	}

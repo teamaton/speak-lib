@@ -12,7 +12,7 @@ namespace SpeakFriend.Utilities.Usefulness
 		/// <summary>
 		/// Usually this should just be the Type of the class.
 		/// </summary>
-		string Type { get; }
+		string TypeName { get; }
 
 //		ISet<IUsefulnessEntity> RatedEntities { get; set; }
 	}

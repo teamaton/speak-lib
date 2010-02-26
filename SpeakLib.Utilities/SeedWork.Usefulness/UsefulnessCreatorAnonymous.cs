@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +14,7 @@ namespace SpeakFriend.Utilities.Usefulness
 		}
 
 		public int Id { get; set; }
-		public string Type { get { return GetType().Name; } }
+		public string TypeName { get { return GetType().Name; } }
 
 		#region Not persisted
 

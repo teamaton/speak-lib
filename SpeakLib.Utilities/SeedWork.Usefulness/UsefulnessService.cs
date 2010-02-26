@@ -35,7 +35,7 @@ namespace SpeakFriend.Utilities.Usefulness
 		{
 			var criteria = _session.CreateCriteria(typeof (UsefulnessEntry))
 				.Add(Restrictions.Eq("CreatorId", creator.Id))
-				.Add(Restrictions.Eq("CreatorType", creator.Type));
+				.Add(Restrictions.Eq("CreatorType", creator.TypeName));
 
 			if (creator is UsefulnessCreatorAnonymous)
 			{
