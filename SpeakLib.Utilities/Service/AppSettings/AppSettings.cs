@@ -117,7 +117,7 @@ namespace SpeakFriend.Utilities
     	public static string PathCombineRobust(string partOne, string partTwo)
     	{
     		return Path.Combine(partOne.EnsureEndsNotWith(Path.DirectorySeparatorChar.ToString()),
-    		                    partTwo.EnsureStartsNotWith("/"));
+    		                    partTwo.EnsureStartsNotWith("~").EnsureStartsNotWith("/"));
     	}
 
 		protected static string GetAbsolute(string relativePath)

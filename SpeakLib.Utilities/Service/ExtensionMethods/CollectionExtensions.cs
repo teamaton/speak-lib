@@ -17,8 +17,10 @@ namespace SpeakFriend.Utilities
 		/// </remarks>
 		public static IList Shuffle(this IList elements)
 		{
-			var random = new Random(DateTime.Now.Millisecond);
+			var random = new Random();
+
 			int n = elements.Count;
+
 			while (n > 1)
 			{
 				int k = random.Next(n);
@@ -32,15 +34,20 @@ namespace SpeakFriend.Utilities
 		}
 
 		/// <summary>
-		/// Strongly typed version of Shuffle().
+		/// Shuffles the items in the list, changes the list! 
+		/// Uses a <see cref="Random"/> instance with changing seed.
+		/// <br/>
+		/// Strongly typed version of <see cref="Shuffle"/>.
 		/// </summary>
 		/// <typeparam name="TList"></typeparam>
 		/// <param name="list"></param>
 		/// <returns></returns>
 		public static TList Shuffle<TList>(this TList list) where TList : IList
 		{
-			var random = new Random(DateTime.Now.Millisecond);
+			var random = new Random();
+			
 			int n = list.Count;
+
 			while (n > 1)
 			{
 				int k = random.Next(n);
