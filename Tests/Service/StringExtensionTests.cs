@@ -29,7 +29,7 @@ namespace Tests.Service
 			{
 				Assert.That(Directory.Exists(newDir), Is.False);
 				Assert.Throws<DirectoryNotFoundException>(() => File.Create(newFile), "Should fail bc dir does not exist!");
-				newFile.EnsurePathExists();
+				newFile.EnsureDirectoryExists();
 				var fileStream = File.Create(newFile);
 				fileStream.Close();
 				Assert.That(File.Exists(newFile));
@@ -47,7 +47,8 @@ namespace Tests.Service
 				File.Delete(newFile);
 				Directory.Delete(newDir);
 			}
-		}
+		}
+
 		[Test]
 		public void EnsureDirPathsTest()
 		{
@@ -55,7 +56,7 @@ namespace Tests.Service
 			try
 			{
 				Assert.That(Directory.Exists(newDir), Is.False);
-				newDir.EnsurePathExists();
+				newDir.EnsureDirectoryExists();
 				Assert.That(Directory.Exists(newDir));
 			}
 			catch (IOException ioe)
