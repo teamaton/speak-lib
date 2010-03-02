@@ -22,7 +22,8 @@ namespace SpeakFriend.Utilities
 			set
 			{
 				Unset();
-				Add(value);
+				if (value != null)
+					Add(value);
 			}
     	}
 

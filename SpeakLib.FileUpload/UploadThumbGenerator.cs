@@ -9,92 +9,98 @@ using SpeakFriend.Utilities;
 
 namespace SpeakFriend.FileUpload
 {
-    public class UploadThumbGenerator : IDisposable
-    {
-        private readonly UploadManager _uploadManager;
+	public class UploadThumbGenerator : IDisposable
+	{
+		private readonly UploadManager _uploadManager;
 
-        private readonly Dictionary<Guid, Dictionary<int, UploadThumb>> thumbs =
-            new Dictionary<Guid, Dictionary<int, UploadThumb>>();
-        
-        public UploadThumbGenerator(UploadManager uploadManager)
-        {
-            _uploadManager = uploadManager;
-            _uploadManager.Disposed += UploadManager_Disposed;
-        }
+		private readonly Dictionary<Guid, Dictionary<int, UploadThumb>> _thumbs =
+			new Dictionary<Guid, Dictionary<int, UploadThumb>>();
 
-        public UploadThumb GetThumb(UploadedFile file, int width)
-        {
-            if (disposed) throw new ObjectDisposedException("UploadThumbGenerator");
+		public UploadThumbGenerator(UploadManager uploadManager)
+		{
+			_uploadManager = uploadManager;
+			_uploadManager.Disposed += UploadManager_Disposed;
+		}
 
-            if (!thumbs.ContainsKey(file.TempKey))
-                thumbs.Add(file.TempKey, new Dictionary<int, UploadThumb>());
+		public UploadThumb GetThumb(UploadedFile file, int width)
+		{
+			if (disposed) throw new ObjectDisposedException("UploadThumbGenerator");
 
-            var fileThumbs = thumbs[file.TempKey];
-           
-            if (fileThumbs.ContainsKey(width))
-                return (fileThumbs[width]);
+			if (!_thumbs.ContainsKey(file.TempKey))
+				_thumbs.Add(file.TempKey, new Dictionary<int, UploadThumb>());
 
-            var thumb = new UploadThumb();
-            try
-            {
-                using (var image = Image.FromFile(file.TempFilePathAbsolute))
-                using (var resized = image.Width <= width
-                                         ? image
-                                         : ImageUtils.ResizeImage(image, width, false))
-                    resized.Save(thumb.ThumbPathAbsolute, ImageFormat.Png);
-                fileThumbs.Add(width, thumb);
-                return thumb;
-            }
-            catch (Exception)
-            {
-                File.Delete(thumb.ThumbPathAbsolute);
-                return null;
-            }
-        }
+			var fileThumbs = _thumbs[file.TempKey];
 
-        public void DeleteThumbs(UploadedFile file)
-        {
-            if(!thumbs.ContainsKey(file.TempKey))
-                return;
+			if (fileThumbs.ContainsKey(width))
+				return (fileThumbs[width]);
 
-            var fileThumbs = thumbs[file.TempKey];
-            foreach (var thumb in fileThumbs.Values)
-                DeleteThumb(thumb);
+			var thumb = new UploadThumb();
+			try
+			{
+				using (var image = Image.FromFile(file.TempFilePathAbsolute))
+				using (var resized = image.Width <= width
+				                     	? image
+				                     	: ImageUtils.ResizeImage(image, width, false))
+					resized.Save(thumb.ThumbPathAbsolute, ImageFormat.Png);
+				fileThumbs.Add(width, thumb);
+				return thumb;
+			}
+			catch (OutOfMemoryException)
+			{
+				throw;
+			}
+			catch (Exception)
+			{
+				DeleteThumb(thumb);
+				return null;
+			}
+		}
 
-            thumbs.Remove(file.TempKey);
-        }
+		public void DeleteThumbs(UploadedFile file)
+		{
+			if (!_thumbs.ContainsKey(file.TempKey))
+				return;
 
-        private void DeleteThumb(UploadThumb thumb)
-        {
-            File.Delete(thumb.ThumbPathAbsolute);
-        }
+			var fileThumbs = _thumbs[file.TempKey];
+			foreach (var thumb in fileThumbs.Values)
+				DeleteThumb(thumb);
 
-        void UploadManager_Disposed(object sender, EventArgs e)
-        {
-            Dispose();
-        }
+			_thumbs.Remove(file.TempKey);
+		}
 
-        private bool disposed;
-        private void Dispose(bool disposing)
-        {
-            if (disposed) return;
+		private void DeleteThumb(UploadThumb thumb)
+		{
+			if (File.Exists(thumb.ThumbPathAbsolute))
+				File.Delete(thumb.ThumbPathAbsolute);
+		}
 
-            foreach (var fileThumbs in thumbs.Values)
-                foreach (var thumb in fileThumbs.Values)
-                    DeleteThumb(thumb);
+		private void UploadManager_Disposed(object sender, EventArgs e)
+		{
+			Dispose();
+		}
 
-            disposed = true;
-        }
+		private bool disposed;
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+		private void Dispose(bool disposing)
+		{
+			if (disposed) return;
 
-        ~UploadThumbGenerator()
-        {
-            Dispose(false);
-        }
-    }
+			foreach (var fileThumbs in _thumbs.Values)
+				foreach (var thumb in fileThumbs.Values)
+					DeleteThumb(thumb);
+
+			disposed = true;
+		}
+
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		~UploadThumbGenerator()
+		{
+			Dispose(false);
+		}
+	}
 }
