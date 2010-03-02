@@ -79,15 +79,29 @@ namespace SpeakFriend.Utilities
 		}
 
 		/// <summary>
+		/// Use this cached value in case no fresh value is available (happens in Dispose() scenarios).
+		/// </summary>
+    	private static string _cachedApplicationPath;
+
+		/// <summary>
 		/// Returns the root path of the currently running application (Web or non-web).
+		/// <br/>
+		/// Allows changing the value at runtime (through ConfigurationManager.AppSettings)
+		/// and still retrieving the right value.
 		/// </summary>
 		public static string ApplicationPath
 		{
 			get
 			{
-				return HttpContext.Current != null 
-					? HttpContext.Current.Server.MapPath("/") 
-					: Get<string>("ApplicationPath");
+				var tmpApplicationPath =
+					HttpContext.Current != null
+						? HttpContext.Current.Server.MapPath("/")
+						: Get_2<string>("ApplicationPath");
+
+				if (tmpApplicationPath != null)
+					_cachedApplicationPath = tmpApplicationPath;
+
+				return _cachedApplicationPath;
 			}
 		}
 
