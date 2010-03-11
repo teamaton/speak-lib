@@ -38,14 +38,19 @@ namespace SpeakFriend.Utilities
 			}
 		}
 
+		protected string ImageName
+		{
+			get { return string.Format("{0}{1}.png", Identifier, Suffix); }
+		}
+
 		private string ImagePathAbsolute
 		{
-			get { return string.Format("{0}\\{1}{2}.png", RenderedButtonsDirAbsolute, Identifier, Suffix); }
+			get { return string.Format("{0}\\{1}", RenderedButtonsDirAbsolute, ImageName); }
 		}
 
 		private string ImagePathRelative
 		{
-			get { return string.Format("{0}/{1}{2}.png", RenderedButtonsDirRelative.EnsureStartsWith("/"), Identifier, Suffix); }
+			get { return string.Format("{0}/{1}", RenderedButtonsDirRelative.EnsureStartsWith("/"), ImageName); }
 		}
 
 		protected abstract string PathToBackground{ get;}
@@ -68,12 +73,22 @@ namespace SpeakFriend.Utilities
 			}
 		}
 
+		public string GetImageName()
+		{
+			EnsureExists();
+			return ImageName;
+		}
+
 		public string GetImagePath()
+		{
+			EnsureExists();
+			return ImagePathRelative;
+		}
+
+		private void EnsureExists()
 		{
 			if (!File.Exists(ImagePathAbsolute))
 				new T().SetBackground(PathToBackground).SetHeader(Header).SetText(Text).DrawButton(ImagePathAbsolute);
-
-			return ImagePathRelative;
 		}
 	}
 }
