@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using log4net;
 using NHibernate;
 using NHibernate.Cfg;
@@ -25,9 +26,23 @@ namespace SpeakFriend.Utilities
 		{
 			string sql = File.ReadAllText(filePath);
 
-			_session.CreateSQLQuery(sql).ExecuteUpdate();
-			_session.Flush();
+			if (sql.IndexOf("COMMIT", StringComparison.InvariantCultureIgnoreCase) > 0)
+			{
+				var transactions = sql.Split(new[] {"COMMIT"},
+				                             StringSplitOptions.RemoveEmptyEntries)
+					.ToList().ConvertAll(t => t + " COMMIT");
 
+				transactions.ForEach(t =>
+				                     	{
+				                     		_session.CreateSQLQuery(t).ExecuteUpdate();
+				                     		_session.Flush();
+				                     	});
+			}
+			else
+			{
+				_session.CreateSQLQuery(sql).ExecuteUpdate();
+				_session.Flush();
+			}
 			Console.WriteLine("### SQL ### Executed file '{0}'.", filePath);
 		}
 
