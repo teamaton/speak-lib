@@ -55,5 +55,12 @@
             ThrowIfNull(controlName, item);
             return item;
         }
+
+        public Control Find(string controlName)
+        {
+            var item = _item.FindControl(controlName);
+            ThrowIfNull(controlName, item);
+            return item;
+        }
     }
 }

@@ -67,5 +67,21 @@ namespace Tests.Utilities.Web
 			Console.Write("Found: ");
 			checkBoxes.ToList().ForEach(ckb => Console.Write(ckb.ID + ", "));
 		}
+
+		[Test]
+		public void ControlsOfTypes()
+		{
+			var controlTree = new PlaceHolder();
+			controlTree.Controls.Add(new Literal(){ID="lt_ToTrans"});
+			controlTree.Controls.Add(new Literal(){ID="ltNoTrans"});
+			var plh = new PlaceHolder();
+			plh.Controls.Add(new Label(){ID="lbl_ToTrans"});
+			plh.Controls.Add(new Image(){ID="img_ToTrans"});
+			controlTree.Controls.Add(plh);
+
+			var result = controlTree.ControlsOfType(new List<Type>() {typeof (Literal), typeof (Label), typeof (Image)});
+
+			Assert.That(result.Count(), Is.EqualTo(4));
+		}
     }
 }
