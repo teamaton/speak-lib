@@ -63,10 +63,18 @@ namespace SpeakFriend.Utilities.Web
 
 		public static void AddScriptTag(this Page page, string src)
 		{
+			AddScriptTag(page, src, false);
+		}
+
+    	public static void AddScriptTag(this Page page, string src, bool addToBeginning)
+		{
 			var scriptTag = new HtmlGenericControl("script");
 			scriptTag.Attributes.Add("src", src);
 			scriptTag.Attributes.Add("type", "text/javascript");
-			page.Header.Controls.Add(scriptTag);
+			if (addToBeginning)
+				page.Header.Controls.AddAt(0, scriptTag);
+			else
+				page.Header.Controls.Add(scriptTag);
 		}
     }
 }
