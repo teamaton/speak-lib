@@ -63,6 +63,8 @@ namespace SpeakFriend.Utilities.Reflection
 			return obj;
 		}
 
+		#region Property
+
 		/// <summary>
 		/// Set the property of the given object to the given value.
 		/// </summary>
@@ -106,5 +108,55 @@ namespace SpeakFriend.Utilities.Reflection
 
 			return obj.GetType().GetProperty(propertyName, flags);
 		}
+
+		#endregion
+
+		#region Field
+
+		/// <summary>
+		/// Set the field of the given object to the given value.
+		/// </summary>
+		/// <returns>The given object instance.</returns>
+		public static object Field(this object obj, string fieldName, object valueToSet)
+		{
+			obj.FieldInfo(fieldName).SetValue(obj, valueToSet);
+
+			return obj;
+		}
+
+		/// <summary>
+		/// Read the value of the field with the given name.
+		/// </summary>
+		/// <param name="obj"></param>
+		/// <param name="fieldName"></param>
+		/// <returns>The field value.</returns>
+		public static object Field(this object obj, string fieldName)
+		{
+			var value = obj.FieldInfo(fieldName).GetValue(obj);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Read the value of the field with the given name and cast it to the given TResult type.
+		/// </summary>
+		/// <returns>The field value.</returns>
+		public static TResult Field<TResult>(this object obj, string fieldName)
+		{
+			return (TResult) obj.Field(fieldName);
+		}
+
+		/// <summary>
+		/// Returns the FieldInfo object for the field with the given name.
+		/// </summary>
+		public static FieldInfo FieldInfo(this object obj, string fieldName)
+		{
+			const BindingFlags flags = BindingFlags.Static | BindingFlags.Instance |
+			                           BindingFlags.Public | BindingFlags.NonPublic;
+
+			return obj.GetType().GetField(fieldName, flags);
+		}
+
+		#endregion
 	}
 }
