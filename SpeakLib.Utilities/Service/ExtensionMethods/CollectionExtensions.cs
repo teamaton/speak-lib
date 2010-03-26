@@ -78,5 +78,16 @@ namespace SpeakFriend.Utilities
 
 			return coll.Where(predicate);
 		}
+
+
+		/// <summary>
+		/// Converts an IEnumeable to a generic list based on the given type.
+		/// </summary>
+		public static IList AsListOf(this IEnumerable coll, Type type)
+		{
+			var result = (IList) typeof (List<>).MakeGenericType(type).GetConstructor(Type.EmptyTypes).Invoke(null);
+			foreach (var item in coll) result.Add(item);
+			return result;
+		}
 	}
 }
