@@ -7,15 +7,15 @@ namespace SpeakFriend.Utilities
 {
     public class Enum<T> 
     {
-    	public static IList<T> GetValues()
+    	public static IEnumerable<T> GetValues()
     	{
-    		IList<T> list = new List<T>();
-    		foreach (object value in Enum.GetValues(typeof(T)))
-    		{
-    			list.Add((T)value);
-    		}
-    		return list;
+    		return Enum.GetValues(typeof (T)).OfType<T>();
     	}
+
+		public static IEnumerable<string > GetNames()
+		{
+			return Enum.GetNames(typeof(T));
+		}
 
 		/// <summary>
 		/// Parses for the name or the value. Ignores the case of the enum string.
