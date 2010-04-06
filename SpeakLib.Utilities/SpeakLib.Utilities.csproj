@@ -78,6 +78,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\MergeSystem.Indexus.WinServiceCommon.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="NHibernate, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\NHibernate.dll</HintPath>
@@ -379,6 +380,7 @@
     <Compile Include="Web\Tracking\User\UserTracker.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Wpf\Application\SingleInstanceController.cs" />
     <Compile Include="Wpf\Controls\Image.cs" />
     <Compile Include="Persistance.NHibernate\ISessionManager.cs" />
     <Compile Include="Persistance.NHibernate\Logging\NHibernateLogger.cs" />
