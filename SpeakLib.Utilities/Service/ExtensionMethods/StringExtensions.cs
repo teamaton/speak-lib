@@ -8,6 +8,12 @@ using System.Text.RegularExpressions;
 
 namespace SpeakFriend.Utilities
 {
+	public enum StringEnsureOptions
+	{
+		None = 0,
+		IgnoreNullOrEmpty = 1
+	}
+
     public static class StringExtension
     {
         public static string NEW_LINE { get { return Environment.NewLine; } }
@@ -164,10 +170,18 @@ namespace SpeakFriend.Utilities
 		/// </summary>
     	public static string EnsureStartsWith(this string value, string prefix)
     	{
-    		if (value.StartsWith(prefix))
-    			return value;
+    		return EnsureStartsWith(value, prefix, StringEnsureOptions.None);
+    	}
 
-    		return prefix + value;
+    	public static string EnsureStartsWith(this string value, string prefix, StringEnsureOptions options)
+    	{
+			if (options == StringEnsureOptions.IgnoreNullOrEmpty && string.IsNullOrEmpty(value))
+				return value;
+
+			if (value.StartsWith(prefix))
+				return value;
+
+			return prefix + value;
     	}
 
     	/// <summary>
