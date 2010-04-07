@@ -83,6 +83,13 @@ namespace SpeakFriend.Utilities
         public TMessageList GetBy(MessageSearchDesc searchDesc)
         {
             return _messageRepositoryDb.GetBy(searchDesc);
-        }
+		}
+
+		public TMessage GetById(int messageId)
+    	{
+			return _session.CreateCriteria(typeof (TMessage))
+				.Add(Restrictions.Eq("Id", messageId))
+				.UniqueResult<TMessage>();
+    	}
     }
 }
