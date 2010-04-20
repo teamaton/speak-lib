@@ -16,10 +16,10 @@ namespace SpeakFriend.Utilities
 
         public event EventHandler PageChanged;
 
-        protected void OnPageChanged(EventArgs e)
+        protected void OnPageChanged(object sender, EventArgs e)
         {
             if (PageChanged != null)
-                PageChanged(this, e);
+                PageChanged(sender, e);
         }
 
         private int pageNavigationRange = 2;
@@ -45,17 +45,17 @@ namespace SpeakFriend.Utilities
             {
                 case "GoToPage":
                     _pager.CurrentPage = Convert.ToInt32(e.CommandArgument);
-                    OnPageChanged(EventArgs.Empty);
+                    OnPageChanged(sender, e);
                     break;
 
                 case "PreviousPage":
                     _pager.PreviousPage();
-                    OnPageChanged(EventArgs.Empty);
+                    OnPageChanged(sender, e);
                     break;
 
                 case "NextPage":
                     _pager.NextPage();
-                    OnPageChanged(EventArgs.Empty);
+                    OnPageChanged(sender, e);
                     break;
             }
 
