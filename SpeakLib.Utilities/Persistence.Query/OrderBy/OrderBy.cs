@@ -8,12 +8,12 @@ namespace SpeakFriend.Utilities
 {
 	public class OrderByExtender
 	{
-		private OrderByCriteria _andOrderBy;
+		private readonly OrderByCriteria _andOrderByCriteria;
 
 		public T AndOrderBy<T>() where T:OrderByCriteria
 		{
-			_andOrderBy.BeginAdding();
-			return (T)_andOrderBy;
+			_andOrderByCriteria.BeginAdding();
+			return (T)_andOrderByCriteria;
 		}
 
 //		public OrderByCriteria AndOrderBy
@@ -26,9 +26,9 @@ namespace SpeakFriend.Utilities
 //			set { _andOrderBy = value; }
 //		}
 
-		public OrderByExtender(OrderByCriteria orderBy)
+		public OrderByExtender(OrderByCriteria orderByCriteria)
 		{
-			_andOrderBy = orderBy;
+			_andOrderByCriteria = orderByCriteria;
 		}
 	}
 	
@@ -144,6 +144,10 @@ namespace SpeakFriend.Utilities
             return _criteria.Current == this;
         }
 
+		public T AndOrderBy<T>() where T : OrderByCriteria
+		{
+			return _andOrderBy.AndOrderBy<T>();
+		}
     }
 
 	public class OrderByList : List<OrderBy>{}

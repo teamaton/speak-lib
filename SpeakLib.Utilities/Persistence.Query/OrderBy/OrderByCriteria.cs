@@ -58,6 +58,11 @@ namespace SpeakFriend.Utilities
     	public void Unset()
         {
             CurrentList.Clear();
-        }
+		}
+
+		public T AndOrderBy<T>() where T : OrderByCriteria
+		{
+			return Current.AndOrderBy<T>();
+		}
     }
 }
