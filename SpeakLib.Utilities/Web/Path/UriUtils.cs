@@ -71,7 +71,17 @@ namespace SpeakFriend.Utilities.Web
             }
 
             return result;
-        }
+		}
+
+		/// <summary>
+		/// Returns &lt;www.domain.tld> without any path or query component.
+		/// </summary>
+		/// <param name="uri"></param>
+		/// <returns></returns>
+		public static string GetBaseUrl(Uri uri)
+		{
+			return string.Format("{0}://{1}", uri.Scheme, uri.Host);
+		}
 
         public static string FirstSubdomainNotWww(Uri uri)
         {
