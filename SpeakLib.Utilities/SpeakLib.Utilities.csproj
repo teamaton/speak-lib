@@ -128,11 +128,13 @@
     <Compile Include="Persistance.NHibernate\Fluent\EnumConvention.cs" />
     <Compile Include="Persistance.NHibernate\Fluent\ReferenceConvention.cs" />
     <Compile Include="Persistance.NHibernate\NHibernateHelperSF.cs" />
+    <Compile Include="Persistance.NHibernate\RepositoryDbNew.cs" />
     <Compile Include="Persistance.NHibernate\SessionExtensions.cs" />
     <Compile Include="Persistence.Query\Condition\CategoryAttributes.cs" />
     <Compile Include="Persistence.Query\Condition\Types\ConditionHasAffiliateLink.cs" />
     <Compile Include="Persistence.Query\Condition\Types\ConditionObject.cs" />
     <Compile Include="Persistence.Query\SearchDescriptionBase.cs" />
+    <Compile Include="Persistence\PersistableSet.cs" />
     <Compile Include="Persistence\TypeExtensions.cs" />
     <Compile Include="Reflection\ReflectionHelper.cs" />
     <Compile Include="SeedWork.Usefulness\UsefulnessCreatorAnonymous.cs" />
