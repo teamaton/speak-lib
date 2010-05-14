@@ -42,6 +42,7 @@ namespace SpeakFriend.Utilities
         {
             if (typeof(T) != typeof(Int32) && 
                 typeof(T) != typeof(String) &&
+                typeof(T) != typeof(bool) &&
                 !typeof(T).IsEnum)
                 throw new TypeMismatchException("expected int, string or enum");
 
