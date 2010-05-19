@@ -14,7 +14,7 @@ namespace SpeakFriend.Utilities.Web
     /// </summary>
     public class SessionData
     {
-    	private readonly HashedSet<string> _appDomainInsertedKeys = new HashedSet<string>();
+    	private readonly ISet<string> _appDomainInsertedKeys = new HashedSet<string>();
 
         public object this[string key]
         {
