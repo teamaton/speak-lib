@@ -207,13 +207,21 @@ namespace SpeakFriend.Utilities
 		/// </summary>
 		public static string EnsureEndsWith(this string value, string suffix)
 		{
-			if (value.EndsWith(suffix))
-				return value;
-
-			return value + suffix;
+    	    return EnsureEndsWith(value, suffix, StringEnsureOptions.None);
 		}
 
-		/// <summary>
+        public static string EnsureEndsWith(this string value, string suffix, StringEnsureOptions options)
+        {
+            if (options == StringEnsureOptions.IgnoreNullOrEmpty && string.IsNullOrEmpty(value))
+                return value;
+
+            if (value.EndsWith(suffix))
+                return value;
+
+            return value + suffix;
+        }
+
+        /// <summary>
 		/// Returns a new string which is guaranteed not to end with the given suffix.
 		/// If the suffix is already missing, the same string is returned.
 		/// </summary>
