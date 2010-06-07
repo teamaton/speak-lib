@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
@@ -11,14 +12,14 @@ namespace SpeakFriend.Utilities.Web
     {
         IRequest Request { get; }
         IResponse Response { get; }
-        HttpContext Context { get; }
+        IDictionary ContextItems { get; }
     }
 
     public class HttpCurrent : IHttpCurrent
     {
         public virtual IRequest Request { get; protected set; }
         public virtual IResponse Response { get; protected set; }
-        public virtual HttpContext Context { get; protected set; }
+        public virtual IDictionary ContextItems { get; protected set; }
 
         protected HttpCurrent(){}
 
@@ -28,7 +29,7 @@ namespace SpeakFriend.Utilities.Web
                              {
                                  Request = new RequestWeb(),
                                  Response = new ResponseWeb(),
-                                 Context = HttpContext.Current
+                                 ContextItems = HttpContext.Current.Items
                              };
 
             return result;
@@ -39,7 +40,8 @@ namespace SpeakFriend.Utilities.Web
             var result = new HttpCurrentNoWeb
                              {
                                  Request = new RequestNoWeb(),
-                                 Response = new ResponseNoWeb()
+                                 Response = new ResponseNoWeb(),
+                                 ContextItems = new Dictionary<string, object>()
                              };
 
             return result;

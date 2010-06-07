@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
@@ -11,11 +12,11 @@ namespace SpeakFriend.Utilities.Web
     {
         IResponse IHttpCurrent.Response { get { return Response; } }
         IRequest IHttpCurrent.Request { get { return Request; } }
-        HttpContext IHttpCurrent.Context { get { throw new NotImplementedException("HttpContext not yet implemented for NoWeb!"); } }
+        IDictionary IHttpCurrent.ContextItems { get { return ContextItems; } }
 
         public RequestNoWeb Request { get; set; }
         public ResponseNoWeb Response { get; set; }
-        public HttpContext Context { get; set; }
+        public IDictionary ContextItems { get; set; }
 
         public void Reset()
         {
