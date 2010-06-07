@@ -82,10 +82,12 @@ namespace SpeakFriend.Utilities
 
 		/// <summary>
 		/// Converts an IEnumeable to a generic list based on the given type.
+		/// @deprecated
 		/// </summary>
+        [Obsolete("Why is this solved in this way? Isn't coll.Cast<T>().ToList() enough?")]
 		public static IList AsListOf(this IEnumerable coll, Type type)
 		{
-			var result = (IList) typeof (List<>).MakeGenericType(type).GetConstructor(Type.EmptyTypes).Invoke(null);
+            var result = (IList) typeof (List<>).MakeGenericType(type).GetConstructor(Type.EmptyTypes).Invoke(null);
 			foreach (var item in coll) result.Add(item);
 			return result;
 		}
@@ -95,5 +97,10 @@ namespace SpeakFriend.Utilities
 			list.AddRange(items);
 			return list;
 		}
+
+        public static IList<T> AsListOf<T>(this IEnumerable coll)
+        {
+            return coll.Cast<T>().ToList();
+        }
 	}
 }
