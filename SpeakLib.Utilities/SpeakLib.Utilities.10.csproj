@@ -127,6 +127,8 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -320,6 +322,7 @@
     <Compile Include="Web\View\WebForms\ControlUtils\ListControls\ListPopulator.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Web\View\WebForms\ControlUtils\Render\ControlRenderer.cs" />
     <Compile Include="Web\View\WebForms\ControlUtils\Repeater\ItemTemplateHelper.cs">
       <SubType>Code</SubType>
     </Compile>
