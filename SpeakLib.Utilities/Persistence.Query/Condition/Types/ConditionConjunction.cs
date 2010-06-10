@@ -7,7 +7,8 @@ using NHibernate.Criterion;
 
 namespace SpeakFriend.Utilities
 {
-    public class ConditionConjunction<T> : ConditionList<T>
+	[Serializable]
+	public class ConditionConjunction<T> : ConditionList<T>
     {
         public ConditionConjunction(ConditionContainer conditions, string propertyName)
             : base(conditions, propertyName)

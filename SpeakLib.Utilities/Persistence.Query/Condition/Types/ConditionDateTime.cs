@@ -4,7 +4,8 @@ using NHibernate.Criterion;
 
 namespace SpeakFriend.Utilities
 {
-    public class ConditionDateTime : Condition
+	[Serializable]
+	public class ConditionDateTime : Condition
     {
         public ConditionDateTime(ConditionContainer conditions) : base(conditions)
         {

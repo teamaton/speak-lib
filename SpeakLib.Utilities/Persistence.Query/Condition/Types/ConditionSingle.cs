@@ -5,7 +5,8 @@ using System.Text;
 
 namespace SpeakFriend.Utilities
 {
-    public class ConditionSingle : ConditionNumericAbstract, IConditionNumeric
+	[Serializable]
+	public class ConditionSingle : ConditionNumericAbstract, IConditionNumeric
     {
         private const Single _noValue = -1;
         private Single _value = _noValue;

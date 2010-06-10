@@ -7,6 +7,7 @@ using System.Web.SessionState;
 
 namespace SpeakFriend.Utilities.Web
 {
+    [Serializable]
     public class BaseSession
     {
         private static HttpSessionState SessionState{ get { return HttpContext.Current.Session; } }

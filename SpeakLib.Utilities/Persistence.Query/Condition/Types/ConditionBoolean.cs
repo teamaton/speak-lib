@@ -7,7 +7,8 @@ using NHibernate.Criterion;
 
 namespace SpeakFriend.Utilities
 {
-    public class ConditionBoolean : Condition
+	[Serializable]
+	public class ConditionBoolean : Condition
     {
         private bool _value = false;
 

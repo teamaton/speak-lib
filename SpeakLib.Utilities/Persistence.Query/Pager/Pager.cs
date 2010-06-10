@@ -6,6 +6,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities
 {
+    [Serializable]
     public class Pager : IPager
     {
     	public Pager()

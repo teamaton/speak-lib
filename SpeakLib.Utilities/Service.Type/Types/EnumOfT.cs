@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities
 {
+    [Serializable]
     public class Enum<T> 
     {
     	public static IEnumerable<T> GetValues()

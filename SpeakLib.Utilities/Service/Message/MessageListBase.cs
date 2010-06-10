@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities
 {
+    [Serializable]
     public class MessageListBase<TMessage, TMessageParticipantType, TMessageType, TMessageStatus>
         : PersistableList<TMessage> where TMessage : MessageBase<TMessageParticipantType, TMessageType, TMessageStatus>
     {

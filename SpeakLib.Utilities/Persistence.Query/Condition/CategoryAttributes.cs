@@ -6,7 +6,8 @@ using System.Text;
 
 namespace SpeakFriend.Utilities
 {
-	public enum Importance
+    [Serializable]
+    public enum Importance
 	{
 		None = 0,
 		Prominent = 1
@@ -17,15 +18,18 @@ namespace SpeakFriend.Utilities
 		object Value { get; }
 	}
 
-	public abstract class CategoryBaseAttribute : Attribute
+    [Serializable]
+    public abstract class CategoryBaseAttribute : Attribute
 	{
 	}
 
-	public class CategoryBooleanAttribute : CategoryBaseAttribute
+    [Serializable]
+    public class CategoryBooleanAttribute : CategoryBaseAttribute
     {
     }
 
-	public class CategoryIntegerAttribute : CategoryBaseAttribute, ICategoryNumeric
+    [Serializable]
+    public class CategoryIntegerAttribute : CategoryBaseAttribute, ICategoryNumeric
     {
 		public int Value { get; private set; }
 
@@ -40,7 +44,8 @@ namespace SpeakFriend.Utilities
 		}
     }
 
-	public class CategorySingleAttribute : CategoryBaseAttribute, ICategoryNumeric
+    [Serializable]
+    public class CategorySingleAttribute : CategoryBaseAttribute, ICategoryNumeric
     {
 		public Single Value { get; private set; }
 
@@ -55,7 +60,8 @@ namespace SpeakFriend.Utilities
 		}
     }
 
-	public class CategoryDoubleAttribute : CategoryBaseAttribute, ICategoryNumeric
+    [Serializable]
+    public class CategoryDoubleAttribute : CategoryBaseAttribute, ICategoryNumeric
     {
 		public double Value { get; private set; }
 

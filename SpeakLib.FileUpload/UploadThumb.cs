@@ -6,6 +6,7 @@ using System.Text;
 
 namespace SpeakFriend.FileUpload
 {
+    [Serializable]
     public class UploadThumb
     {
         public UploadThumb()

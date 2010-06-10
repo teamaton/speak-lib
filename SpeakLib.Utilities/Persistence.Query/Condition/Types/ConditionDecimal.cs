@@ -7,7 +7,8 @@ using NHibernate.Criterion;
 
 namespace SpeakFriend.Utilities
 {
-    public class ConditionDecimal : ConditionNumericAbstract, IConditionNumeric
+	[Serializable]
+	public class ConditionDecimal : ConditionNumericAbstract, IConditionNumeric
     {
         private const decimal _noValue = decimal.MinusOne;
         private decimal _value = _noValue;

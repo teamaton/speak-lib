@@ -2,6 +2,7 @@
 
 namespace SpeakFriend.Utilities.Tagging
 {
+    [Serializable]
     public class Tag
     {
         public Tag(){}

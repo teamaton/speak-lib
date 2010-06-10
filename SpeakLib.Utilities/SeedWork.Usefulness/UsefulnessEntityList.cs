@@ -6,6 +6,7 @@ using Iesi.Collections.Generic;
 
 namespace SpeakFriend.Utilities.Usefulness
 {
+	[Serializable]
 	public class UsefulnessEntityList : List<IUsefulnessEntity>
 	{
 		public ISet<int> GetEntityIdsByEntityType(IUsefulnessEntity usefulnessEntity)

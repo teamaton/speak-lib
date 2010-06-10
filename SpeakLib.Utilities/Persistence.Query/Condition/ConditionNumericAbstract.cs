@@ -7,6 +7,7 @@ using NHibernate.Criterion;
 
 namespace SpeakFriend.Utilities
 {
+    [Serializable]
     public abstract class ConditionNumericAbstract : Condition, IConditionNumeric
     {
         private ConditionComparisonType _queryType;

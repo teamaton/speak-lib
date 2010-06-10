@@ -6,6 +6,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities
 {
+    [Serializable]
     public class SettingSearchFilter : ConditionContainer
     {
         public ConditionDisjunction<int> SettingTypeIds { get; private set; }

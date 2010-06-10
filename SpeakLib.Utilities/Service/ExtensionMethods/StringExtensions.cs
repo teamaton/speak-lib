@@ -8,7 +8,8 @@ using System.Text.RegularExpressions;
 
 namespace SpeakFriend.Utilities
 {
-	public enum StringEnsureOptions
+    [Serializable]
+    public enum StringEnsureOptions
 	{
 		None = 0,
 		IgnoreNullOrEmpty = 1

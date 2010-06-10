@@ -6,7 +6,8 @@ using NHibernate.Criterion;
 
 namespace SpeakFriend.Utilities
 {
-    public class ConditionAvgAggregate : ConditionDouble
+	[Serializable]
+	public class ConditionAvgAggregate : ConditionDouble
     {
         public ConditionAvgAggregate(ConditionContainer conditions, string propertyName)
             : base(conditions, propertyName)

@@ -8,6 +8,7 @@ using NHibernate.SqlCommand;
 
 namespace SpeakFriend.Utilities
 {
+    [Serializable]
     public abstract class Condition
     {
         public string PropertyName { get; set; }

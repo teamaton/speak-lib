@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace SpeakFriend.Utilities
 {
+    [Serializable]
     public class StoredFileList : PersistableList<StoredFile>
     {
         public StoredFileList()

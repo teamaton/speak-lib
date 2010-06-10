@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace SpeakFriend.Utilities.Web
 {
+    [Serializable]
     public class UserMessageItem
     {
 		private readonly Literal _literal = new Literal();

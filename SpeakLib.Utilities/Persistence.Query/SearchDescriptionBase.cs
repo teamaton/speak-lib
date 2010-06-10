@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities
 {
+    [Serializable]
     public class SearchDescriptionBase<TFilter, TOrderBy> : Pager, ISearchDesc
         where TFilter : ConditionContainer, new()
         where TOrderBy : OrderByCriteria, new()

@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities
 {
+    [Serializable]
     public class EnumAnnotatedList : List<EnumAnnotated> 
     {
         public EnumAnnotated GetById(int id)

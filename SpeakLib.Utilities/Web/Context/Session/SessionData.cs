@@ -12,6 +12,7 @@ namespace SpeakFriend.Utilities.Web
     /// Ermöglicht einen verallgemeinerten Zugriff auch Benutzerdaten, 
     /// sowohl für den web- als auch für eine allgemeinen Awendungskontext.
     /// </summary>
+    [Serializable]
     public class SessionData
     {
     	private readonly ISet<string> _appDomainInsertedKeys = new HashedSet<string>();

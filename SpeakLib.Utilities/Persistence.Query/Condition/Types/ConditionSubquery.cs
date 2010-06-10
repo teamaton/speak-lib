@@ -8,7 +8,8 @@ using NHibernate.SqlCommand;
 
 namespace SpeakFriend.Utilities
 {
-    public class ConditionSubquery<TProperty, TSubquery> : ConditionList<TProperty>
+	[Serializable]
+	public class ConditionSubquery<TProperty, TSubquery> : ConditionList<TProperty>
     {
         private readonly Dictionary<string, string> _aliases;
         private readonly string _keyColumn;

@@ -6,6 +6,7 @@ using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities
 {
+    [Serializable]
     public class MessageSearchDesc : Pager, ICloneable
     {
         private MessageSearchFilter _filter;

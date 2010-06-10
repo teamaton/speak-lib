@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities.Web
 {
+    [Serializable]
     public enum ValidationType
     {
         RequiredField,

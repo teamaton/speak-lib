@@ -6,6 +6,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities
 {
+    [Serializable]
     public class MessageAddress
     {
         private MailAddress _mailAddress = null;

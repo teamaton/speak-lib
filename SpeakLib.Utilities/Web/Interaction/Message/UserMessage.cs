@@ -6,6 +6,7 @@ using System.Web.UI;
 
 namespace SpeakFriend.Utilities.Web
 {
+    [Serializable]
     public class UserMessage
     {
         private string _title;

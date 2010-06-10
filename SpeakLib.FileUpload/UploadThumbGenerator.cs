@@ -9,7 +9,8 @@ using SpeakFriend.Utilities;
 
 namespace SpeakFriend.FileUpload
 {
-	public class UploadThumbGenerator : IDisposable
+    [Serializable]
+    public class UploadThumbGenerator : IDisposable
 	{
 		private readonly UploadManager _uploadManager;
 

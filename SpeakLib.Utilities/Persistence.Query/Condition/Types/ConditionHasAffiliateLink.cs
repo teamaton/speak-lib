@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NHibernate;
@@ -10,7 +11,8 @@ namespace SpeakFriend.Utilities
 	/// </summary>
 	/// <typeparam name="TParent">The type of the entity the query is built for.</typeparam>
 	/// <typeparam name="TChild">The type of the referenced entity.</typeparam>
-	public class ConditionHasAffiliateLink<TParent, TChild> : ConditionObject<TChild>
+    [Serializable]
+    public class ConditionHasAffiliateLink<TParent, TChild> : ConditionObject<TChild>
 	{
 		private readonly List<int> _affiliateLinkIds = new List<int>();
 		protected string Alias { get; set; }

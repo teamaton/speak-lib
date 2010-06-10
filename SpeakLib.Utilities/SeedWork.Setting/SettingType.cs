@@ -8,6 +8,7 @@ namespace SpeakFriend.Utilities
     /// <summary>
     /// Convenience class for generating strings used as <see cref="SettingType"/>.
     /// </summary>
+    [Serializable]
     public static class SettingType
     {
         /// <summary>

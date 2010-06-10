@@ -6,6 +6,7 @@ using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities
 {
+    [Serializable]
     public class EmailSettings : EntitySettingList
     {
         public static string Type = SettingTypes.Email;

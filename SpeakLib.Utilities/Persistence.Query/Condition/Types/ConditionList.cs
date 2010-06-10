@@ -5,6 +5,7 @@ using NHibernate.Criterion;
 
 namespace SpeakFriend.Utilities
 {
+    [Serializable]
     public abstract class ConditionList<T> : Condition 
     {
         public int ItemCount { get { return _items.Count; } }

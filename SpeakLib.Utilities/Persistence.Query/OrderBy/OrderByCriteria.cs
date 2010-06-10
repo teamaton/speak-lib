@@ -12,6 +12,7 @@ namespace SpeakFriend.Utilities
         bool IsSet();
     }
 
+    [Serializable]
     public class OrderByCriteria : IOrderByCriteria
     {
 		internal bool IsAdding { get; set; }

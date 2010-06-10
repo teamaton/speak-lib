@@ -7,6 +7,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities
 {
+    [Serializable]
     public enum OrderDirection
     {
         Ascending,

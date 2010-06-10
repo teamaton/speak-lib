@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities.Web
 {
+	[Serializable]
 	public class TagCloud
 	{
 		public int MinValue { get; private set; }

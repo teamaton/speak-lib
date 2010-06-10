@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities
 {
+    [Serializable]
     public class EnumList<T> : Enum<T>
     {
     }

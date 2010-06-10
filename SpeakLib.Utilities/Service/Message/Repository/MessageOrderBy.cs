@@ -1,5 +1,8 @@
+using System;
+
 namespace SpeakFriend.Utilities
 {
+    [Serializable]
     public class MessageOrderBy : OrderByCriteria
     {
         public OrderBy Id;

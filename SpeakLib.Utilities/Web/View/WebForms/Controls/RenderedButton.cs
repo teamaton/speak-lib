@@ -11,7 +11,8 @@ namespace SpeakFriend.Utilities
 		string GetImagePath();
 	}
 
-	public abstract class RenderedButton<T> : IRenderedButton where T : ButtonGenerator, new()
+    [Serializable]
+    public abstract class RenderedButton<T> : IRenderedButton where T : ButtonGenerator, new()
 	{
 		private static readonly Dictionary<string, Size> _sizes = new Dictionary<string, Size>();
 

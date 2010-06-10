@@ -11,6 +11,7 @@ using SpeakFriend.Utilities;
 
 namespace SpeakFriend.FileUpload
 {
+    [Serializable]
     public class UploadManager : IDisposable
     {
         public UploadThumbGenerator ThumbGenerator { get; private set; }

@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities
 {
+    [Serializable]
     public class StoredFile : IPersistable
     {
         public int Id { get; set; }

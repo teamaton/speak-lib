@@ -7,6 +7,7 @@ using NHibernate.SqlCommand;
 
 namespace SpeakFriend.Utilities
 {
+    [Serializable]
     public class ConditionContainer : List<Condition>
     {
         public Condition FindByPropertyName(string propertyName)

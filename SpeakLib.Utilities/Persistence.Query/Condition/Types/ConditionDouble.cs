@@ -6,7 +6,8 @@ using NHibernate.Criterion;
 
 namespace SpeakFriend.Utilities
 {
-    public class ConditionDouble : ConditionNumericAbstract, IConditionNumeric
+	[Serializable]
+	public class ConditionDouble : ConditionNumericAbstract, IConditionNumeric
     {
         private const double _noValue = -1;
         private double _value = _noValue;

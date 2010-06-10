@@ -6,6 +6,7 @@ using NHibernate;
 
 namespace SpeakFriend.Utilities
 {
+	[Serializable]
 	public class OrderByExtender
 	{
 		private readonly OrderByCriteria _andOrderByCriteria;
@@ -31,8 +32,9 @@ namespace SpeakFriend.Utilities
 			_andOrderByCriteria = orderByCriteria;
 		}
 	}
-	
-	public class OrderByExtenderT<T> where T:OrderByCriteria
+
+    [Serializable]
+    public class OrderByExtenderT<T> where T : OrderByCriteria
 	{
 		private T _andOrderBy;
 
@@ -52,6 +54,7 @@ namespace SpeakFriend.Utilities
 		}
 	}
 
+    [Serializable]
     public class OrderBy
     {
         private readonly OrderByCriteria _criteria;
@@ -150,5 +153,6 @@ namespace SpeakFriend.Utilities
 		}
     }
 
-	public class OrderByList : List<OrderBy>{}
+    [Serializable]
+    public class OrderByList : List<OrderBy> { }
 }

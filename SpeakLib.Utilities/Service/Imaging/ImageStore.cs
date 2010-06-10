@@ -10,6 +10,7 @@ using SpeakFriend.Utilities.Web;
 
 namespace SpeakFriend.Utilities
 {
+    [Serializable]
     public class ImageStore
     {
         private readonly AppData _appData = new AppData();

@@ -1,6 +1,9 @@
+using System;
+
 namespace SpeakFriend.Utilities
 {
-	public enum ButtonEffect
+    [Serializable]
+    public enum ButtonEffect
 	{
 		Normal,
 		Hover

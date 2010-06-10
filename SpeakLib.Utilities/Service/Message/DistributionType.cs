@@ -1,5 +1,8 @@
+using System;
+
 namespace SpeakFriend.Utilities
 {
+    [Serializable]
     public enum DistributionType
     {
         Internal = 1,

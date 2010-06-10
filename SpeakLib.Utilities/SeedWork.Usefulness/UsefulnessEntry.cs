@@ -2,6 +2,7 @@ using System;
 
 namespace SpeakFriend.Utilities.Usefulness
 {
+	[Serializable]
 	public class UsefulnessEntry : IMutablePersistable
 	{
 		public int Id { get; set; }

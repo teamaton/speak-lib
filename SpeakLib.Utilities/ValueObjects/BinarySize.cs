@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities.ValueObjects
 {
+    [Serializable]
     public class BinarySize
     {
         public long Bytes;

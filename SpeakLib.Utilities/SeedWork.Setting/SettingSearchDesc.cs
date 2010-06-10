@@ -6,12 +6,14 @@ using System.Text;
 
 namespace SpeakFriend.Utilities
 {
+    [Serializable]
     public class SettingOrderBy : OrderByCriteria
     {
                 
     }
 
 
+    [Serializable]
     public class SettingSearchDesc : Pager, ISearchDesc
     {
         private SettingSearchFilter _filter = new SettingSearchFilter();

@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace SpeakFriend.Utilities.Tagging
 {
+    [Serializable]
     public class TagPrototype
     {
         public int Id { get; set; }

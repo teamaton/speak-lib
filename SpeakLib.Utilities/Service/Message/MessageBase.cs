@@ -2,6 +2,7 @@ using System;
 
 namespace SpeakFriend.Utilities
 {
+    [Serializable]
     public abstract class MessageBase<TMessageParticipantType, TMessageType, TMessageStatus> : IPersistable
     {
         private DistributionType _distributionType;

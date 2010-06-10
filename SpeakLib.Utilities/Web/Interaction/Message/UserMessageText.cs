@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities.Web
 {
+    [Serializable]
     public class UserMessageText
     {
         private const string _thankYou = "Vielen Dank.";

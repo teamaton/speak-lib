@@ -9,7 +9,8 @@ using NHibernate.SqlCommand;
 
 namespace SpeakFriend.Utilities
 {
-    public class ConditionTextSearch : Condition
+	[Serializable]
+	public class ConditionTextSearch : Condition
     {
         public bool SearchWithOr { get; set; }
 

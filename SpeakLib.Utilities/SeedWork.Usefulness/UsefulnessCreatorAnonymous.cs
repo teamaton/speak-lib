@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SpeakFriend.Utilities.Usefulness
 {
+	[Serializable]
 	public class UsefulnessCreatorAnonymous : IUsefulnessCreator
 	{
 		public UsefulnessCreatorAnonymous(string ipAddress, TimeSpan blockingTimeSpan)

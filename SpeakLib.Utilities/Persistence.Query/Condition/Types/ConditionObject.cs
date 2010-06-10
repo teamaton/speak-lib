@@ -7,6 +7,7 @@ using NHibernate.Criterion;
 
 namespace SpeakFriend.Utilities
 {
+	[Serializable]
 	public class ConditionObject<T> : Condition
 	{
 		private T _value;
