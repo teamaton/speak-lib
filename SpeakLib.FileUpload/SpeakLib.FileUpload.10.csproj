@@ -70,6 +70,9 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Deployment|AnyCPU'">
+    <OutputPath>bin\Deployment\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -108,12 +111,6 @@
     <Compile Include="UploadManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SpeakLib.Utilities\SpeakLib.Utilities.10.csproj">
-      <Project>{E38CF0D5-8B70-419F-A11E-F978C90ABD1A}</Project>
-      <Name>SpeakLib.Utilities.10</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
@@ -129,6 +126,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SpeakLib.Utilities\SpeakLib.Utilities.10.csproj">
+      <Project>{E38CF0D5-8B70-419F-A11E-F978C90ABD1A}</Project>
+      <Name>SpeakLib.Utilities.10</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
