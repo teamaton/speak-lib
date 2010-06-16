@@ -520,23 +520,6 @@
     <None Include="Web\View\WebForms\Controls\_svn\text-base\PagerControl.cs.svn-base" />
     <None Include="Web\View\WebForms\Controls\_svn\text-base\RenderedButton.cs.svn-base" />
     <None Include="Web\View\WebForms\Controls\_svn\text-base\SeoLinkButton.cs.svn-base" />
-    <None Include="Web\View\WebForms\ControlUtils\ListControls\_svn\all-wcprops" />
-    <None Include="Web\View\WebForms\ControlUtils\ListControls\_svn\entries" />
-    <None Include="Web\View\WebForms\ControlUtils\ListControls\_svn\text-base\DdlProxyEnum.cs.svn-base" />
-    <None Include="Web\View\WebForms\ControlUtils\ListControls\_svn\text-base\ListPopulator.cs.svn-base" />
-    <None Include="Web\View\WebForms\ControlUtils\Repeater\_svn\all-wcprops" />
-    <None Include="Web\View\WebForms\ControlUtils\Repeater\_svn\entries" />
-    <None Include="Web\View\WebForms\ControlUtils\Repeater\_svn\text-base\ItemTemplateHelper.cs.svn-base" />
-    <None Include="Web\View\WebForms\ControlUtils\TextBox\_svn\all-wcprops" />
-    <None Include="Web\View\WebForms\ControlUtils\TextBox\_svn\entries" />
-    <None Include="Web\View\WebForms\ControlUtils\TextBox\_svn\text-base\TextBoxUtils.cs.svn-base" />
-    <None Include="Web\View\WebForms\ControlUtils\_svn\all-wcprops" />
-    <None Include="Web\View\WebForms\ControlUtils\_svn\dir-prop-base" />
-    <None Include="Web\View\WebForms\ControlUtils\_svn\entries" />
-    <None Include="Web\View\WebForms\ControlUtils\_svn\prop-base\ControlUtil.cs.svn-base" />
-    <None Include="Web\View\WebForms\ControlUtils\_svn\text-base\ControlUtil.cs.svn-base" />
-    <None Include="Web\View\WebForms\ControlUtils\_svn\text-base\HtmlControlExtensionMethods.cs.svn-base" />
-    <None Include="Web\View\WebForms\ControlUtils\_svn\text-base\WebControlExtensionMethods.cs.svn-base" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SeedWork.Comment\" />
@@ -551,25 +534,6 @@
     <Folder Include="Web\View\WebForms\Controls\_svn\tmp\prop-base\" />
     <Folder Include="Web\View\WebForms\Controls\_svn\tmp\props\" />
     <Folder Include="Web\View\WebForms\Controls\_svn\tmp\text-base\" />
-    <Folder Include="Web\View\WebForms\ControlUtils\ListControls\_svn\prop-base\" />
-    <Folder Include="Web\View\WebForms\ControlUtils\ListControls\_svn\props\" />
-    <Folder Include="Web\View\WebForms\ControlUtils\ListControls\_svn\tmp\prop-base\" />
-    <Folder Include="Web\View\WebForms\ControlUtils\ListControls\_svn\tmp\props\" />
-    <Folder Include="Web\View\WebForms\ControlUtils\ListControls\_svn\tmp\text-base\" />
-    <Folder Include="Web\View\WebForms\ControlUtils\Repeater\_svn\prop-base\" />
-    <Folder Include="Web\View\WebForms\ControlUtils\Repeater\_svn\props\" />
-    <Folder Include="Web\View\WebForms\ControlUtils\Repeater\_svn\tmp\prop-base\" />
-    <Folder Include="Web\View\WebForms\ControlUtils\Repeater\_svn\tmp\props\" />
-    <Folder Include="Web\View\WebForms\ControlUtils\Repeater\_svn\tmp\text-base\" />
-    <Folder Include="Web\View\WebForms\ControlUtils\TextBox\_svn\prop-base\" />
-    <Folder Include="Web\View\WebForms\ControlUtils\TextBox\_svn\props\" />
-    <Folder Include="Web\View\WebForms\ControlUtils\TextBox\_svn\tmp\prop-base\" />
-    <Folder Include="Web\View\WebForms\ControlUtils\TextBox\_svn\tmp\props\" />
-    <Folder Include="Web\View\WebForms\ControlUtils\TextBox\_svn\tmp\text-base\" />
-    <Folder Include="Web\View\WebForms\ControlUtils\_svn\props\" />
-    <Folder Include="Web\View\WebForms\ControlUtils\_svn\tmp\prop-base\" />
-    <Folder Include="Web\View\WebForms\ControlUtils\_svn\tmp\props\" />
-    <Folder Include="Web\View\WebForms\ControlUtils\_svn\tmp\text-base\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

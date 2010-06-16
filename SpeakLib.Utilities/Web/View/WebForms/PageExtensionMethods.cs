@@ -76,5 +76,19 @@ namespace SpeakFriend.Utilities.Web
 			else
 				page.Header.Controls.Add(scriptTag);
 		}
+
+		/// <summary>
+		/// Scrolls the page to the Control with the given ID. Uses jquery.scrollTo.js plugin functionality.
+		/// </summary>
+		public static void ScrollTo(this Control control, string controlClientId)
+		{
+			var key = "sl_scroll_to_control";
+
+			ScriptManager.RegisterStartupScript(
+				control, control.GetType(), key,
+				string.Format("{0}$(function (){{ $.scrollTo('#" + controlClientId +
+				              "', {{ offset:-8, duration: 500 }}); }});{0}", Environment.NewLine),
+				true);
+		}
     }
 }
