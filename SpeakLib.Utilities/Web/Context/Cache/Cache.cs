@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 
-
 namespace SpeakFriend.Utilities.Web
 {    
     public class Cache
@@ -60,8 +59,11 @@ namespace SpeakFriend.Utilities.Web
         }
     }
 
-    /// <summary>
-    /// Convenience Name in case the "Cache" is used as MemberVariable. E.g: System.Web.Page.Cache
-    /// </summary>
-    public class CacheSf : Cache{}
+    ///// <summary>
+    ///// Convenience Name in case the "Cache" is used as MemberVariable. E.g: System.Web.Page.Cache
+    ///// </summary>
+    //public class CacheSf : Cache{}
+    //NO! do this instead:
+    //using CacheSf = SpeakFriend.Utilities.Web.Cache;
+    
 }
