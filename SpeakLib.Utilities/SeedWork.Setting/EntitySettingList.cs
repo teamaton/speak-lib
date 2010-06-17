@@ -8,7 +8,8 @@ namespace SpeakFriend.Utilities
     /// <summary>
     /// Base class for all setting lists for specific entities.
     /// </summary>
-    public class EntitySettingList
+	[Serializable]
+	public class EntitySettingList
     {
         private readonly SettingList _settings;
         private readonly string _settingType;
