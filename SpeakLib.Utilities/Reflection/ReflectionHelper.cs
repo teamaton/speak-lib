@@ -157,6 +157,12 @@ namespace SpeakFriend.Utilities.Reflection
 			return obj.GetType().GetField(fieldName, flags);
 		}
 
+		public static IEnumerable<FieldInfo> FieldInfos(this Type type, List<Type> matchTypes, Func<string, bool> matchFunc)
+		{
+			return type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public)
+				.WhereSafe(fi => matchFunc(fi.Name) && matchTypes.Contains(fi.FieldType));
+		}
+
 		#endregion
 	}
 }
