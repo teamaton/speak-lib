@@ -1,38 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Web;
-using System.Windows.Forms;
 using Iesi.Collections.Generic;
 
 namespace SpeakFriend.Utilities.Web
 {
-    /// <summary>
-    /// Ermöglicht einen verallgemeinerten Zugriff auch Benutzerdaten, 
-    /// sowohl für den web- als auch für eine allgemeinen Awendungskontext.
-    /// </summary>
-    [Serializable]
-    public class SessionData
-    {
-    	private readonly ISet<string> _appDomainInsertedKeys = new HashedSet<string>();
+	/// <summary>
+	/// Ermöglicht einen verallgemeinerten Zugriff auch Benutzerdaten, 
+	/// sowohl für den Web- als auch für einen allgemeinen Awendungskontext.
+	/// </summary>
+	[Serializable]
+	public class SessionData
+	{
+		private readonly ISet<string> _appDomainInsertedKeys = new HashedSet<string>();
 
-        public object this[string key]
-        {
-            get
-            {
+		public object this[string key]
+		{
+			get
+			{
 				if (ContextUtil.IsWebContext)
 				{
-                    if(HttpContext.Current.Session == null)
-                        throw new NullReferenceException("Probably you access session data to late or to early in the page life cycle.");
+					if (HttpContext.Current.Session == null)
+						throw new NullReferenceException("Probably you access session data to late or to early in the page life cycle.");
 
-                    return HttpContext.Current.Session[key];
+					return HttpContext.Current.Session[key];
 				}
 
-                return AppDomain.CurrentDomain.GetData(key);
-            }
-            set
-            {
+				return AppDomain.CurrentDomain.GetData(key);
+			}
+			set
+			{
 				if (ContextUtil.IsWebContext)
 				{
 					HttpContext.Current.Session[key] = value;
@@ -41,94 +37,97 @@ namespace SpeakFriend.Utilities.Web
 				{
 					AppDomain.CurrentDomain.SetData(key, value);
 				}
-				_appDomainInsertedKeys.Add(key);					
-            }
-        }
+				_appDomainInsertedKeys.Add(key);
+			}
+		}
 
-        public bool Exists(string key)
-        {
-            return this[key] != null;
-        }
+		/// <summary>
+		/// Use only if truly necessary; else simply use <see cref="Get{T}(string,System.Func{T})"/>.
+		/// </summary>
+		/// <param name="key"></param>
+		/// <returns></returns>
+		public bool Exists(string key)
+		{
+			return this[key] != null;
+		}
 
-        /// <summary>
-        /// Returns the item for the given key. May be <b>null</b>.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public T Get<T>(string key)
-        {
-            return (T)this[key];
-        }
+		/// <summary>
+		/// Returns the untyped item for the given key. May be <b>null</b>.
+		/// </summary>
+		public object Get(string key)
+		{
+			return this[key];
+		}
 
-        /// <summary>
-        /// Returns the item for the given key. 
-        /// <br/>
-        /// If the key does not exist, session will be initialized 
-        /// with the given initialValue &amp; the initialValue will 
-        /// be returned.
-        /// <br/>
-        /// Consider using <see cref="GetInitialized{T}(string)"/> for better performance.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="key"></param>
-        /// <param name="initialValue"></param>
-        /// <returns></returns>
-        public T Get<T>(string key, T initialValue)
-        {
-            return Get(key, () => initialValue);
-        }
+		/// <summary>
+		/// Returns the typed item for the given key. May be <b>null</b>.
+		/// Cannot use this for value types because an exception would be thrown if the value does not exist.
+		/// <br/>
+		/// Consider using <see cref="Get{T}(string,T)"/> for value types, or e.g. Get(key, (int?) null) for nullables.
+		/// </summary>
+		public T Get<T>(string key) where T : class
+		{
+			return (T) this[key];
+		}
 
-        public T Get<T>(string key, Func<T> initializer)
-        {
-            if (!Exists(key))
-            {
-                var initialValue = initializer();
-                this[key] = initialValue;
-                return initialValue;
-            }
+		/// <summary>
+		/// Returns the item for the given key. 
+		/// <br/>
+		/// If the key does not exist, session will be initialized 
+		/// with the given initialValue &amp; the initialValue will 
+		/// be returned.
+		/// <br/>
+		/// Consider using <see cref="Get{T}(string,System.Func{T})"/> for better performance.
+		/// </summary>
+		public T Get<T>(string key, T initialValue)
+		{
+			return Get(key, () => initialValue);
+		}
 
-            return Get<T>(key);
-        }
+		/// <summary>
+		/// Returns the item for the given key. 
+		/// <br/>
+		/// If the key does not exist, session will be initialized with 
+		/// the return value of the given initializer &amp; that value will 
+		/// be returned.
+		/// <br/>
+		/// Consider using <see cref="Get{T}(string,T)"/> for value types.
+		/// </summary>
+		public T Get<T>(string key, Func<T> initializer)
+		{
+			var val = Get(key);
 
-        /// <summary>
-        /// Returns the item for the given key, if it exists, else returns a new instance of 
-        /// <typeparamref name="T">Type</typeparamref>.       
-        /// </summary>
-        /// <typeparam name="T">Needs to implement parameterless constructor.</typeparam>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public T GetInitialized<T>(string key) where T:new()
-        {
-            if(!Exists(key))
-                this[key] = new T();    
+			if (val != null)
+				return (T) val;
 
-            return Get<T>(key);
-        }
+			T initialValue = initializer();
+			this[key] = initialValue;
+			return initialValue;
+		}
 
 		public void Clear()
 		{
 			if (ContextUtil.IsWebContext)
-				foreach (string key in _appDomainInsertedKeys)
+				foreach (var key in _appDomainInsertedKeys)
 					HttpContext.Current.Session.Remove(key);
 			else
-				foreach (string key in _appDomainInsertedKeys)
+				foreach (var key in _appDomainInsertedKeys)
 					AppDomain.CurrentDomain.SetData(key, null);
 
 			_appDomainInsertedKeys.Clear();
 		}
 
-    	public void Remove(string key)
-    	{
-    		if (ContextUtil.IsWebContext)
-    		{
-    			HttpContext.Current.Session.Remove(key);
-    		}
+		public void Remove(string key)
+		{
+			if (ContextUtil.IsWebContext)
+			{
+				HttpContext.Current.Session.Remove(key);
+			}
 			else
-    		{
+			{
 				AppDomain.CurrentDomain.SetData(key, null);
-    			_appDomainInsertedKeys.Remove(key);
-    		}
-    	}
-    }
+				_appDomainInsertedKeys.Remove(key);
+			}
+		}
+	}
 }
