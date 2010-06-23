@@ -13,10 +13,12 @@ namespace SpeakFriend.Utilities.Web
         public string[] UserLanguages { get; set; }
         public HttpCookieCollection Cookies { get; set; }
         public NameValueCollection QueryString { get { return UriUtils.GetNameValueCollectionFromQuery(Url.Query); } }
-    	public string Path
-    	{
-			get { return Url.PathAndQuery.Split('?')[0]; }
-    	}
+		public string Path { get { return Url.PathAndQuery.Split('?')[0]; } }
+
+		/// <summary>
+		/// TODO: Use UrlRewriting
+		/// </summary>
+		public string FilePath { get { return Url.PathAndQuery.Split('?')[0]; } }
 
     	public RequestNoWeb()
         {

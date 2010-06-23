@@ -16,5 +16,6 @@ namespace SpeakFriend.Utilities.Web
         public HttpCookieCollection Cookies { get { return _request.Cookies; } }
         public NameValueCollection QueryString { get { return _request.QueryString;  } }
 		public string Path { get { return _request.Path; } }
+		public string FilePath { get { return _request.FilePath; } }
     }
 }
