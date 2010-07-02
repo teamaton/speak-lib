@@ -20,7 +20,9 @@ namespace SpeakFriend.FileUpload
             {
                 var keyName = GetKeyName(uploadManagerId);
                 if (Data[keyName] == null)
-                    UploadManager = new UploadManager();
+					lock(keyName)
+						if (Data[keyName] == null)
+							UploadManager = new UploadManager();
 
                 return (UploadManager) Data[keyName];
             }

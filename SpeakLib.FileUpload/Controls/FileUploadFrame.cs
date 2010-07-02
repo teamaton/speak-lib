@@ -32,7 +32,6 @@ namespace SpeakFriend.FileUpload
                 EnsureUploadManagerId();
                 return ViewState["uploadManagerId"] as string;
             }
-            set { ViewState["uploadManagerId"] = value; }
         }
 
         private void EnsureUploadManagerId()
@@ -55,7 +54,10 @@ namespace SpeakFriend.FileUpload
             iframe.RenderControl(output);
         }
 
-        public IList<UploadedFile> UploadedFiles { get { return SessionUpload.UploadManager.UploadedFiles; } }
+    	public IList<UploadedFile> UploadedFiles
+    	{
+    		get { return SessionUpload.UploadManager.UploadedFiles; }
+    	}
 
         public void ClearFiles()
         {

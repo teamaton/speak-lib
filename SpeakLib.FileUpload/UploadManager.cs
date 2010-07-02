@@ -90,17 +90,13 @@ namespace SpeakFriend.FileUpload
             disposed = true;
         }
 
+		/// <summary>
+		/// Need to call Dispose() explicitely; calling it in the finalizer crashes the Upload in out-of-process
+		/// session management systems.
+		/// </summary>
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
-
-        ~UploadManager()
-        {
-            Dispose(false);
-        }
-
-
     }
 }
