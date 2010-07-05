@@ -29,31 +29,17 @@ namespace SpeakFriend.Utilities
 
         public SettingList GetBy(SettingSearchDesc searchDesc)
         {
-            return GetBy(searchDesc as ISearchDesc);
+            return base.GetBy(searchDesc);
         }
 
         public Setting GetUnique(SettingSearchDesc searchDesc)
         {
-            ICriteria criteria = GetCriteria(searchDesc);
+        	var results = GetBy(searchDesc);
 
-            return criteria.UniqueResult<Setting>();
-        }
+			if (results.Count > 1)
+				throw new ArgumentException("The DB returned more than 1 result for the given search descriptor!");
 
-        private ICriteria GetCriteria(SettingSearchDesc searchDesc)
-        {
-            var criteria = GetExecutableCriteria();
-
-            AddConditions(searchDesc, criteria);
-            AddOrderBy(criteria, searchDesc.OrderBy);
-
-            SetTotalItemCount(criteria, searchDesc);
-            SetPager(criteria, searchDesc);
-            return criteria;
-        }
-
-        private void AddConditions(SettingSearchDesc searchDesc, ICriteria criteria)
-        {
-            AddGenericConditions(criteria, searchDesc.Filter);
+        	return results.Count > 0 ? results[0] : null;
         }
     }
 }

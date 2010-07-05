@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NHibernate;
 using NHibernate.Criterion;
 
@@ -98,12 +99,6 @@ namespace SpeakFriend.Utilities
                 criteria.SetMaxResults(pager.PageSize);
                 criteria.SetFirstResult(pager.FirstResult);
             }
-        }
-
-        public void SetTotalItemCount(ICriteria criteria, IPager pager)
-        {
-            var criteriaRowCount = CriteriaTransformer.TransformToRowCount(criteria);
-            pager.TotalItems = criteriaRowCount.UniqueResult<int>();
         }
 
         public virtual void Create(TDomainObject domainObject)
@@ -237,11 +232,39 @@ namespace SpeakFriend.Utilities
 			if (criteriaExtender != null)
 				criteriaExtender.Invoke(criteria);
 
-            SetTotalItemCount(criteria, searchDesc);
+			var totalCountCriteria = CriteriaTransformer.TransformToRowCount(criteria);
+
             SetPager(criteria, searchDesc);
 
+			// Use MultiCriteria to reduce DB roundtrips.
+			var multiCriteria = _session
+				.CreateMultiCriteria()
+				.Add(criteria)
+				.Add(totalCountCriteria);
+
+			IList multiResult;
+			ITransaction trans;
+
+			try
+			{
+				using (trans = _session.BeginTransaction())
+				{
+					multiResult = multiCriteria.List();
+					trans.Commit();
+				}
+			}
+			catch (ADOException)
+			{
+				_session.Connection.Close();
+				
+				throw;
+			}
+
+			// Extract results from the multiple result sets
             var list = new TDomainObjectList();
-            list.AddRange(criteria.List<TDomainObject>());
+			list.AddRange(((IList)multiResult[0]).Cast<TDomainObject>());
+
+			searchDesc.TotalItems = (int) ((IList) multiResult[1])[0];
 
             if (AfterItemListRetrieved != null)
                 AfterItemListRetrieved(this, new TDomainObjectListArgs(list));

@@ -7,13 +7,23 @@ using SpeakFriend.Utilities;
 namespace SpeakFriend.Utilities
 {
     [Serializable]
-    public class MessageSearchDesc : Pager, ICloneable
+    public class MessageSearchDesc : Pager, ICloneable, ISearchDesc
     {
         private MessageSearchFilter _filter;
         public MessageSearchFilter Filter{ get { return _filter ?? (_filter = new MessageSearchFilter()); } }
         
         private readonly MessageOrderBy _orderBy = new MessageOrderBy();
         public MessageOrderBy OrderBy { get { return _orderBy; } }
+
+		ConditionContainer ISearchDesc.Filter
+		{
+			get { return Filter; }
+		}
+
+		OrderByCriteria ISearchDesc.OrderBy
+		{
+			get { return OrderBy; }
+		}
 
 		public MessageSearchDesc()
 		{
