@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using NHibernate;
 using NHibernate.Criterion;
@@ -247,13 +248,16 @@ namespace SpeakFriend.Utilities
 
 			try
 			{
+				Debug.WriteLine(string.Format("Current connection hash: #{0} - state:{1}",
+				                              _session.Connection.GetHashCode(), _session.Connection.State));
+
 				using (trans = _session.BeginTransaction())
 				{
 					multiResult = multiCriteria.List();
 					trans.Commit();
 				}
 			}
-			catch (ADOException)
+			catch (HibernateException)
 			{
 				_session.Connection.Close();
 				
