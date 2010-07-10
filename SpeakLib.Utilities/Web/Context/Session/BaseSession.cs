@@ -12,6 +12,7 @@ namespace SpeakFriend.Utilities.Web
     {
         private static HttpSessionState SessionState{ get { return HttpContext.Current.Session; } }
         protected SessionData Data = new SessionData();
+        protected RequestData RequestData = new RequestData();
 
         public void Kill()
         {
