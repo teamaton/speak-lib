@@ -75,7 +75,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NHibernate\ManyToOne.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\StringExtensionTests.cs" />
     <Compile Include="Utilities\Query\PagerBehaviourTest.cs" />
@@ -96,9 +95,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="App.NHibernate.Lite.config" />
+    <None Include="App.NHibernate.Lite.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="NHibernate\" />
     <Folder Include="Utilities\SeedWork.Setting\" />
     <Folder Include="Utilities\SeedWork.Tagging\" />
     <Folder Include="_Data\" />
