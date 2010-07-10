@@ -1,6 +1,12 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0D02A517-D939-4BAD-AD65-3E22D52EF0EC}"
+	ProjectSection(SolutionItems) = preProject
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+		Speak-Lib.vsmdi = Speak-Lib.vsmdi
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{67FD60E4-2E99-449A-AFEB-1B343DC881FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeakLib.Utilities", "SpeakLib.Utilities\SpeakLib.Utilities.csproj", "{E38CF0D5-8B70-419F-A11E-F978C90ABD1A}"
@@ -18,12 +24,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleApp.Core", "ExampleApp.Core\ExampleApp.Core.csproj", "{678E2425-56AD-4DCD-99BB-78F71E630C97}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Usefulness", "Tests.Usefulness\Tests.Usefulness.csproj", "{39CF618D-60C4-45A7-8F79-92D716EE2F7A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0D02A517-D939-4BAD-AD65-3E22D52EF0EC}"
-	ProjectSection(SolutionItems) = preProject
-		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
-		Speak-Lib.vsmdi = Speak-Lib.vsmdi
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
