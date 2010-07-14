@@ -244,29 +244,28 @@ namespace SpeakFriend.Utilities
 				.Add(totalCountCriteria);
 
 			IList multiResult;
-			ITransaction trans;
 
-			try
-			{
-				Debug.WriteLine(string.Format("Current connection hash: #{0} - state:{1}",
-				                              _session.Connection.GetHashCode(), _session.Connection.State));
-
-				using (trans = _session.BeginTransaction())
+			using (var trans = _session.BeginTransaction())
+				try
 				{
+					Debug.WriteLine(string.Format("Current connection hash: #{0} - state:{1}",
+												  _session.Connection.GetHashCode(), _session.Connection.State));
+
 					multiResult = multiCriteria.List();
 					trans.Commit();
 				}
-			}
-			catch (HibernateException)
-			{
-				_session.Connection.Close();
-				
-				throw;
-			}
+				catch (HibernateException)
+				{
+					trans.Rollback();
+					_session.Close();
+					_session.Dispose();
+					
+					throw;
+				}
 
 			// Extract results from the multiple result sets
             var list = new TDomainObjectList();
-			list.AddRange(((IList)multiResult[0]).Cast<TDomainObject>());
+			list.AddRange(((IList) multiResult[0]).Cast<TDomainObject>());
 
 			searchDesc.TotalItems = (int) ((IList) multiResult[1])[0];
 
