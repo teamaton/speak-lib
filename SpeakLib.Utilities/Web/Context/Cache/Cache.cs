@@ -33,9 +33,9 @@ namespace SpeakFriend.Utilities.Web
             return _cache.Get(key);
         }
 
-        public static Type Get<Type>(string key)
+        public static T Get<T>(string key)
         {
-            return _cache.Get<Type>(key);
+            return _cache.Get<T>(key);
         }
 
         public static void Clear()
