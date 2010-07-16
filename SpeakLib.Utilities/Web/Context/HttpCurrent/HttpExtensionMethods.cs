@@ -8,6 +8,32 @@ namespace SpeakFriend.Utilities.Web
 {
 	public static class RequestResponseExtensions
 	{
+		/// <summary>
+		/// Throws an HTTP Exception to return a 410 HTTP status code.
+		/// </summary>
+		/// <remarks>
+		/// 410 Gone
+		/// Indicates that the resource requested is no longer available and will not be available again.
+		/// This should be used when a resource has been intentionally removed; however, it is not necessary
+		/// to return this code and a 404 Not Found can be issued instead. Upon receiving a 410 status code,
+		/// the client should not request the resource again in the future. Clients such as search engines
+		/// should remove the resource from their indexes.
+		/// </remarks>
+		/// <param name="response"></param>
+		public static void SetResourceIsGoneAndFinishRequest(this HttpResponse response)
+		{
+			throw new HttpException(410, "410 Gone");
+		}
+
+		/// <summary>
+		/// Throws an HTTP Exception to return a 410 HTTP status code.
+		/// </summary>
+		/// <param name="response"></param>
+		public static void SetResourceNotFoundAndFinishRequest(this HttpResponse response)
+		{
+			throw new HttpException(404, "404 Not Found");
+		}
+
 		public static void RedirectToSamePage(this HttpResponse response, HttpRequest request)
 		{
 			response.Redirect(request.RawUrl);
