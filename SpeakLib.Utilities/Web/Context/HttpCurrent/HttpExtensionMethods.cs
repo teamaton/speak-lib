@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Web;
+using System.Web.SessionState;
 
 namespace SpeakFriend.Utilities.Web
 {
@@ -56,6 +59,25 @@ namespace SpeakFriend.Utilities.Web
 				ip = request.ServerVariables["REMOTE_ADDR"];
 
 			return ip ?? "unknown";
+		}
+
+		/// <summary>
+		/// Return the size of the session in Byte. Uses Serialization, so use with care!
+		/// </summary>
+		/// <param name="session"></param>
+		/// <returns></returns>
+		public static long GetSize(this HttpSessionState session)
+		{
+			long totalSessionBytes = 0;
+			var b = new BinaryFormatter();
+			MemoryStream m;
+			foreach (var t in session)
+			{
+				m = new MemoryStream();
+				b.Serialize(m, t);
+				totalSessionBytes += m.Length;
+			}
+			return totalSessionBytes;
 		}
 	}
 }
