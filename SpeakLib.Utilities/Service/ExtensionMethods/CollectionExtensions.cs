@@ -81,10 +81,17 @@ namespace SpeakFriend.Utilities
 
 
 		/// <summary>
-		/// Converts an IEnumeable to a generic list based on the given type.
-		/// @deprecated
+		/// Dynamically converts an IEnumeable to a generic list based on the given type.
 		/// </summary>
-        [Obsolete("Why is this solved in this way? Isn't coll.Cast<T>().ToList() enough?")]
+		/// <remarks>
+		/// This method is suitable when the <param name="type">type</param> parameter's value is determined at runtime.
+		/// </remarks>
+		/// <example>
+		/// foreach (var group in Model.GroupBy(item=>item.GetType()))
+	    /// {
+	    ///     Html.RenderPartial(string.Format("GeoObjectView/Structure/{0}s", group.Key.Name), group.AsListOf(group.Key));
+	    /// }
+		/// </example>
 		public static IList AsListOf(this IEnumerable coll, Type type)
 		{
             var result = (IList) typeof (List<>).MakeGenericType(type).GetConstructor(Type.EmptyTypes).Invoke(null);
@@ -97,10 +104,5 @@ namespace SpeakFriend.Utilities
 			list.AddRange(items);
 			return list;
 		}
-
-        public static IList<T> AsListOf<T>(this IEnumerable coll)
-        {
-            return coll.Cast<T>().ToList();
-        }
 	}
 }
