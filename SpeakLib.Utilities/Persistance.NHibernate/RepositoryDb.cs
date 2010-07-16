@@ -218,7 +218,7 @@ namespace SpeakFriend.Utilities
 		}
 
 		/// <summary>
-		/// 
+		/// Generic GetBy.
 		/// </summary>
 		/// <param name="searchDesc"></param>
 		/// <param name="criteriaExtender">Here you can plug in additional changes of the criteria.</param>
