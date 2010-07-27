@@ -60,6 +60,33 @@ namespace SpeakFriend.Utilities
 			return list;
 		}
 
+        /// <summary>
+        /// Shuffles the items in the list, changes the list! 
+        /// Uses a <see cref="Random"/> instance with changing seed.
+        /// <br/>
+        /// Strongly typed version of <see cref="Shuffle"/>.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public static IList<T> Shuffle<T>(this IList<T> list)
+        {
+            var random = new Random();
+
+            int n = list.Count;
+
+            while (n > 1)
+            {
+                int k = random.Next(n);
+                --n;
+                var temp = list[n];
+                list[n] = list[k];
+                list[k] = temp;
+            }
+
+            return list;
+        }
+
 		/// <summary>
 		/// Returns all elements of a collection that occur more than once in the given collection.
 		/// </summary>
