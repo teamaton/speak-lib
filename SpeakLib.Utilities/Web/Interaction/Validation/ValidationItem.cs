@@ -30,5 +30,10 @@ namespace SpeakFriend.Utilities.Web
         {
             return ErrorMessage;
         }
+
+    	public bool IsDropDownList()
+    	{
+			return typeof(DropDownList) == Control.GetType();
+    	}
     }
 }

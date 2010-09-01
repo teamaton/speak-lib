@@ -65,7 +65,7 @@ namespace SpeakFriend.Utilities.Web
             validator.ID = identifier;
 
             SetSharedValues(validator, item);
-            validator.ControlToCompare = item.ControlTwo.ID;
+			validator.ControlToCompare = item.ControlTwo != null ? item.ControlTwo.ID : null;
             validator.Operator = item.Operator;
             validator.ValueToCompare = item.ValueToCompare;
 

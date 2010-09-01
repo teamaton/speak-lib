@@ -79,12 +79,14 @@ namespace SpeakFriend.Utilities.Web
             return _lastCreatedValidationGroup;
         }
 
-        public void Finish()
+        public ValidationBuilder Finish()
         {
             if (!_lastCreatedValidationGroup.IsFinished)
                 _lastCreatedValidationGroup.FinishGroup();
 
             EnsureThatNecessaryControlsAreRegistered();
+
+        	return this;
         }
 
         private void EnsureThatNecessaryControlsAreRegistered()

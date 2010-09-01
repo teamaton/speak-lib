@@ -109,28 +109,32 @@ namespace SpeakFriend.Utilities.Web
         {
             foreach (var item in _items)
             {
-                if (item.IsTextBox())
+                if (item.IsTextBox() || item.IsDropDownList())
                 {
-                    if (item.Type == ValidationType.RequiredField)
-                        _validationBuilder.AddRequiredFieldValidator(_validatorBuilder, item);
-
-                    else if (item.Type == ValidationType.Compare)
-                        _validationBuilder.AddCompareValidator(_validatorBuilder, item);
-
-                    else if (item.Type == ValidationType.Email)
-                        _validationBuilder.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_Email);
-
-                    else if (item.Type == ValidationType.GUID)
-                        _validationBuilder.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_GUID);
-
-                    else if (item.Type == ValidationType.Uri)
-                        _validationBuilder.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_Uri);
-
-                    else if (item.Type == ValidationType.Positive_Integer)
-                        _validationBuilder.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_PositiveInteger);
-
-                    else if (item.Type == ValidationType.Price)
-                        _validationBuilder.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_Price);
+                    switch (item.Type)
+                    {
+                    	case ValidationType.RequiredField:
+                    		_validationBuilder.AddRequiredFieldValidator(_validatorBuilder, item);
+                    		break;
+                    	case ValidationType.Compare:
+                    		_validationBuilder.AddCompareValidator(_validatorBuilder, item);
+                    		break;
+                    	case ValidationType.Email:
+                    		_validationBuilder.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_Email);
+                    		break;
+                    	case ValidationType.GUID:
+                    		_validationBuilder.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_GUID);
+                    		break;
+                    	case ValidationType.Uri:
+                    		_validationBuilder.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_Uri);
+                    		break;
+                    	case ValidationType.Positive_Integer:
+                    		_validationBuilder.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_PositiveInteger);
+                    		break;
+                    	case ValidationType.Price:
+                    		_validationBuilder.AddRegularExpressionValidator(_validatorBuilder, item, ValidationUtil.Regex_Price);
+                    		break;
+                    }
                 }
             }
 
