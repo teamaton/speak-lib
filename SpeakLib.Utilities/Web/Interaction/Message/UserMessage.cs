@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 
 namespace SpeakFriend.Utilities.Web
 {
@@ -11,8 +12,8 @@ namespace SpeakFriend.Utilities.Web
     {
         private string _title;
         private readonly List<UserMessageItem> _messages = new List<UserMessageItem>();
-
-        public string Title
+    	
+    	public string Title
         {
             get { return _title; }
             set { _title = value; }
@@ -64,10 +65,35 @@ namespace SpeakFriend.Utilities.Web
             if (HasMessages())
                 return Messages[0].Text;
             
-            if (String.IsNullOrEmpty(Title))
-                return Title;
-
-            return "empty";
+            return !string.IsNullOrEmpty(Title) ? Title : "empty";
         }
+
+    	public List<Control> RenderMessageBody(UserMessageRenderMode renderMode)
+    	{
+			if (renderMode == UserMessageRenderMode.Raw)
+			{
+				var list = new List<Control>();
+				foreach (var messageItem in Messages)
+					list.AddRange(messageItem.Controls);
+				return list;
+			}
+
+    		if (renderMode == UserMessageRenderMode.Paragraph || Messages.Count == 1)
+			{
+				return Messages.Select(m=>m.ToControl(new HtmlGenericControl("p"))).ToList();
+			}
+    		
+			if (renderMode == UserMessageRenderMode.List)
+    		{
+    			var msgList = new HtmlGenericControl("ul");
+
+    			foreach (UserMessageItem messageItem in Messages)
+    				msgList.Controls.Add(messageItem.ToControl(new HtmlGenericControl("li")));
+
+    			return new List<Control> {msgList};
+    		}
+
+			throw new ArgumentOutOfRangeException("renderMode");
+    	}
     }
 }

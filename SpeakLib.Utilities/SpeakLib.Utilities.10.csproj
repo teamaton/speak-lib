@@ -287,6 +287,7 @@
     <Compile Include="Service\SettingTypes.cs" />
     <Compile Include="Service\SpeakLibException.cs" />
     <Compile Include="Web\Context\Session\RequestData.cs" />
+    <Compile Include="Web\Interaction\Message\UserMessageRenderMode.cs" />
     <Compile Include="Web\View\MVC\Controls\Pager.cs" />
     <Compile Include="Web\View\WebForms\Ajax\AjaxUtils.cs">
       <SubType>Code</SubType>
