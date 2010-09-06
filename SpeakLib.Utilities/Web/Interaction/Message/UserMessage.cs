@@ -1,75 +1,71 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 
 namespace SpeakFriend.Utilities.Web
 {
-    [Serializable]
-    public class UserMessage
-    {
-        private string _title;
-        private readonly List<UserMessageItem> _messages = new List<UserMessageItem>();
-    	
-    	public string Title
-        {
-            get { return _title; }
-            set { _title = value; }
-        }
+	[Serializable]
+	public class UserMessage
+	{
+		private readonly List<UserMessageItem> _messages = new List<UserMessageItem>();
 
-        public List<UserMessageItem> Messages
-        {
-            get { return _messages; }
-        }
+		public string Title { get; private set; }
 
-        public UserMessage() { }
+		public List<UserMessageItem> Messages
+		{
+			get { return _messages; }
+		}
 
-        public UserMessage(string title)
-        {
-            _title = title;
-        }
+		public UserMessage()
+		{
+		}
 
-        public UserMessage(string title, string message)
-            : this(title)
-        {
-            _messages.Add(new UserMessageItem(message));
-        }
+		public UserMessage(string title)
+		{
+			Title = title;
+		}
 
-    	public UserMessage AddItem(string message)
-        {
-            _messages.Add(new UserMessageItem(message));
-            return this;
-        }
+		public UserMessage(string title, string message)
+			: this(title)
+		{
+			_messages.Add(new UserMessageItem(message));
+		}
 
-    	public UserMessage AddItem(Control control)
-    	{
-    		_messages.Add(new UserMessageItem(control));
-    		return this;
-    	}
+		public UserMessage AddItem(string message)
+		{
+			_messages.Add(new UserMessageItem(message));
+			return this;
+		}
 
-    	public UserMessage SetTitle(string title)
-        {
-            _title = title;
-            return this;
-        }
+		public UserMessage AddItem(Control control)
+		{
+			_messages.Add(new UserMessageItem(control));
+			return this;
+		}
 
-        public bool HasMessages()
-        {
-            return _messages.Count > 0;
-        }
+		public UserMessage SetTitle(string title)
+		{
+			Title = title;
+			return this;
+		}
 
-        public override string ToString()
-        {
-            if (HasMessages())
-                return Messages[0].Text;
-            
-            return !string.IsNullOrEmpty(Title) ? Title : "empty";
-        }
+		public bool HasMessages()
+		{
+			return _messages.Count > 0;
+		}
 
-    	public List<Control> RenderMessageBody(UserMessageRenderMode renderMode)
-    	{
+		public override string ToString()
+		{
+			if (HasMessages())
+				return Messages[0].Text;
+
+			return !string.IsNullOrEmpty(Title) ? Title : "empty";
+		}
+
+		public List<Control> RenderMessageBody(UserMessageRenderMode renderMode)
+		{
 			if (renderMode == UserMessageRenderMode.Raw)
 			{
 				var list = new List<Control>();
@@ -78,22 +74,22 @@ namespace SpeakFriend.Utilities.Web
 				return list;
 			}
 
-    		if (renderMode == UserMessageRenderMode.Paragraph || Messages.Count == 1)
+			if (renderMode == UserMessageRenderMode.Paragraph || Messages.Count == 1)
 			{
-				return Messages.Select(m=>m.ToControl(new HtmlGenericControl("p"))).ToList();
+				return Messages.Select(m => m.ToControl(new HtmlGenericControl("p"))).ToList();
 			}
-    		
+
 			if (renderMode == UserMessageRenderMode.List)
-    		{
-    			var msgList = new HtmlGenericControl("ul");
+			{
+				var msgList = new HtmlGenericControl("ul");
 
-    			foreach (UserMessageItem messageItem in Messages)
-    				msgList.Controls.Add(messageItem.ToControl(new HtmlGenericControl("li")));
+				foreach (var messageItem in Messages)
+					msgList.Controls.Add(messageItem.ToControl(new HtmlGenericControl("li")));
 
-    			return new List<Control> {msgList};
-    		}
+				return new List<Control> {msgList};
+			}
 
 			throw new ArgumentOutOfRangeException("renderMode");
-    	}
-    }
+		}
+	}
 }
