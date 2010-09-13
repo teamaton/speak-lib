@@ -68,5 +68,13 @@ namespace SpeakFriend.Utilities.Web
 			for (int i = start; (step > 0 && i <= end) || (step < 0 && i >= end); i += step)
 				listControl.Items.Add(new ListItem(i.ToString(), i.ToString()));
 		}
+
+		public static T RemoveFirstItem<T>(this T list) where T:ListControl
+		{
+			if (list != null && list.Items.Count > 0)
+				list.Items.RemoveAt(0);
+
+			return list;
+		}
     }
 }
