@@ -111,8 +111,31 @@ namespace SpeakFriend.Utilities
 			_session.Save(domainObject);
             ClearAllItemCache();
 
-			if (OnItemCreated != null)
-				OnItemCreated(this, new RepositoryDbEventArgs(domainObject));
+			InvokeOnItemCreated(domainObject);
+        }
+
+    	protected void InvokeOnItemCreated(TDomainObject domainObject)
+    	{
+    		if (OnItemCreated != null)
+    			OnItemCreated(this, new RepositoryDbEventArgs(domainObject));
+    	}
+
+    	public virtual void Create(List<TDomainObject> domainObjectList)
+        {
+        	Action<TDomainObject> action = Create;
+
+			if (_session.Transaction.IsActive)
+				foreach (var domainObject in domainObjectList)
+					action(domainObject);
+			else
+			{
+				using (var transaction = _session.BeginTransaction())
+				{
+					foreach (var domainObject in domainObjectList)
+						action(domainObject);
+					transaction.Commit();
+				}
+			}
         }
 
     	public virtual void Update(TDomainObject domainObject)
@@ -161,7 +184,7 @@ namespace SpeakFriend.Utilities
             Delete(GetById(id));
         }
 
-        private void ClearAllItemCache()
+    	protected void ClearAllItemCache()
         {
             _allItemsCached = null;
         }
