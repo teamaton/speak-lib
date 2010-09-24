@@ -80,6 +80,18 @@ namespace SpeakFriend.Utilities
 			Conditions.AddUnique(this);
 		}
 
+		public ConditionBoolean Set(bool? value)
+		{
+			if (value == null)
+				SetNull();
+			else if (value == true)
+				SetTrue();
+			else if (value == false)
+				SetFalse();
+
+			return this;
+		}
+
 		/// <summary>
 		/// Checks whether this condition is set and contained in the ConditionList.
 		/// </summary>
