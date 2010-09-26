@@ -201,6 +201,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\AutofacContrib.NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="Common.Logging">
+      <HintPath>..\Lib\Common.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate, Version=1.0.0.593, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\FluentNHibernate.dll</HintPath>
@@ -235,6 +238,9 @@
     </Reference>
     <Reference Include="PresentationFramework">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Quartz">
+      <HintPath>..\Lib\Quartz.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -277,6 +283,8 @@
     <Compile Include="Persistence\Interfaces\PersistableBase.cs" />
     <Compile Include="Persistence\TypeExtensions.cs" />
     <Compile Include="Reflection\ReflectionHelper.cs" />
+    <Compile Include="SeedWork.JobScheduler\JobBase.cs" />
+    <Compile Include="SeedWork.JobScheduler\JobScheduler.cs" />
     <Compile Include="SeedWork.Usefulness\UsefulnessCreatorAnonymous.cs" />
     <Compile Include="SeedWork.Usefulness\AutofacModuleUsefulness.cs" />
     <Compile Include="SeedWork.Usefulness\IUsefulnessCreator.cs" />
