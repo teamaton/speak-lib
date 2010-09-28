@@ -18,12 +18,12 @@ namespace SpeakFriend.Utilities
 		}
 
 		/// <summary>
-		/// Returns a new <see cref="DateTime"/> object with the same date part as the given <paramref name="dateTime"/>
+		/// Same as <see cref="DateTime.Date"/>. Returns a new <see cref="DateTime"/> object with the same date part as the given <paramref name="dateTime"/>
 		/// but the time set to 00:00:00.
 		/// </summary>
 		public static DateTime StartOfDay(this DateTime dateTime)
 		{
-			return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+			return dateTime.Date;
 		}
 
 		/// <summary>

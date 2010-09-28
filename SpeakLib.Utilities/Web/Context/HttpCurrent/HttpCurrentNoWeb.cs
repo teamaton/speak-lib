@@ -17,11 +17,19 @@ namespace SpeakFriend.Utilities.Web
         public RequestNoWeb Request { get; set; }
         public ResponseNoWeb Response { get; set; }
         public IDictionary ContextItems { get; set; }
+		public string SessionId { get; set; }
+
+		public HttpCurrentNoWeb()
+		{
+			Reset();
+		}
 
         public void Reset()
         {
-            Response = new ResponseNoWeb();
-            Request = new RequestNoWeb();
+        	Request = new RequestNoWeb();
+        	Response = new ResponseNoWeb();
+        	ContextItems = new Dictionary<string, object>();
+        	SessionId = DateTime.Now.ToString("s");
         }
     }
 }

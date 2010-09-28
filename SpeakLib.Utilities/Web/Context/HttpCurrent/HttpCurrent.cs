@@ -13,6 +13,7 @@ namespace SpeakFriend.Utilities.Web
         IRequest Request { get; }
         IResponse Response { get; }
         IDictionary ContextItems { get; }
+		string SessionId { get; }
     }
 
     public class HttpCurrent : IHttpCurrent
@@ -20,31 +21,24 @@ namespace SpeakFriend.Utilities.Web
         public virtual IRequest Request { get; protected set; }
         public virtual IResponse Response { get; protected set; }
         public virtual IDictionary ContextItems { get; protected set; }
+        public virtual string SessionId { get; protected set; }
 
-        protected HttpCurrent(){}
+        protected HttpCurrent()
+        {
+        	Request = new RequestWeb();
+        	Response = new ResponseWeb();
+        	ContextItems = HttpContext.Current.Items;
+        	SessionId = HttpContext.Current.Session.SessionID;
+        }
 
         public static HttpCurrent Get()
         {
-            var result = new HttpCurrent
-                             {
-                                 Request = new RequestWeb(),
-                                 Response = new ResponseWeb(),
-                                 ContextItems = HttpContext.Current.Items
-                             };
-
-            return result;
+        	return new HttpCurrent();
         }
 
         public static HttpCurrentNoWeb GetNoWeb()
         {
-            var result = new HttpCurrentNoWeb
-                             {
-                                 Request = new RequestNoWeb(),
-                                 Response = new ResponseNoWeb(),
-                                 ContextItems = new Dictionary<string, object>()
-                             };
-
-            return result;
+        	return new HttpCurrentNoWeb();
         }
     }
 }
