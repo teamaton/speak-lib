@@ -303,6 +303,7 @@
     <Compile Include="Service\AppSettings\AppSettings.cs" />
     <Compile Include="Service\ExtensionMethods\CollectionExtensions.cs" />
     <Compile Include="Service\ExtensionMethods\DateTimeExtensions.cs" />
+    <Compile Include="Service\ExtensionMethods\EnumExtensions.cs" />
     <Compile Include="Service\PathUtil.cs" />
     <Compile Include="Service\FileStore\StoredFile.cs" />
     <Compile Include="Service\FileStore\StoredFileList.cs" />
