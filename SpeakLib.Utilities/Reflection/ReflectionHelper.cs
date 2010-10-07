@@ -164,5 +164,14 @@ namespace SpeakFriend.Utilities.Reflection
 		}
 
 		#endregion
+
+		public static object CallMethod(object cacheItem, string methodName)
+		{
+			var method = cacheItem.GetType().GetMethod(methodName);
+			if (method == null)
+				return null;
+
+			return cacheItem.GetType().InvokeMember(methodName, BindingFlags.InvokeMethod, null, cacheItem, new object[0]);
+		}
 	}
 }
