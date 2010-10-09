@@ -272,6 +272,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Language\Language.cs" />
+    <Compile Include="Language\LanguageList.cs" />
+    <Compile Include="Language\LanguageMapping.cs" />
+    <Compile Include="Language\LanguageService.cs" />
     <Compile Include="Persistance.NHibernate\Fluent\EnumConvention.cs" />
     <Compile Include="Persistance.NHibernate\Fluent\ReferenceConvention.cs" />
     <Compile Include="Persistance.NHibernate\NHibernateHelperSF.cs" />
@@ -650,6 +654,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Service\Security\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Language\Language.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
