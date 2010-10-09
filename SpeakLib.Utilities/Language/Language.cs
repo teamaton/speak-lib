@@ -1,40 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
+using SpeakFriend.Utilities;
 
-namespace SpeakFriend.Utilities
+namespace Teamaton.Lib
 {
 	[Serializable]
 	public class Language
-    {
-    	private string _iso2;
+	{
+		private string _iso2;
+
 		/// <summary>
 		/// Is always UPPERCASE.
 		/// </summary>
-    	public virtual string Iso2
-    	{
+		public virtual string Iso2
+		{
 			get { return _iso2.ToUpperInvariant(); }
 			private set { _iso2 = value; }
-    	}
+		}
 
-    	public virtual string Name { get; private set; }
+		public virtual string Name { get; private set; }
 		public virtual DateTime DateCreated { get; private set; }
 
-        public Language(){}
+		public Language()
+		{
+		}
 
-        public Language(string iso2, string name)
-        {
-            Iso2 = iso2;
-            Name = name;
-            DateCreated = DateTime.Now;
-        }
+		public Language(string iso2, string name)
+		{
+			Iso2 = iso2;
+			Name = name;
+			DateCreated = DateTime.Now;
+		}
 
-        public override string ToString()
-        {
-            return String.Format("Iso2:{0} Name:{1}", Iso2, Name);
-        }
+		public override string ToString()
+		{
+			return String.Format("Iso2:{0} Name:{1}", Iso2, Name);
+		}
 
 		public override bool Equals(object obj)
 		{
@@ -44,7 +44,7 @@ namespace SpeakFriend.Utilities
 			if (GetType() != obj.GetType())
 				return false;
 
-			var language = (Language)obj;
+			var language = (Language) obj;
 
 			if (language.Iso2 == Iso2)
 				return true;
@@ -59,8 +59,8 @@ namespace SpeakFriend.Utilities
 
 		public static bool operator ==(Language x, Language y)
 		{
-			bool xnull = ReferenceEquals(x, null);
-			bool ynull = ReferenceEquals(y, null);
+			var xnull = ReferenceEquals(x, null);
+			var ynull = ReferenceEquals(y, null);
 
 			if (xnull && ynull) return true;
 			if (xnull || ynull) return false;
@@ -72,5 +72,5 @@ namespace SpeakFriend.Utilities
 		{
 			return !(x == y);
 		}
-    }
+	}
 }

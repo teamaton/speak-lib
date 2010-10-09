@@ -622,6 +622,7 @@
     <Compile Include="Wpf\Utilites\UIUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Language\Language.hbm.xml" />
     <EmbeddedResource Include="SeedWork.Setting\Setting.hbm.xml">
     </EmbeddedResource>
   </ItemGroup>
@@ -654,9 +655,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Service\Security\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Language\Language.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
