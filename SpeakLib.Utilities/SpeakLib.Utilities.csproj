@@ -622,7 +622,6 @@
     <Compile Include="Wpf\Utilites\UIUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Language\Language.hbm.xml" />
     <EmbeddedResource Include="SeedWork.Setting\Setting.hbm.xml">
     </EmbeddedResource>
   </ItemGroup>
