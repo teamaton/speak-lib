@@ -198,16 +198,5 @@ namespace Teamaton.Lib
 		                                                                 		{"TR", "TR"},
 		                                                                 		{"UA", "EN"}
 		                                                                 	};
-
-		public Language GetLanguageForCulture(string culture)
-		{
-			if (culture == null)
-				throw new ArgumentNullException("culture");
-
-			if (culture.StartsWith("de"))
-				return GetGerman();
-
-			throw new NotImplementedException();
-		}
 	}
 }
