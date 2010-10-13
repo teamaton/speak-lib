@@ -48,7 +48,7 @@ namespace Teamaton.Lib
 					new ListItem(language.Name, language.Iso2));
 		}
 
-		public LanguageList GetAll()
+		public virtual LanguageList GetAll()
 		{
 			return new LanguageList(_session.CreateCriteria(typeof (Language)).List<Language>());
 
