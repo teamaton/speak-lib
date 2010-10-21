@@ -87,20 +87,26 @@ namespace SpeakFriend.Utilities.Web
 		/// Returns all controls of the given Type that are found inside this control.
 		/// Searches recursively.
 		/// </summary>
-		public static IEnumerable<Control> ControlsOfType(this Control control, List<Type> types)
+		public static IEnumerable<Control> ControlsOfType(this Control control, List<Type> types, params Type[] ignoreAllOfAndBelow)
 		{
 			var controls = control.Controls;
 			
-			if (controls == null || controls.Count == 0) return new List<Control>(0);
+			if (controls == null || controls.Count == 0)
+				return new List<Control>(0);
 
 			var newColl = new HashSet<Control>();
+
 			foreach (Control child in controls)
 			{
 				var childType = child.GetType();
+
+				if (ignoreAllOfAndBelow.Any(t => t.IsAssignableFrom(childType)))
+					continue;
+
 				if (types.Any(t => t == childType))
 					newColl.Add(child);
 
-				var childColl = child.ControlsOfType(types);
+				var childColl = child.ControlsOfType(types, ignoreAllOfAndBelow);
 				foreach (Control ctrl in childColl)
 					newColl.Add(ctrl);
 			}
