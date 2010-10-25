@@ -259,7 +259,7 @@ namespace SpeakFriend.Utilities
 
 		public static string JoinNonEmpty(this IEnumerable<string> values, string separator)
 		{
-			return String.Join(separator, values.WhereSafe(s => string.IsNullOrEmpty(s)).ToArray());
+			return String.Join(separator, values.WhereSafe(s => !string.IsNullOrEmpty(s)).ToArray());
 		}
 
 
