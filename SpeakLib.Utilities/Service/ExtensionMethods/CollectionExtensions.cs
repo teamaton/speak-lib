@@ -131,5 +131,19 @@ namespace SpeakFriend.Utilities
 			list.AddRange(items);
 			return list;
 		}
+
+		/// <summary>
+		/// Returns a single string, representing the ToString values of the objects in the given collection.
+		/// </summary>
+		public static string JoinToString<T>(this IEnumerable<T> collection)
+		{
+			if (collection == null)
+				return "null";
+
+			if (collection.Count() <= 0)
+				return "empty";
+
+			return collection.Select(o => o.ToString()).JoinNonEmpty(", ");
+		}
 	}
 }

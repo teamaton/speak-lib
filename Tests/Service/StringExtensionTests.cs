@@ -72,5 +72,27 @@ namespace Tests.Service
 				Directory.Delete(newDir);
 			}
 		}
+
+		[Test]
+		public void JoinObjectCollection()
+		{
+			var list = new List<object>
+			           	{
+			           		4,
+			           		"my string",
+			           		3.5
+			           	};
+			Console.WriteLine(list.JoinToString());
+		}
+
+		[Test]
+		public void JoinEmptyObjectCollection()
+		{
+			var list = new List<object>();
+			list.JoinToString().Should().Be.EqualTo("empty");
+
+			list = null;
+			list.JoinToString().Should().Be.EqualTo("null");
+		}
     }
 }
