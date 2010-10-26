@@ -17,7 +17,7 @@ namespace Tests.Utilities.Web
 
 			// Save
 			Console.WriteLine("Salt:        {0}", pw.Salt);
-			Console.WriteLine("Salted hash: {0}", pw.SaltedHash);
+			Console.WriteLine("Salted hash: {0}", pw.SaltedPasswordHash);
 
 			pw.Matches(passwordPlainText).Should().Be.True();
 		}
