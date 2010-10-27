@@ -11,6 +11,7 @@ namespace SpeakFriend.Utilities
 	public class ConditionObject<T> : Condition
 	{
 		private T _value;
+		private bool? _null;
 
 		public ConditionObject(ConditionContainer conditions) : base(conditions)
 		{
@@ -26,6 +27,12 @@ namespace SpeakFriend.Utilities
 			AddUniqueToContainer();
 		}
 
+		public void NotNull()
+		{
+			_null = false;
+			AddUniqueToContainer();
+		}
+
 		public override void AddToCriteria(ICriteria criteria)
 		{
 			criteria.Add(GetCriterion());
@@ -33,7 +40,11 @@ namespace SpeakFriend.Utilities
 
 		public override ICriterion GetCriterion()
 		{
-			return Restrictions.Eq(PropertyName, _value);
+			return _null.HasValue
+			       	? _null == false
+			       	  	? Restrictions.IsNotNull(PropertyName)
+			       	  	: Restrictions.IsNull(PropertyName)
+			       	: Restrictions.Eq(PropertyName, _value);
 		}
 	}
 }
