@@ -33,6 +33,12 @@ namespace SpeakFriend.Utilities.Web
 			_messages.Add(new UserMessageItem(message));
 		}
 
+		public UserMessage(string title, params Control[] controls)
+			: this(title)
+		{
+			_messages.Add(new UserMessageItem(controls));
+		}
+
 		public UserMessage AddItem(string message)
 		{
 			_messages.Add(new UserMessageItem(message));
