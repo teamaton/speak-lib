@@ -2,7 +2,7 @@
 
 namespace SpeakFriend.FileUpload
 {
-    internal class Settings : SpeakLibSettings
+    internal class Settings : AppSettings
     {
     	public static string FileUploadTempDirRelative
     	{

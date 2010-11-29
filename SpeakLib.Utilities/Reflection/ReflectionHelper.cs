@@ -126,12 +126,16 @@ namespace SpeakFriend.Utilities.Reflection
 
 		/// <summary>
 		/// Read the value of the field with the given name.
+		/// If the field does not exist then return null.
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <param name="fieldName"></param>
 		/// <returns>The field value.</returns>
 		public static object Field(this object obj, string fieldName)
 		{
+			if (obj.FieldInfo(fieldName) == null)
+				return null;
+
 			var value = obj.FieldInfo(fieldName).GetValue(obj);
 
 			return value;
