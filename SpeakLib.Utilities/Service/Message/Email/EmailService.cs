@@ -35,8 +35,6 @@ namespace SpeakFriend.Utilities
 
             if (settings.EmailEnabled.Value == false)
                 return;
-			//if(!Regex.IsMatch(message.To.MailAddress.Address, settings.AllowedTestAdressesRegEx.Value))
-			//    return;
 
             var mailMessage = GetFrom(message, settings);
 
