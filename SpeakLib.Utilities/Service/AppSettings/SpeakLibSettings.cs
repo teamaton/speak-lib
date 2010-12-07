@@ -12,6 +12,7 @@ namespace SpeakFriend.Utilities
         #region Email
 
         public static bool EmailIsEnabled { get { return Get<bool>("EmailEnabled"); } }
+
         public static string EmailFrom { get { return WebConfigurationManager.AppSettings.Get("EmailFromAddress"); } }
         public static string EmailFromName { get { return WebConfigurationManager.AppSettings.Get("EmailFromName"); } }
         public static string EmailTo { get { return WebConfigurationManager.AppSettings.Get("EmailToAddress"); } }
@@ -27,7 +28,8 @@ namespace SpeakFriend.Utilities
             }
         }
 
-        public static string SmtpServer { get { return Get<string>("SmtpServer"); } }
+		public static bool SmtpConfigOverDb { get { return TryGet_2("SmtpConfigOverDb", false); } }
+		public static string SmtpServer { get { return Get<string>("SmtpServer"); } }
         public static string SmtpPassword { get { return Get<string>("SmtpPassword"); } }
         public static string SmtpUser { get { return Get<string>("SmtpUser"); } }
 
