@@ -19,7 +19,7 @@ namespace SpeakFriend.Utilities
             _settingService = settingService;
         }
 
-        public void Send<TMessageParticipantType, TMessageType, TMessageStatus>
+        public virtual void Send<TMessageParticipantType, TMessageType, TMessageStatus>
             (MessageBase<TMessageParticipantType, TMessageType, TMessageStatus> message)
         {
             if (message.DistributionType != DistributionType.Email)
