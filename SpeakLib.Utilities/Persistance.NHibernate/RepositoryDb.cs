@@ -248,15 +248,12 @@ namespace SpeakFriend.Utilities
 		/// <returns></returns>
         public TDomainObjectList GetBy(ISearchDesc searchDesc, Action<ICriteria> criteriaExtender)
         {
-            var criteria = GetExecutableCriteria();
-
-            AddGenericConditions(criteria, searchDesc.Filter);
-            AddOrderBy(criteria, searchDesc.OrderBy);
+            var criteria = GetCriteria(searchDesc);
 
 			if (criteriaExtender != null)
 				criteriaExtender.Invoke(criteria);
 
-			var totalCountCriteria = CriteriaTransformer.TransformToRowCount(criteria);
+			var totalCountCriteria = GetTotalCountCriteria(criteria);
 
             SetPager(criteria, searchDesc);
 
@@ -298,7 +295,49 @@ namespace SpeakFriend.Utilities
             return list;
         }
 
-        public void Flush()
+		protected int GetTotalCount(ISearchDesc searchDesc)
+		{
+			var criteria = GetTotalCountCriteria(GetCriteria(searchDesc));
+			var result = -1;
+
+			using (var trans = _session.BeginTransaction())
+			{
+				try
+				{
+					Debug.WriteLine(string.Format("Current connection hash: #{0} - state:{1}",
+					                              _session.Connection.GetHashCode(), _session.Connection.State));
+
+					result = criteria.UniqueResult<int>();
+					trans.Commit();
+				}
+				catch (HibernateException)
+				{
+					trans.Rollback();
+					_session.Close();
+					_session.Dispose();
+
+					throw;
+				}
+			}
+
+			return result;
+		}
+
+    	protected ICriteria GetCriteria(ISearchDesc searchDesc)
+    	{
+    		var criteria = GetExecutableCriteria();
+
+    		AddGenericConditions(criteria, searchDesc.Filter);
+    		AddOrderBy(criteria, searchDesc.OrderBy);
+    		return criteria;
+    	}
+
+    	protected ICriteria GetTotalCountCriteria(ICriteria criteria)
+    	{
+    		return CriteriaTransformer.TransformToRowCount(criteria);
+    	}
+
+    	public void Flush()
         {
             _session.Flush();
 		}
