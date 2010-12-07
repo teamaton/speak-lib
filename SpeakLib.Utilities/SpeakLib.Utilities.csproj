@@ -197,13 +197,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="AutofacContrib.NHibernate, Version=1.4.4.565, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\AutofacContrib.NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="Common.Logging">
-      <HintPath>..\Lib\Common.Logging.dll</HintPath>
-    </Reference>
     <Reference Include="FluentNHibernate, Version=1.0.0.593, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\FluentNHibernate.dll</HintPath>
@@ -216,10 +209,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="MergeSystem.Indexus.WinServiceCommon, Version=2.0.3.270, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MergeSystem.Indexus.WinServiceCommon.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="NHibernate, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -228,10 +217,6 @@
     <Reference Include="NHibernate.ByteCode.LinFu, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\NHibernate.ByteCode.LinFu.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework, Version=2.4.6.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
