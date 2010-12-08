@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using NUnit.Framework;
+using SharpTestsEx;
 using SpeakFriend.Utilities;
 
 namespace Tests.Service
