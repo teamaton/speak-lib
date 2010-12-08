@@ -78,7 +78,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\StringExtensionTests.cs" />
     <Compile Include="Utilities\Query\PagerBehaviourTest.cs" />
-    <Compile Include="Utilities\SeedWork.JobScheduler\JobSchedulerTest.cs" />
     <Compile Include="Utilities\Service\PasswordTest.cs" />
     <Compile Include="Utilities\Service\StringExtensionsTest.cs" />
     <Compile Include="Utilities\Web\Context\Cache\CacheAnalyzerTest.cs" />
