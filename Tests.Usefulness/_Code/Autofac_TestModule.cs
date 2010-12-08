@@ -26,6 +26,9 @@ namespace Tests.Usefulness.TestEnvironment
 
 			builder.Register<UsefulTestEntityService>().ContainerScoped();
 			builder.Register<UsefulTestCreatorService>().ContainerScoped();
+
+			builder.Register<UsefulnessService>().ContainerScoped();
+			builder.RegisterTypesMatching(t => typeof(IUsefulnessEntity).IsAssignableFrom(t)).FactoryScoped();
 		}
 	}
 }

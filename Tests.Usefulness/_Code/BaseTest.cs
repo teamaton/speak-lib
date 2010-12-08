@@ -106,7 +106,6 @@ namespace Tests.Usefulness
 		{
 			var builder = new ContainerBuilder();
 			builder.RegisterModule(new Autofac_TestModule());
-			builder.RegisterModule(new AutofacModuleUsefulness());
 
 			_rootContainer = builder.Build();
 			MakeNewContainer();
