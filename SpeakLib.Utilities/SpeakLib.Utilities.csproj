@@ -193,10 +193,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\AjaxControlToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="Autofac, Version=1.4.4.561, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Autofac.dll</HintPath>
-    </Reference>
     <Reference Include="FluentNHibernate, Version=1.0.0.593, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\FluentNHibernate.dll</HintPath>
@@ -275,7 +271,6 @@
     <Compile Include="SeedWork.JobScheduler\JobBase.cs" />
     <Compile Include="SeedWork.JobScheduler\JobScheduler.cs" />
     <Compile Include="SeedWork.Usefulness\UsefulnessCreatorAnonymous.cs" />
-    <Compile Include="SeedWork.Usefulness\AutofacModuleUsefulness.cs" />
     <Compile Include="SeedWork.Usefulness\IUsefulnessCreator.cs" />
     <Compile Include="SeedWork.Usefulness\IUsefulnessEntity.cs" />
     <Compile Include="SeedWork.Usefulness\UsefulnessEntityList.cs" />
