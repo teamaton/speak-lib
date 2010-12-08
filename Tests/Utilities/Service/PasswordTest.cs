@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using SharpTestsEx;
 using SpeakFriend.Utilities;
 
 namespace Tests.Utilities.Web
