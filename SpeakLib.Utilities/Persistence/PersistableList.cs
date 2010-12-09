@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Iesi.Collections.Generic;
 
 namespace SpeakFriend.Utilities
 {
     [Serializable]
     public abstract class PersistableList<T> : List<T> where T : IPersistable
     {
-        private ISet<T> _persistentItems = new HashSet<T>();
+        private Iesi.Collections.Generic.ISet<T> _persistentItems = new HashedSet<T>();
 // ReSharper disable UnusedMember.Local
-        private ISet<T> Items
+        private Iesi.Collections.Generic.ISet<T> Items
 // ReSharper restore UnusedMember.Local
         {
             get
             {
                 _persistentItems.Clear();
-                _persistentItems.UnionWith(this);
+                _persistentItems.AddAll(this);
                 return _persistentItems;
             }
             set

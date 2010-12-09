@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web;
+using Iesi.Collections.Generic;
 
 namespace SpeakFriend.Utilities.Web
 {
@@ -11,7 +11,7 @@ namespace SpeakFriend.Utilities.Web
 	[Serializable]
 	public class SessionData
 	{
-		private readonly ISet<string> _appDomainInsertedKeys = new HashSet<string>();
+		private readonly Iesi.Collections.Generic.ISet<string> _appDomainInsertedKeys = new HashedSet<string>();
 
 		public object this[string key]
 		{

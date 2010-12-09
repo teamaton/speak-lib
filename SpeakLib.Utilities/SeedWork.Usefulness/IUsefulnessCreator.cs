@@ -13,6 +13,6 @@ namespace SpeakFriend.Utilities.Usefulness
 		/// </summary>
 		string TypeName { get; }
 
-//		ISet<IUsefulnessEntity> RatedEntities { get; set; }
+//		Iesi.Collections.Generic.ISet<IUsefulnessEntity> RatedEntities { get; set; }
 	}
 }
