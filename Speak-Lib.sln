@@ -21,6 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebShot", "WebShot\WebShot.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeakLib.FileUpload", "SpeakLib.FileUpload\SpeakLib.FileUpload.csproj", "{3C59702B-AC0A-46F1-8859-324C40A13A19}"
 EndProject
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Usefulness", "Tests.Usefulness\Tests.Usefulness.csproj", "{39CF618D-60C4-45A7-8F79-92D716EE2F7A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teamatools.AppConfigManager", "Teamatools.AppConfigManager\Teamatools.AppConfigManager.csproj", "{9CE17F5C-E7A3-4D0A-9D2B-D475C5FC5317}"
