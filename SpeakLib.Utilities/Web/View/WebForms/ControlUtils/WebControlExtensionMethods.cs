@@ -10,6 +10,12 @@ namespace SpeakFriend.Utilities.Web
 {
 	public static class WebControlExtensionMethods
 	{
+		public static WebControl Title(this WebControl control, string title)
+		{
+			control.Attributes["title"] = title ?? "";
+			return control;
+		}
+
 		/// <summary>
 		/// Adds the given class to the CssClass member of the given control.
 		/// </summary>
