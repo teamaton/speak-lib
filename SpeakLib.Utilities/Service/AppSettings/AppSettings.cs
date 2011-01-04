@@ -125,5 +125,10 @@ namespace SpeakFriend.Utilities
 		{
 			return PathCombineRobust(ApplicationPath, relativePath);
 		}
+
+    	public static void Set<T>(string key, T value)
+    	{
+    		ConfigurationManager.AppSettings[key] = value.ToString();
+    	}
     }
 }

@@ -277,6 +277,7 @@
     <Compile Include="SeedWork.Usefulness\Web\IUsefulnessSubmitUC.cs" />
     <Compile Include="SeedWork.Usefulness\Web\IUsefulnessShowUC.cs" />
     <Compile Include="Service.Type\Class.cs" />
+    <Compile Include="Service\AppSettings\AppSetting.cs" />
     <Compile Include="Service\AppSettings\AppSettings.cs" />
     <Compile Include="Service\ExtensionMethods\CollectionExtensions.cs" />
     <Compile Include="Service\ExtensionMethods\DateTimeExtensions.cs" />
