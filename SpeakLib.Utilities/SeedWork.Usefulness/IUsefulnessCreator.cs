@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Iesi.Collections.Generic;
 
 namespace SpeakFriend.Utilities.Usefulness
 {
@@ -14,6 +13,6 @@ namespace SpeakFriend.Utilities.Usefulness
 		/// </summary>
 		string TypeName { get; }
 
-//		ISet<IUsefulnessEntity> RatedEntities { get; set; }
+//		Iesi.Collections.Generic.ISet<IUsefulnessEntity> RatedEntities { get; set; }
 	}
 }

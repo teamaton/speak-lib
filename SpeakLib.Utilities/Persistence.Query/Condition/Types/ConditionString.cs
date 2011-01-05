@@ -35,8 +35,6 @@ namespace SpeakFriend.Utilities
         /// <param name="value"></param>
         public void EqualTo(string value)
         {
-            value = value.Trim();
-
             if (!RemoveIfInvalid(value))
                 return;
 
@@ -47,8 +45,6 @@ namespace SpeakFriend.Utilities
 
         public void Like(string value)
         {
-            value = value.Trim();
-
             if (!RemoveIfInvalid(value))
                 return;
 
@@ -60,8 +56,6 @@ namespace SpeakFriend.Utilities
 
         public ConditionString OrLikeCaseIns(string value)
         {
-            value = value.Trim();
-
             if (!RemoveIfInvalid(value))
                 return this;
 

@@ -76,5 +76,38 @@ namespace SpeakFriend.Utilities.Web
 
 			return list;
 		}
+
+		public static ListControl Populate<T>(this ListControl list)
+			where T : struct, IComparable, IConvertible, IFormattable // contraints for enum
+		{
+			list.Items.Clear();
+			foreach (var value in Enum<T>.GetValues())
+			{
+				list.Items.Add(new ListItem(value.ToString(), Enum<T>.ToIntString(value)));
+			}
+			return list;
+		}
+
+		public static ListControl SelectedValue<T>(this ListControl list, T value)
+			where T : struct, IComparable, IConvertible, IFormattable // contraints for enum
+		{
+			list.ClearSelection();
+
+			if (list.Items.Count <= 0)
+				return list;
+
+			var listItem = list.Items.FindByValue(Enum<T>.ToIntString(value));
+			if (listItem == null)
+				return list;
+
+			listItem.Selected = true;
+			return list;
+		}
+
+		public static T SelectedValue<T>(this DropDownList ddl)
+			where T : struct, IComparable, IConvertible, IFormattable // contraints for enum
+		{
+			return Enum<T>.Parse(ddl.SelectedValue);
+		}
     }
 }

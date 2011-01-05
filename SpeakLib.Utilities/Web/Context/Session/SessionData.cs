@@ -11,7 +11,7 @@ namespace SpeakFriend.Utilities.Web
 	[Serializable]
 	public class SessionData
 	{
-		private readonly ISet<string> _appDomainInsertedKeys = new HashedSet<string>();
+		private readonly Iesi.Collections.Generic.ISet<string> _appDomainInsertedKeys = new HashedSet<string>();
 
 		public object this[string key]
 		{

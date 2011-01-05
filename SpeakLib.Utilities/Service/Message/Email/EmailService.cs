@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities
@@ -18,7 +19,7 @@ namespace SpeakFriend.Utilities
             _settingService = settingService;
         }
 
-        public void Send<TMessageParticipantType, TMessageType, TMessageStatus>
+        public virtual void Send<TMessageParticipantType, TMessageType, TMessageStatus>
             (MessageBase<TMessageParticipantType, TMessageType, TMessageStatus> message)
         {
             if (message.DistributionType != DistributionType.Email)
@@ -37,15 +38,21 @@ namespace SpeakFriend.Utilities
 
             var mailMessage = GetFrom(message, settings);
 
-            var smtpClient = new SmtpClient(settings.SmtpServer.Value, 25)
-                                 {
-                                     DeliveryMethod = SmtpDeliveryMethod.Network,
-                                     Credentials = 
-                                        new NetworkCredential(
-                                            settings.SmtpUserName.Value, 
-                                            settings.SmtpPassword.Value
-                                    )
-                                 };
+        	SmtpClient smtpClient;
+			if (settings.SmtpConfigOverDb.Value)
+				smtpClient = new SmtpClient();
+			else
+			{
+				smtpClient = new SmtpClient(settings.SmtpServer.Value, 25)
+									 {
+										 DeliveryMethod = SmtpDeliveryMethod.Network,
+										 Credentials =
+											new NetworkCredential(
+												settings.SmtpUserName.Value,
+												settings.SmtpPassword.Value
+										)
+									 };
+			}
 
             smtpClient.Send(mailMessage);
         }
@@ -54,11 +61,7 @@ namespace SpeakFriend.Utilities
         {
             EmailSettings emailSettings = GetEmailSettings();
 
-            //
             // Use values from web.config settings if not set yet.
-            //
-            // robert: would be better 
-            //
 
             if (emailSettings.EmailEnabled.IsDefault())
                 emailSettings.EmailEnabled.Value = SpeakLibSettings.EmailIsEnabled;
@@ -74,6 +77,9 @@ namespace SpeakFriend.Utilities
 
             if (emailSettings.EmailToName.IsDefault())
                 emailSettings.EmailToName.Value = SpeakLibSettings.EmailToName;
+
+			if (emailSettings.SmtpConfigOverDb.IsDefault())
+				emailSettings.SmtpConfigOverDb.Value = SpeakLibSettings.SmtpConfigOverDb;
 
             if (emailSettings.SmtpServer.IsDefault())
                 emailSettings.SmtpServer.Value = SpeakLibSettings.SmtpServer;

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Reflection;
 using Autofac;
-using Autofac.Builder;
-using AutofacContrib.NHibernate;
 using NHibernate;
-using NHibernate.ByteCode.LinFu;
 using NHibernate.Cfg;
 using SpeakFriend.Utilities;
 using SpeakFriend.Utilities.Usefulness;
+using Module = Autofac.Module;
 
 namespace Tests.Usefulness.TestEnvironment
 {
@@ -19,13 +14,17 @@ namespace Tests.Usefulness.TestEnvironment
 		{
 			base.Load(builder);
 
-			builder.Register(c => new Configuration().Configure().BuildSessionFactory()).SingletonScoped();
-			builder.Register(c => c.Resolve<ISessionFactory>().OpenSession()).ContainerScoped();
+			builder.Register(c => new Configuration().Configure().BuildSessionFactory()).SingleInstance();
+			builder.Register(c => c.Resolve<ISessionFactory>().OpenSession()).InstancePerLifetimeScope();
 
-			builder.Register<NHibernateHelperSF>().ContainerScoped();
+			builder.RegisterType<NHibernateHelperSF>().InstancePerLifetimeScope();
 
-			builder.Register<UsefulTestEntityService>().ContainerScoped();
-			builder.Register<UsefulTestCreatorService>().ContainerScoped();
+			builder.RegisterType<UsefulTestEntityService>().InstancePerLifetimeScope();
+			builder.RegisterType<UsefulTestCreatorService>().InstancePerLifetimeScope();
+
+			builder.RegisterType<UsefulnessService>().InstancePerLifetimeScope();
+			builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
+				.Where(t => typeof (IUsefulnessEntity).IsAssignableFrom(t));
 		}
 	}
 }

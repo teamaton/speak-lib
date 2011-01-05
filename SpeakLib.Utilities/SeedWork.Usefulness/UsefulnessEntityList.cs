@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Iesi.Collections.Generic;
+using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities.Usefulness
 {
 	[Serializable]
 	public class UsefulnessEntityList : List<IUsefulnessEntity>
 	{
-		public ISet<int> GetEntityIdsByEntityType(IUsefulnessEntity usefulnessEntity)
+		public Iesi.Collections.Generic.ISet<int> GetEntityIdsByEntityType(IUsefulnessEntity usefulnessEntity)
 		{
 			var set = new HashedSet<int>();
 			foreach (var entity in this)

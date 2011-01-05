@@ -90,8 +90,8 @@ namespace SpeakFriend.Utilities.Web
 
         /// <summary>
         /// Returns the first subdomain under the domain that is not www.<br/>
-        /// sub.pl.speak-friend.com -> pl<br/>
-        /// www.speak-friend.com -> string.Empty.
+        /// sub.pl.teamaton.com -> pl<br/>
+        /// www.teamaton.com -> string.Empty.
         /// </summary>
         /// <param name="uri">Uri.Host</param>
         /// <returns></returns>
@@ -168,8 +168,8 @@ namespace SpeakFriend.Utilities.Web
         }
 
         /// <summary>
-        /// http://www.speak-friend.com, de -> http://de.speak-friend.com
-        /// http://de.www.speak-friend.com, en -> http://en.speak-friend.com
+        /// http://www.teamaton.com, de -> http://de.teamaton.com
+        /// http://de.www.teamaton.com, en -> http://en.teamaton.com
         /// </summary>
         /// <param name="uri"></param>
         /// <param name="newSubdomain"></param>

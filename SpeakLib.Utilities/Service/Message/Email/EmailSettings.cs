@@ -19,8 +19,9 @@ namespace SpeakFriend.Utilities
         public SettingString EmailFromName { get { return Get<SettingString>("EmailFromName"); } }
         public SettingString EmailToAddress { get { return Get<SettingString>("EmailToAddress"); } }
         public SettingString EmailToName { get { return Get<SettingString>("EmailToName"); } }
-        
-        public SettingString SmtpServer { get { return Get<SettingString>("SmtpServer"); } }
+
+		public SettingBoolean SmtpConfigOverDb { get { return Get<SettingBoolean>("SmtpConfigOverDb"); } }
+		public SettingString SmtpServer { get { return Get<SettingString>("SmtpServer"); } }
         public SettingString SmtpUserName { get { return Get<SettingString>("SmtpUserName"); } }
         public SettingString SmtpPassword { get { return Get<SettingString>("SmtpPassword"); } }
 

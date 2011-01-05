@@ -21,7 +21,7 @@ namespace Tests.Usefulness
 		protected UsefulTestCreatorService _usefulTestCreatorService { get { return Resolve<UsefulTestCreatorService>(); } }
 
 		private IContainer _rootContainer;
-		protected IContainer _currentContainer { get; private set; }
+		protected ILifetimeScope _currentContainer { get; private set; }
 		private bool _setUp;
 		private bool _testFixtureSetUp;
 		private bool _testFixtureTornDown;
@@ -61,19 +61,6 @@ namespace Tests.Usefulness
 			return _currentContainer.Resolve<T>();
 		}
 
-		/// <summary>
-		/// Deprecated. Use <see cref="Resolve{T}(Autofac.NamedParameter[])<>"/> instead.
-		/// </summary>
-		protected T Resolve<T>(params object[] paramObjects)
-		{
-			var parameters = new List<Parameter>();
-
-			for (int i = 0; i < paramObjects.Length; i++)
-				parameters.Add(TypedParameter.From(paramObjects[i]));
-
-			return _currentContainer.Resolve<T>(parameters.ToArray());
-		}
-
 		protected T Resolve<T>(params NamedParameter[] parameters)
 		{
 			return _currentContainer.Resolve<T>(parameters);
@@ -96,9 +83,9 @@ namespace Tests.Usefulness
 			Cache.Clear();
 		}
 
-		private IContainer MakeNewContainer()
+		private ILifetimeScope MakeNewContainer()
 		{
-			_currentContainer = _rootContainer.CreateInnerContainer();
+			_currentContainer = _rootContainer.BeginLifetimeScope();
 			return _currentContainer;
 		}
 
@@ -106,7 +93,6 @@ namespace Tests.Usefulness
 		{
 			var builder = new ContainerBuilder();
 			builder.RegisterModule(new Autofac_TestModule());
-			builder.RegisterModule(new AutofacModuleUsefulness());
 
 			_rootContainer = builder.Build();
 			MakeNewContainer();

@@ -34,16 +34,7 @@ namespace SpeakFriend.Utilities
 
         public int CountBooleanFilters()
         {
-            int resultCount = 0;
-            foreach (Condition filter in this)
-            {
-                if (typeof(ConditionBoolean) != filter.GetType())
-                    continue;
-
-                resultCount++;
-            }
-
-            return resultCount;
+        	return this.Count(filter => typeof (ConditionBoolean) == filter.GetType());
         }
 
         private readonly Dictionary<string, string> _aliases = new Dictionary<string, string>();

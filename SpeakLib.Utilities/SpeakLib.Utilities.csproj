@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SpeakFriend.Utilities</RootNamespace>
     <AssemblyName>SpeakFriend.Utilities</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -32,6 +32,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -193,18 +194,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\AjaxControlToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="Autofac, Version=1.4.4.561, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="AutofacContrib.NHibernate, Version=1.4.4.565, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\AutofacContrib.NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="Common.Logging">
-      <HintPath>..\Lib\Common.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentNHibernate, Version=1.0.0.593, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+    <Reference Include="FluentNHibernate, Version=1.1.0.685, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\FluentNHibernate.dll</HintPath>
     </Reference>
@@ -216,31 +206,20 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="MergeSystem.Indexus.WinServiceCommon, Version=2.0.3.270, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MergeSystem.Indexus.WinServiceCommon.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="NHibernate, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate.ByteCode.LinFu, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+    <Reference Include="NHibernate.ByteCode.LinFu, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\NHibernate.ByteCode.LinFu.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework, Version=2.4.6.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="PresentationFramework">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="Quartz">
-      <HintPath>..\Lib\Quartz.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -255,6 +234,7 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -263,10 +243,6 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Validators, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Validators.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -287,10 +263,7 @@
     <Compile Include="Persistence\Interfaces\PersistableBase.cs" />
     <Compile Include="Persistence\TypeExtensions.cs" />
     <Compile Include="Reflection\ReflectionHelper.cs" />
-    <Compile Include="SeedWork.JobScheduler\JobBase.cs" />
-    <Compile Include="SeedWork.JobScheduler\JobScheduler.cs" />
     <Compile Include="SeedWork.Usefulness\UsefulnessCreatorAnonymous.cs" />
-    <Compile Include="SeedWork.Usefulness\AutofacModuleUsefulness.cs" />
     <Compile Include="SeedWork.Usefulness\IUsefulnessCreator.cs" />
     <Compile Include="SeedWork.Usefulness\IUsefulnessEntity.cs" />
     <Compile Include="SeedWork.Usefulness\UsefulnessEntityList.cs" />
@@ -304,6 +277,7 @@
     <Compile Include="SeedWork.Usefulness\Web\IUsefulnessSubmitUC.cs" />
     <Compile Include="SeedWork.Usefulness\Web\IUsefulnessShowUC.cs" />
     <Compile Include="Service.Type\Class.cs" />
+    <Compile Include="Service\AppSettings\AppSetting.cs" />
     <Compile Include="Service\AppSettings\AppSettings.cs" />
     <Compile Include="Service\ExtensionMethods\CollectionExtensions.cs" />
     <Compile Include="Service\ExtensionMethods\DateTimeExtensions.cs" />
@@ -328,6 +302,7 @@
     <Compile Include="Service\Message\Repository\MessageSearchDesc.cs" />
     <Compile Include="Service\Message\Repository\MessageSearchFilter.cs" />
     <Compile Include="Service\AppSettings\SpeakLibSettings.cs" />
+    <Compile Include="Service\Security\Password.cs" />
     <Compile Include="Service\SettingTypes.cs" />
     <Compile Include="Service\SpeakLibException.cs" />
     <Compile Include="Web\Context\Session\RequestData.cs" />
@@ -447,7 +422,6 @@
     <Compile Include="Web\View\WebForms\ControlUtils\HtmlControlExtensionMethods.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Web\View\WebForms\ControlUtils\ListControls\DdlPopulator.cs" />
     <Compile Include="Web\View\WebForms\ControlUtils\ListControls\DdlProxyEnum.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -652,9 +626,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Service\Security\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
