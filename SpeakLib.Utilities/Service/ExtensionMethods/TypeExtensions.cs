@@ -20,9 +20,10 @@ namespace SpeakFriend.Utilities
 		{
 			var interfaceTypes = givenType.GetInterfaces();
 
-			foreach (var it in interfaceTypes)
-				if (it.IsGenericType)
-					if (it.GetGenericTypeDefinition() == genericType) return true;
+			if (interfaceTypes.Where(it => it.IsGenericType).Any(it => it.GetGenericTypeDefinition() == genericType))
+			{
+				return true;
+			}
 
 			Type baseType = givenType.BaseType;
 			if (baseType == null) return false;
@@ -31,6 +32,5 @@ namespace SpeakFriend.Utilities
 				baseType.GetGenericTypeDefinition() == genericType :
 				IsAssignableToGenericType(baseType, genericType);
 		}
-
 	}
 }
