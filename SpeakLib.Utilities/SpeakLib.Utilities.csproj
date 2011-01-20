@@ -259,6 +259,7 @@
     <Compile Include="Persistence.Query\Condition\Types\ConditionHasAffiliateLink.cs" />
     <Compile Include="Persistence.Query\Condition\Types\ConditionObject.cs" />
     <Compile Include="Persistence.Query\SearchDescriptionBase.cs" />
+    <Compile Include="Persistence\Interfaces\Mappings.cs" />
     <Compile Include="Persistence\Interfaces\MutablePersistableBase.cs" />
     <Compile Include="Persistence\Interfaces\PersistableBase.cs" />
     <Compile Include="Service\ExtensionMethods\ObjectExtensions.cs" />
