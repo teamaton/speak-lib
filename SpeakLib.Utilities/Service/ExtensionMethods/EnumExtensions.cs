@@ -14,9 +14,9 @@ namespace SpeakFriend.Utilities
             return Convert.ToInt32(en).ToString();
         }
 
-		public static bool EqualsNot(this Enum en, Enum valueToCheck)
+		public static bool Is(this Enum en, Enum valueToCheck)
 		{
-			return !en.Equals(valueToCheck);
+			return en == valueToCheck;
 		}
     }
 }
