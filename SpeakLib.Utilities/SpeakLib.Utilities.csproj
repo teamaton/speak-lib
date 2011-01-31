@@ -548,6 +548,7 @@
     <Compile Include="Web\Tracking\User\UserTracker.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Web\Webservice\WebserviceExtensions.cs" />
     <Compile Include="Wpf\Application\SingleInstanceController.cs" />
     <Compile Include="Wpf\Controls\Image.cs" />
     <Compile Include="Persistance.NHibernate\ISessionManager.cs" />

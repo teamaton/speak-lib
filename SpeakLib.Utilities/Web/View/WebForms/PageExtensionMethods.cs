@@ -50,7 +50,7 @@ namespace SpeakFriend.Utilities.Web
         {
             var htmlLink = new HtmlLink();
             htmlLink.Href = cssFileName;
-            htmlLink.Attributes.Add("rel", "Stylesheet");
+            htmlLink.Attributes.Add("rel", "stylesheet");
             htmlLink.Attributes.Add("type", "text/css");
             htmlLink.Attributes.Add("media", "all");
             page.Header.Controls.Add(htmlLink);
