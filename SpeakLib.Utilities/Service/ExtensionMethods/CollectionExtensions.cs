@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities
 {
@@ -19,11 +19,11 @@ namespace SpeakFriend.Utilities
 		{
 			var random = new Random();
 
-			int n = elements.Count;
+			var n = elements.Count;
 
 			while (n > 1)
 			{
-				int k = random.Next(n);
+				var k = random.Next(n);
 				--n;
 				var temp = elements[n];
 				elements[n] = elements[k];
@@ -45,12 +45,12 @@ namespace SpeakFriend.Utilities
 		public static TList Shuffle<TList>(this TList list) where TList : IList
 		{
 			var random = new Random();
-			
-			int n = list.Count;
+
+			var n = list.Count;
 
 			while (n > 1)
 			{
-				int k = random.Next(n);
+				var k = random.Next(n);
 				--n;
 				var temp = list[n];
 				list[n] = list[k];
@@ -60,32 +60,32 @@ namespace SpeakFriend.Utilities
 			return list;
 		}
 
-        /// <summary>
-        /// Shuffles the items in the list, changes the list! 
-        /// Uses a <see cref="Random"/> instance with changing seed.
-        /// <br/>
-        /// Strongly typed version of <see cref="Shuffle"/>.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="list"></param>
-        /// <returns></returns>
-        public static IList<T> Shuffle<T>(this IList<T> list)
-        {
-            var random = new Random();
+		/// <summary>
+		/// Shuffles the items in the list, changes the list! 
+		/// Uses a <see cref="Random"/> instance with changing seed.
+		/// <br/>
+		/// Strongly typed version of <see cref="Shuffle"/>.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="list"></param>
+		/// <returns></returns>
+		public static IList<T> Shuffle<T>(this IList<T> list)
+		{
+			var random = new Random();
 
-            int n = list.Count;
+			var n = list.Count;
 
-            while (n > 1)
-            {
-                int k = random.Next(n);
-                --n;
-                var temp = list[n];
-                list[n] = list[k];
-                list[k] = temp;
-            }
+			while (n > 1)
+			{
+				var k = random.Next(n);
+				--n;
+				var temp = list[n];
+				list[n] = list[k];
+				list[k] = temp;
+			}
 
-            return list;
-        }
+			return list;
+		}
 
 		/// <summary>
 		/// Returns all elements of a collection that occur more than once in the given collection.
@@ -96,32 +96,20 @@ namespace SpeakFriend.Utilities
 		}
 
 		/// <summary>
-		/// Does the same as Where() but does not throw an exception when the collection is empty.
-		/// </summary>
-		public static IEnumerable<TItem> WhereSafe<TItem>(this IEnumerable<TItem> coll, Func<TItem, bool> predicate)
-		{
-			if (coll.Count() <= 0)
-				return coll;
-
-			return coll.Where(predicate);
-		}
-
-
-		/// <summary>
-		/// Dynamically converts an IEnumeable to a generic list based on the given type.
+		/// Dynamically converts an IEnumerable to a generic list based on the given type.
 		/// </summary>
 		/// <remarks>
 		/// This method is suitable when the <param name="type">type</param> parameter's value is determined at runtime.
 		/// </remarks>
 		/// <example>
 		/// foreach (var group in Model.GroupBy(item=>item.GetType()))
-	    /// {
-	    ///     Html.RenderPartial(string.Format("GeoObjectView/Structure/{0}s", group.Key.Name), group.AsListOf(group.Key));
-	    /// }
+		/// {
+		///     Html.RenderPartial(string.Format("GeoObjectView/Structure/{0}s", group.Key.Name), group.AsListOf(group.Key));
+		/// }
 		/// </example>
 		public static IList AsListOf(this IEnumerable coll, Type type)
 		{
-            var result = (IList) typeof (List<>).MakeGenericType(type).GetConstructor(Type.EmptyTypes).Invoke(null);
+			var result = (IList) typeof (List<>).MakeGenericType(type).GetConstructor(Type.EmptyTypes).Invoke(null);
 			foreach (var item in coll) result.Add(item);
 			return result;
 		}

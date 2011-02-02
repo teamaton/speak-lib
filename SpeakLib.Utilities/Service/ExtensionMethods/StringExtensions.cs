@@ -259,7 +259,7 @@ namespace SpeakFriend.Utilities
 
 		public static string JoinNonEmpty(this IEnumerable<string> values, string separator)
 		{
-			return String.Join(separator, values.WhereSafe(s => !string.IsNullOrEmpty(s)).ToArray());
+			return String.Join(separator, values.Where(s => !string.IsNullOrEmpty(s)).ToArray());
 		}
 
 
@@ -267,5 +267,21 @@ namespace SpeakFriend.Utilities
         {
             return Regex.Replace(value, "(^|\n)", "$1".PadRight(width+2));
         }
+
+		/// <summary>
+		/// Uses <see cref="string.IsNullOrEmpty"/> as an extension method.
+		/// </summary>
+		public static bool IsNullOrEmpty(this string str)
+		{
+			return string.IsNullOrEmpty(str);
+		}
+
+		/// <summary>
+		/// Uses <see cref="string.IsNullOrEmpty"/> as an extension method.
+		/// </summary>
+		public static bool IsNotNullOrEmpty(this string str)
+		{
+			return !string.IsNullOrEmpty(str);
+		}
     }
 }

@@ -47,18 +47,5 @@ namespace SpeakFriend.Utilities.Web.Render
             return Regex.Replace(Regex.Replace(html.Trim(), @"\>\s+\<", "><", RegexOptions.Singleline)
                                  , @"\s+\</", "</", RegexOptions.Singleline);
         }
-
-        /// <summary>
-        /// Returns a UTF-8 encoded MemoryStream from the given string that can be used as a response to an HTTP request.
-        /// </summary>
-        public static Stream ToResponseStream(this string output)
-        {
-            if (WebOperationContext.Current != null)
-                WebOperationContext.Current.OutgoingResponse.ContentType = "text/plain";
-
-            //trick to output exactly what you want (without wcf wrapping it)
-            return new MemoryStream(Encoding.UTF8.GetBytes(output));
-        }
-
     }
 }
