@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
+using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities.Reflection
 {
@@ -14,7 +14,7 @@ namespace SpeakFriend.Utilities.Reflection
 			var list = new List<T>();
 			foreach (var fieldInfo in fieldInfos)
 			{
-				if (fieldInfo.FieldType != typeof(T)) continue;
+				if (fieldInfo.FieldType != typeof (T)) continue;
 
 				var value = fieldInfo.GetRawConstantValue();
 				if (value is T)
@@ -30,16 +30,15 @@ namespace SpeakFriend.Utilities.Reflection
 		/// <param name="type">The Type of which to get the members</param>
 		public static Dictionary<string, T> GetMembersWithAttribute<T>(this Type type)
 		{
-			MemberInfo[] properties = type.GetMembers(BindingFlags.Public | BindingFlags.Instance);
+			var properties = type.GetMembers(BindingFlags.Public | BindingFlags.Instance);
 
 			var dictionary = new Dictionary<string, T>();
 
 			foreach (var propertyInfo in properties)
 			{
-				foreach (object attribute in propertyInfo.GetCustomAttributes(false))
+				foreach (T attribute in propertyInfo.GetCustomAttributes(false).OfType<T>())
 				{
-					if (attribute is T)
-						dictionary.Add(propertyInfo.Name, (T) attribute);
+					dictionary.Add(propertyInfo.Name, attribute);
 				}
 			}
 
@@ -163,8 +162,9 @@ namespace SpeakFriend.Utilities.Reflection
 
 		public static IEnumerable<FieldInfo> FieldInfos(this Type type, List<Type> matchTypes, Func<string, bool> matchFunc)
 		{
-			return type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public)
-				.WhereSafe(fi => matchFunc(fi.Name) && matchTypes.Contains(fi.FieldType));
+			return
+				type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public).Where(
+					fi => matchFunc(fi.Name) && matchTypes.Contains(fi.FieldType));
 		}
 
 		#endregion
