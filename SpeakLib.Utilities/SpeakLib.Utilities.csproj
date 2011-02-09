@@ -284,7 +284,8 @@
     <Compile Include="Language\LanguageMapping.cs" />
     <Compile Include="Language\LanguageService.cs" />
     <Compile Include="Persistance.NHibernate\Fluent\EnumConvention.cs" />
-    <Compile Include="Persistance.NHibernate\Fluent\ReferenceConvention.cs" />
+    <Compile Include="Persistance.NHibernate\Fluent\IdConventions.cs" />
+    <Compile Include="Persistance.NHibernate\Fluent\TableNameConvention.cs" />
     <Compile Include="Persistance.NHibernate\NHibernateHelperSF.cs" />
     <Compile Include="Persistance.NHibernate\SessionExtensions.cs" />
     <Compile Include="Persistence.Query\Condition\CategoryAttributes.cs" />

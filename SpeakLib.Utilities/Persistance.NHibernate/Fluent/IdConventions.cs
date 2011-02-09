@@ -12,20 +12,25 @@ namespace SpeakFriend.Utilities
 		}
 	}
 
-	//public class PrimaryKeyNameConvention : IIdConvention
-	//{
-	//    public void Apply(IIdentityInstance instance)
-	//    {
-	//        instance.Column(instance.EntityType.Name + "Id");
-	//    }
-	//}
+	public class PrimaryKeyNameConvention : IIdConvention
+	{
+		public void Apply(IIdentityInstance instance)
+		{
+			instance.Column("Id");
+		}
+	}
 
-	public class ForeignKeyNameConvention : IHasManyConvention
+	public class ForeignKeyNameConvention : IHasManyConvention, IHasManyToManyConvention
 	{
 		public void Apply(IOneToManyCollectionInstance instance)
 		{
 			instance.Key.Column(instance.EntityType.Name + "Id");
 		}
-	}
 
+		public void Apply(IManyToManyCollectionInstance instance)
+		{
+			instance.Key.Column(instance.EntityType.Name + "Id");
+			instance.Relationship.Column(instance.ChildType.Name + "Id");
+		}
+	}
 }
