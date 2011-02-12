@@ -7,12 +7,12 @@ namespace SpeakFriend.Utilities
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	public abstract class PersistableBaseMapping<T> : ClassMap<T>
-		where T : PersistableBase
+		where T : IPersistable
 	{
 		protected PersistableBaseMapping()
 		{
 			Id(x => x.Id);
-			Map(x => x.DateCreated);
+			Map(x => x.DateCreated).Not.Nullable();
 		}
 	}
 
@@ -22,11 +22,11 @@ namespace SpeakFriend.Utilities
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	public abstract class MutablePersistableBaseMapping<T> : PersistableBaseMapping<T>
-		where T : MutablePersistableBase
+		where T : IMutablePersistable
 	{
 		protected MutablePersistableBaseMapping()
 		{
-			Map(x => x.DateModified);
+			Map(x => x.DateModified).Not.Nullable();
 		}
 	}
 }
