@@ -53,9 +53,18 @@ namespace SpeakFriend.Utilities
 			return (TDerivedClass) this;
 		}
 
-		public virtual TDerivedClass Add(TSubject subject)
+		public virtual TDerivedClass Add(TSubject entity)
 		{
-			_itemsToCreate.Add(subject);
+			_itemsToCreate.Add(entity);
+
+			return (TDerivedClass) this;
+		}
+
+		public virtual TDerivedClass Add(Action<TSubject> modifier)
+		{
+			var entity = Get();
+			modifier(entity);
+			_itemsToCreate.Add(entity);
 
 			return (TDerivedClass) this;
 		}
@@ -73,6 +82,13 @@ namespace SpeakFriend.Utilities
 			}
 
 			return result;
+		}
+
+		public virtual TSubject Get(Action<TSubject> modifier)
+		{
+			var entity = Get();
+			modifier(entity);
+			return entity;
 		}
 
 		public virtual TDerivedClass Persist()
