@@ -1,137 +1,139 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using NHibernate;
 using NHibernate.Criterion;
-using NHibernate.SqlCommand;
+using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities
 {
 	[Serializable]
 	public class ConditionTextSearch : Condition
-    {
-        public bool SearchWithOr { get; set; }
+	{
+		public bool SearchWithOr { get; set; }
 
-        private readonly List<string> _propertyNames;
-        private readonly List<ConditionList<string>> _subqueries;
+		private readonly List<string> _propertyNames;
+		private readonly List<ConditionList<string>> _subqueries;
 
-        public ConditionTextSearch(ConditionContainer conditions, params string[] propertyNames)
-            : base(conditions)
-        {
-            _propertyNames = new List<string>();
-            _propertyNames.AddRange(propertyNames);
-            
-            _subqueries = new List<ConditionList<string>>();
-            
-            conditions.Add(this);
-        }
+		public ConditionTextSearch(ConditionContainer conditions, params string[] propertyNames)
+			: base(conditions)
+		{
+			_propertyNames = new List<string>();
+			_propertyNames.AddRange(propertyNames);
 
-        public void AddPropertyName(string propertyName)
-        {
-            _propertyNames.Add(propertyName);
-        }
+			_subqueries = new List<ConditionList<string>>();
 
-        public void AddSubquerySearchField<TSubquery>(string propertyName, string keyColumn, string idColumn)
-        {
-            var subquery = new ConditionSubquery<string, TSubquery>(null, propertyName, keyColumn, idColumn)
-                               {UseLike = true};
+			conditions.Add(this);
+		}
 
-            _subqueries.Add(subquery);
-        }
+		public void AddPropertyName(string propertyName)
+		{
+			_propertyNames.Add(propertyName);
+		}
 
-        public void AddSubquerySearchField<TSubquery>(string propertyName, string keyColumn, string idColumn, string associationPath, string alias)
-        {
-            var subquery = new ConditionSubquery<string, TSubquery>(null, propertyName, keyColumn, idColumn,
-                                                                    associationPath, alias) {UseLike = true};
+		public void AddSubquerySearchField<TSubquery>(string propertyName, string keyColumn, string idColumn)
+		{
+			var subquery = new ConditionSubquery<string, TSubquery>(null, propertyName, keyColumn, idColumn)
+			               	{UseLike = true};
 
-            _subqueries.Add(subquery);
-        }
+			_subqueries.Add(subquery);
+		}
 
-        private readonly List<string> _items = new List<string>();
-        public List<string> Items { get { return _items; } }
+		public void AddSubquerySearchField<TSubquery>(string propertyName, string keyColumn, string idColumn,
+		                                              string associationPath, string alias)
+		{
+			var subquery = new ConditionSubquery<string, TSubquery>(null, propertyName, keyColumn, idColumn,
+			                                                        associationPath, alias) {UseLike = true};
 
-        public void AddTerms(string searchString)
-        {
-            List<string> strings = GetSearchTerms(searchString);
-            Add(strings);
-        }
+			_subqueries.Add(subquery);
+		}
 
-        public static List<string> GetSearchTerms(string searchString)
-        {
-            var strings = Regex.Replace(searchString, "\\W", " ").Trim().Split(' ').ToList();
-            strings.RemoveAll(str => string.IsNullOrEmpty(str));
-            return strings;
-        }
+		private readonly List<string> _items = new List<string>();
 
-        public void Add(params string[] values)
-        {
-            foreach (var value in values)
-                Add(value);
-        }
+		public List<string> Items
+		{
+			get { return _items; }
+		}
 
-        public void Add(List<string> values)
-        {
-            foreach (var value in values)
-                Add(value);
-        }
+		public void AddTerms(string searchString)
+		{
+			var strings = GetSearchTerms(searchString);
+			Add(strings);
+		}
 
-        public void Add(string value)
-        {
-            if (_items.Contains(value)) return;
+		public static List<string> GetSearchTerms(string searchString)
+		{
+			var strings = Regex.Replace(searchString, "\\W", " ").Trim().Split(' ').ToList();
+			strings.RemoveAll(str => string.IsNullOrEmpty(str));
+			return strings;
+		}
 
-            _items.Add(value);
+		public void Add(params string[] values)
+		{
+			foreach (var value in values)
+				Add(value);
+		}
 
-            foreach (var subquery in _subqueries)
-                subquery.Add(value);
-        }
+		public void Add(List<string> values)
+		{
+			foreach (var value in values)
+				Add(value);
+		}
 
-        public void Clear()
-        {
-            _items.Clear();
+		public void Add(string value)
+		{
+			if (_items.Contains(value)) return;
 
-            foreach (var subquery in _subqueries)
-                subquery.Clear();
-        }
+			_items.Add(value);
 
-        public override void AddToCriteria(ICriteria criteria)
-        {
-            var criterion = GetCriterion();
-            if (criterion != null)
-            {
-                criteria.Add(criterion);
-            }
-        }
+			foreach (var subquery in _subqueries)
+				subquery.Add(value);
+		}
 
-        public override ICriterion GetCriterion()
-        {
-            if (_items.Count <= 0)
-                return null;
+		public void Clear()
+		{
+			_items.Clear();
 
-            Junction junction;
+			foreach (var subquery in _subqueries)
+				subquery.Clear();
+		}
 
-            if (SearchWithOr)
-                junction = Restrictions.Disjunction();
-            else
-                junction = Restrictions.Conjunction();
+		public override void AddToCriteria(ICriteria criteria)
+		{
+			var criterion = GetCriterion();
+			if (criterion != null)
+			{
+				criteria.Add(criterion);
+			}
+		}
 
-            foreach (var searchTerm in _items)
-            {
-                var disjunction = Restrictions.Disjunction();
+		public override ICriterion GetCriterion()
+		{
+			if (_items.Count <= 0)
+				return null;
 
-                foreach (var column in _propertyNames)
-                    disjunction.Add(Restrictions.InsensitiveLike(column, searchTerm, MatchMode.Anywhere));
+			Junction junction;
 
-                foreach (var subquery in _subqueries)
-                    disjunction.Add(subquery.GetCriterion(searchTerm));
+			if (SearchWithOr)
+				junction = Restrictions.Disjunction();
+			else
+				junction = Restrictions.Conjunction();
 
-                junction.Add(disjunction);
-            }
+			foreach (var searchTerm in _items)
+			{
+				var disjunction = Restrictions.Disjunction();
 
-            return junction;
-        }
+				foreach (var column in _propertyNames)
+					disjunction.Add(Restrictions.InsensitiveLike(column, searchTerm, MatchMode.Anywhere));
 
+				foreach (var subquery in _subqueries)
+					disjunction.Add(subquery.GetCriterion(searchTerm));
 
-    }
+				junction.Add(disjunction);
+			}
+
+			return junction;
+		}
+	}
 }

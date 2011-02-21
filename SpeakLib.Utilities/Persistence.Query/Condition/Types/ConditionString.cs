@@ -1,198 +1,208 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using NHibernate;
 using NHibernate.Criterion;
+using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities
 {
 	[Serializable]
 	public class ConditionString : Condition
-    {
-        private string _value;
-        private bool _isNotNullOrEmpty = false;
-        private bool _isLike = false;
-        private readonly List<string> _likeValuesCaseIns;
+	{
+		private string _value;
+		private bool _isNotNullOrEmpty;
+		private bool _isLike;
+		private readonly List<string> _likeValuesCaseIns;
 
-        /// <summary>
-        /// The search criteria value of this condition
-        /// </summary>
-        public string Value { get { return _value; } }
-        public bool IsNotNullOrEmpty { get { return _isNotNullOrEmpty; } }
-        public bool IsLike { get { return _isLike; } }
+		/// <summary>
+		/// The search criteria value of this condition
+		/// </summary>
+		public string Value
+		{
+			get { return _value; }
+		}
 
-        public ConditionString(ConditionContainer conditions, string propertyName)
-            : base(conditions)
-        {
-            PropertyName = propertyName;
-            _likeValuesCaseIns = new List<string>();
-        }
+		public bool IsNotNullOrEmpty
+		{
+			get { return _isNotNullOrEmpty; }
+		}
 
-        /// <summary>
-        /// Sets the filter to given value
-        /// </summary>
-        /// <param name="value"></param>
-        public void EqualTo(string value)
-        {
-            if (!RemoveIfInvalid(value))
-                return;
+		public bool IsLike
+		{
+			get { return _isLike; }
+		}
 
-            ResetAndAddUnique();
+		public ConditionString(ConditionContainer conditions, string propertyName)
+			: base(conditions)
+		{
+			PropertyName = propertyName;
+			_likeValuesCaseIns = new List<string>();
+		}
 
-            _value = value;
-        }
+		/// <summary>
+		/// Sets the filter to given value
+		/// </summary>
+		/// <param name="value"></param>
+		public void EqualTo(string value)
+		{
+			if (!RemoveIfInvalid(value))
+				return;
 
-        public void Like(string value)
-        {
-            if (!RemoveIfInvalid(value))
-                return;
+			ResetAndAddUnique();
 
-            ResetAndAddUnique();
+			_value = value;
+		}
 
-            _isLike = true;
-            _value = value;
-        }
+		public void Like(string value)
+		{
+			if (!RemoveIfInvalid(value))
+				return;
 
-        public ConditionString OrLikeCaseIns(string value)
-        {
-            if (!RemoveIfInvalid(value))
-                return this;
+			ResetAndAddUnique();
 
-            ResetAndAddUnique();
+			_isLike = true;
+			_value = value;
+		}
 
-            if (IsValid(_value))
-                _likeValuesCaseIns.Add(_value);
+		public ConditionString OrLikeCaseIns(string value)
+		{
+			if (!RemoveIfInvalid(value))
+				return this;
 
-            _value = null;
+			ResetAndAddUnique();
 
-            _likeValuesCaseIns.Add(value);
+			if (IsValid(_value))
+				_likeValuesCaseIns.Add(_value);
 
-            _isLike = true;
+			_value = null;
 
-            return this;
-        }
+			_likeValuesCaseIns.Add(value);
 
-        private static bool IsValid(string value)
-        {
-            return !string.IsNullOrEmpty(value);
-        }
+			_isLike = true;
 
-        private bool RemoveIfInvalid(string value)
-        {
-            if (!IsValid(value))
-            {
-                Remove();
-                return false;
-            }
+			return this;
+		}
 
-            return true;
-        }
+		private static bool IsValid(string value)
+		{
+			return !string.IsNullOrEmpty(value);
+		}
 
-        /// <summary>
-        /// Sets the filter to empty or null
-        /// </summary>
-        /// <returns></returns>
-        public void NullOrEmpty()
-        {
-            ResetAndAddUnique();
+		private bool RemoveIfInvalid(string value)
+		{
+			if (!IsValid(value))
+			{
+				Remove();
+				return false;
+			}
 
-            _value = "";
-        }
+			return true;
+		}
 
-        public void NotNullOrEmpty()
-        {
-            ResetAndAddUnique();
+		/// <summary>
+		/// Sets the filter to empty or null
+		/// </summary>
+		/// <returns></returns>
+		public void NullOrEmpty()
+		{
+			ResetAndAddUnique();
 
-            _isNotNullOrEmpty = true;
-        }
+			_value = "";
+		}
 
-        /// <summary>
-        /// Sets the condition to find empty/ not defined values
-        /// </summary>
-        public bool IsNullOrEmpty()
-        {
-            return _value == "" && !IsNotNullOrEmpty;
-        }
+		public void NotNullOrEmpty()
+		{
+			ResetAndAddUnique();
 
-        public bool IsActiveFilter()
-        {
-            return _value != null && Conditions.Contains(this);
-        }
+			_isNotNullOrEmpty = true;
+		}
 
-        private void ResetAndAddUnique()
-        {
-            _isNotNullOrEmpty = false;
-            _isLike = false;
-            Conditions.AddUnique(this);
-        }
+		/// <summary>
+		/// Sets the condition to find empty/ not defined values
+		/// </summary>
+		public bool IsNullOrEmpty()
+		{
+			return _value == "" && !IsNotNullOrEmpty;
+		}
 
-        public string GetString()
-        {
-            return _value;
-        }
+		public bool IsActiveFilter()
+		{
+			return _value != null && Conditions.Contains(this);
+		}
 
-        public override ICriterion GetCriterion()
-        {
-            if (IsNullOrEmpty())
-            {
-                var disjunction = Restrictions.Disjunction();
-                disjunction.Add(Restrictions.Eq(PropertyName, ""));
-                disjunction.Add(Restrictions.IsNull(PropertyName));
-                return disjunction;
-            }
+		private void ResetAndAddUnique()
+		{
+			_isNotNullOrEmpty = false;
+			_isLike = false;
+			Conditions.AddUnique(this);
+		}
 
-            if (IsNotNullOrEmpty)
-            {
-                return Restrictions.And(
-                    Restrictions.Not(Restrictions.Eq(PropertyName, "")),
-                    Restrictions.IsNotNull(PropertyName)
-                );
-            }
+		public string GetString()
+		{
+			return _value;
+		}
 
-            if (IsLike)
-            {
-                if (_likeValuesCaseIns.Count <= 0)
-                    return GetLikeRestriction(_value, false);
+		public override ICriterion GetCriterion()
+		{
+			if (IsNullOrEmpty())
+			{
+				var disjunction = Restrictions.Disjunction();
+				disjunction.Add(Restrictions.Eq(PropertyName, ""));
+				disjunction.Add(Restrictions.IsNull(PropertyName));
+				return disjunction;
+			}
 
-                var disjunction = Restrictions.Disjunction();
-                for (int i = 0; i < _likeValuesCaseIns.Count; i++)
-                    disjunction.Add(GetLikeRestriction(_likeValuesCaseIns[i], true));
+			if (IsNotNullOrEmpty)
+			{
+				return Restrictions.And(
+					Restrictions.Not(Restrictions.Eq(PropertyName, "")),
+					Restrictions.IsNotNull(PropertyName)
+					);
+			}
 
-                return disjunction;
-            }
+			if (IsLike)
+			{
+				if (_likeValuesCaseIns.Count <= 0)
+					return GetLikeRestriction(_value, false);
 
-            return Restrictions.Eq(PropertyName, Value);
-        }
+				var disjunction = Restrictions.Disjunction();
+				for (var i = 0; i < _likeValuesCaseIns.Count; i++)
+					disjunction.Add(GetLikeRestriction(_likeValuesCaseIns[i], true));
 
-        private ICriterion GetLikeRestriction(string value, bool caseInsensitive)
-        {
-            if (caseInsensitive)
-                return Restrictions.InsensitiveLike(PropertyName, value, MatchMode.Anywhere);
+				return disjunction;
+			}
 
-            return Restrictions.Like(PropertyName, value, MatchMode.Anywhere);
-        }
+			return Restrictions.Eq(PropertyName, Value);
+		}
 
-        public override void AddToCriteria(ICriteria criteria)
-        {
-            criteria.Add(GetCriterion());
-        }
+		private ICriterion GetLikeRestriction(string value, bool caseInsensitive)
+		{
+			if (caseInsensitive)
+				return Restrictions.InsensitiveLike(PropertyName, value, MatchMode.Anywhere);
 
-        public void AddToDisjunction(Disjunction disjunction)
-        {
-            disjunction.Add(GetCriterion());
-        }
+			return Restrictions.Like(PropertyName, value, MatchMode.Anywhere);
+		}
 
-        /// <summary>
-        /// Setzt alle Werte des Filters zurück.
-        /// </summary>
-        public override void Reset()
-        {
-            _value = null;
-            _isNotNullOrEmpty = false;
-            _isLike = false;
-            _likeValuesCaseIns.Clear();
-            base.Reset();
-        }
-    }
+		public override void AddToCriteria(ICriteria criteria)
+		{
+			criteria.Add(GetCriterion());
+		}
+
+		public void AddToDisjunction(Disjunction disjunction)
+		{
+			disjunction.Add(GetCriterion());
+		}
+
+		/// <summary>
+		/// Setzt alle Werte des Filters zurück.
+		/// </summary>
+		public override void Reset()
+		{
+			_value = null;
+			_isNotNullOrEmpty = false;
+			_isLike = false;
+			_likeValuesCaseIns.Clear();
+			base.Reset();
+		}
+	}
 }

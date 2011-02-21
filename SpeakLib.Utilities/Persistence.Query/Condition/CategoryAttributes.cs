@@ -1,13 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
+using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities
 {
-    [Serializable]
-    public enum Importance
+	[Serializable]
+	public enum Importance
 	{
 		None = 0,
 		Prominent = 1
@@ -18,35 +15,35 @@ namespace SpeakFriend.Utilities
 		object Value { get; }
 	}
 
-    [Serializable]
-    public abstract class CategoryBaseAttribute : Attribute
+	[Serializable]
+	public abstract class CategoryBaseAttribute : Attribute
 	{
 	}
 
-    [Serializable]
-    public class CategoryBooleanAttribute : CategoryBaseAttribute
-    {
-    }
+	[Serializable]
+	public class CategoryBooleanAttribute : CategoryBaseAttribute
+	{
+	}
 
-    [Serializable]
-    public class CategoryIntegerAttribute : CategoryBaseAttribute, ICategoryNumeric
-    {
+	[Serializable]
+	public class CategoryIntegerAttribute : CategoryBaseAttribute, ICategoryNumeric
+	{
 		public int Value { get; private set; }
 
 		object ICategoryNumeric.Value
 		{
 			get { return Value; }
 		}
-		
+
 		public CategoryIntegerAttribute(int value)
 		{
 			Value = value;
 		}
-    }
+	}
 
-    [Serializable]
-    public class CategorySingleAttribute : CategoryBaseAttribute, ICategoryNumeric
-    {
+	[Serializable]
+	public class CategorySingleAttribute : CategoryBaseAttribute, ICategoryNumeric
+	{
 		public Single Value { get; private set; }
 
 		object ICategoryNumeric.Value
@@ -58,21 +55,21 @@ namespace SpeakFriend.Utilities
 		{
 			Value = value;
 		}
-    }
+	}
 
-    [Serializable]
-    public class CategoryDoubleAttribute : CategoryBaseAttribute, ICategoryNumeric
-    {
+	[Serializable]
+	public class CategoryDoubleAttribute : CategoryBaseAttribute, ICategoryNumeric
+	{
 		public double Value { get; private set; }
 
 		object ICategoryNumeric.Value
 		{
 			get { return Value; }
 		}
-		
+
 		public CategoryDoubleAttribute(double value)
 		{
 			Value = value;
 		}
-    }
+	}
 }

@@ -1,6 +1,7 @@
 using System;
 using NHibernate;
 using NHibernate.Criterion;
+using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities
 {
