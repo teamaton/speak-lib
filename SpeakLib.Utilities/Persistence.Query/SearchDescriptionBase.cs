@@ -1,22 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities
 {
-    [Serializable]
-    public class SearchDescriptionBase<TFilter, TOrderBy> : Pager, ISearchDesc
-        where TFilter : ConditionContainer, new()
-        where TOrderBy : OrderByCriteria, new()
-    {
-        ConditionContainer ISearchDesc.Filter { get { return Filter; } }
-        OrderByCriteria ISearchDesc.OrderBy { get { return OrderBy; } }
+	[Serializable]
+	public class SearchDescriptionBase<TFilter, TOrderBy> : Pager, ISearchDesc
+		where TFilter : ConditionContainer, new()
+		where TOrderBy : OrderByCriteria, new()
+	{
+		ConditionContainer ISearchDesc.Filter
+		{
+			get { return Filter; }
+		}
 
-        private readonly TFilter _filter = new TFilter();
-        private readonly TOrderBy _orderBy = new TOrderBy();
+		OrderByCriteria ISearchDesc.OrderBy
+		{
+			get { return OrderBy; }
+		}
 
-        public TFilter Filter { get { return _filter; } }
-        public TOrderBy OrderBy { get { return _orderBy; } }
-    }
+		private readonly TFilter _filter = new TFilter();
+		private readonly TOrderBy _orderBy = new TOrderBy();
+
+		public TFilter Filter
+		{
+			get { return _filter; }
+		}
+
+		public TOrderBy OrderBy
+		{
+			get { return _orderBy; }
+		}
+	}
 }

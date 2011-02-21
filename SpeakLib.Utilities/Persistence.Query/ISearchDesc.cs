@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities
 {
-    public interface ISearchDesc : IPager
-    {
-        ConditionContainer Filter { get; }
-        OrderByCriteria OrderBy { get; }
-    }
+	public interface ISearchDesc : IPager
+	{
+		ConditionContainer Filter { get; }
+		OrderByCriteria OrderBy { get; }
+	}
 }

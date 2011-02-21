@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
+using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities
 {
-    [Serializable]
-    public enum OrderDirection
-    {
-        Ascending,
-        Descending
-    }
+	[Serializable]
+	public enum OrderDirection
+	{
+		Ascending,
+		Descending
+	}
 }

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using NHibernate;
+using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities
 {
@@ -11,10 +10,10 @@ namespace SpeakFriend.Utilities
 	{
 		private readonly OrderByCriteria _andOrderByCriteria;
 
-		public T AndOrderBy<T>() where T:OrderByCriteria
+		public T AndOrderBy<T>() where T : OrderByCriteria
 		{
 			_andOrderByCriteria.BeginAdding();
-			return (T)_andOrderByCriteria;
+			return (T) _andOrderByCriteria;
 		}
 
 //		public OrderByCriteria AndOrderBy
@@ -33,8 +32,8 @@ namespace SpeakFriend.Utilities
 		}
 	}
 
-    [Serializable]
-    public class OrderByExtenderT<T> where T : OrderByCriteria
+	[Serializable]
+	public class OrderByExtenderT<T> where T : OrderByCriteria
 	{
 		private T _andOrderBy;
 
@@ -50,38 +49,50 @@ namespace SpeakFriend.Utilities
 
 		public OrderByExtenderT(OrderByCriteria orderBy)
 		{
-			AndOrderBy = (T)orderBy;
+			AndOrderBy = (T) orderBy;
 		}
 	}
 
-    [Serializable]
-    public class OrderBy
-    {
-        private readonly OrderByCriteria _criteria;
+	[Serializable]
+	public class OrderBy
+	{
+		private readonly OrderByCriteria _criteria;
 		private readonly OrderByExtender _andOrderBy;
 		private OrderDirection _direction = OrderDirection.Ascending;
 
 		/// <summary>The table alias used in associations.</summary>
 		public string Alias { get; private set; }
-		public bool HasAlias { get { return !string.IsNullOrEmpty(Alias); } }
+
+		public bool HasAlias
+		{
+			get { return !string.IsNullOrEmpty(Alias); }
+		}
 
 		/// <summary>
 		/// An action to perform before adding the OrderBy to the Criteria 
 		/// (e.g. CreateAlias) with this instance's <see cref="Alias"/>.
 		/// </summary>
 		public Action<ICriteria> CriteriaAction { get; private set; }
-		public bool HasCriteriaAction { get { return CriteriaAction != null; } }
+
+		public bool HasCriteriaAction
+		{
+			get { return CriteriaAction != null; }
+		}
 
 		public string PropertyName { get; private set; }
-        public OrderDirection Direction { get{ return _direction; } }
+
+		public OrderDirection Direction
+		{
+			get { return _direction; }
+		}
 
 
-        public OrderBy(string propertyName, OrderByCriteria criteria)
-        {
-            _criteria = criteria;
-            PropertyName = propertyName;
+		public OrderBy(string propertyName, OrderByCriteria criteria)
+		{
+			_criteria = criteria;
+			PropertyName = propertyName;
 			_andOrderBy = new OrderByExtender(criteria);
-        }
+		}
 
 		public OrderBy(string propertyName, OrderByCriteria criteria, string alias, Action<ICriteria> criteriaAction)
 			: this(propertyName, criteria)
@@ -90,15 +101,15 @@ namespace SpeakFriend.Utilities
 			CriteriaAction = criteriaAction;
 		}
 
-    	public OrderByExtender Asc()
-        {
-            return Set(OrderDirection.Ascending);
-        }
+		public OrderByExtender Asc()
+		{
+			return Set(OrderDirection.Ascending);
+		}
 
-        public OrderByExtender Desc()
-        {
-            return Set(OrderDirection.Descending);
-        }
+		public OrderByExtender Desc()
+		{
+			return Set(OrderDirection.Descending);
+		}
 
 		public OrderByExtender Set(OrderDirection direction)
 		{
@@ -113,46 +124,48 @@ namespace SpeakFriend.Utilities
 			return _andOrderBy;
 		}
 
-    	public void Toggle()
-        {
-            if (_direction == OrderDirection.Descending)
-                _direction = OrderDirection.Ascending;
-            else
-                _direction = OrderDirection.Descending;
+		public void Toggle()
+		{
+			if (_direction == OrderDirection.Descending)
+				_direction = OrderDirection.Ascending;
+			else
+				_direction = OrderDirection.Descending;
 
-            _criteria.Current = this;
-        }
+			_criteria.Current = this;
+		}
 
-        public void AscOrToggle()
-        {
-            if (!IsCurrent())
-                Asc();
-            else
-                Toggle();
-        }
+		public void AscOrToggle()
+		{
+			if (!IsCurrent())
+				Asc();
+			else
+				Toggle();
+		}
 
-        public bool IsDesc()
-        {
-            return _direction == OrderDirection.Descending;
-        }
+		public bool IsDesc()
+		{
+			return _direction == OrderDirection.Descending;
+		}
 
 
-        public bool IsAsc()
-        {
-            return _direction == OrderDirection.Ascending;
-        }
+		public bool IsAsc()
+		{
+			return _direction == OrderDirection.Ascending;
+		}
 
-        public bool IsCurrent()
-        {
-            return _criteria.Current == this;
-        }
+		public bool IsCurrent()
+		{
+			return _criteria.Current == this;
+		}
 
 		public T AndOrderBy<T>() where T : OrderByCriteria
 		{
 			return _andOrderBy.AndOrderBy<T>();
 		}
-    }
+	}
 
-    [Serializable]
-    public class OrderByList : List<OrderBy> { }
+	[Serializable]
+	public class OrderByList : List<OrderBy>
+	{
+	}
 }

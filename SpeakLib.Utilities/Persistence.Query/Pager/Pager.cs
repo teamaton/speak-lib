@@ -1,270 +1,270 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
+using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities
 {
-    [Serializable]
-    public class Pager : IPager
-    {
-    	public Pager()
-    	{
-    		TotalItems = 0;
-    		QueryAll = true;
-    	}
+	[Serializable]
+	public class Pager : IPager
+	{
+		public Pager()
+		{
+			TotalItems = 0;
+			QueryAll = true;
+		}
 
-    	/// <summary>
-        /// The total amount of items the query would return without paging
-        /// </summary>
-        public int TotalItems { get; set; }
+		/// <summary>
+		/// The total amount of items the query would return without paging
+		/// </summary>
+		public int TotalItems { get; set; }
 
-        public bool QueryAll { get; set; }
+		public bool QueryAll { get; set; }
 
-        //////////////////////////////
-        // Result Related
-        //////////////////////////////
+		//////////////////////////////
+		// Result Related
+		//////////////////////////////
 
-        /// <summary>
-        /// The amount of pages of the current result
-        /// </summary>
-        public int PageCount
-        {
-            get
-            {
-                if (QueryAll)
-                    return 1;
+		/// <summary>
+		/// The amount of pages of the current result
+		/// </summary>
+		public int PageCount
+		{
+			get
+			{
+				if (QueryAll)
+					return 1;
 
-                return (int)Math.Ceiling((decimal)TotalItems / PageSize);
-            }
-        }
+				return (int) Math.Ceiling((decimal) TotalItems/PageSize);
+			}
+		}
 
-        //////////////////////////////
-        // Query Related
-        //////////////////////////////
+		//////////////////////////////
+		// Query Related
+		//////////////////////////////
 
-        protected int _pageSize = 10;
-        public int PageSize
-        {
-            get
-            {
-                if (_isInSingleItemMode)
-                    return 3;
+		protected int _pageSize = 10;
 
-                return _pageSize;
-            }
-            set
-            {
-                _pageSize = value;
-                QueryAll = false;
-            }
-        }
+		public int PageSize
+		{
+			get
+			{
+				if (_isInSingleItemMode)
+					return 3;
 
-        protected int _currentPage = 1;
-        public int CurrentPage
-        {
-            get
-            {
-                if (_isInSingleItemMode)
-                    throw new InvalidOperationException("CurrentPage is invalid when in NavigationPagerMode.");
+				return _pageSize;
+			}
+			set
+			{
+				_pageSize = value;
+				QueryAll = false;
+			}
+		}
 
-                if (_currentPage < 1 || PageCount == 0)
-                    return 1;
+		protected int _currentPage = 1;
 
-                if (_currentPage > PageCount)
-                    return PageCount;
+		public int CurrentPage
+		{
+			get
+			{
+				if (_isInSingleItemMode)
+					throw new InvalidOperationException("CurrentPage is invalid when in NavigationPagerMode.");
 
-                return _currentPage;
-            }
-            set { _currentPage = value; }
-        }
+				if (_currentPage < 1 || PageCount == 0)
+					return 1;
 
-        public int FirstResult
-        {
-            get
-            {
-                if (_isInSingleItemMode)
-                {
-                    if (IsFirstPage)
-                        return 0;
+				if (_currentPage > PageCount)
+					return PageCount;
 
-                    return _navigationPagerResultIndex - 1;
-                }
+				return _currentPage;
+			}
+			set { _currentPage = value; }
+		}
 
-                return PageSize * (CurrentPage - 1);
-            }
-        }
+		public int FirstResult
+		{
+			get
+			{
+				if (_isInSingleItemMode)
+				{
+					if (IsFirstPage)
+						return 0;
 
-        public bool QueryExpiredRequests = false;
+					return _navigationPagerResultIndex - 1;
+				}
 
-        public bool IsFirstPage
-        {
-            get
-            {
-                if (_isInSingleItemMode)
-                    return _navigationPagerResultIndex == 0;
+				return PageSize*(CurrentPage - 1);
+			}
+		}
 
-                return CurrentPage == 1;
-            }
-        }
+		public bool QueryExpiredRequests;
 
-        public bool IsLastPage
-        {
-            get
-            {
-                if (_isInSingleItemMode)
-                    return _navigationPagerResultIndex == TotalItems - 1;
+		public bool IsFirstPage
+		{
+			get
+			{
+				if (_isInSingleItemMode)
+					return _navigationPagerResultIndex == 0;
 
-                // If no results, then the first page is also the last, even though PageCount == 0.
-                if (PageCount == 0)
-                    return true;
+				return CurrentPage == 1;
+			}
+		}
 
-                return CurrentPage == PageCount;
-            }
-        }
+		public bool IsLastPage
+		{
+			get
+			{
+				if (_isInSingleItemMode)
+					return _navigationPagerResultIndex == TotalItems - 1;
 
-        /// <summary>
-        /// Lower Bound of the Current Page
-        /// </summary>
-        public int LowerBound
-        {
-            get { return GetLowerBoundOfPage(CurrentPage); }
-        }
+				// If no results, then the first page is also the last, even though PageCount == 0.
+				if (PageCount == 0)
+					return true;
 
-        /// <summary>
-        /// Upper Bound of the Current Page
-        /// </summary>
-        public int UpperBound
-        {
-            get { return GetUpperBoundOfPage(CurrentPage); }
-        }
+				return CurrentPage == PageCount;
+			}
+		}
 
-        public int NextLowerBound
-        {
-            get
-            {
-                if (!IsLastPage)
-                    return GetLowerBoundOfPage(CurrentPage + 1);
+		/// <summary>
+		/// Lower Bound of the Current Page
+		/// </summary>
+		public int LowerBound
+		{
+			get { return GetLowerBoundOfPage(CurrentPage); }
+		}
 
-                return GetLowerBoundOfPage(CurrentPage);
-            }
-        }
+		/// <summary>
+		/// Upper Bound of the Current Page
+		/// </summary>
+		public int UpperBound
+		{
+			get { return GetUpperBoundOfPage(CurrentPage); }
+		}
 
-        public int NextUpperBound
-        {
-            get
-            {
-                if (!IsLastPage)
-                    return GetUpperBoundOfPage(CurrentPage + 1);
+		public int NextLowerBound
+		{
+			get
+			{
+				if (!IsLastPage)
+					return GetLowerBoundOfPage(CurrentPage + 1);
 
-                return GetUpperBoundOfPage(CurrentPage);
-            }
-        }
+				return GetLowerBoundOfPage(CurrentPage);
+			}
+		}
 
-        private int GetLowerBoundOfPage(int page)
-        {
-            return ((page - 1) * PageSize) + 1;
-        }
+		public int NextUpperBound
+		{
+			get
+			{
+				if (!IsLastPage)
+					return GetUpperBoundOfPage(CurrentPage + 1);
 
-        private int GetUpperBoundOfPage(int page)
-        {
-            int result = page * PageSize;
+				return GetUpperBoundOfPage(CurrentPage);
+			}
+		}
 
-            if (result > TotalItems)
-                result = TotalItems;
+		private int GetLowerBoundOfPage(int page)
+		{
+			return ((page - 1)*PageSize) + 1;
+		}
 
-            return result;
-        }
+		private int GetUpperBoundOfPage(int page)
+		{
+			var result = page*PageSize;
 
-        /// <summary>
-        /// Flip forward by a positive number of pages. 
-        /// </summary>
-        /// <param name="amountOfPages">The amount of pages to advance.</param>
-        public void NextPage(int amountOfPages)
-        {
-            for (int i = 0; i < amountOfPages; i++)
-                NextPage();
-        }
+			if (result > TotalItems)
+				result = TotalItems;
 
+			return result;
+		}
 
-        public void NextPage()
-        {
-            if (CurrentPage + 1 <= PageCount)
-                CurrentPage++;
-            else
-                CurrentPage = PageCount;
-        }
-
-        /// <summary>
-        /// Flip backward by a positive number of pages.
-        /// </summary>
-        /// <param name="amountOfPages">The amount of page pages to go back.</param>
-        public void PreviousPage(int amountOfPages)
-        {
-            for (int i = 0; i < amountOfPages; i++)
-                PreviousPage();
-        }
-
-        public void PreviousPage()
-        {
-            if (CurrentPage - 1 > 0)
-                CurrentPage--;
-            else
-                CurrentPage = 1;
-        }
-
-        public void LastPage()
-        {
-            CurrentPage = PageCount;
-        }
-
-        public void FirstPage()
-        {
-            CurrentPage = 1;
-        }
+		/// <summary>
+		/// Flip forward by a positive number of pages. 
+		/// </summary>
+		/// <param name="amountOfPages">The amount of pages to advance.</param>
+		public void NextPage(int amountOfPages)
+		{
+			for (var i = 0; i < amountOfPages; i++)
+				NextPage();
+		}
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        protected bool _isInSingleItemMode = false;
+		public void NextPage()
+		{
+			if (CurrentPage + 1 <= PageCount)
+				CurrentPage++;
+			else
+				CurrentPage = PageCount;
+		}
 
-        /// <summary>
-        /// Is die 
-        /// </summary>
-        protected int _navigationPagerResultIndex = 0;
+		/// <summary>
+		/// Flip backward by a positive number of pages.
+		/// </summary>
+		/// <param name="amountOfPages">The amount of page pages to go back.</param>
+		public void PreviousPage(int amountOfPages)
+		{
+			for (var i = 0; i < amountOfPages; i++)
+				PreviousPage();
+		}
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="totalToShow"></param>
-        /// <returns></returns>
-        public List<int> GetPages(int totalToShow)
-        {
-            var halfTotalToShow = (int)Math.Floor(totalToShow / 2m);
+		public void PreviousPage()
+		{
+			if (CurrentPage - 1 > 0)
+				CurrentPage--;
+			else
+				CurrentPage = 1;
+		}
 
-            if (PageCount <= totalToShow)
-                return GetPages(1, PageCount);
+		public void LastPage()
+		{
+			CurrentPage = PageCount;
+		}
 
-            if ((CurrentPage - halfTotalToShow) <= 0)
-                return GetPages(1, totalToShow);
-
-            if (CurrentPage + halfTotalToShow > PageCount)
-                return GetPages(PageCount - totalToShow + 1, totalToShow);
-
-            return GetPages(CurrentPage - halfTotalToShow, totalToShow);
-        }
+		public void FirstPage()
+		{
+			CurrentPage = 1;
+		}
 
 
-        private List<int> GetPages(int startPage, int totalToShow)
-        {
-            var result = new List<int>();
+		/// <summary>
+		/// 
+		/// </summary>
+		protected bool _isInSingleItemMode;
 
-            for (int currentPage = startPage; currentPage < totalToShow + startPage; currentPage++)
-                result.Add(currentPage);
+		/// <summary>
+		/// Is die 
+		/// </summary>
+		protected int _navigationPagerResultIndex;
 
-            return result;
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="totalToShow"></param>
+		/// <returns></returns>
+		public List<int> GetPages(int totalToShow)
+		{
+			var halfTotalToShow = (int) Math.Floor(totalToShow/2m);
+
+			if (PageCount <= totalToShow)
+				return GetPages(1, PageCount);
+
+			if ((CurrentPage - halfTotalToShow) <= 0)
+				return GetPages(1, totalToShow);
+
+			if (CurrentPage + halfTotalToShow > PageCount)
+				return GetPages(PageCount - totalToShow + 1, totalToShow);
+
+			return GetPages(CurrentPage - halfTotalToShow, totalToShow);
+		}
+
+
+		private List<int> GetPages(int startPage, int totalToShow)
+		{
+			var result = new List<int>();
+
+			for (var currentPage = startPage; currentPage < totalToShow + startPage; currentPage++)
+				result.Add(currentPage);
+
+			return result;
 		}
 
 		public Pager SetItemsPerPage(int itemsPerPage)
@@ -276,11 +276,11 @@ namespace SpeakFriend.Utilities
 		public bool HasNextPage()
 		{
 			return !IsLastPage;
-		}          
-        
+		}
+
 		public bool HasPreviousPage()
 		{
 			return !IsFirstPage;
 		}
-    }
+	}
 }

@@ -1,109 +1,106 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NHibernate.Criterion;
+using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities
 {
 	[Serializable]
 	public class ConditionInteger : ConditionNumericAbstract, IConditionNumeric
-    {
-        private const int _noValue = -1;
-        private int _value = _noValue;
+	{
+		private const int _noValue = -1;
+		private int _value = _noValue;
 
-        public ConditionInteger(ConditionContainer conditions, string propertyName)
-            : base(conditions)
-        {
-            PropertyName = propertyName;
-        }
+		public ConditionInteger(ConditionContainer conditions, string propertyName)
+			: base(conditions)
+		{
+			PropertyName = propertyName;
+		}
 
-        public void GreaterThan(object value)
-        {
-            GreaterThan(Convert.ToInt32(value));
-        }
+		public void GreaterThan(object value)
+		{
+			GreaterThan(Convert.ToInt32(value));
+		}
 
-        public void GreaterThan(int value)
-        {
-            SetQueryGreater();
-            _value = value;
+		public void GreaterThan(int value)
+		{
+			SetQueryGreater();
+			_value = value;
 
-            if (RemoveIfMinusOne(value))
-                return;
+			if (RemoveIfMinusOne(value))
+				return;
 
-            Conditions.AddUnique(this);
-        }
+			Conditions.AddUnique(this);
+		}
 
-        public void GreaterThan(bool isChecked, int value)
-        {
-            if (isChecked)
-                GreaterThan(value);
-            else
-                Conditions.Remove(this);
-        }
+		public void GreaterThan(bool isChecked, int value)
+		{
+			if (isChecked)
+				GreaterThan(value);
+			else
+				Conditions.Remove(this);
+		}
 
-        public void LessThan(bool isChecked, int value)
-        {
-            if (isChecked)
-                LessThan(value);
-            else
-                Conditions.Remove(this);
-        }
+		public void LessThan(bool isChecked, int value)
+		{
+			if (isChecked)
+				LessThan(value);
+			else
+				Conditions.Remove(this);
+		}
 
-        public void LessThan(object value)
-        {
-            LessThan(Convert.ToInt32(value));
-        }
+		public void LessThan(object value)
+		{
+			LessThan(Convert.ToInt32(value));
+		}
 
-        public void LessThan(int value)
-        {
-            SetQueryLess();
-            _value = value;
-            
-            if(RemoveIfMinusOne(value))
-                return;
+		public void LessThan(int value)
+		{
+			SetQueryLess();
+			_value = value;
 
-            Conditions.AddUnique(this);
-        }
+			if (RemoveIfMinusOne(value))
+				return;
 
-        public void EqualTo(object id)
-        {
-            if(String.IsNullOrEmpty(id.ToString()))
-            {
-                Remove();
-                return;
-            }
+			Conditions.AddUnique(this);
+		}
 
-            EqualTo(Convert.ToInt32(id));
-        }
+		public void EqualTo(object id)
+		{
+			if (String.IsNullOrEmpty(id.ToString()))
+			{
+				Remove();
+				return;
+			}
 
-        public void EqualTo(int id)
-        {
-            SetQueryEqual();
-            _value = id;
+			EqualTo(Convert.ToInt32(id));
+		}
 
-            Conditions.AddUnique(this);
-        }
+		public void EqualTo(int id)
+		{
+			SetQueryEqual();
+			_value = id;
 
-        public override object GetValue()
-        {
-            return _value;
-        }
+			Conditions.AddUnique(this);
+		}
 
-        public override bool IsSet()
-        {
-            return _value != _noValue;
-        }
+		public override object GetValue()
+		{
+			return _value;
+		}
 
-        public string GetString()
-        {
-            return _value.ToString();
-        }
+		public override bool IsSet()
+		{
+			return _value != _noValue;
+		}
 
-        public override void Reset()
-        {
-            _value = _noValue;
-            base.Reset();
-        }
-    }
+		public string GetString()
+		{
+			return _value.ToString();
+		}
+
+		public override void Reset()
+		{
+			_value = _noValue;
+			base.Reset();
+		}
+	}
 }

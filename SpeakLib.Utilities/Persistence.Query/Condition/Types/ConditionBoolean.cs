@@ -1,6 +1,7 @@
 using System;
 using NHibernate;
 using NHibernate.Criterion;
+using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities
 {
@@ -11,7 +12,7 @@ namespace SpeakFriend.Utilities
 	public class ConditionBoolean : Condition
 	{
 		private bool? _value = false;
-		private bool _nullable = false;
+		private bool _nullable;
 
 		public ConditionBoolean(ConditionContainer conditions, string propertyName)
 			: base(conditions)
@@ -42,7 +43,7 @@ namespace SpeakFriend.Utilities
 
 		public bool IsTrue()
 		{
-			return _value==true;
+			return _value == true;
 		}
 
 		/// <summary>
@@ -56,7 +57,7 @@ namespace SpeakFriend.Utilities
 
 		public bool IsFalse()
 		{
-			return _value==false;
+			return _value == false;
 		}
 
 		/// <summary>
@@ -73,9 +74,9 @@ namespace SpeakFriend.Utilities
 		/// </summary>
 		public void SetNull()
 		{
-			if(!_nullable)
+			if (!_nullable)
 				throw new InvalidOperationException("Call SetNullable(true) on this condition (" + PropertyName +
-													") before setting it to NULL!");
+				                                    ") before setting it to NULL!");
 			_value = null;
 			Conditions.AddUnique(this);
 		}
