@@ -21,14 +21,13 @@ namespace SpeakFriend.Utilities.Web
         public virtual IRequest Request { get; protected set; }
         public virtual IResponse Response { get; protected set; }
         public virtual IDictionary ContextItems { get; protected set; }
-        public virtual string SessionId { get; protected set; }
+		public virtual string SessionId { get { return HttpContext.Current.Session.SessionID; } }
 
         protected HttpCurrent()
         {
         	Request = new RequestWeb();
         	Response = new ResponseWeb();
         	ContextItems = HttpContext.Current.Items;
-        	SessionId = HttpContext.Current.Session.SessionID;
         }
 
         public static HttpCurrent Get()
