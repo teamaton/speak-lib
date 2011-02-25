@@ -77,6 +77,9 @@ namespace SpeakFriend.Utilities.Web
 			return list;
 		}
 
+		/// <summary>
+		/// Typed populator for <see cref="ListControl"/> for use with Enum.
+		/// </summary>
 		public static ListControl Populate<T>(this ListControl list)
 			where T : struct, IComparable, IConvertible, IFormattable // contraints for enum
 		{
@@ -87,7 +90,10 @@ namespace SpeakFriend.Utilities.Web
 			}
 			return list;
 		}
-
+		
+		/// <summary>
+		/// Typed setter for <see cref="ListControl.SelectedValue"/> for use with Enum.
+		/// </summary>
 		public static ListControl SelectedValue<T>(this ListControl list, T value)
 			where T : struct, IComparable, IConvertible, IFormattable // contraints for enum
 		{
@@ -104,6 +110,9 @@ namespace SpeakFriend.Utilities.Web
 			return list;
 		}
 
+		/// <summary>
+		/// Typed getter for <see cref="ListControl.SelectedValue"/> for use with Enum.
+		/// </summary>
 		public static T SelectedValue<T>(this DropDownList ddl)
 			where T : struct, IComparable, IConvertible, IFormattable // contraints for enum
 		{
