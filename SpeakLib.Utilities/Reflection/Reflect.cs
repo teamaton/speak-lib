@@ -18,6 +18,14 @@ namespace SpeakFriend.Utilities.Reflection
 			return GetMemberInfo(m).Name;
 		}
 
+		/// <summary>
+		/// Same as MemberName, just shorter.
+		/// </summary>
+		public static string Name<TMember>(Expression<Func<TClass, TMember>> m)
+		{
+			return MemberName(m);
+		}
+
 		public static FieldInfo Field<T>(Expression<Func<TClass, T>> m)
 		{
 			return GetFieldInfo(m);
