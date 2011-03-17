@@ -7,7 +7,9 @@ namespace SpeakFriend.Utilities.Usefulness
 	{
 		public int Id { get; set; }
 		private int? _positiveValue;
+		private int? PositiveValue { get { return _positiveValue; } }
 		private int? _negativeValue;
+		private int? NegativeValue { get { return _negativeValue; } }
 		public int Value
 		{
 			get { return _positiveValue.HasValue ? _positiveValue.Value : _negativeValue.Value; }
