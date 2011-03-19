@@ -24,6 +24,17 @@ namespace SpeakFriend.Utilities
 		public void GreaterThan(decimal value)
 		{
 			SetQueryGreater();
+			SetValue(value);
+		}
+
+		public void GreaterThanOrEqual(decimal value)
+		{
+			SetQueryGreaterOrEqual();
+			SetValue(value);
+		}
+
+		private void SetValue(decimal value)
+		{
 			_value = value;
 
 			if (_value == _noValue)
@@ -59,15 +70,7 @@ namespace SpeakFriend.Utilities
 		public void LessThan(decimal value)
 		{
 			SetQueryGreater();
-			_value = value;
-
-			if (_value == _noValue)
-			{
-				Conditions.Remove(this);
-				return;
-			}
-
-			Conditions.AddUnique(this);
+			SetValue(value);
 		}
 
 		public override object GetValue()

@@ -52,6 +52,11 @@ namespace SpeakFriend.Utilities
 			return _queryType == ConditionComparisonType.Greater;
 		}
 
+		public bool IsGreaterThanOrEqual()
+		{
+			return _queryType == ConditionComparisonType.GreaterOrEqual;
+		}
+
 		public bool IsEqualTo()
 		{
 			return _queryType == ConditionComparisonType.Equal;
@@ -65,6 +70,11 @@ namespace SpeakFriend.Utilities
 		protected void SetQueryGreater()
 		{
 			_queryType = ConditionComparisonType.Greater;
+		}
+
+		protected void SetQueryGreaterOrEqual()
+		{
+			_queryType = ConditionComparisonType.GreaterOrEqual;
 		}
 
 		protected void SetQueryLess()
@@ -104,6 +114,9 @@ namespace SpeakFriend.Utilities
 
 			if (IsGreaterThan())
 				return Restrictions.Gt(PropertyName, GetValue());
+
+			if (IsGreaterThanOrEqual())
+				return Restrictions.Ge(PropertyName, GetValue());
 
 			// Building conjunction if needed.
 			ICriterion restriction;

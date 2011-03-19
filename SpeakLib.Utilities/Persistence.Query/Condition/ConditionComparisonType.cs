@@ -6,9 +6,10 @@ namespace SpeakFriend.Utilities
 	[Serializable]
 	public enum ConditionComparisonType
 	{
-		Greater,
-		Less,
 		Equal,
+		Less,
 		LessOrEqual,
+		Greater,
+		GreaterOrEqual,
 	}
 }
