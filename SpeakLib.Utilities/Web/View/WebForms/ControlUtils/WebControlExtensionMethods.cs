@@ -52,12 +52,7 @@ namespace SpeakFriend.Utilities.Web
 			return item.ItemType == ListItemType.AlternatingItem;
 		}
 
-		public static T Find<T>(this Control control, string controlName) where T : Control
-		{
-			return Find<T>(control, controlName, true);
-		}
-
-		public static T Find<T>(this Control control, string controlName, bool throwIfNotFound) where T : Control
+		public static T Find<T>(this Control control, string controlName, bool throwIfNotFound = true) where T : Control
 		{
 			var item = (T) control.FindControl(controlName);
 			if (item == null && throwIfNotFound)
