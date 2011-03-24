@@ -8,7 +8,7 @@ namespace SpeakFriend.Utilities
 	[Serializable]
 	public abstract class ConditionNumericAbstract : Condition, IConditionNumeric
 	{
-		private ConditionComparisonType _queryType;
+		protected ConditionComparisonType _queryType;
 
 		/// <summary>
 		/// Unset this value if for a less than comparison you do not automatically want to constrain
@@ -132,6 +132,16 @@ namespace SpeakFriend.Utilities
 					.Add(Restrictions.Ge(PropertyName, 0f));
 
 			return restriction;
+		}
+
+		public virtual ConditionNumericAbstract SetThresholdComparison(ConditionComparisonType comparisonType)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual void SetActive(bool isChecked)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

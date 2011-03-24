@@ -4,7 +4,7 @@ using SpeakFriend.Utilities;
 namespace SpeakFriend.Utilities
 {
 	[Serializable]
-	public class ConditionSingle : ConditionNumericAbstract, IConditionNumeric
+	public class ConditionSingle : ConditionNumericAbstract	
 	{
 		private const Single _noValue = -1;
 		private Single _value = _noValue;
@@ -20,14 +20,6 @@ namespace SpeakFriend.Utilities
 			: this(conditions, propertyName)
 		{
 			_criticalValue = criticalValue;
-		}
-
-		public void LessThanOrEqualToThreshold(bool activate)
-		{
-			if (_criticalValue == _noValue)
-				throw new ArgumentOutOfRangeException("Critical value has not been set! Use different constructor.");
-
-			LessThanOrEqual(activate, _criticalValue);
 		}
 
 		public void GreaterThan(object value)
@@ -92,6 +84,24 @@ namespace SpeakFriend.Utilities
 		public override bool IsSet()
 		{
 			return _value != _noValue;
+		}
+
+		public override ConditionNumericAbstract SetThresholdComparison(ConditionComparisonType comparisonType)
+		{
+			if (_criticalValue == _noValue)
+				throw new ArgumentException("Critical value has not been set! Use different constructor.");
+
+			_value = _criticalValue;
+			_queryType = comparisonType;
+			return this;
+		}
+
+		public override void SetActive(bool isChecked)
+		{
+			if (isChecked)
+				Conditions.AddUnique(this);
+			else
+				Conditions.Remove(this);
 		}
 
 		public override void Reset()
