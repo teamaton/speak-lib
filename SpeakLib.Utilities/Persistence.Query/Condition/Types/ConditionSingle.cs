@@ -22,6 +22,14 @@ namespace SpeakFriend.Utilities
 			_criticalValue = criticalValue;
 		}
 
+		public void LessThanCritical(bool activate)
+		{
+			if (_criticalValue == _noValue)
+				throw new ArgumentOutOfRangeException("Critical value has not been set! Use different constructor.");
+
+			LessThanOrEqual(activate, _criticalValue);
+		}
+		
 		public void GreaterThan(object value)
 		{
 			GreaterThan(Convert.ToSingle(value));
