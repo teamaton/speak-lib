@@ -235,18 +235,13 @@ namespace SpeakFriend.Utilities
             return list;
         }
 
-		public virtual TDomainObjectList GetBy(ISearchDesc searchDesc)
-		{
-			return GetBy(searchDesc, null);
-		}
-
 		/// <summary>
 		/// Generic GetBy.
 		/// </summary>
 		/// <param name="searchDesc"></param>
 		/// <param name="criteriaExtender">Here you can plug in additional changes of the criteria.</param>
 		/// <returns></returns>
-        public TDomainObjectList GetBy(ISearchDesc searchDesc, Action<ICriteria> criteriaExtender)
+        public TDomainObjectList GetBy(ISearchDesc searchDesc, Action<ICriteria> criteriaExtender = null)
         {
             var criteria = GetCriteria(searchDesc);
 
