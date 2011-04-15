@@ -51,7 +51,7 @@ namespace SpeakFriend.Utilities
 		public override ICriterion GetCriterion()
 		{
 			var detachedCriteria = DetachedCriteria.For<TChild>("CAL");
-			detachedCriteria.Add(Restrictions.EqProperty("GeoObject.Id", Alias + ".Id"))
+			detachedCriteria.Add(Restrictions.EqProperty("GeoObjectId", Alias + ".Id"))
 				.Add(Restrictions.Eq("IsActive", true))
 				.Add(Restrictions.InG("AffiliateLink.Id", _affiliateLinkIds))
 				.CreateAlias("AffiliateLink", "al")
