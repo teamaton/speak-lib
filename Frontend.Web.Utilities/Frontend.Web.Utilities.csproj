@@ -17,6 +17,7 @@
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
     <TargetFrameworkProfile />
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -59,6 +60,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="fwx\ajax-img-upload.aspx" />
+    <Content Include="fwx\scriptlet.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +99,20 @@
     </Compile>
     <Compile Include="asp.net\FileUpload\UploadContent\DefaultContent.aspx.designer.cs">
       <DependentUpon>DefaultContent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="fwx\ajax-img-upload.aspx.cs">
+      <DependentUpon>ajax-img-upload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="fwx\ajax-img-upload.aspx.designer.cs">
+      <DependentUpon>ajax-img-upload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="fwx\scriptlet.aspx.cs">
+      <DependentUpon>scriptlet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="fwx\scriptlet.aspx.designer.cs">
+      <DependentUpon>scriptlet.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
