@@ -95,7 +95,11 @@ namespace SpeakFriend.Utilities
 
     	public void SetPager(ICriteria criteria, IPager pager)
         {
-            if (!pager.QueryAll)
+			if (pager.QueryAll)
+			{
+				criteria.SetMaxResults(int.MaxValue);				
+			}
+			else
             {
                 criteria.SetMaxResults(pager.PageSize);
                 criteria.SetFirstResult(pager.FirstResult);
