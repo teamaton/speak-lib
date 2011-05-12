@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Web;
 using Iesi.Collections.Generic;
+using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities.Web
 {
 	/// <summary>
-	/// Ermöglicht einen verallgemeinerten Zugriff auch Benutzerdaten, 
-	/// sowohl für den Web- als auch für einen allgemeinen Awendungskontext.
+	/// Ermöglicht einen verallgemeinerten Zugriff auf Benutzerdaten, 
+	/// sowohl für den Web- als auch für einen allgemeinen Anwendungskontext.
 	/// </summary>
 	[Serializable]
 	public class SessionData
 	{
-		private readonly Iesi.Collections.Generic.ISet<string> _appDomainInsertedKeys = new HashedSet<string>();
+		private readonly ISet<string> _appDomainInsertedKeys = new HashedSet<string>();
 
 		public object this[string key]
 		{
@@ -20,7 +21,7 @@ namespace SpeakFriend.Utilities.Web
 				if (ContextUtil.IsWebContext)
 				{
 					if (HttpContext.Current.Session == null)
-						throw new NullReferenceException("Probably you access session data to late or to early in the page life cycle.");
+						throw new NullReferenceException("Probably you're accessing session data too late or too early in the page life cycle!");
 
 					return HttpContext.Current.Session[key];
 				}

@@ -15,7 +15,7 @@ namespace SpeakFriend.Utilities.Web
 
 		public RequestData()
 		{
-			_requestData = ContextUtil.IsWebContext && HttpContext.Current.Request != null
+			_requestData = ContextUtil.IsWebContext && HttpContext.Current != null
 			               	? HttpContext.Current.Items
 			               	: new Dictionary<string, object>();
 		}

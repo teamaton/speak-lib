@@ -1,27 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
+﻿using System.Web;
+using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities.Web
 {
-    public static class ContextUtil
-    {
-        public static bool IsLocal
-        {
-            get
-            {
-                if (!IsWebContext) // helps unit testing
-                    return false;
+	public static class ContextUtil
+	{
+		public static bool IsLocal
+		{
+			get { return IsWebContext && HttpContext.Current.Request.IsLocal; }
+		}
 
-                return HttpContext.Current.Request.IsLocal;
-            }
-        }
-
-        public static bool IsWebContext
-        {
-            get { return HttpContext.Current != null; }
-        }
-    }
+		public static bool IsWebContext
+		{
+			get { return HttpContext.Current != null; }
+		}
+	}
 }
