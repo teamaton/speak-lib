@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using NHibernate;
+using NHibernate.Criterion;
+using NHibernate.SqlCommand;
 using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities
@@ -13,18 +15,18 @@ namespace SpeakFriend.Utilities
 		public T AndOrderBy<T>() where T : OrderByCriteria
 		{
 			_andOrderByCriteria.BeginAdding();
-			return (T) _andOrderByCriteria;
+			return (T)_andOrderByCriteria;
 		}
 
-//		public OrderByCriteria AndOrderBy
-//		{
-//			get
-//			{
-//				_andOrderBy.BeginAdding();
-//				return _andOrderBy;
-//			}
-//			set { _andOrderBy = value; }
-//		}
+		//		public OrderByCriteria AndOrderBy
+		//		{
+		//			get
+		//			{
+		//				_andOrderBy.BeginAdding();
+		//				return _andOrderBy;
+		//			}
+		//			set { _andOrderBy = value; }
+		//		}
 
 		public OrderByExtender(OrderByCriteria orderByCriteria)
 		{
@@ -49,7 +51,7 @@ namespace SpeakFriend.Utilities
 
 		public OrderByExtenderT(OrderByCriteria orderBy)
 		{
-			AndOrderBy = (T) orderBy;
+			AndOrderBy = (T)orderBy;
 		}
 	}
 
@@ -86,12 +88,25 @@ namespace SpeakFriend.Utilities
 			get { return _direction; }
 		}
 
+		public bool HasSqlFormula
+		{
+			get { return SqlFormula.IsNotNullOrEmpty(); }
+		}
 
+		public string SqlFormula { get; private set; }
+		
 		public OrderBy(string propertyName, OrderByCriteria criteria)
 		{
 			_criteria = criteria;
 			PropertyName = propertyName;
 			_andOrderBy = new OrderByExtender(criteria);
+		}
+
+		public OrderBy(string propertyName, OrderByCriteria criteria, string sqlFormula)
+		{
+			PropertyName = propertyName;
+			_criteria = criteria;
+			SqlFormula = sqlFormula;
 		}
 
 		public OrderBy(string propertyName, OrderByCriteria criteria, string alias, Action<ICriteria> criteriaAction)
@@ -167,5 +182,51 @@ namespace SpeakFriend.Utilities
 	[Serializable]
 	public class OrderByList : List<OrderBy>
 	{
+	}
+
+	/**
+	 * Extends {@link org.hibernate.criterion.Order} to allow ordering by an SQL formula passed by the user.
+	 * Is simply appends the <code>sqlFormula</code> passed by the user to the resulting SQL query, without any verification.
+	 * @author Sorin Postelnicu
+	 * @since Jun 10, 2008
+	 */
+	public class OrderBySqlFormula : Order
+	{
+		private readonly String _sqlFormula;
+
+		/**
+		 * Constructor for Order.
+		 * @param _sqlFormula an SQL formula that will be appended to the resulting SQL query
+		 */
+		protected OrderBySqlFormula(String sqlFormula)
+			: base(sqlFormula, true)
+		{
+			_sqlFormula = sqlFormula;
+		}
+
+		public override String ToString()
+		{
+			return _sqlFormula;
+		}
+
+		public override SqlString ToSqlString(ICriteria criteria, ICriteriaQuery criteriaQuery)
+		{
+			return new SqlString(_sqlFormula);
+		}
+
+		/**
+		 * Custom order
+		 *
+		 * @param sqlFormula an SQL formula that will be appended to the resulting SQL query
+		 * @return Order
+		 */
+		public new static Order Asc(String sqlFormula)
+		{
+			return new OrderBySqlFormula(sqlFormula + " asc");
+		}
+		public new static Order Desc(String sqlFormula)
+		{
+			return new OrderBySqlFormula(sqlFormula + " desc");
+		}
 	}
 }

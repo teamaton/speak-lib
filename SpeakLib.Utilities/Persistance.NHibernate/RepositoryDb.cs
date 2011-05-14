@@ -82,15 +82,25 @@ namespace SpeakFriend.Utilities
     	{
 			if (orderBy == null) return;
 
-    		var propertyName = (string.IsNullOrEmpty(tableAlias)
-    		                    	? string.Empty
-    		                    	: tableAlias.EnsureEndsWith("."))
-    		                   + orderBy.PropertyName;
+			if (orderBy.HasSqlFormula)
+			{
+				if (orderBy.Direction == OrderDirection.Ascending)
+					criteria.AddOrder(OrderBySqlFormula.Asc(orderBy.SqlFormula));
+				else
+					criteria.AddOrder(OrderBySqlFormula.Desc(orderBy.SqlFormula));
+			}
+			else
+			{
+				var propertyName = (string.IsNullOrEmpty(tableAlias)
+										? string.Empty
+										: tableAlias.EnsureEndsWith("."))
+								   + orderBy.PropertyName;
 
-    		if (orderBy.Direction == OrderDirection.Ascending)
-    			criteria.AddOrder(Order.Asc(propertyName));
-    		else
-    			criteria.AddOrder(Order.Desc(propertyName));
+				if (orderBy.Direction == OrderDirection.Ascending)
+					criteria.AddOrder(Order.Asc(propertyName));
+				else
+					criteria.AddOrder(Order.Desc(propertyName));
+			}
     	}
 
     	public void SetPager(ICriteria criteria, IPager pager)
