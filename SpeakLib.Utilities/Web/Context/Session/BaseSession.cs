@@ -7,6 +7,7 @@ namespace SpeakFriend.Utilities.Web
 	public class BaseSession
 	{
 		protected SessionData Data = new SessionData();
+		protected RequestData RequestData = new RequestData();
 
 		/// <summary>
 		/// Calls Clear() on the encapsulated SessionData object.
