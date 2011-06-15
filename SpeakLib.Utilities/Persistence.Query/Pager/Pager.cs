@@ -14,6 +14,12 @@ namespace SpeakFriend.Utilities
 		}
 
 		/// <summary>
+		/// Something like CurentPage but will always be equal to the value that was set.
+		/// </summary>
+		[Obsolete("Added this only for CToutVert search!")]
+		public int WantedPage { get; set; }
+
+		/// <summary>
 		/// The total amount of items the query would return without paging
 		/// </summary>
 		public int TotalItems { get; set; }
