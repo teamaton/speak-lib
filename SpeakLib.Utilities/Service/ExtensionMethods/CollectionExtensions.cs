@@ -122,8 +122,9 @@ namespace SpeakFriend.Utilities
 
 		/// <summary>
 		/// Returns a single string, representing the ToString values of the objects in the given collection.
+		/// <paramref name="separator"/> defaults to ", ".
 		/// </summary>
-		public static string JoinToString<T>(this IEnumerable<T> collection)
+		public static string JoinToString<T>(this IEnumerable<T> collection, string separator = ", ")
 		{
 			if (collection == null)
 				return "null";
@@ -131,7 +132,7 @@ namespace SpeakFriend.Utilities
 			if (collection.Count() <= 0)
 				return "empty";
 
-			return collection.Select(o => o.ToString()).JoinNonEmpty(", ");
+			return collection.Select(o => o.ToString()).JoinNonEmpty(separator);
 		}
 	}
 }
