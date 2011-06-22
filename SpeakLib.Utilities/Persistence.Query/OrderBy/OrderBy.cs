@@ -126,6 +126,18 @@ namespace SpeakFriend.Utilities
 			return Set(OrderDirection.Descending);
 		}
 
+		/// <summary>
+		/// Insert OrderBy to beginning of OrderBy list. Remove first if already contained.
+		/// </summary>
+		/// <returns></returns>
+		public OrderBy InsertDesc()
+		{
+			_direction = OrderDirection.Descending;
+			_criteria.CurrentList.Remove(this);
+			_criteria.CurrentList.Insert(0, this);
+			return this;
+		}
+
 		public OrderByExtender Set(OrderDirection direction)
 		{
 			_direction = direction;
@@ -139,14 +151,13 @@ namespace SpeakFriend.Utilities
 			return _andOrderBy;
 		}
 
-		public void Toggle()
+		public OrderBy Toggle()
 		{
-			if (_direction == OrderDirection.Descending)
-				_direction = OrderDirection.Ascending;
-			else
-				_direction = OrderDirection.Descending;
+			_direction = _direction == OrderDirection.Descending
+			             	? OrderDirection.Ascending
+			             	: OrderDirection.Descending;
 
-			_criteria.Current = this;
+			return this;
 		}
 
 		public void AscOrToggle()
