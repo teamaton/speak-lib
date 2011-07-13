@@ -115,5 +115,13 @@ namespace SpeakFriend.Utilities.Web
 
 			return newColl;
 		}
+
+		public static Control FirstParentOfType<T>(this Control control)
+		{
+			var parent = control.Parent;
+			while (parent != null && !(parent is T))
+				parent = parent.Parent;
+			return parent;
+		}
 	}
 }
