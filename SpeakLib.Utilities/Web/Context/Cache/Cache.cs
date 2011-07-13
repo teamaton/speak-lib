@@ -14,12 +14,19 @@ namespace SpeakFriend.Utilities.Web
             _cache = new CacheAspNet();
         }
 
+		/// <summary>
+		/// Add an entry to the Cache. Use a default timeout value if provided by 
+		/// <see cref="AppSettings" />.<see cref="AppSettings.CacheDefaultTimeout" />.
+		/// </summary>
         public static void Add(string key, object obj)
-        {
-            _cache.Add(key, obj);
-        }
+		{
+			if (AppSettings.CacheDefaultTimeout.HasValue)
+				Add(key, obj, AppSettings.CacheDefaultTimeout.Value);
+			else
+				_cache.Add(key, obj);
+		}
 
-        /// <summary>
+    	/// <summary>
         /// Add an object to the Cache (overwrite if already existent).<br/>
         /// Remove the item from the cache after <paramref name="timeSpan"/> has elapsed.
         /// </summary>

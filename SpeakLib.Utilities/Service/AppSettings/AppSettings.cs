@@ -105,6 +105,19 @@ namespace SpeakFriend.Utilities
 			}
 		}
 
+    	public static TimeSpan? CacheDefaultTimeout
+    	{
+			get
+			{
+				var value = Get_2<string>("CacheDefaultTimeout");
+				if (value == null)
+					return null;
+
+				TimeSpan cacheTimeSpan;
+				return TimeSpan.TryParse(value, out cacheTimeSpan) ? cacheTimeSpan : (TimeSpan?) null;
+			}
+    	}
+
     	protected static void EnsurePaths(Type type)
     	{
     		foreach (var prop in type.GetProperties().Where(prop => prop.Name.EndsWith("Absolute")))
