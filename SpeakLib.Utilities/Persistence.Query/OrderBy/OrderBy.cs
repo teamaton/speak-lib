@@ -103,9 +103,8 @@ namespace SpeakFriend.Utilities
 		}
 
 		public OrderBy(string propertyName, OrderByCriteria criteria, string sqlFormula)
+			: this(propertyName, criteria)
 		{
-			PropertyName = propertyName;
-			_criteria = criteria;
 			SqlFormula = sqlFormula;
 		}
 
