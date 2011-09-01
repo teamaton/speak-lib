@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.ServiceModel.Web;
 using System.Text;
 
@@ -25,6 +26,12 @@ namespace SpeakFriend.Utilities.Web.Webservice
 		{
 			if (WebOperationContext.Current != null)
 				WebOperationContext.Current.OutgoingResponse.Headers.Add("Cache-Control", "no-cache, max-age=0");
+		}
+
+		public static void SetStatusCodeNoContent()
+		{
+			if (WebOperationContext.Current != null)
+				WebOperationContext.Current.OutgoingResponse.StatusCode = HttpStatusCode.NoContent;
 		}
 	}
 }
