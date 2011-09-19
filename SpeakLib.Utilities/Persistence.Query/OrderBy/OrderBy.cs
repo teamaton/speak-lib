@@ -194,20 +194,17 @@ namespace SpeakFriend.Utilities
 	{
 	}
 
-	/**
-	 * Extends {@link org.hibernate.criterion.Order} to allow ordering by an SQL formula passed by the user.
-	 * Is simply appends the <code>sqlFormula</code> passed by the user to the resulting SQL query, without any verification.
-	 * @author Sorin Postelnicu
-	 * @since Jun 10, 2008
-	 */
+	/// <summary>
+	/// Extends <see cref="Order"/> to allow ordering by an SQL formula passed by the user.
+	/// It simply appends the <code>sqlFormula</code> passed by the user to the resulting SQL query, without any verification.
+	/// @author Sorin Postelnicu
+	/// @since Jun 10, 2008
+	/// </summary>
 	public class OrderBySqlFormula : Order
 	{
 		private readonly String _sqlFormula;
 
-		/**
-		 * Constructor for Order.
-		 * @param _sqlFormula an SQL formula that will be appended to the resulting SQL query
-		 */
+		/// <param name="sqlFormula">An SQL formula that will be appended to the resulting SQL query.</param>
 		protected OrderBySqlFormula(String sqlFormula)
 			: base(sqlFormula, true)
 		{
@@ -221,15 +218,9 @@ namespace SpeakFriend.Utilities
 
 		public override SqlString ToSqlString(ICriteria criteria, ICriteriaQuery criteriaQuery)
 		{
-			return new SqlString(_sqlFormula);
+			return new SqlString(_sqlFormula.Replace("{:alias}", criteriaQuery.GetSQLAlias(criteria, "")));
 		}
 
-		/**
-		 * Custom order
-		 *
-		 * @param sqlFormula an SQL formula that will be appended to the resulting SQL query
-		 * @return Order
-		 */
 		public new static Order Asc(String sqlFormula)
 		{
 			return new OrderBySqlFormula(sqlFormula + " asc");
