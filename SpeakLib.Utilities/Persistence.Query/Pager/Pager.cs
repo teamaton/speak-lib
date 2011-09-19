@@ -68,6 +68,9 @@ namespace SpeakFriend.Utilities
 
 		protected int _currentPage = 1;
 
+		/// <summary>
+		/// BUG: This code prohibits going directly to the second result page!
+		/// </summary>
 		public int CurrentPage
 		{
 			get
@@ -78,6 +81,7 @@ namespace SpeakFriend.Utilities
 				if (_currentPage < 1 || PageCount == 0)
 					return 1;
 
+				// bug: PageCount is only > 0 once we've been to the DB
 				if (_currentPage > PageCount)
 					return PageCount;
 
