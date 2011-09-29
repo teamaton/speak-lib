@@ -1,48 +1,51 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
 using System.Linq;
-using System.Text;
-using System.Web;
+using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities.Web
 {
-    public class ParameterHandlerService
-    {
-        protected IHttpCurrent _httpCurrent;
+	public class ParameterHandlerService
+	{
+		protected IHttpCurrent _httpCurrent;
 
-        protected IRequest _request { get { return _httpCurrent.Request; } }
-        protected IResponse _response { get { return _httpCurrent.Response; } }
+		protected IRequest _request
+		{
+			get { return _httpCurrent.Request; }
+		}
 
-        public ParameterHandlerService(IHttpCurrent httpCurrent)
-        {
-            _httpCurrent = httpCurrent;
-        }
+		protected IResponse _response
+		{
+			get { return _httpCurrent.Response; }
+		}
 
-        public void ProcessParams(ParameterHandlerList parameterHandlers)
-        {
-            ProcessParams(_request.QueryString, parameterHandlers);
-        }
+		public ParameterHandlerService(IHttpCurrent httpCurrent)
+		{
+			_httpCurrent = httpCurrent;
+		}
 
-        /// <summary>
-        /// Processes all given parameters.
-        /// </summary>
-        /// <param name="queryParams"></param>
-        /// <param name="parameterHandlers"></param>
-        public void ProcessParams(NameValueCollection queryParams, ParameterHandlerList parameterHandlers)
-        {
-            foreach (string itemKey in queryParams.Keys)
-                if (parameterHandlers.Contains(itemKey))
-                {
-                    var handler = parameterHandlers.GetByName(itemKey);
+		public void ProcessParams(ParameterHandlerList parameterHandlers)
+		{
+			ProcessParams(_request.QueryString, parameterHandlers);
+		}
 
-                    if (handler.AppliesOnlyLocal && !ContextUtil.IsLocal)
-                        continue;
+		/// <summary>
+		/// Processes all given parameters.
+		/// </summary>
+		/// <param name="queryParams"></param>
+		/// <param name="parameterHandlers"></param>
+		public void ProcessParams(NameValueCollection queryParams, ParameterHandlerList parameterHandlers)
+		{
+			foreach (var parameterHandler in parameterHandlers)
+			{
+				if (queryParams.AllKeys.Contains(parameterHandler.Name))
+				{
+					if (parameterHandler.AppliesOnlyLocal && !ContextUtil.IsLocal)
+						continue;
 
-                    handler.Action(queryParams[itemKey]);
-                }
-        }
+					parameterHandler.Action(queryParams[parameterHandler.Name]);
+				}
+			}
+		}
 
 		public void ProcessParam(ParameterHandler parameterHandler)
 		{
@@ -58,27 +61,27 @@ namespace SpeakFriend.Utilities.Web
 		}
 
 
-        /// <summary>
-        /// True if query string contains a parameter handled by a registered <see cref="ParameterHandler">ParamaterHandler</see>.
-        /// </summary>
-        /// <param name="parameterHandler"></param>
-        /// <returns></returns>
-        public bool DoesHandlerExist(ParameterHandler parameterHandler)
-        {
-            return DoesHandlerExist(_request.QueryString, parameterHandler);
-        }
+		/// <summary>
+		/// True if query string contains a parameter handled by a registered <see cref="ParameterHandler">ParamaterHandler</see>.
+		/// </summary>
+		/// <param name="parameterHandler"></param>
+		/// <returns></returns>
+		public bool DoesHandlerExist(ParameterHandler parameterHandler)
+		{
+			return DoesHandlerExist(_request.QueryString, parameterHandler);
+		}
 
-        /// <summary>
-        /// True if query string contains a parameter handled by a registered <see cref="ParameterHandler">ParamaterHandler</see>.
-        /// </summary>
-        /// <param name="queryParams"></param>
-        /// <param name="parameterHandler"></param>
-        /// <returns></returns>
-        private bool DoesHandlerExist(NameValueCollection queryParams, ParameterHandler parameterHandler)
-        {
-            var value = queryParams.Get(parameterHandler.Name);
+		/// <summary>
+		/// True if query string contains a parameter handled by a registered <see cref="ParameterHandler">ParamaterHandler</see>.
+		/// </summary>
+		/// <param name="queryParams"></param>
+		/// <param name="parameterHandler"></param>
+		/// <returns></returns>
+		private bool DoesHandlerExist(NameValueCollection queryParams, ParameterHandler parameterHandler)
+		{
+			var value = queryParams.Get(parameterHandler.Name);
 
-            return !string.IsNullOrEmpty(value);
-        }
-    }
+			return !string.IsNullOrEmpty(value);
+		}
+	}
 }
