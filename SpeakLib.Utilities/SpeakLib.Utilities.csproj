@@ -591,7 +591,6 @@
     <Compile Include="Persistence.Query\Condition\IConditionNumeric.cs" />
     <Compile Include="Persistence.Query\Condition\Types\ConditionAvgAggregate.cs" />
     <Compile Include="Persistence.Query\Condition\Types\ConditionBoolean.cs" />
-    <Compile Include="Persistence.Query\Condition\Types\ConditionConjunction.cs" />
     <Compile Include="Persistence.Query\Condition\Types\ConditionDateTime.cs" />
     <Compile Include="Persistence.Query\Condition\Types\ConditionDecimal.cs" />
     <Compile Include="Persistence.Query\Condition\Types\ConditionDisjunction.cs" />
