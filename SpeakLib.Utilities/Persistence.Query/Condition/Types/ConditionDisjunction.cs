@@ -12,28 +12,22 @@ namespace SpeakFriend.Utilities
 		{
 		}
 
-		public override ICriterion GetCriterion(T item)
-		{
-			if (typeof (T) != typeof (int))
-				return Restrictions.Eq(PropertyName, item);
-
-			throw new InvalidOperationException();
-		}
-
 		public override ICriterion GetCriterion()
 		{
-			if (typeof(T) != typeof(int))
-				return base.GetCriterion();
+			if (Items.Count == 0)
+				return null;
 
 			return Restrictions.InG(PropertyName, Items);
 		}
 
+		public override ICriterion GetCriterion(T item)
+		{
+			throw new NotImplementedException();
+		}
+
 		protected override Junction GetInitializedJunction()
 		{
-			if (typeof(T) != typeof(int))
-				return new Disjunction();
-
-			throw new InvalidOperationException();
+			throw new NotImplementedException();
 		}
 	}
 }
