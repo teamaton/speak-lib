@@ -16,5 +16,10 @@ namespace SpeakFriend.Utilities.Web
 		{
 			Data.Clear();
 		}
+
+		public SessionData GetData()
+		{
+			return Data;
+		}
 	}
 }
