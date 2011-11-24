@@ -24,12 +24,12 @@ namespace SpeakFriend.Utilities
 		bool IsLastPage { get; }
 
 		/// <summary>
-		/// Lower Bound of the Current Page
+		/// Lower Bound of the Current Page - the ordinal of the first item on the current page, counting from the first item in the result set!
 		/// </summary>
 		int LowerBound { get; }
 
 		/// <summary>
-		/// Upper Bound of the Current Page
+		/// Upper Bound of the Current Page - the ordinal of the last item on the current page, counting from the first item in the result set!
 		/// </summary>
 		int UpperBound { get; }
 
