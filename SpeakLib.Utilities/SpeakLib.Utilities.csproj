@@ -314,6 +314,7 @@
     <Compile Include="Persistence\Interfaces\MutablePersistableBase.cs" />
     <Compile Include="Persistence\Interfaces\PersistableBase.cs" />
     <Compile Include="Reflection\Reflect.cs" />
+    <Compile Include="SeedWork.Setting\Types\SettingExtensions.cs" />
     <Compile Include="Service\ExtensionMethods\ObjectExtensions.cs" />
     <Compile Include="Service\ExtensionMethods\TypeExtensions.cs" />
     <Compile Include="Reflection\ReflectionHelper.cs" />
