@@ -307,7 +307,6 @@
     <Compile Include="Persistance.NHibernate\NHibernateHelperSF.cs" />
     <Compile Include="Persistance.NHibernate\SessionExtensions.cs" />
     <Compile Include="Persistence.Query\Condition\CategoryAttributes.cs" />
-    <Compile Include="Persistence.Query\Condition\Types\ConditionHasAffiliateLink.cs" />
     <Compile Include="Persistence.Query\Condition\Types\ConditionObject.cs" />
     <Compile Include="Persistence.Query\SearchDescriptionBase.cs" />
     <Compile Include="Persistence\Interfaces\Mappings.cs" />
