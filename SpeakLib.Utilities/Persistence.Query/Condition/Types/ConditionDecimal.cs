@@ -27,6 +27,11 @@ namespace SpeakFriend.Utilities
 			SetValue(value);
 		}
 
+		public void GreaterThanOrEqual(object value)
+		{
+			GreaterThanOrEqual(Convert.ToDecimal(value, CultureInfo.InvariantCulture));
+		}
+
 		public void GreaterThanOrEqual(decimal value)
 		{
 			SetQueryGreaterOrEqual();
