@@ -249,28 +249,31 @@ namespace SpeakFriend.Utilities
             return list;
         }
 
-		/// <summary>
-		/// Generic GetBy.
-		/// </summary>
-		/// <param name="searchDesc"></param>
-		/// <param name="criteriaExtender">Here you can plug in additional changes of the criteria.</param>
-		/// <returns></returns>
-        public TDomainObjectList GetBy(ISearchDesc searchDesc, Action<ICriteria> criteriaExtender = null)
+    	/// <summary>
+    	/// Generic GetBy.
+    	/// </summary>
+    	/// <param name="searchDesc"></param>
+    	/// <param name="criteriaExtender">Here you can plug in additional changes of the criteria.</param>
+    	/// <param name="getTotalCount">Whether or not you want this query to also retrieve the total matching item count.</param>
+    	/// <returns></returns>
+    	public TDomainObjectList GetBy(ISearchDesc searchDesc, Action<ICriteria> criteriaExtender = null, bool getTotalCount = true)
         {
             var criteria = GetCriteria(searchDesc);
 
 			if (criteriaExtender != null)
 				criteriaExtender.Invoke(criteria);
 
-			var totalCountCriteria = GetTotalCountCriteria(criteria);
-
             SetPager(criteria, searchDesc);
 
 			// Use MultiCriteria to reduce DB roundtrips.
 			var multiCriteria = _session
 				.CreateMultiCriteria()
-				.Add(criteria)
-				.Add(totalCountCriteria);
+				.Add(criteria);
+
+			if (getTotalCount)
+			{
+				multiCriteria.Add(GetTotalCountCriteria(criteria));
+			}
 
 			IList multiResult;
 
@@ -296,9 +299,16 @@ namespace SpeakFriend.Utilities
             var list = new TDomainObjectList();
 			list.AddRange(((IList) multiResult[0]).Cast<TDomainObject>());
 
-			searchDesc.TotalItems = (int) ((IList) multiResult[1])[0];
+			if (getTotalCount)
+			{
+				searchDesc.TotalItems = (int) ((IList) multiResult[1])[0];
+			}
+			else
+			{
+				searchDesc.TotalItems = -1;
+			}
 
-            if (AfterItemListRetrieved != null)
+    		if (AfterItemListRetrieved != null)
                 AfterItemListRetrieved(this, new TDomainObjectListArgs(list));
 
             return list;
@@ -307,7 +317,7 @@ namespace SpeakFriend.Utilities
 		protected int GetTotalCount(ISearchDesc searchDesc)
 		{
 			var criteria = GetTotalCountCriteria(GetCriteria(searchDesc));
-			var result = -1;
+			int result;
 
 			using (var trans = _session.BeginTransaction())
 			{
