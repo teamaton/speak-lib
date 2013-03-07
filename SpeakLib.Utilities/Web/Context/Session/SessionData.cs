@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Web;
 using Iesi.Collections.Generic;
-using SpeakFriend.Utilities;
 
 namespace SpeakFriend.Utilities.Web
 {
@@ -12,7 +14,7 @@ namespace SpeakFriend.Utilities.Web
 	[Serializable]
 	public class SessionData
 	{
-		private readonly ISet<string> _appDomainInsertedKeys = new HashedSet<string>();
+		private readonly Iesi.Collections.Generic.ISet<string> _appDomainInsertedKeys = new HashedSet<string>();
 
 		public object this[string key]
 		{
@@ -21,7 +23,8 @@ namespace SpeakFriend.Utilities.Web
 				if (ContextUtil.IsWebContext)
 				{
 					if (HttpContext.Current.Session == null)
-						throw new NullReferenceException("Probably you're accessing session data too late or too early in the page life cycle!");
+						throw new NullReferenceException(
+							"Probably you're accessing session data too late or too early in the page life cycle!");
 
 					return HttpContext.Current.Session[key];
 				}
@@ -126,6 +129,33 @@ namespace SpeakFriend.Utilities.Web
 			{
 				AppDomain.CurrentDomain.SetData(key, null);
 				_appDomainInsertedKeys.Remove(key);
+			}
+		}
+
+		public void Clear(string[] dataPrefixes)
+		{
+			if (ContextUtil.IsWebContext)
+			{
+				var matchingKeys =
+					HttpContext.Current.Session.Keys.Cast<string>().Where(key => dataPrefixes.Any(key.StartsWith)).ToList();
+				foreach (var key in matchingKeys)
+					HttpContext.Current.Session.Remove(key);
+			}
+			else
+			{
+				var appDomain = AppDomain.CurrentDomain;
+
+				var fieldInfo = appDomain.GetType().GetField("_LocalStore", BindingFlags.NonPublic | BindingFlags.Instance);
+				if (fieldInfo == null)
+					return;
+
+				var localStore = fieldInfo.GetValue(appDomain) as Dictionary<string, object[]>;
+				if (localStore == null)
+					return;
+
+				var matchingKeys = localStore.Keys.Where(key => dataPrefixes.Any(key.StartsWith)).ToList();
+				foreach (var key in matchingKeys)
+					appDomain.SetData(key, null);
 			}
 		}
 	}
