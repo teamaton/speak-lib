@@ -1,163 +1,165 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
 namespace SpeakFriend.Utilities
 {
-    [Serializable]
-    public enum StringEnsureOptions
+	[Serializable]
+	public enum StringEnsureOptions
 	{
 		None = 0,
 		IgnoreNullOrEmpty = 1
 	}
 
-    public static class StringExtension
-    {
-        public static string NEW_LINE { get { return Environment.NewLine; } }
+	public static class StringExtension
+	{
+		public static string NEW_LINE
+		{
+			get { return Environment.NewLine; }
+		}
 
-        /// <summary>
-        /// Truncates the string to a specified length and replaces the truncated to a ...
-        /// </summary>
-        /// <param name="text">string that will be truncated</param>
-        /// <param name="maxLength">total length of characters to maintain before the truncate happens</param>
-        /// <param name="suffix"></param>
-        /// <returns>truncated string</returns>
-        public static string Truncate(this string text, int maxLength, string suffix)
-        {
-            string truncatedString = text;
+		/// <summary>
+		/// Truncates the string to a specified length and replaces the truncated to a ...
+		/// </summary>
+		/// <param name="text">string that will be truncated</param>
+		/// <param name="maxLength">total length of characters to maintain before the truncate happens</param>
+		/// <param name="suffix"></param>
+		/// <returns>truncated string</returns>
+		public static string Truncate(this string text, int maxLength, string suffix)
+		{
+			var truncatedString = text;
 
-            if (maxLength <= 0)
-                return truncatedString;
+			if (maxLength <= 0)
+				return truncatedString;
 
-            int strLength = maxLength - suffix.Length;
+			var strLength = maxLength - suffix.Length;
 
-            if (strLength <= 0)
-                return truncatedString;
+			if (strLength <= 0)
+				return truncatedString;
 
-            if (text == null || text.Length <= maxLength)
-                return truncatedString;
+			if (text == null || text.Length <= maxLength)
+				return truncatedString;
 
-            truncatedString = text.Substring(0, strLength);
-            truncatedString = truncatedString.TrimEnd();
-            truncatedString += suffix;
-            return truncatedString;
-        }
+			truncatedString = text.Substring(0, strLength);
+			truncatedString = truncatedString.TrimEnd();
+			truncatedString += suffix;
+			return truncatedString;
+		}
 
-        /// <summary>
-        /// Truncates the string to a specified length and replace the truncated to a ...
-        /// </summary>
-        /// <param name="text">string that will be truncated</param>
-        /// <param name="maxLength">total length of characters to maintain before the truncate happens</param>
-        /// <returns>truncated string</returns>
-        public static string Truncate(this string text, int maxLength)
-        {
-            return text.Truncate(maxLength, "...");
-        }
+		/// <summary>
+		/// Truncates the string to a specified length and replace the truncated to a ...
+		/// </summary>
+		/// <param name="text">string that will be truncated</param>
+		/// <param name="maxLength">total length of characters to maintain before the truncate happens</param>
+		/// <returns>truncated string</returns>
+		public static string Truncate(this string text, int maxLength)
+		{
+			return text.Truncate(maxLength, "...");
+		}
 
-        /// <summary>
-        /// Return a list of wrapped lines
-        /// </summary>
-        /// <param name="text"></param>
-        /// <param name="maxLineLength"></param>
-        /// <returns></returns>
-        public static List<string> WordWrap(this string text, int maxLineLength)
-        {
-            text = text.Replace(NEW_LINE, "\n");
+		/// <summary>
+		/// Return a list of wrapped lines
+		/// </summary>
+		/// <param name="text"></param>
+		/// <param name="maxLineLength"></param>
+		/// <returns></returns>
+		public static List<string> WordWrap(this string text, int maxLineLength)
+		{
+			text = text.Replace(NEW_LINE, "\n");
 
-            var lines = text.Split('\n').ToList();
+			var lines = text.Split('\n').ToList();
 
-            bool lengthsTrimmed = false;
-            while (!lengthsTrimmed)
-            {
-                var longLines = lines.Where(line => line.Length > maxLineLength).ToList();
-                if (longLines.Count() == 0) lengthsTrimmed = true;
-                foreach (var longLine in longLines)
-                {
-                    // get the largest index in the line for which the char is a space
-                    // and the index is smaller than the max line length
-                    var length = longLine.Select((chr, i) => (chr == ' ' && i <= maxLineLength) ? i : -1).Max();
-                    
-                    // If no space found, force wrap in the middle of a word.
-                    if (length == -1)
-                        length = maxLineLength;
+			var lengthsTrimmed = false;
+			while (!lengthsTrimmed)
+			{
+				var longLines = lines.Where(line => line.Length > maxLineLength).ToList();
+				if (longLines.Count() == 0) lengthsTrimmed = true;
+				foreach (var longLine in longLines)
+				{
+					// get the largest index in the line for which the char is a space
+					// and the index is smaller than the max line length
+					var length = longLine.Select((chr, i) => (chr == ' ' && i <= maxLineLength) ? i : -1).Max();
 
-                    var newLine1 = longLine.Substring(0, length);
-                    var newLine2 = longLine.Substring(length);
+					// If no space found, force wrap in the middle of a word.
+					if (length == -1)
+						length = maxLineLength;
 
-                    // Remove space at beginning of wrapped line. Looks better.
-                    if (newLine2[0] == ' ')
-                        newLine2 = newLine2.Substring(1);
+					var newLine1 = longLine.Substring(0, length);
+					var newLine2 = longLine.Substring(length);
 
-                    lines.InsertRange(lines.IndexOf(longLine),
-                                      new[] { newLine1, newLine2 });
-                    lines.Remove(longLine);
-                }
-            }
-            return lines;
-        }
+					// Remove space at beginning of wrapped line. Looks better.
+					if (newLine2[0] == ' ')
+						newLine2 = newLine2.Substring(1);
 
-        /// <summary>
-        /// Returns the given text with lines separated by <see cref="Environment.NewLine"/>
-        /// and a maximum length of <paramref name="maxLineLength"/>.
-        /// Uses <see cref="WordWrap"/> internally.
-        /// </summary>
-        /// <param name="text"></param>
-        /// <param name="maxLineLength"></param>
-        /// <returns></returns>
-        public static string Wrap(this string text, int maxLineLength)
-        {
-            var lines = text.WordWrap(maxLineLength);
+					lines.InsertRange(lines.IndexOf(longLine),
+					                  new[] { newLine1, newLine2 });
+					lines.Remove(longLine);
+				}
+			}
+			return lines;
+		}
 
-            var output = new StringBuilder();
+		/// <summary>
+		/// Returns the given text with lines separated by <see cref="Environment.NewLine"/>
+		/// and a maximum length of <paramref name="maxLineLength"/>.
+		/// Uses <see cref="WordWrap"/> internally.
+		/// </summary>
+		/// <param name="text"></param>
+		/// <param name="maxLineLength"></param>
+		/// <returns></returns>
+		public static string Wrap(this string text, int maxLineLength)
+		{
+			var lines = text.WordWrap(maxLineLength);
 
-            for (int i = 0; i < lines.Count; i++)
-            {
-                output.Append(lines[i]);
-                if (i < lines.Count - 1)
-                    output.AppendLine();
-            }
+			var output = new StringBuilder();
 
-            return output.ToString();
-        }
+			for (var i = 0; i < lines.Count; i++)
+			{
+				output.Append(lines[i]);
+				if (i < lines.Count - 1)
+					output.AppendLine();
+			}
 
-        public static bool IsEmail(this string text)
-        {
-            if (String.IsNullOrEmpty(text))
-                return false;
+			return output.ToString();
+		}
 
-            const string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
-                                    @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
-                                    @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
-            var re = new Regex(strRegex);
+		public static bool IsEmail(this string text)
+		{
+			if (String.IsNullOrEmpty(text))
+				return false;
 
-            if (re.IsMatch(text))
-                return true;
+			const string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
+			                        @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+			                        @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+			var re = new Regex(strRegex);
 
-            return false;
-        }
+			if (re.IsMatch(text))
+				return true;
 
-        public static bool IsUri(this string uri)
-        {
-            if (String.IsNullOrEmpty(uri))
-                return false;
+			return false;
+		}
 
-            const string strRegex = @"^[a-z]+([a-z0-9-]*[a-z0-9]+)?(\.([a-z]+([a-z0-9-]*[a-z0-9]+)?)+)*$";
-            var re = new Regex(strRegex);
+		public static bool IsUri(this string uri)
+		{
+			if (String.IsNullOrEmpty(uri))
+				return false;
 
-            if (re.IsMatch(uri))
-                return true;
+			const string strRegex = @"^[a-z]+([a-z0-9-]*[a-z0-9]+)?(\.([a-z]+([a-z0-9-]*[a-z0-9]+)?)+)*$";
+			var re = new Regex(strRegex);
 
-            return false;
-        }
-		
-        public static bool IsNumeric(this string value)
-        {
-            var regex = new Regex(@"^\-?[0-9]+$");
-            return regex.IsMatch(value);
+			if (re.IsMatch(uri))
+				return true;
+
+			return false;
+		}
+
+		public static bool IsNumeric(this string value)
+		{
+			var regex = new Regex(@"^\-?[0-9]+$");
+			return regex.IsMatch(value);
 		}
 
 		public static int ToInt(this string value)
@@ -165,22 +167,22 @@ namespace SpeakFriend.Utilities
 			return Int32.Parse(value);
 		}
 
-        public static int ToInt32(this string value)
-        {
-            return Int32.Parse(value);
-        }
+		public static int ToInt32(this string value)
+		{
+			return Int32.Parse(value);
+		}
 
-    	/// <summary>
-    	/// Returns a new string which is guaranteed to begin with the given prefix.
+		/// <summary>
+		/// Returns a new string which is guaranteed to begin with the given prefix.
 		/// If the prefix is already present, the same string is returned.
 		/// </summary>
-    	public static string EnsureStartsWith(this string value, string prefix)
-    	{
-    		return EnsureStartsWith(value, prefix, StringEnsureOptions.None);
-    	}
+		public static string EnsureStartsWith(this string value, string prefix)
+		{
+			return EnsureStartsWith(value, prefix, StringEnsureOptions.None);
+		}
 
-    	public static string EnsureStartsWith(this string value, string prefix, StringEnsureOptions options)
-    	{
+		public static string EnsureStartsWith(this string value, string prefix, StringEnsureOptions options)
+		{
 			if (options == StringEnsureOptions.IgnoreNullOrEmpty && string.IsNullOrEmpty(value))
 				return value;
 
@@ -188,44 +190,44 @@ namespace SpeakFriend.Utilities
 				return value;
 
 			return prefix + value;
-    	}
+		}
 
-    	/// <summary>
+		/// <summary>
 		/// Returns a new string which is guaranteed not to begin with the given prefix.
 		/// If the prefix is already not present, the same string is returned.
 		/// </summary>
-    	public static string EnsureStartsNotWith(this string value, string prefix)
-    	{
+		public static string EnsureStartsNotWith(this string value, string prefix)
+		{
 			if (string.IsNullOrEmpty(value))
 				return value;
 
-    		if (value.StartsWith(prefix))
-    			return value.Substring(prefix.Length);
+			if (value.StartsWith(prefix))
+				return value.Substring(prefix.Length);
 
-    		return value;
-    	}
+			return value;
+		}
 
-    	/// <summary>
+		/// <summary>
 		/// Returns a new string which is guaranteed to end with the given suffix.
 		/// If the suffix is already present, the same string is returned.
 		/// </summary>
 		public static string EnsureEndsWith(this string value, string suffix)
 		{
-    	    return EnsureEndsWith(value, suffix, StringEnsureOptions.None);
+			return EnsureEndsWith(value, suffix, StringEnsureOptions.None);
 		}
 
-        public static string EnsureEndsWith(this string value, string suffix, StringEnsureOptions options)
-        {
-            if (options == StringEnsureOptions.IgnoreNullOrEmpty && string.IsNullOrEmpty(value))
-                return value;
+		public static string EnsureEndsWith(this string value, string suffix, StringEnsureOptions options)
+		{
+			if (options == StringEnsureOptions.IgnoreNullOrEmpty && string.IsNullOrEmpty(value))
+				return value;
 
-            if (value.EndsWith(suffix))
-                return value;
+			if (value.EndsWith(suffix))
+				return value;
 
-            return value + suffix;
-        }
+			return value + suffix;
+		}
 
-        /// <summary>
+		/// <summary>
 		/// Returns a new string which is guaranteed not to end with the given suffix.
 		/// If the suffix is already missing, the same string is returned.
 		/// </summary>
@@ -234,7 +236,7 @@ namespace SpeakFriend.Utilities
 			return EnsureEndsNotWith(value, suffix, false);
 		}
 
-    	public static string EnsureEndsNotWith(this string value, string suffix, bool ignoreCase)
+		public static string EnsureEndsNotWith(this string value, string suffix, bool ignoreCase)
 		{
 			if (string.IsNullOrEmpty(value))
 				return value;
@@ -249,19 +251,19 @@ namespace SpeakFriend.Utilities
 				return value.Substring(0, value.Length - suffix.Length);
 
 			return value;
-    	}
+		}
 
-    	public static DateTime? ToDate(this string dateText)
-        {
-            DateTime date;
-            return DateTime.TryParseExact(dateText,
-                                          "dd.MM.yyyy",
-                                          CultureInfo.InvariantCulture,
-                                          DateTimeStyles.None,
-                                          out date)
-                       ? (DateTime?)date
-                       : null;
-        }
+		public static DateTime? ToDate(this string dateText)
+		{
+			DateTime date;
+			return DateTime.TryParseExact(dateText,
+			                              "dd.MM.yyyy",
+			                              CultureInfo.InvariantCulture,
+			                              DateTimeStyles.None,
+			                              out date)
+			       	? (DateTime?) date
+			       	: null;
+		}
 
 		public static string JoinNonEmpty(this IEnumerable<string> values, string separator)
 		{
@@ -269,10 +271,10 @@ namespace SpeakFriend.Utilities
 		}
 
 
-    	public static string Indent(this string value, int width)
-        {
-            return Regex.Replace(value, "(^|\n)", "$1".PadRight(width+2));
-        }
+		public static string Indent(this string value, int width)
+		{
+			return Regex.Replace(value, "(^|\n)", "$1".PadRight(width + 2));
+		}
 
 		/// <summary>
 		/// Uses <see cref="string.IsNullOrEmpty"/> as an extension method.
@@ -289,5 +291,5 @@ namespace SpeakFriend.Utilities
 		{
 			return !string.IsNullOrEmpty(str);
 		}
-    }
+	}
 }
