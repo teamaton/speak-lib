@@ -192,10 +192,13 @@ namespace SpeakFriend.Utilities
 
     	/// <summary>
 		/// Returns a new string which is guaranteed not to begin with the given prefix.
-		/// If the prefix is already missing, the same string is returned.
+		/// If the prefix is already not present, the same string is returned.
 		/// </summary>
     	public static string EnsureStartsNotWith(this string value, string prefix)
     	{
+			if (string.IsNullOrEmpty(value))
+				return value;
+
     		if (value.StartsWith(prefix))
     			return value.Substring(prefix.Length);
 
@@ -232,7 +235,10 @@ namespace SpeakFriend.Utilities
 		}
 
     	public static string EnsureEndsNotWith(this string value, string suffix, bool ignoreCase)
-    	{
+		{
+			if (string.IsNullOrEmpty(value))
+				return value;
+
 			if (ignoreCase)
 			{
 				value = value.ToLower();
