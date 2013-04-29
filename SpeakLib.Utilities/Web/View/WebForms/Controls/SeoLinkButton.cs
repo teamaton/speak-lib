@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Reflection;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -18,6 +20,16 @@ namespace SpeakFriend.Utilities
 	[ToolboxData("<{0}:HyperLinkButton runat=server></{0}:HyperLinkButton>")]
 	public class SeoLinkButton : LinkButton
 	{
+		private static readonly IntPtr WebControlAddAttributesToRenderMethodPtr;
+
+		static SeoLinkButton()
+		{
+			// cache the reflected method pointer once for all calls
+			var method = typeof (WebControl)
+				.GetMethod("AddAttributesToRender", BindingFlags.Instance | BindingFlags.NonPublic);
+			WebControlAddAttributesToRenderMethodPtr = method.MethodHandle.GetFunctionPointer();
+		}
+
 		/// <summary>
 		/// The URL that will be navigated to if JavaScript is disabled
 		/// (i.e. the Postback in the [onclick] handler is not executed).
@@ -117,9 +129,17 @@ namespace SpeakFriend.Utilities
 				}
 			}
 
-			// only call the base method here, after rendering our custom onclick and href attributes
-			// otherwise, the LinkButton code would first render those attributes and ignore FallbackUrl
-			base.AddAttributesToRender(writer);
+			// call the same method on the WebControl class, NOT the base (LinkButton) class
+			// because it renders the href attribute a second time!
+			CallBaseMethodOnWebControlClass(writer);
+		}
+
+		private void CallBaseMethodOnWebControlClass(HtmlTextWriter writer)
+		{
+			var action = (Action<HtmlTextWriter>)Activator
+				.CreateInstance(typeof(Action<HtmlTextWriter>), this,
+				WebControlAddAttributesToRenderMethodPtr);
+			action(writer);
 		}
 
 		private string GetPostBackEventReference(bool isEffectivelyEnabled)
