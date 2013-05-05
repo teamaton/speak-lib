@@ -41,6 +41,21 @@ namespace SpeakFriend.Utilities
 			}
 		}
 
+		/// <summary>
+		/// Sets the condition to [false AND active] or [true AND inactive].
+		/// </summary>
+		/// <param name="value"></param>
+		public void SetFalseOrInactive(bool value)
+		{
+			if (value)
+				SetFalse();
+			else
+			{
+				_value = true;
+				Conditions.Remove(this);
+			}
+		}
+
 		public bool IsTrue()
 		{
 			return _value == true;
