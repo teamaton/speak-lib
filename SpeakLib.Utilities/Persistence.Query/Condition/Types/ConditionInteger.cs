@@ -70,6 +70,22 @@ namespace SpeakFriend.Utilities
 			Conditions.AddUnique(this);
 		}
 
+		public void LessThanOrEqual(object value)
+		{
+			LessThanOrEqual(Convert.ToInt32(value));
+		}
+
+		public void LessThanOrEqual(int value)
+		{
+			SetQueryLessOrEqual();
+			_value = value;
+
+			if (RemoveIfMinusOne(value))
+				return;
+
+			Conditions.AddUnique(this);
+		}
+
 		public void EqualTo(object id)
 		{
 			if (String.IsNullOrEmpty(id.ToString()))
