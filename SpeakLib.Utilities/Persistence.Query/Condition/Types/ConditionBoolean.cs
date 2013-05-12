@@ -108,14 +108,14 @@ namespace SpeakFriend.Utilities
 			return this;
 		}
 
-		/// <summary>
-		/// Checks whether this condition is set and contained in the ConditionList.
-		/// </summary>
-		/// <returns>True if this condition is contained in the ConditionList AND if 
-		/// its value is set to something other than the default, else false.</returns>
-		public override bool IsActive()
+		public bool IsTrueAndActive()
 		{
 			return IsTrue() && Conditions.Contains(this);
+		}
+
+		public bool IsFalseAndActive()
+		{
+			return IsFalse() && Conditions.Contains(this);
 		}
 
 		public override void AddToCriteria(ICriteria criteria)
@@ -132,11 +132,6 @@ namespace SpeakFriend.Utilities
 			return _value.HasValue
 			       	? Restrictions.Eq(PropertyName, _value.Value)
 			       	: Restrictions.IsNull(PropertyName);
-		}
-
-		public override void Reset()
-		{
-			SetTrueOrInactive(false);
 		}
 	}
 }
