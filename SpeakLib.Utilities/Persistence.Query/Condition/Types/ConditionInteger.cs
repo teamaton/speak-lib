@@ -22,6 +22,22 @@ namespace SpeakFriend.Utilities
 			_criticalValue = criticalValue;
 		}
 
+		public void GreaterThanOrEqual(object value)
+		{
+			GreaterThanOrEqual(Convert.ToInt32(value));
+		}
+
+		public void GreaterThanOrEqual(int value)
+		{
+			SetQueryGreaterOrEqual();
+			_value = value;
+
+			if (RemoveIfMinusOne(value))
+				return;
+
+			Conditions.AddUnique(this);
+		}
+
 		public void GreaterThan(object value)
 		{
 			GreaterThan(Convert.ToInt32(value));
