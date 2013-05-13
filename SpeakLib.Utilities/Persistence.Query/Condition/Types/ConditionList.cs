@@ -57,6 +57,8 @@ namespace SpeakFriend.Utilities
 
 			if (!_items.Contains(value))
 				_items.Add(value);
+			if (!Conditions.Contains(this))
+				Conditions.Add(this);
 		}
 
 		public void Clear()
