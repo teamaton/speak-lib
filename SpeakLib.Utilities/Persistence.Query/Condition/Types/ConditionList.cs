@@ -49,16 +49,21 @@ namespace SpeakFriend.Utilities
 
 		public void Add(T value)
 		{
-			if (typeof (T) != typeof (Int32) &&
-			    typeof (T) != typeof (String) &&
-			    typeof (T) != typeof (bool) &&
-			    !typeof (T).IsEnum)
-				throw new TypeMismatchException("expected int, string or enum");
+			ValidateType();
 
 			if (!_items.Contains(value))
 				_items.Add(value);
 			if (!Conditions.Contains(this))
 				Conditions.Add(this);
+		}
+
+		private void ValidateType()
+		{
+			if (typeof (T) != typeof (Int32) &&
+			    typeof (T) != typeof (String) &&
+			    typeof (T) != typeof (bool) &&
+			    !typeof (T).IsEnum)
+				throw new TypeMismatchException("expected int, string or enum");
 		}
 
 		public void Clear()
@@ -89,6 +94,13 @@ namespace SpeakFriend.Utilities
 		{
 			Items.Clear();
 			Conditions.Remove(this);
+		}
+
+		public bool Contains(T value)
+		{
+			ValidateType();
+
+			return _items.Contains(value);
 		}
 	}
 }
