@@ -109,27 +109,31 @@ namespace SpeakFriend.Utilities
 
 		public override ICriterion GetCriterion()
 		{
+			var value = GetValue();
 			if (IsEqualTo())
-				return Restrictions.Eq(PropertyName, GetValue());
+				return Restrictions.Eq(PropertyName, value);
 
 			if (IsGreaterThan())
-				return Restrictions.Gt(PropertyName, GetValue());
+				return Restrictions.Gt(PropertyName, value);
 
 			if (IsGreaterThanOrEqual())
-				return Restrictions.Ge(PropertyName, GetValue());
+				return Restrictions.Ge(PropertyName, value);
 
 			// Building conjunction if needed.
 			ICriterion restriction;
 
 			if (IsLessThanOrEqual())
-				restriction = Restrictions.Le(PropertyName, GetValue());
+				restriction = Restrictions.Le(PropertyName, value);
 			else // less than
-				restriction = Restrictions.Lt(PropertyName, GetValue());
+				restriction = Restrictions.Lt(PropertyName, value);
 
 			if (MustBeGreaterThanOrEqualToZero)
+			{
+				var zeroOfMatchingType = Convert.ChangeType(0, value.GetType());
 				restriction = Restrictions.Conjunction()
 					.Add(restriction)
-					.Add(Restrictions.Ge(PropertyName, 0f));
+					.Add(Restrictions.Ge(PropertyName, zeroOfMatchingType));
+			}
 
 			return restriction;
 		}
