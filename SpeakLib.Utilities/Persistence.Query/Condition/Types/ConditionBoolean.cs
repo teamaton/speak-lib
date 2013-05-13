@@ -133,5 +133,11 @@ namespace SpeakFriend.Utilities
 			       	? Restrictions.Eq(PropertyName, _value.Value)
 			       	: Restrictions.IsNull(PropertyName);
 		}
+
+		public override void Reset()
+		{
+			_value = null;
+			base.Reset();
+		}
 	}
 }
