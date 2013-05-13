@@ -29,18 +29,6 @@ namespace SpeakFriend.Utilities
 			PropertyName = propertyName;
 		}
 
-		/// <summary>
-		/// Entfernt diese <see cref="Condition"/> aus der Liste.
-		/// </summary>
-		public void Remove()
-		{
-			if (_conditions.Contains(PropertyName))
-			{
-				_conditions.Remove(this);
-				Reset();
-			}
-		}
-
 		public override int GetHashCode()
 		{
 			return PropertyName.GetHashCode();

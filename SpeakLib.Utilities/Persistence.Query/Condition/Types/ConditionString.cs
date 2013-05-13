@@ -92,7 +92,7 @@ namespace SpeakFriend.Utilities
 		{
 			if (!IsValid(value))
 			{
-				Remove();
+				Reset();
 				return false;
 			}
 

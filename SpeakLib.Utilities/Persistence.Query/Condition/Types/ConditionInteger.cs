@@ -106,7 +106,7 @@ namespace SpeakFriend.Utilities
 		{
 			if (String.IsNullOrEmpty(id.ToString()))
 			{
-				Remove();
+				Reset();
 				return;
 			}
 
