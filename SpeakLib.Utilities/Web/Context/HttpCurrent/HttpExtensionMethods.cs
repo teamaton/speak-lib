@@ -44,19 +44,16 @@ namespace SpeakFriend.Utilities.Web
 
 		public static string GetIpAddress(this HttpRequest request)
 		{
-			var ip = request.UserHostAddress;
-
-			if (!string.IsNullOrEmpty(ip))
-				return ip;
-
 			// See: http://forums.asp.net/p/1053767/1496008.aspx
 
-			ip = request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+			// Proxies set this HTTP header: HTTP_X_FORWARDED_FOR
+			var ip = request.ServerVariables["HTTP_X_FORWARDED_FOR"];
 
-			// If there is no proxy, get the standard remote address
-
+			// If there is no proxy, get the standard remote address: REMOTE_ADDR
 			if (string.IsNullOrEmpty(ip) || (ip.ToLowerInvariant() == "unknown"))
+			{
 				ip = request.ServerVariables["REMOTE_ADDR"];
+			}
 
 			return ip ?? "unknown";
 		}
