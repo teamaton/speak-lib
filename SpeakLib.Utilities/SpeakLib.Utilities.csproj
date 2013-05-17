@@ -302,6 +302,7 @@
     <Compile Include="Persistence.Query\Condition\CategoryAttributes.cs" />
     <Compile Include="Persistence.Query\Condition\Types\ConditionConjunctionEqual.cs" />
     <Compile Include="Persistence.Query\Condition\Types\ConditionObject.cs" />
+    <Compile Include="Persistence.Query\Condition\Types\ConditionOpenDate.cs" />
     <Compile Include="Persistence.Query\SearchDescriptionBase.cs" />
     <Compile Include="Persistence\Interfaces\Mappings.cs" />
     <Compile Include="Persistence\Interfaces\MutablePersistableBase.cs" />
