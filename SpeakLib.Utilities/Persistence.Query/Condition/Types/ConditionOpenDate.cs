@@ -13,7 +13,7 @@ namespace SpeakFriend.Utilities
 		private DateTime _value;
 
 
-		public ConditionOpenDate(ConditionContainer conditions) : base(conditions)
+		public ConditionOpenDate(ConditionContainer conditions) : base(conditions, "_openDate")
 		{
 		}
 
@@ -26,6 +26,11 @@ namespace SpeakFriend.Utilities
 		{
 			_value = new DateTime(1900, value.Month, value.Day);
 			Conditions.AddUnique(this);
+		}
+
+		public DateTime GetDate()
+		{
+			return _value;
 		}
 
 		public override void AddToCriteria(ICriteria criteria)
