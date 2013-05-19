@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using NHibernate;
 using NHibernate.Criterion;
 using SpeakFriend.Utilities;
@@ -55,6 +56,15 @@ namespace SpeakFriend.Utilities
 				_items.Add(value);
 			if (!Conditions.Contains(this))
 				Conditions.Add(this);
+		}
+
+		public void Remove(T value)
+		{
+			ValidateType();
+
+			_items.Remove(value);
+			if (!_items.Any())
+				Conditions.Remove(this);
 		}
 
 		private void ValidateType()
