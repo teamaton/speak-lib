@@ -24,15 +24,13 @@ namespace SpeakFriend.Utilities
 
 		public ConditionList(ConditionContainer conditions, string propertyName) : base(conditions, propertyName)
 		{
-			if (Conditions != null)
-				Conditions.Add(this);
 		}
 
 		public void Set(List<T> items)
 		{
 			Clear();
 			Add(items);
-			if (!Conditions.Contains(this))
+			if (!Conditions.Contains(this) && _items.Count > 0)
 				Conditions.Add(this);
 		}
 
@@ -40,12 +38,16 @@ namespace SpeakFriend.Utilities
 		{
 			foreach (var value in values)
 				Add(value);
+			if (!Conditions.Contains(this) && _items.Count > 0)
+				Conditions.Add(this);
 		}
 
 		public void Add(List<T> values)
 		{
 			foreach (var value in values)
 				Add(value);
+			if (!Conditions.Contains(this) && _items.Count > 0)
+				Conditions.Add(this);
 		}
 
 		public void Add(T value)
@@ -54,7 +56,7 @@ namespace SpeakFriend.Utilities
 
 			if (!_items.Contains(value))
 				_items.Add(value);
-			if (!Conditions.Contains(this))
+			if (!Conditions.Contains(this) && _items.Count > 0)
 				Conditions.Add(this);
 		}
 
