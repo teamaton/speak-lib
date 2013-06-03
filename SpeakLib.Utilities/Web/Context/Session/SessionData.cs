@@ -14,6 +14,8 @@ namespace SpeakFriend.Utilities.Web
 	[Serializable]
 	public class SessionData
 	{
+		private const string _versionKey = "VERSION";
+		private const int _version = 1;
 		private readonly Iesi.Collections.Generic.ISet<string> _appDomainInsertedKeys = new HashedSet<string>();
 
 		public object this[string key]
@@ -157,6 +159,25 @@ namespace SpeakFriend.Utilities.Web
 				foreach (var key in matchingKeys)
 					appDomain.SetData(key, null);
 			}
+		}
+
+		public static void SetVersion()
+		{
+			HttpContext.Current.Session[_versionKey] = _version;
+		}
+
+		public static bool IsOldVersion()
+		{
+			if (HttpContext.Current == null || HttpContext.Current.Session == null)
+				return true;
+
+			var version = HttpContext.Current.Session[_versionKey];
+			if (version != null)
+			{
+				return (int) version < _version;
+			}
+
+			return true;
 		}
 	}
 }
