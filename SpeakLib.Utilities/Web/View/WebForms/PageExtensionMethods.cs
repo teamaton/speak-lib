@@ -98,7 +98,7 @@ namespace SpeakFriend.Utilities.Web
 		}
 
 		/// <summary>
-		/// Scrolls the page to the Control with the given ID. Uses jquery.scrollTo.js plugin functionality.
+		/// Scrolls the browser page to the top. Uses jquery.scrollTo.js plugin functionality.
 		/// </summary>
 		public static void ScrollToTopOfPage(this Control control)
 		{
