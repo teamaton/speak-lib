@@ -125,7 +125,8 @@ namespace SpeakFriend.Utilities
 		{
 			Add();
 			var subject = LastAdded;
-			modifier(subject);
+			if (modifier != null)
+				modifier(subject);
 			Persist();
 			return subject;
 		}
